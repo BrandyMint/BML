@@ -1,9 +1,18 @@
-Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+require 'app_constraint'
+require 'account_constraint'
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+Rails.application.routes.draw do
+  scope as: :account, module: :account, constraints: AccountConstraint do
+    root 'welcome#index'
+  end
+
+  #namespace :account do
+    #get 'welcome/index'
+  #end
+
+  scope as: :system, subdomain: 'app', constraints: AppConstraint do
+    root 'welcome#index'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

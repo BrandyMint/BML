@@ -1,0 +1,104 @@
+defaults: &defaults
+  tld_length: 1
+
+  app: &app
+    asset_host: http://3008.vkontraste.ru
+
+    default_url_options: &default_url_options
+      host: aydamarket.ru
+      port: 80
+
+  smsc:
+    login: dapi
+    password: '|fc6oq6sw(c22ok7e6]bul9^u0(6mv['
+    sender: Kiiiosk
+
+
+  action_mailer: &action_mailer
+    raise_delivery_errors: false
+    default_url_options:
+      <<: *default_url_options
+    delivery_method: :smtp
+    smtp_settings:
+     user_name: '22034c1b99ccfa0a1'
+     password: '5954903ecb3318'
+     address: 'mailtrap.io'
+     domain: 'mailtrap.io'
+     port: 2525
+     authentication: :cram_md5
+
+  mailer_defaults: &mailer_defaults
+    from: 'noreply@kiiiosk.ru'
+    host: kiiiosk.ru
+
+  domain_zones: [kiiiosk.ru, kiiiosk.com, kiiiosk.kz, kiiiosk.ua]
+
+development:
+  <<: *defaults
+  domain_zones: [kiiiosk.ru, kiiiosk.com, kiiiosk.kz, kiiiosk.ua, 3001.vkontraste.ru]
+  app:
+    <<: *app
+    asset_host: http://3008.vkontraste.ru
+
+    default_url_options: &default_url_options
+      host: 3008.vkontraste.ru
+      port: 80
+
+  tld_length: 2
+  action_mailer:
+    <<: *action_mailer
+    delivery_method: :letter_opener
+    # mailcatcher
+    #delivery_method: :smtp
+    #smtp_settings:
+      #address: localhost
+      #port: 1025   # mailcatcher
+    raise_delivery_errors: true
+
+production:
+  <<: *defaults
+  app:
+    <<: *app
+    title: Kiiiosk
+
+    fallback_image: images/fallback/product-none.png
+    asset_host: http://3001.vkontraste.ru
+
+    default_url_options: &default_url_options
+      host: 3001.vkontraste.ru
+      port: 80
+
+  tld_length: 2
+  action_mailer:
+    <<: *action_mailer
+    delivery_method: :smtp
+    smtp_settings:
+      address: korm.local
+      port: 1025   # mailcatcher
+    raise_delivery_errors: true
+
+test:
+  <<: *defaults
+
+  domain_zones: [3008.vkontraste.ru]
+  app:
+    title: Киоск
+
+    asset_host: http://example.com
+    fallback_image: images/fallback/product-none.png
+
+    default_url_options: &default_url_options
+      host: example.com
+      port: 3000
+
+    host: http://app.example.com:3000
+
+  capybara:
+    port: 57500
+
+  mailer_defaults:
+    <<: *mailer_defaults
+
+  action_mailer:
+    <<: *action_mailer
+    delivery_method: :test
