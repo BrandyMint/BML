@@ -1,0 +1,30 @@
+nav.navbar.navbar-light.bg-faded
+  .container-fluid
+    -#.navbar-header
+
+    .row
+      .col-lg-3
+        ul.nav.navbar-nav
+          li.nav-item= active_link_to account_root_path, class: 'navbar-icon', active: false do
+            = fa_icon 'bank'
+          li.nav-item= link_to current_landing, '#', class: 'nav-link'
+
+      .col-lg-6
+        .navbar-center
+          ul.nav.navbar-nav
+            li.nav-item= active_link_to account_landing_editor_path(landing: current_landing), class: 'navbar-icon' do
+              = fa_icon 'desktop'
+            li.nav-item= active_link_to account_landing_analytics_path(landing: current_landing), class: 'navbar-icon' do
+              = fa_icon 'line-chart'
+            li.nav-item= active_link_to account_landing_collections_path(landing: current_landing), class: 'navbar-icon' do
+              = fa_icon 'database'
+
+      .col-lg-3
+        .pull-xs-right
+          ul.nav.navbar-nav.navbar-right
+            -# li.nav-item= active_link_to 'Версия 1', '#', class: 'nav-link'
+            li.nav-item
+            = active_link_to '#', class: 'navbar-icon' do
+              = fa_icon 'gear'
+
+    -# = render_navigation :expand_all => true, :renderer => :bootstrap, :context => :account

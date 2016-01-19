@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title BML
+    == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    == javascript_include_tag 'application', 'data-turbolinks-track' => true
+    == csrf_meta_tags 
+  body
+    == render 'layouts/account/topmenu'
+
+    #container.container
+      == yield
+
+    footer#footer.footer
+      .container
+        .text-muted
+          | Copyright (c) 2016 Brandymint
+

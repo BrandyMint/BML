@@ -3,12 +3,14 @@ require 'account_constraint'
 
 Rails.application.routes.draw do
   scope as: :account, module: :account, constraints: AccountConstraint do
-    root 'welcome#index'
-  end
+    root 'landings#index'
 
-  #namespace :account do
-    #get 'welcome/index'
-  #end
+    resources :landings do
+      get :editor, action: :edit, controller: 'editor'
+      resources :analytics
+      resources :collections
+    end
+  end
 
   scope as: :system, subdomain: 'app', constraints: AppConstraint do
     root 'welcome#index'

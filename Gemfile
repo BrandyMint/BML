@@ -48,6 +48,8 @@ gem 'simple-navigation-bootstrap'
 gem 'font-awesome-rails'
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 
+gem 'active_link_to'
+gem 'uuid'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -59,6 +61,25 @@ gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'bond'
+  gem 'jist'
+  gem 'pry-rails'
+  gem 'pry-theme'
+
+  gem 'pry-pretty-numeric'
+  gem 'pry-highlight'
+  # Start a pry session whenever something goes wrong.
+  # Не испольуем потому что есть better_errors
+  # gem 'pry-rescue'
+
+  # step, next, finish, continue, break
+  gem 'pry-nav'
+  gem 'pry-doc'
+  gem 'pry-docmore'
+
+  # Добавляет show-stack
+  gem 'pry-stack_explorer'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
