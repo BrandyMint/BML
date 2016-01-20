@@ -13,11 +13,11 @@ nav.navbar.navbar-light.bg-faded.navbar-top
         .navbar-center
           ul.nav.navbar-nav
             li.nav-item= active_link_to account_landing_editor_path(landing: current_landing), class: 'navbar-icon' do
-              = fa_icon 'desktop'
+              = fa_icon 'object-group'
+            li.nav-item= active_link_to account_landing_path(current_landing), class: 'navbar-icon' do
+              = fa_icon 'eye'
             li.nav-item= active_link_to account_landing_analytics_path(landing: current_landing), class: 'navbar-icon' do
               = fa_icon 'line-chart'
-            li.nav-item= active_link_to account_landing_collections_path(landing: current_landing), class: 'navbar-icon' do
-              = fa_icon 'database'
 
       .col-lg-3
         .pull-xs-right

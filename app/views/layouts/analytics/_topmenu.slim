@@ -2,6 +2,7 @@ ul.nav.nav.nav-tabs
   li.nav-item= active_link_to 'Инсайты', account_landing_analytics_path, active: [['account/analytics'], ['index']], class: 'nav-link'
   li.nav-item= active_link_to 'Источники', sources_account_landing_analytics_path, class: 'nav-link'
   li.nav-item= active_link_to 'Воронка', funnel_account_landing_analytics_path, class: 'nav-link'
-  li.nav-item= active_link_to 'ABC-тесты', account_landing_versions_path, class: 'nav-link'
+  li.nav-item= active_link_to 'Мультилендинг', account_landing_versions_path, class: 'nav-link'
   li.nav-item= active_link_to 'Посетители', users_account_landing_analytics_path, class: 'nav-link'
+  li.nav-item= active_link_to 'Заявки', account_landing_collections_path(landing: current_landing), class: 'nav-link'
   li.nav-item= active_link_to 'Сегменты',  account_landing_segments_path, class: 'nav-link'

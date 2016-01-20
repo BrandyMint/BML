@@ -1,7 +1,9 @@
 .row
-  .col-md-12
+  .col-md-6
+    = render 'filter_date_range'
+  .col-md-6
     .pull-right
-      = link_to 'Новый сегмент', '#', class: 'btn btn-success'
+      = link_to 'Новый сегмент', new_account_landing_segment_path(current_landing), class: 'btn btn-success'
 
 br
 .row
@@ -16,6 +18,14 @@ br
           th Конверсия
           th Целей
       tbody
+        - segments.each do |s|
+          tr
+            td= s.title
+            td Город: Москва
+            td 128 человек
+            td 240 раз
+            td 7%
+            td 12
         tr
           td Из Москвы
           td Город: Москва

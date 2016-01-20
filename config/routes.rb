@@ -1,8 +1,13 @@
 require 'app_constraint'
 require 'account_constraint'
+require 'site_constraint'
 
 Rails.application.routes.draw do
-  scope as: :account, module: :account, constraints: AccountConstraint do
+  scope as: :site, constraints: SiteConstraint do
+    root 'site#index'
+  end
+
+  scope as: :account, path: 'a', module: :account, constraints: AccountConstraint do
     root 'landings#index'
 
     resources :landings do

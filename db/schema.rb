@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120073842) do
+ActiveRecord::Schema.define(version: 20160120121831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160120073842) do
     t.datetime "updated_at",                 null: false
     t.integer  "sections_count", default: 0, null: false
     t.integer  "versions_count", default: 0, null: false
+    t.integer  "segments_count", default: 0, null: false
   end
 
   add_index "landings", ["account_id"], name: "index_landings_on_account_id", using: :btree
@@ -71,8 +72,18 @@ ActiveRecord::Schema.define(version: 20160120073842) do
     t.integer  "landing_version_id",              null: false
   end
 
+  create_table "segments", force: :cascade do |t|
+    t.integer  "landing_id"
+    t.string   "title",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "segments", ["landing_id"], name: "index_segments_on_landing_id", using: :btree
+
   add_foreign_key "collection_items", "collections"
   add_foreign_key "collections", "landings"
   add_foreign_key "landing_versions", "landings"
   add_foreign_key "landings", "accounts"
+  add_foreign_key "segments", "landings"
 end

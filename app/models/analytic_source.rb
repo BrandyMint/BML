@@ -1,5 +1,5 @@
 class AnalyticSource
-  SOURCES = %w(yandex_direct google_adwords search social organic mails)
+  SOURCES = %w(yandex_direct google_adwords search social organic mails) # РСЯ, типа трафика платный/не платный, фраза
 
   include Virtus.model
 

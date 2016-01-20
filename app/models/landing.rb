@@ -3,6 +3,7 @@ class Landing < ActiveRecord::Base
 
   has_many :collections
   has_many :versions, class_name: 'LandingVersion'
+  has_many :segments
 
   validates :title, presence: true
 

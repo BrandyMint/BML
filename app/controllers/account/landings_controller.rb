@@ -1,4 +1,7 @@
 class Account::LandingsController < Account::ApplicationController
+
+  helper_method :current_landing
+
   def index
     render locals: { landings: landings }
   end
@@ -8,6 +11,11 @@ class Account::LandingsController < Account::ApplicationController
   end
 
   def edit
+    render layout: 'landing'
+  end
+
+  def show
+    redirect_to
     render layout: 'landing'
   end
 
@@ -25,6 +33,10 @@ class Account::LandingsController < Account::ApplicationController
 
   def build_landing
     current_account.landings.build
+  end
+
+  def current_landing
+    current_account.landings.find params[:id]
   end
 
   def landings

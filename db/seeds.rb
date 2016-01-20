@@ -16,3 +16,8 @@ v = l.versions.first || l.versions.create
 v.sections.find_or_create_by uuid: 'section1', block_type: 'LBlockHeader', block_view: 'LBlockHeaderV1'
 v.sections.find_or_create_by uuid: 'section2', block_type: 'LBlockHeader', block_view: 'LBlockHeaderV2'
 v.sections.find_or_create_by uuid: 'section3', block_type: 'LBlockHeader', block_view: 'LBlockHeaderV1'
+
+
+s = l.segments.find_or_create_by title: 'Москва'
+s = l.segments.find_or_create_by title: 'Вернулись'
+s = l.segments.find_or_create_by title: 'За последню неделю'

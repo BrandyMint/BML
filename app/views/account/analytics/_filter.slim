@@ -1,6 +1,5 @@
-.dropdown.pull-left
-  button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Диапазон дат: Январь 2016
-  .dropdown-menu
+= render 'filter_date_range'
+= render 'filter_segments'
 
 .dropdown.pull-left
   button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Источник
@@ -30,12 +29,6 @@
     button.btn-sm.dropdown-item type='button' Санкт-петербург
     button.btn-sm.dropdown-item type='button' Екатеринбург
     button.btn-sm.dropdown-item type='button' Регионы
-
-.dropdown.pull-xs-left
-  button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Сегменты
-  .dropdown-menu
-    button.btn-sm.dropdown-item type='button' Сегмент 1
-    button.btn-sm.dropdown-item type='button' Сегмент 2
 
 .dropdown.pull-xs-left
   button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Возвращаемость
