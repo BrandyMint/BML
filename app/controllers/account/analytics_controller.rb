@@ -13,6 +13,6 @@ class Account::AnalyticsController < Landing::ApplicationController
   end
 
   def users
-    render locals: { visits: ExampleVisits.build }, layout: 'users'
+    render locals: { visits: ExampleVisits.build }
   end
 end

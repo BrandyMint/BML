@@ -15,8 +15,11 @@
 //= require tether
 //= require nprogress
 //= require nprogress-turbolinks
-//= require bootstrap-sprockets
+//  require bootstrap-sprockets
 //= require turbolinks
+//= require dist/vendor.js
+//= require dist/bundle.js
+//= require react_ujs
 //= require jquery.easy-pie-chart/dist/jquery.easypiechart.js 
 //
 // SimpleNavigation

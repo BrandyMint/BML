@@ -1,0 +1,10 @@
+p мы используем вот такую ссылку для директа
+
+pre
+  = 'site.ru/?utm_source=yandex&utm_medium=cpc&utm_campaign=campaignname_{campaign_id}&utm_content={gbid}.{ad_id}.{phrase_id}|keyword:{keyword}|region:{region_name}.{region_id}|device:{device_type}|{source_type}|source:{source}|position:{position_type}.{position}|addphr:{addphrases}&utm_term={keyword}'
+
+p
+  = '{gbid}.{ad_id}.{phrase_id} - все id вплоть до фразы'
+  блоки position и addphr вынесены в конец, так как они могут отсутствовать для рся, и при парсинге не будет проблем.
+
+p Можно сделать такой функционал - сайт парсит входящие ссылки, определяет что это yandex и cpc и если ссылка отличается по маске от заданного, то помечать ее (!) с рекомендацией привести ее к нашему формату, чтобы собиралась корректная и полная статистика.

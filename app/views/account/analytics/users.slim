@@ -5,25 +5,22 @@ table.table.table-responsive.table-small-text.table-striped
     tr
       th Когда
       th Тип трафика
+      th Рекламная сеть
+      th Фраза
       th Кампания
-      th Имя
       th Город
       th Провел времени
-      th Сессий
-      th Целей
-      th Браузер
-      th Устройство
+      th Заявок
       th Возвращаемость
   tbody
     - visits.each do |visit|
       tr
         td= I18n.l visit.last_time, format: :short
-        td= visit.source
-        td= visit.name || 'Неизвестный'
+        td CPC
+        td Yandex
+        td ламифарэн гель
+        td 12468061|lamifaren___poisk|search
         td= visit.city
         td 2 минуты
-        td= visit.sessions_count
         td= visit.goals_count
-        td= visit.browser
-        td= visit.device
         td= %w(Новый Повторный).sample

@@ -5,6 +5,8 @@ require 'site_constraint'
 Rails.application.routes.draw do
   scope as: :site, constraints: SiteConstraint do
     root 'site#index'
+
+    resources :landings, path: 'lp', only: [:show]
   end
 
   scope as: :account, path: 'a', module: :account, constraints: AccountConstraint do

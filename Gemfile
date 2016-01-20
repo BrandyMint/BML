@@ -31,11 +31,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'phone', github: 'BrandyMint/phone', branch: 'feature/russia'
 gem 'nprogress-rails'
-gem 'bootstrap', '~> 4.0.0.alpha3'
 # gem 'semver2'
 # gem 'pg'
 
 gem 'virtus'
+
+gem 'react-source'
+gem 'react-rails'
 
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'

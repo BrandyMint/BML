@@ -8,8 +8,9 @@ html
   body
     == render 'layouts/account/topmenu'
 
-    .container.sub-top-menu
-      == render 'layouts/analytics/topmenu'
+    #content
+      .container.sub-top-menu
+        == render 'layouts/analytics/topmenu'
 
-    .container
-      == yield
+      .container
+        == yield

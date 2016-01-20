@@ -1,3 +1,4 @@
+= render 'filter'
 .row
   .col-md-3
     ul.nav.nav-pills.nav-stacked
@@ -9,28 +10,37 @@
         h1 Нет данных.
         p.lead Коллекции данных появляются, когда пользователи заполняют формы.
     - else
-      table.table.table-striped
+      table.table.table-responsive.table-small-text.table-striped
         thead.thead-default
           tr
             th Когда
             th Имя
-            th Телефон
-            th Email
+            th Контакт
+            th Тип трафика
+            th Рекламная сеть
+            th Фраза
+            th Кампания
         tbody
           - 20.times.each do |i|
             tr
-              td= I18n.l Time.now, format: :short
-              td Иванов Николай
-              td= mail_to 'danil@brandymint.ru'
-              td= tel_to '+7-903-389-12-28'
+              td.text-muted= I18n.l Time.now, format: :short
+              td 
+                p Иванов Николай
+                .text-muted Москва
+              td
+                p= mail_to 'danil@brandymint.ru'
+                p= tel_to '+7-903-389-12-28'
+              td CPC
+              td Yandex
+              td ламифарэн гель
+              td 12468061|lamifaren___poisk|search
       hr
       .row
         .col-md-12
           .pull-right
-            ul.list-horizontal
-              li Экспорт
-              li= link_to 'amoCRM', '#'
-              li= link_to 'CSV', '#'
-              li= link_to 'Excel', '#'
-              li= link_to 'Google Spreadsheet', '#'
-
+            ul.list-inline
+              li.list-inline-item Экспорт
+              li.list-inline-item= link_to 'amoCRM', '#'
+              li.list-inline-item= link_to 'CSV', '#'
+              li.list-inline-item= link_to 'Excel', '#'
+              li.list-inline-item= link_to 'Google Spreadsheet', '#'

@@ -7,6 +7,9 @@ class Landing < ActiveRecord::Base
 
   validates :title, presence: true
 
+  scope :ordered, -> { order :id }
+  scope :active, -> { all }
+
   def to_s
     title
   end

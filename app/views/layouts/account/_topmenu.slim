@@ -1,4 +1,4 @@
-nav.navbar.navbar-light.bg-faded.navbar-top
+nav.navbar.navbar-light.bg-faded.navbar-top.navbar-fixed-top
   .container-fluid
     -#.navbar-header
 
@@ -14,8 +14,8 @@ nav.navbar.navbar-light.bg-faded.navbar-top
           ul.nav.navbar-nav
             li.nav-item= active_link_to account_landing_editor_path(landing: current_landing), class: 'navbar-icon' do
               = fa_icon 'object-group'
-            li.nav-item= active_link_to account_landing_path(current_landing), class: 'navbar-icon' do
-              = fa_icon 'eye'
+            /li.nav-item= active_link_to site_landing_url(current_landing, subdomain: current_account.subdomain), class: 'navbar-icon', active: false do
+              /= fa_icon 'eye'
             li.nav-item= active_link_to account_landing_analytics_path(landing: current_landing), class: 'navbar-icon' do
               = fa_icon 'line-chart'
 
@@ -28,3 +28,4 @@ nav.navbar.navbar-light.bg-faded.navbar-top
               = fa_icon 'gear'
 
     -# = render_navigation :expand_all => true, :renderer => :bootstrap, :context => :account
+div style='height: 55px'

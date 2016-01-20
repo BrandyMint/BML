@@ -1,4 +1,5 @@
 class Account::ApplicationController < ApplicationController
-  include CurrentAccount
+  include CurrentAccountSupport
+
   layout 'account'
 end

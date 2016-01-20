@@ -1,9 +1,6 @@
-section.section-filters
-  .row
-    .col-md-6
-      ul.filters
-        li= render 'filter_date_range'
-        li= render 'filter_segments'
+ul.list-inline
+  li.list-inline-item= render 'filter_date_range'
+  li.list-inline-item= render 'filter_segments'
 
 .row
   .col-md-6
@@ -31,3 +28,8 @@ section.section-filters
         .percentage.easyPieChart data-percent=source.percent style="width: 110px; height: 110px; line-height: 110px;"
           span= "#{source.percent}%"
         .chart-label= source.title
+
+
+.row
+  .col-md-12
+    = render 'hint'
