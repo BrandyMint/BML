@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119114342) do
+ActiveRecord::Schema.define(version: 20160120073842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,31 +41,38 @@ ActiveRecord::Schema.define(version: 20160119114342) do
 
   add_index "collections", ["landing_id"], name: "index_collections_on_landing_id", using: :btree
 
+  create_table "landing_versions", force: :cascade do |t|
+    t.integer  "landing_id", null: false
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "landing_versions", ["landing_id"], name: "index_landing_versions_on_landing_id", using: :btree
+
   create_table "landings", force: :cascade do |t|
     t.integer  "account_id",                 null: false
-    t.string   "title"
-    t.datetime "version"
+    t.string   "title",                      null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "sections_count", default: 0, null: false
+    t.integer  "versions_count", default: 0, null: false
   end
 
   add_index "landings", ["account_id"], name: "index_landings_on_account_id", using: :btree
 
   create_table "sections", force: :cascade do |t|
-    t.integer  "landing_id",              null: false
-    t.string   "block_type",              null: false
-    t.string   "block_view",              null: false
-    t.uuid     "uuid",                    null: false
-    t.hstore   "data",       default: {}, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "block_type",                      null: false
+    t.string   "block_view",                      null: false
+    t.uuid     "uuid",                            null: false
+    t.hstore   "data",               default: {}, null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "landing_version_id",              null: false
   end
-
-  add_index "sections", ["landing_id"], name: "index_sections_on_landing_id", using: :btree
 
   add_foreign_key "collection_items", "collections"
   add_foreign_key "collections", "landings"
+  add_foreign_key "landing_versions", "landings"
   add_foreign_key "landings", "accounts"
-  add_foreign_key "sections", "landings"
 end

@@ -1,2 +1,35 @@
-.jumbotron
-  h1 У вас пока нет ABC-тестов
+.row
+  .col-md-12
+    .pull-right
+      = link_to 'Добавить версию', new_account_landing_version_path, class: 'btn btn-success'
+
+br
+
+- if versions.any?
+
+  table.table
+   thead.thead-default
+    tr
+      th Версия
+      th Срок действия
+      th Посетителей
+      th Посещений
+      th Конверсия
+      th
+
+    tbody
+      - versions.each do |v|
+        tr
+          td= v.to_s
+          td 3 дня
+          td 12 тыс
+          td 10 тыс
+          td 12%
+          td
+            = link_to edit_account_landing_version_path(id: v.id, landing: current_landing) do
+              = fa_icon :pencil
+
+- else
+  .jumbotron
+    h1 У вас пока нет ABC-тестов. 
+    p Тесты проводятся через создание различных версий лендинга. Создайте новую версию, налейте трафика и увидите чем отличается конверсия одной версии от другой.

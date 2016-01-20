@@ -3,18 +3,26 @@
 table.table.table-responsive.table-small-text.table-striped
   thead.thead-default
     tr
+      th Когда
+      th Откуда
       th Имя
       th Город
-      th Когда
       th Провел времени
       th Сессий
       th Целей
+      th Браузер
+      th Устройство
+      th Возвращаемость
   tbody
     - visits.each do |visit|
       tr
+        td= I18n.l visit.last_time, format: :short
+        td= visit.source
         td= visit.name || 'Неизвестный'
         td= visit.city
-        td= distance_of_time_in_words_to_now visit.last_time
         td 2 минуты
         td= visit.sessions_count
         td= visit.goals_count
+        td= visit.browser
+        td= visit.device
+        td= %w(Новый Повторный).sample
