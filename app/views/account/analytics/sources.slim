@@ -1,0 +1,26 @@
+.row
+  .col-md-6
+    table.table.table-striped.table-responsive.table-hover
+      thead.thead-default
+        tr
+          th Компания
+          th Посещения
+          th Конверсия
+          th Пропорция
+      tbody
+        - sources_data.each do |source|
+          tr
+            th= source.title
+            th colspan=3 &nbsp;
+          - source.segments.each do |seg|
+            tr
+              td= seg.title
+              td= "#{seg.users} тыс."
+              td= "#{seg.conversion}%"
+              td= "#{seg.percent}%"
+  .col-md-6
+    - sources_data.each do |source|
+      .chart
+        .percentage.easyPieChart data-percent=source.percent style="width: 110px; height: 110px; line-height: 110px;"
+          span= "#{source.percent}%"
+        .chart-label= source.title

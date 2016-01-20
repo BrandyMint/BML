@@ -1,0 +1,47 @@
+.dropdown.pull-left
+  button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Диапазон дат: Январь 2016
+  .dropdown-menu
+
+.dropdown.pull-left
+  button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Источник
+  .dropdown-menu
+    - AnalyticSource.sources.each do |source|
+      button.btn-sm.dropdown-item type='button'== source.title
+
+.dropdown.pull-xs-left
+  button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Устройства
+  .dropdown-menu
+    button.btn-sm.dropdown-item type='button' Компьютер
+    button.btn-sm.dropdown-item type='button' Планшет
+    button.btn-sm.dropdown-item type='button' Мобильный
+
+.dropdown.pull-xs-left
+  button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Браузер
+  .dropdown-menu
+    button.btn-sm.dropdown-item type='button' Safari
+    button.btn-sm.dropdown-item type='button' IE
+    button.btn-sm.dropdown-item type='button' Firefox
+    button.btn-sm.dropdown-item type='button' Chrome
+
+.dropdown.pull-xs-left
+  button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' География
+  .dropdown-menu
+    button.btn-sm.dropdown-item type='button' Москва
+    button.btn-sm.dropdown-item type='button' Санкт-петербург
+    button.btn-sm.dropdown-item type='button' Екатеринбург
+    button.btn-sm.dropdown-item type='button' Регионы
+
+.dropdown.pull-xs-left
+  button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Сегменты
+  .dropdown-menu
+    button.btn-sm.dropdown-item type='button' Сегмент 1
+    button.btn-sm.dropdown-item type='button' Сегмент 2
+
+.dropdown.pull-xs-left
+  button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Возвращаемость
+  .dropdown-menu
+    button.btn-sm.dropdown-item type='button' Новый
+    button.btn-sm.dropdown-item type='button' Повторный
+
+br
+br

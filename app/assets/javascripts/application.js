@@ -13,11 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require tether
+//= require nprogress
+//= require nprogress-turbolinks
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require jquery.easy-pie-chart/dist/jquery.easypiechart.js 
 //
 // SimpleNavigation
 //  require bootstrap_and_overrides
 //  require bootstrap_navbar_split_dropdowns
 //
 //= require_tree .
+
+

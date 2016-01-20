@@ -1,1 +1,6 @@
-h1 Analytics
+p.text-muted Вот что мы обнаружили:
+
+- insights.each_with_index do |i, idx|
+  div.alert class="alert-#{i.type}"
+    strong= "[#{idx}] "
+    = i.text

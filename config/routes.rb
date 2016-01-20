@@ -7,8 +7,18 @@ Rails.application.routes.draw do
 
     resources :landings do
       get :editor, action: :edit, controller: 'editor'
-      resources :analytics
+      resources :analytics do
+        collection do
+          get :sources
+          get :funnel
+          get :abc
+          get :users
+        end
+      end
       resources :collections
+      resource :settings
+      resources :segments
+      resources :versions
     end
   end
 

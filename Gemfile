@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'phone', github: 'BrandyMint/phone', branch: 'feature/russia'
+gem 'nprogress-rails'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 # gem 'semver2'
 # gem 'pg'

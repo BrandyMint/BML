@@ -17,6 +17,8 @@ class Account::LandingsController < Account::ApplicationController
     landing.save!
 
     redirect_to account_landings_path
+  rescue ActiveRecord::RecordInvalid => err
+    render 'new', locals: { landing: err.record }
   end
 
   private
