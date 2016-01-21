@@ -23,4 +23,3 @@ module CurrentAccount
     nil
   end
 end
-

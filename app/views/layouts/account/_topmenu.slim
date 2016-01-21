@@ -7,16 +7,21 @@ nav.navbar.navbar-light.bg-faded.navbar-top.navbar-fixed-top
         ul.nav.navbar-nav
           li.nav-item= active_link_to account_root_path, class: 'navbar-icon', active: false do
             = fa_icon 'bank'
-          li.nav-item= link_to current_landing, '#', class: 'nav-link'
+
+          - if landing_version.present?
+            li.nav-item= link_to current_landing_version.full_title, account_landing_versions_path, class: 'nav-link'
+          - else
+            li.nav-item= link_to current_landing, account_landing_versions_path, class: 'nav-link'
+
 
       .col-lg-6
         .navbar-center
           ul.nav.navbar-nav
-            li.nav-item= active_link_to account_landing_editor_path(landing: current_landing), class: 'navbar-icon' do
+            li.nav-item= active_link_to landing_editor_path(current_landing, landing_version), class: 'navbar-icon' do
               = fa_icon 'object-group'
             /li.nav-item= active_link_to site_landing_url(current_landing, subdomain: current_account.subdomain), class: 'navbar-icon', active: false do
               /= fa_icon 'eye'
-            li.nav-item= active_link_to account_landing_analytics_path(landing: current_landing), class: 'navbar-icon' do
+            li.nav-item= active_link_to account_landing_analytics_path(current_landing), class: 'navbar-icon', active: [['account/collections', 'account/analytics', 'account/versions', 'account/segments']] do
               = fa_icon 'line-chart'
 
       .col-lg-3

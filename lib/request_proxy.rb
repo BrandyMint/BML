@@ -42,9 +42,7 @@ class RequestProxy < SimpleDelegator
 
   def find_tld_length(host)
     domain_zones.each do |d|
-      if host == d || (host.ends_with? '.' + d)
-        return d.split('.').length - 1
-      end
+      return d.split('.').length - 1 if host == d || (host.ends_with? '.' + d)
     end
 
     ActionDispatch::Http::URL.tld_length

@@ -1,5 +1,4 @@
 class Account::LandingsController < Account::ApplicationController
-
   helper_method :current_landing
 
   def index

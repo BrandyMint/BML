@@ -4,7 +4,7 @@ class ExampleSourcesData
     google_adwords: ['Компания 3', 'Компания 4'],
     search: ['как разбить стекло', 'откуда берутся мухи'],
     social: ['Группа vkontakte'],
-    organic: ['Москва', 'Регионы'],
+    organic: %w(Москва Регионы),
     mails: ['Возвращайся скорее', 'Скидки до 15%']
   }
 
@@ -30,14 +30,14 @@ class ExampleSourcesData
   end
 
   def random_users
-    Random.rand(100).to_f/10
+    Random.rand(100).to_f / 10
   end
 
   def random_percent
-    Random.rand(1000).to_f/10
+    Random.rand(1000).to_f / 10
   end
 
   def random_conversion
-    Random.rand(100).to_f/10
+    Random.rand(100).to_f / 10
   end
 end

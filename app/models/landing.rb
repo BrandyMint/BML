@@ -1,4 +1,6 @@
 class Landing < ActiveRecord::Base
+  include Activity
+
   belongs_to :account, counter_cache: true
 
   has_many :collections
@@ -12,5 +14,9 @@ class Landing < ActiveRecord::Base
 
   def to_s
     title
+  end
+
+  def default_version
+    versions.active.ordered.first
   end
 end

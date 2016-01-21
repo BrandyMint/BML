@@ -20,14 +20,21 @@ br
     tbody
       - versions.each do |v|
         tr
-          td= v.to_s
+          td
+            = link_to landing_editor_path(current_landing, v) do
+              = v.to_s
           td 3 дня
           td 12 тыс
           td 10 тыс
           td 12%
-          td
-            = link_to edit_account_landing_version_path(id: v.id, landing: current_landing) do
-              = fa_icon :pencil
+          td.pull-right
+            ul.list-inline
+              li.list-inline-item
+                = link_to landing_editor_path(current_landing, v) do
+                  = fa_icon 'object-group'
+              li.list-inline-item
+                = link_to edit_account_landing_version_path(id: v.id, landing: current_landing) do
+                  = fa_icon :pencil
 
 - else
   .jumbotron

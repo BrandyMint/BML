@@ -101,6 +101,11 @@ GEM
     equalizer (0.0.11)
     erubis (2.7.0)
     execjs (2.6.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     ffi (1.9.10)
     font-awesome-rails (4.5.0.0)
       railties (>= 3.2, < 5.0)
@@ -137,6 +142,7 @@ GEM
     guard-shell (0.7.1)
       guard (>= 2.0.0)
       guard-compat (~> 1.0)
+    hashie (3.4.2)
     i18n (0.7.0)
     ice_nine (0.11.1)
     jbuilder (2.4.0)
@@ -235,6 +241,8 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
     rake (10.5.0)
+    ranked-model (0.4.0)
+      activerecord (>= 3.1.12)
     rb-fsevent (0.9.6)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -353,6 +361,7 @@ DEPENDENCIES
   byebug
   cocoon
   coffee-rails (~> 4.1.0)
+  factory_girl_rails
   font-awesome-rails
   guard (> 2.12)
   guard-bundler
@@ -361,6 +370,7 @@ DEPENDENCIES
   guard-rspec
   guard-rubocop
   guard-shell
+  hashie
   jbuilder (~> 2.0)
   jist
   jquery-rails
@@ -379,6 +389,7 @@ DEPENDENCIES
   pry-theme
   rails (= 4.2.5)
   rails-assets-tether (>= 1.1.0)!
+  ranked-model
   react-rails
   react-source
   rspec
