@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120202040) do
+ActiveRecord::Schema.define(version: 20160121080130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,10 @@ ActiveRecord::Schema.define(version: 20160120202040) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "landings_count", default: 0, null: false
+    t.string   "ident",                      null: false
   end
+
+  add_index "accounts", ["ident"], name: "index_accounts_on_ident", unique: true, using: :btree
 
   create_table "asset_files", force: :cascade do |t|
     t.integer  "account_id",                   null: false

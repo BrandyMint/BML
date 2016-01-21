@@ -1,8 +1,13 @@
 class AccountConstraint
+  PREFIX = 'a-'
+
   extend CurrentAccount
 
   def self.matches?(request)
-    account = Account.find_by_id request.subdomain
+    ident = request.subdomain
+
+    return false unless ident.start_with? PREFIX
+    account = Account.find_by_ident ident.sub PREFIX, ''
 
     if account.present?
       set_current_account account

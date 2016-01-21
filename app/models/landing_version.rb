@@ -2,7 +2,7 @@ class LandingVersion < ActiveRecord::Base
   include Activity
 
   belongs_to :landing, counter_cache: :versions_count
-  has_many :sections
+  has_many :sections, dependent: :destroy
 
   scope :ordered, -> { order :id }
 

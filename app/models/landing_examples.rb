@@ -43,14 +43,16 @@ module LandingExamples
         }
       },
       ctaMyBad: {
-        text: 'Connect to BML landings:',
+        text: 'Присоединяйся к нам в соцсетях!',
         backgroundImageUrl: 'http://ironsummitmedia.github.io/startbootstrap-landing-page/img/banner-bg.jpg',
         items: [
           {
+            icon: 'twitter',
             title: 'Twitter',
             url: 'twitter.com'
           },
           {
+            icon: 'github',
             title: 'GitHub',
             url: 'github.com'
           }

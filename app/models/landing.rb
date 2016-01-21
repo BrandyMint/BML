@@ -3,9 +3,9 @@ class Landing < ActiveRecord::Base
 
   belongs_to :account, counter_cache: true
 
-  has_many :collections
-  has_many :versions, class_name: 'LandingVersion'
-  has_many :segments
+  has_many :collections, dependent: :destroy
+  has_many :versions, class_name: 'LandingVersion', dependent: :destroy
+  has_many :segments, dependent: :destroy
 
   validates :title, presence: true
 

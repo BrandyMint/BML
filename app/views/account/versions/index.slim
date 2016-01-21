@@ -30,6 +30,9 @@ br
           td.pull-right
             ul.list-inline
               li.list-inline-item
+                = link_to site_landing_version_url(v), target: '_blank' do
+                  = fa_icon 'external-link'
+              li.list-inline-item
                 = link_to landing_editor_path(current_landing, v) do
                   = fa_icon 'object-group'
               li.list-inline-item

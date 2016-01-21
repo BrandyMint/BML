@@ -4,6 +4,12 @@ class LandingsController < ApplicationController
   def show
     landing = current_account.landings.find params[:id]
 
-    render locals: { landing: landing.default_version }
+    landing_version = if params[:version_id]
+      landing.versions.find params[:version_id]
+    else
+      landing.default_version
+    end
+
+    render locals: { landing_version: landing_version }
   end
 end

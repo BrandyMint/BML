@@ -3,6 +3,12 @@ module ApplicationHelper
     account_landing_editor_path(landing, version_id: version.try(:id) || landing.default_version.id)
   end
 
+  def site_landing_version_url(landing_version)
+    landing_version = landing_version.default_verison if landing_version.is_a? Landing
+
+    site_landing_path landing_version.landing, version_id: landing_version.id
+  end
+
   def tel_to(tel, opts = {})
     number = begin
                pn = Phoner::Phone.parse tel

@@ -14,15 +14,12 @@ class Account::LandingsController < Account::ApplicationController
   end
 
   def show
-    fail 'not realized'
+    redirect_to account_landing_analytics_path(current_landing)
   end
 
   def create
-    landing = build_landing
-    landing.assign_attributes permitted_params
-    landing.save!
-
-    redirect_to account_landings_path
+    landing = create_landing!
+    redirect_to account_landing_editor_path landing
   rescue ActiveRecord::RecordInvalid => err
     render 'new', locals: { landing: err.record }, layout: 'landing'
   end
@@ -49,10 +46,20 @@ class Account::LandingsController < Account::ApplicationController
   end
 
   def landings
-    current_account.landings
+    current_account.landings.ordered
   end
 
   def permitted_params
     params.require(:landing).permit(:title)
+  end
+
+  def create_landing!
+    landing = build_landing
+    landing.assign_attributes permitted_params
+    landing.save!
+    v = landing.versions.create!
+    SectionsUpdater.new(v, LandingExamples::EXAMPLE1).update
+
+    landing
   end
 end

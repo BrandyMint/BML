@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :landings, path: 'lp', only: [:show]
   end
 
-  scope as: :account, path: 'a', module: :account, constraints: AccountConstraint do
+  scope as: :account, path: '_a', module: :account, constraints: AccountConstraint do
     root 'landings#index'
 
     resources :landings do
