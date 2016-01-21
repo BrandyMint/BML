@@ -7,7 +7,8 @@ class SectionUpdater
 
   def update(position)
     section.assign_attributes(
-      'row_order' =>  position,
+      'data'       => data,
+      'row_order'  => position,
       'block_type' => block['type'],
       'block_view' => block['view']
     )

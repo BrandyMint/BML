@@ -34,6 +34,9 @@ gem 'nprogress-rails'
 # gem 'semver2'
 # gem 'pg'
 
+# Только для JS
+gem 'bootstrap', '~> 4.0.0.alpha3'
+
 gem 'ranked-model'
 gem 'virtus'
 gem 'hashie'

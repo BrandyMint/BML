@@ -1,13 +1,28 @@
 module ComponentHelper
-  def site_landing_component(_landing)
-    react_component 'LPage', LandingExamples::EXAMPLE1
+  def site_landing_component(landing_version)
+    react_component 'LPage', present_landing_version(landing_version)
   rescue => err
     err.message
   end
 
-  def editor_component
-    react_component 'LPage', LandingExamples::EXAMPLE1
+  def editor_component(landing_version)
+    react_component 'LPage', present_landing_version(landing_version)
   rescue => err
     err.message
+  end
+
+  private
+
+
+  def present_landing_version(landing_version)
+    data = {}
+    blocks = []
+
+    landing_version.sections.ordered.each do |s|
+      data[s.uuid] = s.data
+      blocks << { uuid: s.uuid, type: s.block_type, view: s.block_view }
+    end
+
+    { data: data, blocks: blocks }
   end
 end

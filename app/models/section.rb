@@ -7,7 +7,7 @@ class Section < ActiveRecord::Base
 
   before_create :generate_uuid
 
-  scope :ordered, -> { rank :row_order }
+  scope :ordered, -> { order :row_order }
 
   alias_attribute :data, :data_serialized
 

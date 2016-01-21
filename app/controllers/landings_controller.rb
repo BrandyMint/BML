@@ -4,6 +4,6 @@ class LandingsController < ApplicationController
   def show
     landing = current_account.landings.find params[:id]
 
-    render locals: { landing: landing }
+    render locals: { landing: landing.default_version }
   end
 end

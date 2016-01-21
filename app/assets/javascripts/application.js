@@ -15,7 +15,7 @@
 //= require tether
 //= require nprogress
 //= require nprogress-turbolinks
-//  require bootstrap-sprockets
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require dist/vendor.js
 //= require dist/bundle.js
@@ -27,5 +27,3 @@
 //  require bootstrap_navbar_split_dropdowns
 //
 //= require_tree .
-
-
