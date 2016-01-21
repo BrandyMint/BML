@@ -11,7 +11,7 @@ nav.navbar.navbar-light.bg-faded.navbar-top.navbar-fixed-top
           - if landing_version.present?
             li.nav-item= link_to current_landing_version.full_title, account_landing_versions_path, class: 'nav-link'
           - else
-            li.nav-item= link_to current_landing, account_landing_versions_path, class: 'nav-link'
+            li.nav-item= link_to current_landing, account_landing_versions_path(current_landing), class: 'nav-link'
 
 
       .col-lg-6
@@ -29,7 +29,7 @@ nav.navbar.navbar-light.bg-faded.navbar-top.navbar-fixed-top
           ul.nav.navbar-nav.navbar-right
             -# li.nav-item= active_link_to 'Версия 1', '#', class: 'nav-link'
             li.nav-item
-            = active_link_to account_landing_settings_path(landing: current_landing), class: 'navbar-icon' do
+            = active_link_to edit_account_landing_path(current_landing), class: 'navbar-icon' do
               = fa_icon 'gear'
 
     -# = render_navigation :expand_all => true, :renderer => :bootstrap, :context => :account

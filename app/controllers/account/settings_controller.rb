@@ -8,6 +8,11 @@ class Account::SettingsController < Landing::ApplicationController
   private
 
   def settings
-    LandingSettings.new
+    current_landing
+    # LandingSettings.new
+  end
+
+  def permitted_params
+    params.require(:landing).permit(:title)
   end
 end

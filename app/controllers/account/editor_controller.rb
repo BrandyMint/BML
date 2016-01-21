@@ -12,6 +12,10 @@ class Account::EditorController < Landing::ApplicationController
   end
 
   def landing_version
+    @_landing_version ||= find_landing_version
+  end
+
+  def find_landing_version
     if params[:version_id].present?
       current_landing.versions.find params[:version_id]
     else

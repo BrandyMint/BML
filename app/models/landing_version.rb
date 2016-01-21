@@ -11,6 +11,6 @@ class LandingVersion < ActiveRecord::Base
   end
 
   def to_s
-    title.presence || I18n.l(created_at, format: :short)
+    title.presence || I18n.l(updated_at, format: :short)
   end
 end

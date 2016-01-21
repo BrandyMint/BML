@@ -1,5 +1,5 @@
 class Account::LandingsController < Account::ApplicationController
-  helper_method :current_landing
+  helper_method :current_landing, :current_landing_version
 
   def index
     render locals: { landings: landings }
@@ -10,12 +10,11 @@ class Account::LandingsController < Account::ApplicationController
   end
 
   def edit
-    render layout: 'landing'
+    render locals: { landing: current_landing}, layout: 'settings'
   end
 
   def show
-    redirect_to
-    render layout: 'landing'
+    fail 'not realized'
   end
 
   def create
@@ -25,10 +24,21 @@ class Account::LandingsController < Account::ApplicationController
 
     redirect_to account_landings_path
   rescue ActiveRecord::RecordInvalid => err
-    render 'new', locals: { landing: err.record }
+    render 'new', locals: { landing: err.record }, layout: 'landing'
+  end
+
+  def update
+    current_landing.update_attributes! permitted_params
+    redirect_to edit_account_landing_path current_landing
+  rescue ActiveRecord::RecordInvalid
+    render 'edit', locals: { landing: err.record }, layout: 'settings'
   end
 
   private
+
+  def current_landing_version
+    nil
+  end
 
   def build_landing
     current_account.landings.build

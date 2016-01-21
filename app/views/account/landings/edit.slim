@@ -1,1 +1,4 @@
-p Тут супер редактор на react
+= simple_form_for [:account, landing] do |f|
+  = f.input :title, label: 'Название лендинга'
+  -# = f.input :domain, label: 'Домен'
+  = f.button :submit, 'Сохранить', class: 'btn-primary'
