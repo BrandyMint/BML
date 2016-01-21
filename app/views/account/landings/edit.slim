@@ -1,9 +1,17 @@
 = simple_form_for [:account, landing] do |f|
   = f.input :title, label: 'Название лендинга'
-  -# = f.input :domain, label: 'Домен'
+
+  = f.simple_fields_for :subdomain do |sf|
+    .row
+      .col-md-3
+        = sf.input :subdomain, label: 'Поддомен'
+      .col-md-3
+        = sf.input :zone, collection: Subdomain::AVAILABLE_ZONES, include_blank: false, label: 'Зона'
+      .col-md-6
+        = sf.input :suggested_domain, label: 'Предполагаемый домен'
   = f.button :submit, 'Сохранить', class: 'btn-primary'
 
 hr
 p
   = link_to site_landing_version_url(landing), target: '_blank' do
-    = fa_icon 'external-link', text: 'Ссылка для публики', right: true
+    = fa_icon 'external-link', text: landing.host, right: true

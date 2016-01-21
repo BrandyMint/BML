@@ -1,6 +1,8 @@
 module LandingExamples
   EXAMPLE1 = {
     regenerate_uuid: true,
+    css: '
+    ',
     data: {
       mr: {
         header: 'На все 100% !',

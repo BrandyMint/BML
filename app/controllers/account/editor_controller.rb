@@ -1,5 +1,5 @@
 class Account::EditorController < Landing::ApplicationController
-  layout 'landing'
+  layout 'editor'
 
   def edit
     render locals: { landing_version: landing_version }

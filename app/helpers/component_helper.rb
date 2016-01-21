@@ -1,6 +1,6 @@
 module ComponentHelper
   def site_landing_component(landing_version)
-    react_component 'LPage', present_landing_version(landing_version)
+    react_component 'LSite', present_landing_version(landing_version)
   rescue => err
     err.message
   end
@@ -23,6 +23,6 @@ module ComponentHelper
       blocks << { uuid: s.uuid, type: s.block_type, view: s.block_view }
     end
 
-    { data: data, blocks: blocks }
+    { data: data, blocks: blocks, exit_url: account_landing_analytics_path(landing_version.landing) }
   end
 end

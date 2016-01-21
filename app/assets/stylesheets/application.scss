@@ -12,9 +12,7 @@
  *
  *= require nprogress
  *= require nprogress-bootstrap
- *= require dist/style.css
+ *= require dist/bundle.css
  *= require_tree .
  *= require_self
  */
-
-@import "custom";

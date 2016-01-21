@@ -50,7 +50,7 @@ class Account::LandingsController < Account::ApplicationController
   end
 
   def permitted_params
-    params.require(:landing).permit(:title)
+    params.require(:landing).permit(:title, subdomain_attributes: [:subdomain, :zone, :suggested_domain, :use_domain])
   end
 
   def create_landing!

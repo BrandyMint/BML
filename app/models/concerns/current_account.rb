@@ -9,10 +9,6 @@ module CurrentAccount
     end
   end
 
-  def model_account
-    current_account if account_id.present? && current_account.id == account_id
-  end
-
   def set_current_account(account)
     Thread.current[:account] = account
   end

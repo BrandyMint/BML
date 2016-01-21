@@ -1,7 +1,6 @@
 class Account < ActiveRecord::Base
   has_many :landings,    dependent: :destroy
   has_many :collections, dependent: :destroy
-  has_many :subdomains,  dependent: :destroy
 
   before_create :generate_ident
 
@@ -10,7 +9,7 @@ class Account < ActiveRecord::Base
   end
 
   def subdomain
-    id.to_s
+    AccountConstraint::DOMAIN_PREFIX + ident
   end
 
   private

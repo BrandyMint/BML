@@ -4,9 +4,14 @@ module ApplicationHelper
   end
 
   def site_landing_version_url(landing_version)
-    landing_version = landing_version.default_version if landing_version.is_a? Landing
+    if landing_version.is_a? Landing
+      landing = landing_version
+      landing_version = landing_version.default_version
+    else
+      landing = landing_version.landing
+    end
 
-    site_landing_path landing_version.landing, version_id: landing_version.id
+    landing.host + "?version_id=#{landing_version.id}"
   end
 
   def tel_to(tel, opts = {})
