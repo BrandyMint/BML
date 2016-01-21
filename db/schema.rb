@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121080130) do
+ActiveRecord::Schema.define(version: 20160121084845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,17 @@ ActiveRecord::Schema.define(version: 20160121080130) do
 
   add_index "segments", ["landing_id"], name: "index_segments_on_landing_id", using: :btree
 
+  create_table "subdomains", force: :cascade do |t|
+    t.string   "subdomain",  null: false
+    t.string   "zone",       null: false
+    t.integer  "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "subdomains", ["account_id"], name: "index_subdomains_on_account_id", using: :btree
+  add_index "subdomains", ["zone", "subdomain"], name: "index_subdomains_on_zone_and_subdomain", unique: true, using: :btree
+
   add_foreign_key "asset_files", "accounts"
   add_foreign_key "asset_files", "landing_versions"
   add_foreign_key "asset_files", "landings"
@@ -115,4 +126,5 @@ ActiveRecord::Schema.define(version: 20160121080130) do
   add_foreign_key "landing_versions", "landings"
   add_foreign_key "landings", "accounts"
   add_foreign_key "segments", "landings"
+  add_foreign_key "subdomains", "accounts"
 end

@@ -2,6 +2,23 @@ module LandingExamples
   EXAMPLE1 = {
     regenerate_uuid: true,
     data: {
+      mr: {
+        header: 'На все 100% !',
+        subheader: 'Шаблон для посадочной страницы',
+        backgroundImageUrl: 'http://ironsummitmedia.github.io/startbootstrap-landing-page/img/banner-bg.jpg',
+        items: [
+          {
+            icon: 'twitter',
+            title: 'Twitter',
+            url: 'twitter.com'
+          },
+          {
+            icon: 'github',
+            title: 'GitHub',
+            url: 'github.com'
+          }
+        ]
+      },
       tko: {
         logoText: 'Лендос!',
         items: [
@@ -81,6 +98,11 @@ module LandingExamples
         uuid: 'tko',
         type: 'LBlockNavbar',
         view: 'LBlockNavbarV1'
+      },
+      {
+        uuid: 'mr',
+        type: 'LBlockMustRead',
+        view: 'LBlockMustReadV1'
       },
       {
         uuid: 'hello',

@@ -1,6 +1,11 @@
 defaults: &defaults
   tld_length: 1
 
+  subdomain_zones:
+    - 3008.vkontraste.ru
+    - aydamaster.ru
+    - bml.ru
+
   app: &app
     asset_host: http://3008.vkontraste.ru
 

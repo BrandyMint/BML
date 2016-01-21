@@ -1,6 +1,7 @@
 class Account < ActiveRecord::Base
-  has_many :landings
-  has_many :collections
+  has_many :landings,    dependent: :destroy
+  has_many :collections, dependent: :destroy
+  has_many :subdomains,  dependent: :destroy
 
   before_create :generate_ident
 

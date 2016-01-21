@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def site_landing_version_url(landing_version)
-    landing_version = landing_version.default_verison if landing_version.is_a? Landing
+    landing_version = landing_version.default_version if landing_version.is_a? Landing
 
     site_landing_path landing_version.landing, version_id: landing_version.id
   end
