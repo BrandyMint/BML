@@ -17,20 +17,20 @@ nav.navbar.navbar-light.bg-faded.navbar-top.navbar-fixed-top
       .col-lg-6
         .navbar-center
           ul.nav.navbar-nav
-            li.nav-item= active_link_to landing_editor_path(current_landing, landing_version), class: 'navbar-icon' do
-              = fa_icon 'object-group'
             /li.nav-item= active_link_to site_landing_url(current_landing, subdomain: current_account.subdomain), class: 'navbar-icon', active: false do
               /= fa_icon 'eye'
             li.nav-item= active_link_to account_landing_analytics_path(current_landing), class: 'navbar-icon', active: [['account/collections', 'account/analytics', 'account/versions', 'account/segments']] do
               = fa_icon 'line-chart'
+            li.nav-item
+            = active_link_to edit_account_landing_path(current_landing), class: 'navbar-icon' do
+              = fa_icon 'gear'
 
       .col-lg-3
         .pull-xs-right
           ul.nav.navbar-nav.navbar-right
+            li.nav-item= active_link_to landing_editor_path(current_landing, landing_version), class: 'navbar-icon' do
+              = fa_icon 'object-group'
             -# li.nav-item= active_link_to 'Версия 1', '#', class: 'nav-link'
-            li.nav-item
-            = active_link_to edit_account_landing_path(current_landing), class: 'navbar-icon' do
-              = fa_icon 'gear'
 
     -# = render_navigation :expand_all => true, :renderer => :bootstrap, :context => :account
 div style='height: 55px'
