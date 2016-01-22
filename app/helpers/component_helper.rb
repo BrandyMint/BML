@@ -23,6 +23,6 @@ module ComponentHelper
       blocks << { uuid: s.uuid, type: s.block_type, view: s.block_view }
     end
 
-    { data: data, blocks: blocks, exit_url: account_landing_analytics_path(landing_version.landing) }
+    { data: data, blocks: blocks, exitUrl: account_landing_analytics_path(landing_version.landing) }
   end
 end

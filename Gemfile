@@ -40,6 +40,8 @@ gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'grape'
 gem 'grape-entity'
 
+gem 'poltergeist'
+
 gem 'ranked-model'
 gem 'virtus'
 gem 'hashie'
