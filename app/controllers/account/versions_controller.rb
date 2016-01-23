@@ -1,5 +1,5 @@
 class Account::VersionsController < Landing::ApplicationController
-  layout 'analytics'
+  layout 'landing'
 
   def update
     version.update_attributes! permitted_params

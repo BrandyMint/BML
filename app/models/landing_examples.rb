@@ -7,7 +7,7 @@ module LandingExamples
       mr: {
         header: 'На все 100% !',
         subheader: 'Шаблон для посадочной страницы',
-        backgroundImageUrl: 'http://ironsummitmedia.github.io/startbootstrap-landing-page/img/banner-bg.jpg',
+        backgroundImageUrl: '/assets/images/themes/t1/banner-bg.jpg',
         items: [
           {
             icon: 'twitter',
@@ -38,7 +38,7 @@ module LandingExamples
         headerText: 'Отдельное спасибо <br />Death to the Stock Photo !',
         leadText: 'Отдельное спасибо <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> за предоставленные фотографии которые Вы видите в этом шаблоне. <br />Посетите их сайт и получите доступ к огрмному количеству качественных фото.',
         image: {
-          url: 'http://ironsummitmedia.github.io/startbootstrap-landing-page/img/ipad.png',
+          url: '/assets/images/themes/t1/ipad.png',
           height: 354,
           width: 458
         }
@@ -47,7 +47,7 @@ module LandingExamples
         headerText: '3D макеты на предметах<br /> от PSDCovers',
         leadText: 'Преврати свой двумерный дизайн в высококачественные, трехмерные снимки за секунды используя бесплатные экшены в Photoshop от <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>!<br />Посетите их сайт чтобы скачать что-то восхитительное и увидить экшены в действии!',
         image: {
-          url: 'http://ironsummitmedia.github.io/startbootstrap-landing-page/img/dog.png',
+          url: '/assets/images/themes/t1/dog.png',
           height: 383,
           width: 458
         }
@@ -56,14 +56,14 @@ module LandingExamples
         headerText: 'Шрифты Google Web и<br>иконки Font Awesome',
         leadText: 'Этот шаблон применяет \'Lato\' шрифт, часть <a target="_blank" href="http://www.google.com/fonts">библиотеки Google Web Font</a>, также как и <a target="_blank" href="http://fontawesome.io">иконки из Font Awesome</a>.',
         image: {
-          url: 'http://ironsummitmedia.github.io/startbootstrap-landing-page/img/phones.png',
+          url: '/assets/images/themes/t1/phones.png',
           height: 302,
           width: 458
         }
       },
       ctaMyBad: {
         text: 'Присоединяйся к нам в соцсетях!',
-        backgroundImageUrl: 'http://ironsummitmedia.github.io/startbootstrap-landing-page/img/banner-bg.jpg',
+        backgroundImageUrl: '/assets/images/themes/t1/banner-bg.jpg',
         items: [
           {
             icon: 'twitter',

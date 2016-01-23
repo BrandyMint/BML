@@ -8,4 +8,6 @@ html
   body
     == render 'layouts/account/topmenu', landing_version: current_landing_version
 
-    == yield
+    .page-content
+      .container
+        == yield

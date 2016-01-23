@@ -7,7 +7,9 @@ Rails.application.config.assets.version = '1.1'
 # Rails.application.config.assets.paths << Emoji.images_path
 
 Rails.application.config.assets.paths << 'vendor/components'
-Rails.application.config.assets.paths << 'vendor/dist'
+
+# Для картинок, чтобы их можно было брать через assets/images/themes/t1/dog.pn
+Rails.application.config.assets.paths << 'vendor/dist/dist'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.

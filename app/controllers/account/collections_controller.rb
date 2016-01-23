@@ -1,5 +1,5 @@
 class Account::CollectionsController < Landing::ApplicationController
-  layout 'analytics'
+  layout 'landing'
 
   def index
     render locals: { collections: current_landing.collections, form: form }
