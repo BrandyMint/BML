@@ -41,6 +41,9 @@ gem 'grape'
 gem 'grape-entity'
 
 gem 'poltergeist'
+gem 'capybara'
+
+gem 'carrierwave'
 
 gem 'ranked-model'
 gem 'virtus'

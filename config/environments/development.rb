@@ -1,3 +1,9 @@
+class Renderer # < React::ServerRendering::ExecJSRenderer
+  def render(component_name, props, prerender_options)
+    binding.pry
+    super component_name, props, prerender_options
+  end
+end
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -42,4 +48,6 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.react.server_renderer = Renderer
 end

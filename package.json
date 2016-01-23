@@ -1,0 +1,26 @@
+{
+  "name": "bml",
+  "version": "1.0.0",
+  "description": "== README",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "phantomjs": "^1.9.19",
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrandyMint/BML.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrandyMint/BML/issues"
+  },
+  "homepage": "https://github.com/BrandyMint/BML#readme"
+}
