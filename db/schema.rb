@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160122141530) do
+ActiveRecord::Schema.define(version: 20160123203401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 20160122141530) do
   add_index "asset_files", ["account_id"], name: "index_asset_files_on_account_id", using: :btree
   add_index "asset_files", ["landing_id"], name: "index_asset_files_on_landing_id", using: :btree
   add_index "asset_files", ["landing_version_id"], name: "index_asset_files_on_landing_version_id", using: :btree
+
+  create_table "clients", force: :cascade do |t|
+    t.integer  "landing_id", null: false
+    t.string   "name",       null: false
+    t.string   "phone"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "clients", ["landing_id"], name: "index_clients_on_landing_id", using: :btree
 
   create_table "collection_items", force: :cascade do |t|
     t.integer  "collection_id"
@@ -85,6 +96,7 @@ ActiveRecord::Schema.define(version: 20160122141530) do
     t.integer  "segments_count", default: 0,                    null: false
     t.boolean  "is_active",      default: true,                 null: false
     t.uuid     "uuid",           default: "uuid_generate_v4()", null: false
+    t.integer  "clients_count",  default: 0,                    null: false
   end
 
   add_index "landings", ["account_id"], name: "index_landings_on_account_id", using: :btree
@@ -130,6 +142,7 @@ ActiveRecord::Schema.define(version: 20160122141530) do
   add_foreign_key "asset_files", "accounts"
   add_foreign_key "asset_files", "landing_versions"
   add_foreign_key "asset_files", "landings"
+  add_foreign_key "clients", "landings"
   add_foreign_key "collection_items", "collections"
   add_foreign_key "collections", "landings"
   add_foreign_key "landing_versions", "landings"

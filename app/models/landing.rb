@@ -6,6 +6,7 @@ class Landing < ActiveRecord::Base
   has_many :collections, dependent: :destroy
   has_many :versions, class_name: 'LandingVersion', dependent: :destroy
   has_many :segments, dependent: :destroy
+  has_many :clients, dependent: :destroy
 
   has_one :subdomain, dependent: :destroy
 

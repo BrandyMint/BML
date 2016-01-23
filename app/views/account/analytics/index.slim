@@ -1,6 +1,13 @@
-p.text-muted Вот что мы обнаружили:
-
-- insights.each_with_index do |i, idx|
-  div.alert class="alert-#{i.type}"
-    strong= "[#{idx}] "
-    = i.text
+.row
+  .col-md-12
+    = render 'filter'
+.row
+  .col-md-9
+    div style='text-align: center'
+      = image_tag image_path('funnel.png')
+  .col-md-3
+    div style='margin-top: 25px'
+      - insights.each_with_index do |i, idx|
+        div.alert class="alert-#{i.type}"
+          strong= "[#{idx}] "
+          = i.text

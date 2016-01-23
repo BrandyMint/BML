@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resources :collections
       resource :settings
       resources :segments
+      resources :clients
       resources :landing_versions, path: 'v', controller: 'versions'
       resources :versions
     end
