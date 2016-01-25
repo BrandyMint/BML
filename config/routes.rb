@@ -1,8 +1,14 @@
 require 'app_constraint'
 require 'account_constraint'
 require 'site_constraint'
+require 'api_constraint'
 
 Rails.application.routes.draw do
+  scope subdomain: ApiConstraint::SUBDOMAIN, constraints: ApiConstraint do
+    mount API => '/', as: :api
+    root controller: :swagger, action: :index, as: :api_doc
+  end
+
   scope as: :site, constraints: SiteConstraint do
     root 'landings#show'
 

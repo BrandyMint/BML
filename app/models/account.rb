@@ -1,8 +1,9 @@
 class Account < ActiveRecord::Base
+  include AccountAccessKey
+  include AccountIdent
+
   has_many :landings,    dependent: :destroy
   has_many :collections, dependent: :destroy
-
-  before_create :generate_ident
 
   def to_s
     "Аккаунт #{id}"
@@ -10,11 +11,5 @@ class Account < ActiveRecord::Base
 
   def subdomain
     AccountConstraint::DOMAIN_PREFIX + ident
-  end
-
-  private
-
-  def generate_ident
-    self.ident ||= SecureRandom.hex(4)
   end
 end

@@ -31,14 +31,22 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'phone', github: 'BrandyMint/phone', branch: 'feature/russia'
 gem 'nprogress-rails'
-# gem 'semver2'
+gem 'semver2'
 # gem 'pg'
 
 # Только для JS
 gem 'bootstrap', '~> 4.0.0.alpha3'
 
+gem 'gravatarify'
+
 gem 'grape'
 gem 'grape-entity'
+gem 'grape-swagger'
+gem 'grape-swagger-ui'
+gem 'swagger-ui_rails'
+gem 'hashie-forbidden_attributes'
+# markdown для grape
+gem 'kramdown'
 
 gem 'poltergeist'
 gem 'capybara'

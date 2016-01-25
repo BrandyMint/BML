@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    == stylesheet_link_tag    'swagger', media: "all"
+    == javascript_include_tag 'swagger-ui'
+  body
+    #header
+      .swagger-ui-wrap
+        a#logo href=home_url
+          = title
+        form#api_selector
+          .input
+            input#input_baseUrl name='baseUrl' placeholder='http://example.com/api' type='text'
+          .input
+            input#input_apiKey name='apiKey' placeholder="api_key" type='text'
+          .input
+            a#explore href='#' Explore
+    #message-bar.swagger-ui-wrap  
+    #swagger-ui-container.swagger-ui-wrap
+
+    = yield
