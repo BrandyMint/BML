@@ -19,9 +19,7 @@ module ComponentHelper
         exitUrl:    account_landing_analytics_path(landing_version.landing),
         isEditMode: edit_mode
       },
-      blocks: {
-        items: present_landing_blocks(landing_version)
-      }
+      blocks: present_landing_blocks(landing_version)
     }
   end
 
