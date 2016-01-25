@@ -118,8 +118,8 @@ module LandingExamples
       },
       {
         uuid: 'hello2323',
-        type: 'LBlockContentSection',
-        view: 'BContentSectionType1View3'
+        type: 'BContentSectionType1',
+        view: 'BContentSectionType1View1'
       },
       {
         uuid: 'ctaMyBad',
