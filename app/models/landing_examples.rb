@@ -98,38 +98,38 @@ module LandingExamples
     blocks: [
       {
         uuid: 'tko',
-        type: 'LBlockNavbar',
-        view: 'LBlockNavbarV1'
+        type: 'BNavbarType1',
+        view: 'BNavbarType1View1'
       },
       {
         uuid: 'mr',
-        type: 'LBlockMustRead',
-        view: 'LBlockMustReadV1'
+        type: 'BMustReadType1',
+        view: 'BMustReadType1View1'
       },
       {
         uuid: 'hello',
-        type: 'LBlockContentSection',
-        view: 'LBlockContentSectionV1'
+        type: 'BContentSectionType1',
+        view: 'BContentSectionType1View1'
       },
       {
         uuid: 'hellov2',
-        type: 'LBlockContentSection',
-        view: 'LBlockContentSectionV2'
+        type: 'BContentSectionType1',
+        view: 'BContentSectionType1View2'
       },
       {
         uuid: 'hello2323',
         type: 'LBlockContentSection',
-        view: 'LBlockContentSectionV1'
+        view: 'BContentSectionType1View3'
       },
       {
         uuid: 'ctaMyBad',
-        type: 'LBlockCTA',
-        view: 'LBlockCTAV1'
+        type: 'BCTAType1',
+        view: 'BCTAType1View1'
       },
       {
         uuid: 'myFooter',
-        type: 'LBlockFooter',
-        view: 'LBlockFooterV1'
+        type: 'BFooterType1',
+        view: 'BFooterType1View1'
       }
     ]
   }
