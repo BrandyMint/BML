@@ -18,7 +18,5 @@ Rails.application.config.assets.precompile += %w(
   vendor.js
   bundle.js bundle.css
   theme1.css
-  swagger.js swagger.css
-
-  swagger-ui.js
+  swagger_ui.js swagger_ui.css
 )

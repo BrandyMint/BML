@@ -4,7 +4,11 @@ module Authorization
   included do
     helpers do
       def current_account
-        @_current_account ||= Account.find_by_access_key params[:access_key]
+        @_current_account ||= Account.find_by_access_key api_key
+      end
+
+      def api_key
+        params[:api_key]  || headers['X-API-Key']
       end
     end
 

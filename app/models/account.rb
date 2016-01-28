@@ -5,11 +5,17 @@ class Account < ActiveRecord::Base
   has_many :landings,    dependent: :destroy
   has_many :collections, dependent: :destroy
 
+  has_many :versions, through: :landings
+
   def to_s
     "Аккаунт #{id}"
   end
 
   def subdomain
     AccountConstraint::DOMAIN_PREFIX + ident
+  end
+
+  def api_key
+    access_key
   end
 end

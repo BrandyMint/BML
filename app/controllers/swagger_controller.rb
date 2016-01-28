@@ -1,11 +1,7 @@
-class ::SwaggerController < ApplicationController
-  layout 'swagger'
+class SwaggerController < SwaggerUI::ApplicationController
+  private
 
-  def index
-    render locals: {
-      title:         Settings.app.title,
-      home_url:      system_root_url,
-      discovery_url: request.path + '/v1/swagger_doc'
-    }
+  def discovery_url
+    request.path + '/v1/swagger_doc'
   end
 end

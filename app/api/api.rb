@@ -6,6 +6,7 @@ class API < Grape::API
   version 'v1'
 
   mount API::Landings
+  mount API::LandingVersions
   mount APIPing
 
   add_swagger_documentation api_version: 'v1',

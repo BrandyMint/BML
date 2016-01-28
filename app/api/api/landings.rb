@@ -7,16 +7,16 @@ class API::Landings < Grape::API
 
     desc 'Список доступных лендингов'
     get do
-      current_account.landings.ordered
+      present current_account.landings.ordered, with: Entities::LandingEntity
     end
 
     params do
-      requires :landing_uuid, type: String, desc: 'iUUID Лендинга'
+      requires :landing_uuid, type: String, desc: 'UUID Лендинга'
     end
     namespace ':landing_uuid' do
       helpers do
         def landing
-          current_account.landings.find_by_uuid params[:panding_uuid]
+          current_account.landings.find_by_uuid! params[:landing_uuid]
         end
       end
 
@@ -25,37 +25,9 @@ class API::Landings < Grape::API
 
         desc 'Список вариантов'
         get do
-          present landing.versions.ordered
+          present landing.versions.ordered, with: Entities::LandingVersionEntity
         end
-
-        params do
-          requires :uuid, type: String, desc: 'UUID Лендинга'
-        end
-
-        namespace ':uuid' do
-          helpers do
-            def landing_version
-              landing.versions.find_by_uuid params[:panding_uuid]
-            end
-          end
-
-
-          desc 'Вносим изменения в существующий вариант'
-          params do
-            optional :title, String
-            optional :data, String, desc: 'JSON-строка с данными'
-          end
-          put do
-            landing_version
-            current_account.
-              UserRequest.create! strong_params.permit(*UserRequest::FIELDS)
-          end
-
-        end
-
       end
-
     end
-
   end
 end
