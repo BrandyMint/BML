@@ -17,3 +17,6 @@ p
     = fa_icon 'external-link', text: landing.host, right: true
 
 code Ключ для API: #{current_account.api_key}
+
+hr
+= render 'yandex_authentication', authentications: current_account.authentications.by_provider(:yandex)

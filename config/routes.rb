@@ -15,6 +15,13 @@ Rails.application.routes.draw do
     #resources :landings, path: 'lp', only: [:show]
   end
 
+  get '/auth/:provider/callback', to: 'omniauth#create'
+  get '/auth/failure',            to: 'omniauth#failure'
+
+  scope constraints: AccountConstraint do
+    root 'landings#index'
+  end
+
   scope as: :account, path: '_a', module: :account, constraints: AccountConstraint do
     root 'landings#index'
 

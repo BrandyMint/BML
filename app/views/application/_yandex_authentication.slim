@@ -1,0 +1,7 @@
+- if authentications.present?
+  ul.list-group
+  - authentications.each do |a|
+    li.list-group-item Авторизован в Yandex как: #{a.nickname}
+
+br
+= omniauth_button :yandex, title: 'Авторизоваться в Yandex.Директ'

@@ -25,5 +25,12 @@ module Bml
     config.autoload_paths += Dir[
       "#{Rails.root}/app/api/concerns"
     ]
+
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :put, :post, :delete, :options]
+      end
+    end
   end
 end

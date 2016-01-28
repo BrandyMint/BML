@@ -16,4 +16,3 @@ class API < Grape::API
   # ,
   # models: [API::Entity::GoodsResult, API::Entity::Good]
 end
-

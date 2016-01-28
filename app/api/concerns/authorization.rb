@@ -8,7 +8,7 @@ module Authorization
       end
 
       def api_key
-        params[:api_key]  || headers['X-API-Key']
+        params[:api_key]  || headers['X-Api-Key']
       end
     end
 

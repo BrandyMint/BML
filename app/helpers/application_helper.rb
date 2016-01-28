@@ -1,4 +1,11 @@
 module ApplicationHelper
+  def omniauth_button(provider, title: nil)
+    # link_to "/auth/#{provider}/?account_signature=#{account_signature}", class: 'btn btn-success btn-rounded' do
+    link_to "/auth/#{provider}", class: 'btn btn-success btn-rounded' do
+      fa_icon provider, text: title || t(provider, scope: 'operator.omniauth_buttons')
+    end
+  end
+
   def landing_editor_path(landing, version)
     account_landing_editor_path(landing, version_id: version.try(:id) || landing.default_version.id)
   end

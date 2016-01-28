@@ -39,11 +39,26 @@ gem 'bootstrap', '~> 4.0.0.alpha3'
 
 gem 'gravatarify'
 
+gem 'bugsnag'
+
+gem 'rack-cors', :require => 'rack/cors'
+
+# gem 'yandex-api'
+# gem 'yandex-api-direct'
+
+# OMNIAUTH
+#
+gem 'omniauth'
+# gem 'negval-omniauth-yandex'
+gem 'omniauth-yandex'
+# gem 'omniauth-yandex', github: 'TimothyKlim/omniauth-yandex'
+gem 'omniauth-twitter'
+
 gem 'grape'
 gem 'grape-entity'
 gem 'grape-swagger'
 #gem 'grape-swagger-ui', github: 'kb-platform/grape-swagger-ui'
-gem 'grape-swagger-ui', path: '../grape-swagger-ui'
+# gem 'grape-swagger-ui', path: '../grape-swagger-ui'
 # gem 'swagger-ui_rails'
 gem 'hashie-forbidden_attributes'
 # markdown для grape

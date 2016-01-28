@@ -20,7 +20,8 @@ module ComponentHelper
         exitUrl:              account_landing_analytics_path(landing_version.landing),
         isEditMode:           edit_mode,
         landing_version_uuid: landing_version.uuid,
-        api_key:              current_account.api_key
+        api_key:              current_account.api_key,
+        hasUnsavedChanges:    false
       },
       blocks:               Entities::LandingVersionEntity.represent(landing_version).as_json[:sections]
     }

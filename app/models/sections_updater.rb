@@ -17,17 +17,22 @@ class SectionsUpdater
 
   def update_blocks(blocks)
     landing_version.lock!
-    section_ids = landing_version.sections.pluck(:id)
 
+    uuids = []
     blocks.each_with_index do |block, index|
       block['uuid'] = UUID.generate if regenerate_uuid
 
+      uuids << block['uuid']
       SectionUpdater
         .new(landing_version: landing_version, block: block)
         .update index
     end
 
-    landing_version.sections.where(id: section_ids).delete_all
+    landing_version
+      .sections
+      .where.not(uuid: [uuids])
+      .delete_all
+
     landing_version.update_columns sections_count: blocks.count, updated_at: Time.now
   end
 end
