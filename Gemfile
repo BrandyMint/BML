@@ -67,6 +67,8 @@ gem 'kramdown'
 gem 'poltergeist'
 gem 'capybara'
 
+# gem 'mimemagic'
+gem 'mini_magick'
 gem 'carrierwave'
 
 gem 'ranked-model'

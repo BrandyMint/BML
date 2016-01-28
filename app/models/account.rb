@@ -7,6 +7,9 @@ class Account < ActiveRecord::Base
 
   has_many :versions, through: :landings
 
+  has_many :asset_files, dependent: :destroy
+  has_many :asset_images
+
   has_many :authentications, dependent: :destroy
 
   def to_s
