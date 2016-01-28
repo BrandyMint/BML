@@ -3,6 +3,6 @@ h1 Accounts
 
 ul
   - Account.all.find_each do |a|
-    li= link_to a, account_home_url(a)
+    li= link_to a, account_dashboard_url(a)
 
 p Find me in app/views/welcome/index.html.slim

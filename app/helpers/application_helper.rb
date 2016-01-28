@@ -33,7 +33,7 @@ module ApplicationHelper
     content_tag :a, tel, opts
   end
 
-  def account_home_url(account)
+  def account_dashboard_url(account)
     account_root_url(subdomain: account.subdomain)
   end
 
