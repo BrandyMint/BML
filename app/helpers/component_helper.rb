@@ -14,18 +14,16 @@ module ComponentHelper
   private
 
   def initial_state(landing_version, edit_mode)
+    Entities::LandingVersionEntity.represent(landing_version)
     {
       application: {
-        exitUrl:    account_landing_analytics_path(landing_version.landing),
-        isEditMode: edit_mode
+        exitUrl:              account_landing_analytics_path(landing_version.landing),
+        isEditMode:           edit_mode,
+        landing_version_uuid: landing_version.uuid,
+        api_key:              current_account.api_key,
+        hasUnsavedChanges:    false
       },
-      blocks: present_landing_blocks(landing_version)
+      blocks:               Entities::LandingVersionEntity.represent(landing_version).as_json[:sections]
     }
-  end
-
-  def present_landing_blocks(landing_version)
-    landing_version.sections.ordered.map do |s|
-      { uuid: s.uuid, type: s.block_type, view: s.block_view, data: s.data }
-    end
   end
 end

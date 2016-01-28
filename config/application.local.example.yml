@@ -7,7 +7,9 @@ defaults: &defaults
     - bml.ru
 
   app: &app
+    title: BML
     asset_host: http://3008.vkontraste.ru
+    host: http://3008.vkontraste.ru
 
     default_url_options: &default_url_options
       host: aydamarket.ru

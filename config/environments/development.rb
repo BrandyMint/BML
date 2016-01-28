@@ -43,7 +43,8 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   # config.web_console.whitelisted_ips = '192.168.0.0/32'
-  config.web_console.whitelisted_ips = '127.0.0.1/32'
+  config.web_console.whitelisted_ips = ['192.168.170.1', '127.0.0.1/32']
+  # config.web_console.whitelisted_ips = MY_IP
   # config.web_console.whiny_requests = false
 
   # Raises error for missing translations

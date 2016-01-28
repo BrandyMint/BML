@@ -1,4 +1,5 @@
 .DS_Store
+.envrc
 config/chewy.yml
 npm-debug.log
 .smartgf*

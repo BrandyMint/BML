@@ -1,33 +1,38 @@
 class SectionsUpdater
-  def initialize(landing_version, raw_data)
+  def initialize(landing_version, regenerate_uuid: false)
     @landing_version = landing_version
-    @raw_data = Hashie::Mash.new raw_data
+    @regenerate_uuid = regenerate_uuid
   end
 
-  def update
+  def update(raw_data)
+    raw_data = Hashie::Mash.new raw_data
     Section.transaction do
-      landing_version.lock!
-      section_ids = landing_version.sections.pluck(:id)
-
-      blocks.each_with_index do |block, index|
-        uuid = block['uuid']
-        block_data = data[uuid] or fail "No data for uuid #{uuid}"
-
-        block['uuid'] = UUID.generate if regenerate_uuid
-
-        SectionUpdater
-          .new(landing_version: landing_version, data: block_data, block: block)
-          .update index
-      end
-
-      landing_version.sections.where(id: section_ids).delete_all
-      landing_version.update_columns sections_count: blocks.count, updated_at: Time.now
+      update_blocks raw_data['blocks'] if raw_data['blocks'].is_a? Array
     end
   end
 
   private
 
-  attr_reader :raw_data, :landing_version
+  attr_reader :raw_data, :landing_version, :regenerate_uuid
 
-  delegate :data, :blocks, :regenerate_uuid, to: :raw_data
+  def update_blocks(blocks)
+    landing_version.lock!
+
+    uuids = []
+    blocks.each_with_index do |block, index|
+      block['uuid'] = UUID.generate if regenerate_uuid
+
+      uuids << block['uuid']
+      SectionUpdater
+        .new(landing_version: landing_version, block: block)
+        .update index
+    end
+
+    landing_version
+      .sections
+      .where.not(uuid: [uuids])
+      .delete_all
+
+    landing_version.update_columns sections_count: blocks.count, updated_at: Time.now
+  end
 end

@@ -1,12 +1,25 @@
 require 'app_constraint'
 require 'account_constraint'
 require 'site_constraint'
+require 'api_constraint'
 
 Rails.application.routes.draw do
+  scope subdomain: ApiConstraint::SUBDOMAIN, constraints: ApiConstraint do
+    mount API => '/', as: :api
+    root controller: :swagger, action: :index, as: :api_doc
+  end
+
   scope as: :site, constraints: SiteConstraint do
     root 'landings#show'
 
     #resources :landings, path: 'lp', only: [:show]
+  end
+
+  get '/auth/:provider/callback', to: 'omniauth#create'
+  get '/auth/failure',            to: 'omniauth#failure'
+
+  scope constraints: AccountConstraint do
+    root 'landings#index'
   end
 
   scope as: :account, path: '_a', module: :account, constraints: AccountConstraint do

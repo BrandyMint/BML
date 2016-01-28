@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123203401) do
+ActiveRecord::Schema.define(version: 20160126110307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,8 +23,10 @@ ActiveRecord::Schema.define(version: 20160123203401) do
     t.datetime "updated_at",                 null: false
     t.integer  "landings_count", default: 0, null: false
     t.string   "ident",                      null: false
+    t.string   "access_key",                 null: false
   end
 
+  add_index "accounts", ["access_key"], name: "index_accounts_on_access_key", unique: true, using: :btree
   add_index "accounts", ["ident"], name: "index_accounts_on_ident", unique: true, using: :btree
 
   create_table "asset_files", force: :cascade do |t|
@@ -43,6 +45,18 @@ ActiveRecord::Schema.define(version: 20160123203401) do
   add_index "asset_files", ["account_id"], name: "index_asset_files_on_account_id", using: :btree
   add_index "asset_files", ["landing_id"], name: "index_asset_files_on_landing_id", using: :btree
   add_index "asset_files", ["landing_version_id"], name: "index_asset_files_on_landing_version_id", using: :btree
+
+  create_table "authentications", force: :cascade do |t|
+    t.integer  "account_id"
+    t.string   "provider",   null: false
+    t.string   "uid",        null: false
+    t.text     "auth_hash",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "authentications", ["account_id"], name: "index_authentications_on_account_id", using: :btree
+  add_index "authentications", ["provider", "uid", "account_id"], name: "index_authentications_on_provider_and_uid_and_account_id", unique: true, using: :btree
 
   create_table "clients", force: :cascade do |t|
     t.integer  "landing_id", null: false
@@ -142,6 +156,7 @@ ActiveRecord::Schema.define(version: 20160123203401) do
   add_foreign_key "asset_files", "accounts"
   add_foreign_key "asset_files", "landing_versions"
   add_foreign_key "asset_files", "landings"
+  add_foreign_key "authentications", "accounts"
   add_foreign_key "clients", "landings"
   add_foreign_key "collection_items", "collections"
   add_foreign_key "collections", "landings"

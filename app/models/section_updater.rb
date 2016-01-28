@@ -1,14 +1,13 @@
 class SectionUpdater
-  def initialize(landing_version:, data:, block:)
+  def initialize(landing_version:, block:)
     @landing_version = landing_version
-    @data            = data
     @block           = block
   end
 
   def update(position)
     section.assign_attributes(
-      'data'       => data,
       'row_order'  => position,
+      'data'       => block['data'],
       'block_type' => block['type'],
       'block_view' => block['view']
     )
@@ -17,7 +16,7 @@ class SectionUpdater
 
   private
 
-  attr_reader :landing_version, :data, :block
+  attr_reader :landing_version, :block
 
   def uuid
     block['uuid'] || fail('No uuid in block')

@@ -10,7 +10,7 @@
     .col-md-4
       = link_to account_landing_analytics_path(l) do
         figure.figure
-          = image_tag thumbor_image_url(fallback_image_url, ThumborHelper::LANDING_PREVIEW_SIZE), class: 'figure-img img-bordered img-fuild img-rounded'
+          = image_tag thumbor_image_url(fallback_image_url, ThumborHelper::LANDING_PREVIEW_SIZE), width: ThumborHelper::LANDING_PREVIEW_WIDTH, height: ThumborHelper::LANDING_PREVIEW_HEIGHT, class: 'figure-img img-bordered img-fuild img-rounded'
           figcaption.figure-caption
             b.pull-xs-left= l.title
             p.pull-xs-right

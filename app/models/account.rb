@@ -1,8 +1,13 @@
 class Account < ActiveRecord::Base
+  include AccountAccessKey
+  include AccountIdent
+
   has_many :landings,    dependent: :destroy
   has_many :collections, dependent: :destroy
 
-  before_create :generate_ident
+  has_many :versions, through: :landings
+
+  has_many :authentications, dependent: :destroy
 
   def to_s
     "Аккаунт #{id}"
@@ -12,9 +17,7 @@ class Account < ActiveRecord::Base
     AccountConstraint::DOMAIN_PREFIX + ident
   end
 
-  private
-
-  def generate_ident
-    self.ident ||= SecureRandom.hex(4)
+  def api_key
+    access_key
   end
 end
