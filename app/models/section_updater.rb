@@ -1,4 +1,6 @@
 class SectionUpdater
+  BACKGROUND_KEYS = %i(color position attachment repeat)
+
   def initialize(landing_version:, block:)
     @landing_version = landing_version
     @block           = block
@@ -6,10 +8,13 @@ class SectionUpdater
 
   def update(position)
     section.assign_attributes(
-      'row_order'  => position,
-      'data'       => block['data'],
-      'block_type' => block['type'],
-      'block_view' => block['view']
+      'row_order'       => position,
+      'content'         => block['content'],
+      'block_type'      => block['type'],
+      'block_view'      => block['view'],
+      'node_attributes' => block['nodeAttributes'] || {},
+      'background_attributes' => (block['background'] || {}).slice(BACKGROUND_KEYS),
+      'background_image' => background_image
     )
     section.save!
   end
@@ -17,6 +22,29 @@ class SectionUpdater
   private
 
   attr_reader :landing_version, :block
+
+  delegate :account, to: :landing_version
+
+  def background_image
+    image = block['backgroundImage']
+
+    return nil unless image.is_a? Hash
+
+    if image['uuid'].present?
+      AssetImage.find_by_uuid image['uuid']
+
+    elsif image['url'].present?
+      filename = Rails.root.join 'vendor/dist/src' + image['url']
+      digest = AssetFileDigest.digest_of_file filename
+
+      AssetFile.shared.find_by_digest(digest) ||
+        account.asset_images.find_by_digest(digest) ||
+        account.asset_images.create!(file: filename.open)
+
+    else
+      nil
+    end
+  end
 
   def uuid
     block['uuid'] || fail('No uuid in block')

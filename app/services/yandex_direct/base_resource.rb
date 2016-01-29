@@ -1,9 +1,22 @@
 module YandexDirect
+  MAX_CAMPAIGNS = 10
+
   class BaseResource
     API_URL = 'https://api.direct.yandex.com/json/v5/'
 
     def initialize(token)
       @token = token
+    end
+
+    def get_all_for_campaign_ids(campaign_ids)
+      items = []
+
+      campaign_ids.each_slice(MAX_CAMPAIGNS) do |ids|
+        result = get selectionCriteria: { CampaignIds: ids }
+        result = result['result'][items_key_name]
+        items += items if items.present?
+      end
+      items
     end
 
     private
@@ -41,8 +54,16 @@ module YandexDirect
       @_http ||= Net::HTTP.start uri.host, uri.port, use_ssl: true, verify_mode: OpenSSL::SSL::VERIFY_NONE # OpenSSL::SSL::VERIFY_PEER
     end
 
+    def name
+      self.class.name.split('::').last
+    end
+
     def path
-      self.class.name.split('::').last.parameterize
+      name.parameterize
+    end
+
+    def items_key_name
+      name
     end
 
     def log_request(request)

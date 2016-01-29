@@ -1,12 +1,11 @@
-module LandingExamples
-  EXAMPLE1 = {
+module LandingExamples EXAMPLE1 = {
     css: ' ',
     blocks: [
       {
         uuid: 'tko',
         type: 'BNavbarType1',
         view: 'BNavbarType1View1',
-        data: {
+        content: {
           logoText: 'Лендос!',
           items: [
             {
@@ -19,15 +18,24 @@ module LandingExamples
             }
           ]
         },
+        background: {
+          color: '#121212',
+          position: '',
+          attachment: '',
+          repeat: '',
+        },
+        nodeAttributes: {
+          id: '44086800-a7e8-0133-a838-746d04736cf8',
+          class: '',
+        },
       },
       {
         uuid: 'mr',
         type: 'BMustReadType1',
         view: 'BMustReadType1View1',
-        data: {
+        content: {
           header: 'На все 100% !',
           subheader: 'Шаблон для посадочной страницы',
-          backgroundImageUrl: '/assets/images/themes/t1/banner-bg.jpg',
           items: [
             {
               icon: 'twitter',
@@ -41,12 +49,24 @@ module LandingExamples
             }
           ]
         },
+        backgroundImage: {
+          uuid: nil,
+          url: '/assets/images/themes/t1/intro-bg.jpg',
+          width: nil,
+          height: nil,
+        },
+        background: {
+          color: '#121212',
+          position: '',
+          attachment: '',
+          repeat: '',
+        },
       },
       {
         uuid: 'hello',
         type: 'BContentSectionType1',
         view: 'BContentSectionType1View1',
-        data: {
+        content: {
           headerText: 'Отдельное спасибо <br />Death to the Stock Photo !',
           leadText: 'Отдельное спасибо <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> за предоставленные фотографии которые Вы видите в этом шаблоне. <br />Посетите их сайт и получите доступ к огрмному количеству качественных фото.',
           image: {
@@ -60,7 +80,7 @@ module LandingExamples
         uuid: 'hellov2',
         type: 'BContentSectionType1',
         view: 'BContentSectionType1View2',
-        data: {
+        content: {
           headerText: '3D макеты на предметах<br /> от PSDCovers',
           leadText: 'Преврати свой двумерный дизайн в высококачественные, трехмерные снимки за секунды используя бесплатные экшены в Photoshop от <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>!<br />Посетите их сайт чтобы скачать что-то восхитительное и увидить экшены в действии!',
           image: {
@@ -74,7 +94,7 @@ module LandingExamples
         uuid: 'hello2323',
         type: 'BContentSectionType1',
         view: 'BContentSectionType1View1',
-        data: {
+        content: {
           headerText: 'Шрифты Google Web и<br>иконки Font Awesome',
           leadText: 'Этот шаблон применяет \'Lato\' шрифт, часть <a target="_blank" href="http://www.google.com/fonts">библиотеки Google Web Font</a>, также как и <a target="_blank" href="http://fontawesome.io">иконки из Font Awesome</a>.',
           image: {
@@ -88,9 +108,8 @@ module LandingExamples
         uuid: 'ctaMyBad',
         type: 'BCTAType1',
         view: 'BCTAType1View1',
-        data: {
+        content: {
           text: 'Присоединяйся к нам в соцсетях!',
-          backgroundImageUrl: '/assets/images/themes/t1/banner-bg.jpg',
           items: [
             {
               icon: 'twitter',
@@ -104,12 +123,24 @@ module LandingExamples
             }
           ]
         },
+        backgroundImage: {
+          uuid: nil,
+          url: '/assets/images/themes/t1/banner-bg.jpg',
+          width: nil,
+          height: nil,
+        },
+        background: {
+          color: '#121212',
+          position: '',
+          attachment: '',
+          repeat: '',
+        },
       },
       {
         uuid: 'myFooter',
         type: 'BFooterType1',
         view: 'BFooterType1View1',
-        data: {
+        content: {
           copyrightText: 'Copyright © BML landing 2016. All Rights Reserved',
           items: [
             {

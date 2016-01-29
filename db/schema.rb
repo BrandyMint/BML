@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128140259) do
+ActiveRecord::Schema.define(version: 20160129132451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,11 +30,10 @@ ActiveRecord::Schema.define(version: 20160128140259) do
   add_index "accounts", ["ident"], name: "index_accounts_on_ident", unique: true, using: :btree
 
   create_table "asset_files", force: :cascade do |t|
-    t.integer  "account_id",                                                  null: false
+    t.integer  "account_id"
     t.integer  "landing_id"
     t.integer  "landing_version_id"
     t.string   "file",                                                        null: false
-    t.string   "mime_type",                                                   null: false
     t.integer  "width"
     t.integer  "height"
     t.integer  "file_size",          limit: 8,                                null: false
@@ -42,8 +41,10 @@ ActiveRecord::Schema.define(version: 20160128140259) do
     t.datetime "updated_at",                                                  null: false
     t.string   "type",                                                        null: false
     t.uuid     "uuid",                         default: "uuid_generate_v4()", null: false
+    t.string   "digest",                                                      null: false
   end
 
+  add_index "asset_files", ["account_id", "digest"], name: "index_asset_files_on_account_id_and_digest", unique: true, using: :btree
   add_index "asset_files", ["account_id"], name: "index_asset_files_on_account_id", using: :btree
   add_index "asset_files", ["landing_id"], name: "index_asset_files_on_landing_id", using: :btree
   add_index "asset_files", ["landing_version_id"], name: "index_asset_files_on_landing_version_id", using: :btree
@@ -119,15 +120,17 @@ ActiveRecord::Schema.define(version: 20160128140259) do
   add_index "landings", ["uuid"], name: "index_landings_on_uuid", unique: true, using: :btree
 
   create_table "sections", force: :cascade do |t|
-    t.string   "block_type",                                         null: false
-    t.string   "block_view",                                         null: false
-    t.uuid     "uuid",                default: "uuid_generate_v4()", null: false
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-    t.integer  "landing_version_id",                                 null: false
-    t.text     "data_serialized"
-    t.integer  "row_order",           default: 0,                    null: false
+    t.string   "block_type",                                           null: false
+    t.string   "block_view",                                           null: false
+    t.uuid     "uuid",                  default: "uuid_generate_v4()", null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.integer  "landing_version_id",                                   null: false
+    t.text     "content"
+    t.integer  "row_order",             default: 0,                    null: false
     t.integer  "background_image_id"
+    t.hstore   "node_attributes",       default: {}
+    t.hstore   "background_attributes"
   end
 
   add_index "sections", ["landing_version_id", "row_order"], name: "index_sections_on_landing_version_id_and_row_order", using: :btree

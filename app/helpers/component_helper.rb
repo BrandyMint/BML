@@ -14,11 +14,12 @@ module ComponentHelper
   private
 
   def initial_state(landing_version, edit_mode)
-    Entities::LandingVersionEntity.represent(landing_version)
+    json = Entities::LandingVersionEntity.represent(landing_version).as_json[:sections]
     {
       application: {
         exitUrl:              account_landing_analytics_path(landing_version.landing),
         isEditMode:           edit_mode,
+        isSaving:             false,
         landing_version_uuid: landing_version.uuid,
         api_key:              current_account.api_key,
         hasUnsavedChanges:    false
