@@ -116,7 +116,7 @@ namespace :deploy do
 #  end
 
   before :compile_assets, 'clearcache'
-  before :compile_assets, 'bowerinstall'
+#  before :compile_assets, 'bowerinstall'
   after :publishing, :restart
   before :started, :sidekiqquiet
   after :finishing, 'deploy:cleanup'
