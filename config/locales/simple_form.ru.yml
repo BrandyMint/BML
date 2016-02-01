@@ -58,7 +58,12 @@ ru:
         meta_title: <head><title>
         meta_description: <meta description>
         meta_keywords: <meta keywords>
+        phone: Номер телефона
+        email: E-mail
         h1: <h1>
+      user:
+        name: Ваше имя
+        password: Пароль
       vendor_walletone:
         legal_form: Юридическая форма
         merchant_id: Номер кошелька кассы

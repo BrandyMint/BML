@@ -11,6 +11,8 @@ class Account < ActiveRecord::Base
   has_many :asset_images
 
   has_many :authentications, dependent: :destroy
+  has_many :memberships, dependent: :destroy
+  has_many :users, through: :memberships
 
   def to_s
     "Аккаунт #{id}"

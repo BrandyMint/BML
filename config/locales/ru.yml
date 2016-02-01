@@ -1,4 +1,11 @@
 ru:
+  activerecord:
+    attributes:
+      user:
+        name: Ваше имя
+        email: E-mail
+        phone: Номер телефона
+        password: Пароль
   sources:
     yandex_direct: Яндекс.Директ
     google_adwords: Google Adwords

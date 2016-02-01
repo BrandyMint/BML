@@ -4,6 +4,15 @@ require 'site_constraint'
 require 'api_constraint'
 
 Rails.application.routes.draw do
+  concern :registration do
+    get 'login' => 'sessions#new', as: :login
+    get 'logout' => 'sessions#destroy', as: :logout
+    get 'signup' => 'users#new', as: :signup
+    post 'signup' => 'users#create'
+    resources :users
+    resources :sessions
+  end
+
   scope subdomain: ApiConstraint::SUBDOMAIN, constraints: ApiConstraint do
     mount API => '/', as: :api
     root controller: :swagger, action: :index, as: :api_doc
@@ -17,6 +26,7 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'omniauth#create'
   get '/auth/failure',            to: 'omniauth#failure'
+  concerns :registration
 
   scope constraints: AccountConstraint do
     root 'landings#index'
