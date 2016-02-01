@@ -1,0 +1,21 @@
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: bml_test
+  pool: 5
+  username: postgres
+  password:
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: bml_test
+  pool: 5
+  username: postgres
+  password:
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: bml_test
+  pool: 5
+  username: postgres
+  password:
