@@ -1,4 +1,4 @@
-lock '3.2.1'
+lock '3.4.0'
 
 require 'capistrano-db-tasks'
 # require 'new_relic/recipes'
@@ -111,10 +111,9 @@ namespace :deploy do
     end
   end
 
-  unless ENV['OFF_NOTIFY']
-    after 'deploy:updated', 'notify_bugsnag'
-    # after 'deploy:updated', 'newrelic:notice_deployment'
-  end
+#  unless ENV['OFF_NOTIFY']
+#    after 'deploy:updated', 'notify_bugsnag'
+#  end
 
   before :compile_assets, 'clearcache'
   before :compile_assets, 'bowerinstall'
