@@ -6,9 +6,9 @@ if ENV['USE_LOCAL_REPO'].nil?
 end
 set :bundle_without, %w(development test).join(' ')
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
-set :deploy_to, -> { "/home/wwwkiiiosk/#{fetch(:application)}" }
+set :deploy_to, -> { "/home/wwwaydamaster/#{fetch(:application)}" }
 
-server '136.243.171.131', user: 'wwwkiiiosk', port: 2222, roles: %w(web app db)
+server '136.243.171.131', user: 'wwwaydamaster', port: 256, roles: %w(web app db)
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 set :rails_env, :staging
