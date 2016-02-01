@@ -1,5 +1,5 @@
 set :application, 'aydamaster.ru'
-set :stage, :staging
+set :stage, :production
 set :scm, :git
 if ENV['USE_LOCAL_REPO'].nil?
   set :repo_url, 'git@github.com:BrandyMint/BML.git'
@@ -11,6 +11,6 @@ set :deploy_to, -> { "/home/wwwaydamaster/#{fetch(:application)}" }
 server 'icfdev.ru', user: 'wwwaydamaster', port: 256, roles: %w(web app db)
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
-set :rails_env, :staging
+set :rails_env, :production
 set :branch, ENV['BRANCH'] || 'master'
-fetch(:default_env).merge!(rails_env: :staging)
+fetch(:default_env).merge!(rails_env: :production)
