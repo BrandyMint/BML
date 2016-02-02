@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20160129151343) do
   end
 
   add_index "memberships", ["account_id"], name: "index_memberships_on_account_id", using: :btree
+  add_index "memberships", ["user_id", "account_id"], name: "index_memberships_on_user_id_and_account_id", unique: true, using: :btree
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
 
   create_table "sections", force: :cascade do |t|
@@ -169,16 +170,19 @@ ActiveRecord::Schema.define(version: 20160129151343) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "email",                        null: false
+    t.string   "email",                           null: false
     t.string   "phone"
     t.string   "crypted_password"
     t.string   "salt"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
     t.datetime "email_confirmed_at"
     t.datetime "phone_confirmed_at"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

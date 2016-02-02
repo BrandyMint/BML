@@ -4,10 +4,8 @@ class User < ActiveRecord::Base
   has_many :accounts, through: :memberships
 
   validates :name, :email, presence: true
-  validates :phone, phone: true, allow_blank: true
+  validates :phone, phone: true, uniqueness: true, allow_blank: true
   validates :email, email: true, uniqueness: true
-
-  before_save :prepare_email
 
   def email_confirm
     update_column :email_confirmed_at, Time.zone.now
@@ -25,9 +23,19 @@ class User < ActiveRecord::Base
     phone_confirmed_at.present?
   end
 
-  private
+  def phone=(value)
+    if value.present?
+      super PhoneUtils.clean_phone value
+    else
+      super nil
+    end
+  end
 
-  def prepare_email
-    self.email = email.downcase.strip.chomp
+  def email=(value)
+    if value.present?
+      super value.downcase.strip.chomp
+    else
+      super value
+    end
   end
 end

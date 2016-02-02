@@ -8,6 +8,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :salt
       t.string :remember_me_token
       t.datetime :remember_me_token_expires_at
+      t.string :reset_password_token
+      t.datetime :reset_password_token_expires_at
+      t.datetime :reset_password_email_sent_at
       t.datetime :email_confirmed_at
       t.datetime :phone_confirmed_at
 

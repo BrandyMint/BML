@@ -5,6 +5,10 @@ class Landing::ApplicationController < Account::ApplicationController
 
   private
 
+  def current_member
+    @_current_member ||= current_user
+  end
+
   def current_landing
     @_current_landing ||= current_account.landings.find params[:landing_id]
   end

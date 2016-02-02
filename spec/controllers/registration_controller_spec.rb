@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe UsersController do
+describe RegistrationController do
   let!(:user_attrs) { FactoryGirl.attributes_for :user }
 
   describe '#new' do

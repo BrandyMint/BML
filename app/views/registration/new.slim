@@ -1,8 +1,9 @@
-.page-header
-  h1 Регистрация
 .row
-  .col-xs-12
-    = simple_form_for user, url: signup_url do |f|
+  .col-sm-9.col-sm-offset-3
+    .page-header
+      h1 Регистрация
+  .col-sm-5.col-sm-offset-3
+    = simple_form_for registration_form, url: signup_url do |f|
       = f.error_notification
       .form-inputs
         = f.input :name

@@ -8,10 +8,16 @@ FactoryGirl.define do
   end
 
   factory :user do
-    name "MyString"
-email { generate :user_email }
-phone { generate :user_phone }
-password '123'
-  end
+    name 'MyString'
+    email { generate :user_email }
+    phone { generate :user_phone }
+    password '123'
 
+    trait :with_account do
+      after(:create) do |user|
+        account = create :account
+        user.memberships.create! account_id: account.id, role: :owner
+      end
+    end
+  end
 end

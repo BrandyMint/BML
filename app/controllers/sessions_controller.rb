@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
+  layout 'auth'
+
   def new
     render locals: { session_form: SessionForm.new }
   end
@@ -10,7 +12,7 @@ class SessionsController < ApplicationController
     user = login session_form.email, session_form.password, session_form.remember_me
 
     if user
-      success_redirect
+      redirect_to account_dashboard_url(current_user.accounts.first)
     else
       flash[:now] = { error: t('flash.session_failed') }
       render :new, locals: { session_form: session_form }
@@ -23,11 +25,6 @@ class SessionsController < ApplicationController
   end
 
   private
-
-  def success_redirect
-    url = current_user.accounts.any? ? account_dashboard_url(current_user.accounts.first) : root_url
-    redirect_to url
-  end
 
   def permitted_params
     params.require(:session_form).permit(:email, :password, :remember_me)

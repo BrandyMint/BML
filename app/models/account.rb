@@ -3,7 +3,7 @@ class Account < ActiveRecord::Base
   include AccountIdent
 
   has_many :landings,    dependent: :destroy
-  has_many :collections, dependent: :destroy
+  has_many :collections, through: :landings, dependent: :destroy
 
   has_many :versions, through: :landings
 

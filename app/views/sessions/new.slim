@@ -8,6 +8,7 @@
     | Нет аккаунта?
     br
     = link_to "Зарегистрироваться", signup_url
-    /hr
-    /= t('.password_reset_label')
-    /= link_to t('.password_reset_link'), new_password_reset_path
+    hr
+    | Забыли пароль?
+    br
+    = link_to 'Восстановить', new_password_reset_url

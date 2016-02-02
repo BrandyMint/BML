@@ -6,6 +6,7 @@ ru:
         email: E-mail
         phone: Номер телефона
         password: Пароль
+        password_confirmation: Подтверждение пароля
   sources:
     yandex_direct: Яндекс.Директ
     google_adwords: Google Adwords
@@ -13,3 +14,15 @@ ru:
     social: Соц.сети
     organic: Прямые заходы
     mails: Рассылки
+  flash:
+    signed_up: Вы успешно зарегистрировались!
+    session_problems: Проблемы с авторизацией
+    session_failed: Неправильный email или пароль
+  mailers:
+    user_mailer:
+      reset_password_instructions:
+        subject: Инструкции по восстановлению пароля
+        body: |
+          Здравствуйте, %{email}.<br>
+          Чтобы сменить ваш пароль на сайте пройдите <a href="%{url}"> по ссылке</a><br>
+          Если вы не хотите менять свой пароль, проигнорируйте это письмо

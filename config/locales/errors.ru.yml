@@ -1,4 +1,11 @@
 ru:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              email: Неверный формат email
   errors:
     format: ! '%{attribute} %{message}'
     messages:

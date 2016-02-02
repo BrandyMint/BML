@@ -61,9 +61,15 @@ ru:
         phone: Номер телефона
         email: E-mail
         h1: <h1>
-      user:
+      registration_form:
         name: Ваше имя
         password: Пароль
+      session_form:
+        email: E-mail
+        password: Пароль
+        remember_me: Запомнить меня
+      reset_password:
+        login: Номер телефона или email
       vendor_walletone:
         legal_form: Юридическая форма
         merchant_id: Номер кошелька кассы
@@ -307,6 +313,9 @@ ru:
     placeholders:
       defaults:
         title: Название
+      session_form:
+        email: E-mail
+        password: Пароль
       user_request:
         email: E-mail
         name: Ваше Имя

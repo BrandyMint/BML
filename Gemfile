@@ -144,6 +144,7 @@ group :development, :test do
   gem 'guard-bundler'
   gem 'guard-ctags-bundler'
   gem 'guard-rubocop'
+  gem 'letter_opener'
 
 end
 

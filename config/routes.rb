@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   concern :registration do
     get 'login' => 'sessions#new', as: :login
     get 'logout' => 'sessions#destroy', as: :logout
-    get 'signup' => 'users#new', as: :signup
-    post 'signup' => 'users#create'
-    resources :users
-    resources :sessions
+    get 'signup' => 'registration#new', as: :signup
+    post 'signup' => 'registration#create'
+    resources :password_resets, only: [:new, :create, :edit, :update]
+    resources :sessions, only: [:create]
   end
 
   scope subdomain: ApiConstraint::SUBDOMAIN, constraints: ApiConstraint do

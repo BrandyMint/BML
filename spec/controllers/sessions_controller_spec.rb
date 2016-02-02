@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 describe SessionsController do
+  include Sorcery::TestHelpers::Rails::Integration
+  include Sorcery::TestHelpers::Rails::Controller
+
+  let(:password) { 123 }
+  let!(:user) { FactoryGirl.create :user, :with_account, password: password }
+  before { @user = user }
+
   describe '#new' do
     it 'must return success' do
       get :new
@@ -10,9 +17,8 @@ describe SessionsController do
 
   describe '#create' do
     context 'with valid params' do
-      let(:email) { FactoryGirl.generate(:user_email) }
       it 'must log in' do
-        get :create, session_form: { email: email, password: 123 }
+        get :create, session_form: { email: user.email, password: password }
         expect(controller.current_user).to be_an_instance_of(User)
       end
     end
