@@ -3,7 +3,7 @@ class API::LandingVersions < Grape::API
   include Authorization
 
   before do
-    header "Access-Control-Allow-Origin", "*"
+    header 'Access-Control-Allow-Origin', '*'
   end
 
   desc 'Варианты посадочных страниц'

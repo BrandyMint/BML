@@ -1,4 +1,4 @@
-class ImageUploader < BaseUploader
+class ImageUploader < FileUploader
   # process :convert => 'png'
   include CarrierWave::MiniMagick
   EXTENSION_WHITE_LIST = %w(jpg jpeg gif png svg)

@@ -1,6 +1,6 @@
 class Page
   include Virtus.model
-  extend SeoHelper
+  # extend SeoHelper
   attribute :title
   attribute :description
   attribute :keywords
@@ -16,14 +16,6 @@ class Page
 
   def self.build(source)
     new title: meta_title(source), description: meta_description(source), keywords: meta_keywords(source)
-  end
-
-  def self.build_from_product(product)
-    new title: meta_title(product),
-        description: meta_description(product),
-        keywords: meta_keywords(product),
-        og_image: product.image.try(:url),
-        og_url: Rails.application.routes.url_helpers.vendor_product_url(product)
   end
 
   def self.build_from_vendor(vendor)

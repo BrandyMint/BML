@@ -3,7 +3,7 @@ class API::Images < Grape::API
   include Authorization
 
   before do
-    header "Access-Control-Allow-Origin", "*"
+    header 'Access-Control-Allow-Origin', '*'
   end
 
   desc 'Изображения'
@@ -16,7 +16,13 @@ class API::Images < Grape::API
       requires :file,                 type: Rack::Multipart::UploadedFile, desc: 'Содержимое изображения дла загрузки'
     end
     post do
-      image = current_account.asset_images.create! file: params[:file]
+      new_image = current_account.asset_images.build file: params[:file]
+      image = current_account.asset_images.find_by_digest new_image.file.digest
+
+      unless image
+        new_image.save!
+        image = new_image
+      end
 
       present image, with: Entities::AssetImageEntity
     end

@@ -8,4 +8,8 @@ class FileUploader < BaseUploader
   def details
     "#{number_to_human_size file.size} #{extension}"
   end
+
+  def digest
+    AssetFileDigest.digest_of_file file.file
+  end
 end
