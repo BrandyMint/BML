@@ -25,7 +25,8 @@ module Bml
     config.autoload_paths += Dir[
       "#{Rails.root}/app/api/concerns",
       "#{Rails.root}/app/validators",
-      "#{Rails.root}/app/form_objects"
+      "#{Rails.root}/app/form_objects",
+      "#{Rails.root}/app/workers"
     ]
 
     config.middleware.insert_before 0, "Rack::Cors" do

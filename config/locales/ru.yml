@@ -1,4 +1,10 @@
 ru:
+  js:
+    seconds_count:
+      one: '%{count} секунду'
+      few: '%{count} секунды'
+      many: '%{count} секунд'
+      other: '%{count} секунд'
   activerecord:
     attributes:
       user:
@@ -14,15 +20,24 @@ ru:
     social: Соц.сети
     organic: Прямые заходы
     mails: Рассылки
-  flash:
-    signed_up: Вы успешно зарегистрировались!
-    session_problems: Проблемы с авторизацией
-    session_failed: Неправильный email или пароль
+  flashes:
+    registration:
+      signed_up: Вы успешно зарегистрировались!
+      session_problems: Проблемы с авторизацией
+      session_failed: Неправильный email или пароль
+    user:
+      confirmed: E-mail успешно подтверждён
+      not_confirmed: Не найден оператор с таким e-mail
+      confirmation_sent: Ссылка для потверждения отправлена на Ваш e-mail
   mailers:
     user_mailer:
       reset_password_instructions:
         subject: Инструкции по восстановлению пароля
         body: |
           Здравствуйте, %{email}.<br>
-          Чтобы сменить ваш пароль на сайте пройдите <a href="%{url}"> по ссылке</a><br>
+          Чтобы сменить ваш пароль на сайте, пройдите <a href="%{url}"> по ссылке</a><br>
+          Если вы не хотите менять свой пароль, проигнорируйте это письмо
+        body_text: |
+          Здравствуйте, %{email}.
+          Чтобы сменить ваш пароль на сайте, пройдите по ссылке %{url}
           Если вы не хотите менять свой пароль, проигнорируйте это письмо

@@ -4,6 +4,8 @@ require 'site_constraint'
 require 'api_constraint'
 
 Rails.application.routes.draw do
+  default_url_options Settings.app.default_url_options.symbolize_keys
+
   concern :registration do
     get 'login' => 'sessions#new', as: :login
     get 'logout' => 'sessions#destroy', as: :logout
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
     post 'signup' => 'registration#create'
     resources :password_resets, only: [:new, :create, :edit, :update]
     resources :sessions, only: [:create]
+    get '/email_confirmation' => 'profile#confirm_email'
   end
 
   scope subdomain: ApiConstraint::SUBDOMAIN, constraints: ApiConstraint do
@@ -27,6 +30,11 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'omniauth#create'
   get '/auth/failure',            to: 'omniauth#failure'
   concerns :registration
+
+  resource :profile, controller: :profile, only: [:show, :edit, :update] do
+    post :send_email_confirmation
+  end
+  resource :phone_confirmation, only: [:new, :create, :update]
 
   scope constraints: AccountConstraint do
     root 'landings#index'

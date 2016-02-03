@@ -1,10 +1,12 @@
 class RegistrationController < ApplicationController
+  include CurrentAccount
+  include CurrentAccountSupport
+  include CurrentMember
   skip_before_action :verify_authenticity_token
 
   layout 'auth'
 
   def new
-    # ???
     if current_member.present?
       redirect_to account_dashboard_url(current_member.accounts.first)
     else
@@ -17,7 +19,7 @@ class RegistrationController < ApplicationController
     RegistrationService.new(form: registration_form).call
 
     # TODO invite activation
-    redirect_to login_url, flash: { success: I18n.t('flash.signed_up') }
+    redirect_to login_url, flash: { success: I18n.t('flashes.registration.signed_up') }
 
   rescue ActiveRecord::RecordInvalid => err
     registration_form.errors = err.record.errors

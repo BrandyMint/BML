@@ -11,6 +11,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :reset_password_token
       t.datetime :reset_password_token_expires_at
       t.datetime :reset_password_email_sent_at
+      t.string :email_confirm_token
       t.datetime :email_confirmed_at
       t.datetime :phone_confirmed_at
 

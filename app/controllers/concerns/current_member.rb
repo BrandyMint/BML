@@ -1,4 +1,4 @@
-module UserSupport
+module CurrentMember
   def current_member
     @current_member ||= find_current_member
   end
@@ -10,5 +10,7 @@ module UserSupport
     member = current_account.memberships.by_user(current_user).first
 
     return member if member.present?
+  rescue NoCurrentAccount
+    nil
   end
 end

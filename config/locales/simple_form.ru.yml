@@ -81,7 +81,7 @@ ru:
         last_name: Фамилия
         phone: Телефон
         phone_confirmed?: Телефон подтвержден?
-        email: Емайл
+        email: E-mail
         currency: Валюта
       menu_item:
         place: Размещается в

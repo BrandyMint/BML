@@ -1,27 +1,15 @@
 class User < ActiveRecord::Base
+  include UserConfirmation
+
   authenticates_with_sorcery!
   has_many :memberships, dependent: :destroy
   has_many :accounts, through: :memberships
+  has_many :phone_confirmations, autosave: true
 
   validates :name, :email, presence: true
   validates :phone, phone: true, uniqueness: true, allow_blank: true
   validates :email, email: true, uniqueness: true
-
-  def email_confirm
-    update_column :email_confirmed_at, Time.zone.now
-  end
-
-  def phone_confirm
-    update_column :phone_confirmed_at, Time.zone.now
-  end
-
-  def email_confirmed?
-    email_confirmed_at.present?
-  end
-
-  def phone_confirmed?
-    phone_confirmed_at.present?
-  end
+  validates :password, confirmation: true
 
   def phone=(value)
     if value.present?

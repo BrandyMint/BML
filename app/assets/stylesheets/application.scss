@@ -16,3 +16,10 @@
  *= require_tree .
  *= require_self
  */
+
+[data-timeout="0"] {
+  .pin-alert-base {
+    display: block;
+  }
+}
+

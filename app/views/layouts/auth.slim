@@ -5,6 +5,7 @@ html
     == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
     == csrf_meta_tags
+    == include_gon
   body
     header.container
       #account-header
@@ -13,11 +14,3 @@ html
     #landings-container.container
       == render 'layouts/messages'
       == yield
-
-    / #main{:role => "main"}
-    /   .container
-    /     .content
-    /       .row
-    /         .col-md-12
-    /           = render 'layouts/messages'
-    /           = yield

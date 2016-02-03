@@ -1,6 +1,4 @@
 class PasswordResetsController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :require_login
-
   layout 'auth'
 
   def new

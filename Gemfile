@@ -97,6 +97,9 @@ gem 'uuid'
 gem 'enumerize'
 gem 'validates'
 gem 'sorcery'
+gem 'smsc'
+gem 'i18n-js', github: 'fnando/i18n-js'
+gem 'gon'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

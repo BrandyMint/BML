@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     if user
       redirect_to account_dashboard_url(current_user.accounts.first)
     else
-      flash[:now] = { error: t('flash.session_failed') }
+      flash[:now] = { error: t('flashes.user.session_failed') }
       render :new, locals: { session_form: session_form }
     end
   end
