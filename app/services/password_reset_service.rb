@@ -14,7 +14,8 @@ class PasswordResetService
   private
 
   def send_sms
-    # user_by_phone
+    user_by_phone.change_password! pin_code
+    SmsWorker.perform_async user_by_phone.phone, I18n.t('services.pin_sender.sms_text', pin: pin_code)
   end
 
   def send_email
@@ -22,14 +23,18 @@ class PasswordResetService
   end
 
   def phone?
-    Phoner::Phone.parse(login).present?
+    Phoner::Phone.valid? login
   end
 
   def user_by_email
-    User.where(email: login.to_s.downcase.chomp.strip).first!
+    @_user ||= User.where(email: EmailUtils.clean_email(login)).first!
   end
 
   def user_by_phone
-    User.where(phone: PhoneUtils.clean_phone(login)).first!
+    @_user ||= User.where(phone: PhoneUtils.clean_phone(login)).first!
+  end
+
+  def pin_code
+    @_pin_code ||= PinCode.generate
   end
 end

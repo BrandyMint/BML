@@ -53,8 +53,7 @@ module UserConfirmation
 
   def deliver_email_confirmation!
     @is_delivery_email = false
-    UserMailer.email_confirmation(id).deliver_now
-    # UserMailer.delay.email_confirmation id
+    UserMailer.delay.email_confirmation id
   end
 
   private

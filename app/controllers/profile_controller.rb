@@ -1,20 +1,17 @@
 class ProfileController < ApplicationController
   include PhoneConfirmationHelper
   before_action :require_login
+  skip_before_action :require_login, only: [:confirm_email]
 
   layout 'auth'
 
   def show
-    edit
-  end
-
-  def edit
     render locals: { user: current_user }
   end
 
   def update
     current_user.update! permitted_params
-    redirect_to edit_profile_url
+    redirect_to profile_url
   rescue ActiveRecord::RecordInvalid => e
     render :edit, locals: { user: e.record }
   end

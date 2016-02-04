@@ -1,7 +1,4 @@
-class RegistrationController < ApplicationController
-  include CurrentAccount
-  include CurrentAccountSupport
-  include CurrentMember
+class RegistrationController < Account::ApplicationController
   skip_before_action :verify_authenticity_token
 
   layout 'auth'
@@ -18,9 +15,7 @@ class RegistrationController < ApplicationController
     registration_form = RegistrationForm.new permitted_params
     RegistrationService.new(form: registration_form).call
 
-    # TODO invite activation
     redirect_to login_url, flash: { success: I18n.t('flashes.registration.signed_up') }
-
   rescue ActiveRecord::RecordInvalid => err
     registration_form.errors = err.record.errors
     render :new, locals: { registration_form: registration_form }

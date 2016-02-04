@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   def email=(value)
     if value.present?
-      super value.downcase.strip.chomp
+      super EmailUtils.clean_email value
     else
       super value
     end

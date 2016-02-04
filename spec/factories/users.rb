@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  sequence :user_name do |n|
+    "User#{n}"
+  end
+
   sequence :user_phone do |n|
     "+790000000#{n}"
   end
@@ -8,10 +12,11 @@ FactoryGirl.define do
   end
 
   factory :user do
-    name 'MyString'
+    name  { generate :user_name }
     email { generate :user_email }
     phone { generate :user_phone }
-    password '123'
+    password 'password'
+    email_confirm_token 'confirm_token'
 
     trait :with_account do
       after(:create) do |user|

@@ -19,7 +19,7 @@ class SmsWorker
       else
         Rails.logger.error "SMS #{res.body}"
         error = Error.new res.body.to_s
-        SupportMailer.sos_mail('На SMSC кончились деньги: https://smsc.ru/pay/') if error.code == 3 || error.message == 'no money'
+        # SupportMailer.sos_mail('На SMSC кончились деньги: https://smsc.ru/pay/') if error.code == 3 || error.message == 'no money'
         fail error if error.fatal?
       end
     elsif !Rails.env.test?

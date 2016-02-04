@@ -70,7 +70,7 @@ class PhoneConfirmation < ActiveRecord::Base
   end
 
   def generate_pin_code!
-    self.pin_code ||= SecureRandom.hex PIN_CODE_LENGTH / 2
+    self.pin_code ||= PinCode.generate PIN_CODE_LENGTH
   end
 
   def confirm!

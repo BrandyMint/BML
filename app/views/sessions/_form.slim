@@ -1,7 +1,7 @@
 = simple_form_for session_form, url: sessions_path do |f|
   = f.error_notification
   .form-group
-    = f.input :email, label: false, input_html: { class: 'form-control' }
+    = f.input :login, label: false, input_html: { class: 'form-control' }
   .form-group
     = f.input :password, label: false, input_html: { class: 'form-control' }
   .form-group

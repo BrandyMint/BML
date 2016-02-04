@@ -147,8 +147,12 @@ group :development, :test do
   gem 'guard-bundler'
   gem 'guard-ctags-bundler'
   gem 'guard-rubocop'
+  gem 'rubocop-rspec'
   gem 'letter_opener'
+end
 
+group :test do
+  gem 'test_after_commit'
 end
 
 group :development do

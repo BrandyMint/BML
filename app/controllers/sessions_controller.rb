@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
   def create
     session_form = SessionForm.new permitted_params
-    user = login session_form.email, session_form.password, session_form.remember_me
+    user = login session_form.login, session_form.password, session_form.remember_me
 
     if user
       redirect_to account_dashboard_url(current_user.accounts.first)
@@ -27,6 +27,6 @@ class SessionsController < ApplicationController
   private
 
   def permitted_params
-    params.require(:session_form).permit(:email, :password, :remember_me)
+    params.require(:session_form).permit(:login, :password, :remember_me)
   end
 end

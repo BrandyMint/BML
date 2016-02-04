@@ -31,10 +31,10 @@ Rails.application.routes.draw do
   get '/auth/failure',            to: 'omniauth#failure'
   concerns :registration
 
-  resource :profile, controller: :profile, only: [:show, :edit, :update] do
+  resource :profile, controller: :profile, only: [:show, :update] do
     post :send_email_confirmation
   end
-  resource :phone_confirmation, only: [:new, :create, :update]
+  resource :phone_confirmation, only: [:new, :edit, :create, :update]
 
   scope constraints: AccountConstraint do
     root 'landings#index'

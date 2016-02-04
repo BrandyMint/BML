@@ -1,8 +1,22 @@
 class SessionForm < FormBase
-  attribute :email
-  attribute :password
+  attribute :login,     String
+  attribute :password,  String
   attribute :remember_me
 
-  validates :email, presence: true, email: true
-  validates :password, presence: true
+  validates :login, :password, presence: true
+
+  def login
+    format_login super
+  end
+
+  private
+
+  def format_login(value)
+    return value if value.blank?
+    if value.include? '@'
+      EmailUtils.clean_email value
+    else
+      PhoneUtils.clean_phone value
+    end
+  end
 end

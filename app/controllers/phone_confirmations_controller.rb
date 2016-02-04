@@ -14,7 +14,7 @@ class PhoneConfirmationsController < ApplicationController
   def new
     if phone.present?
       if phone_confirmation.is_confirmed?
-        flash[:notice] = "Телефон уже #{form.phone} подтвержден"
+        flash[:notice] = "Телефон #{form.phone} уже подтвержден"
 
         success_redirect
       else
@@ -28,7 +28,7 @@ class PhoneConfirmationsController < ApplicationController
     render :new, locals: { form: form, timeout: err.timeout }
   end
 
-  # Повторный закрос кода
+  # Повторный запрос кода
   def edit
     render :edit, locals: { form: form, timeout: phone_confirmation.request_timeout }
   rescue PhoneConfirmation::RequestTimeout => err
@@ -66,7 +66,7 @@ class PhoneConfirmationsController < ApplicationController
   end
 
   def phone_already_confirmed
-    flash[:notice] = "Телефон уже #{form.phone} подтвержден"
+    flash[:notice] = "Телефон #{form.phone} уже подтвержден"
     success_redirect
   end
 
@@ -75,7 +75,7 @@ class PhoneConfirmationsController < ApplicationController
   end
 
   def success_redirect
-    redirect_to confirmed_back_url || rool_url unless response.redirection?
+    redirect_to confirmed_back_url || root_url unless response.redirection?
   end
 
   def confirmed_back_url

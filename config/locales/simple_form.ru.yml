@@ -65,7 +65,7 @@ ru:
         name: Ваше имя
         password: Пароль
       session_form:
-        email: E-mail
+        login: Телефон или e-mail
         password: Пароль
         remember_me: Запомнить меня
       reset_password:
@@ -314,7 +314,7 @@ ru:
       defaults:
         title: Название
       session_form:
-        email: E-mail
+        login: Телефон или e-mail
         password: Пароль
       user_request:
         email: E-mail
