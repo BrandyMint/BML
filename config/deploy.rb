@@ -10,7 +10,7 @@ set :git_enable_submodules, 1
 # set :pty, true
 set :keep_releases, 10
 
-set :linked_files, %w(config/database.yml)
+set :linked_files, %w(config/database.yml config/secrets.yml)
 set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets public/uploads)
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
