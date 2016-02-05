@@ -3,7 +3,7 @@ class LandingsController < ApplicationController
   include CurrentLanding
   include CurrentAccountSupport
 
-  helper_method :current_landing_versoin
+  helper_method :current_landing_version
 
   def index
     render locals: { account: current_account }

@@ -1,0 +1,40 @@
+.page-header
+  h1
+    | Привет, #{user.name}!
+
+  small Это Ваш личный профиль, можете его изменить.
+
+br
+= simple_form_for user, url: profile_url do |f|
+  .row
+    .col-lg-8
+      = f.input :name, label: 'Ваше имя'
+  .row
+    .col-lg-4
+      = f.input :email, hint: user_email_confirmation_hint(user)
+    .col-lg-4
+      = f.input :phone, hint: user_phone_confirmation_hint(user)
+  .form-group
+    .row
+      .col-lg-4
+        = f.input :password, label: 'Введите пароль, если хотите его изменить'
+      .col-lg-4
+        = f.input :password_confirmation
+  .form-group
+    = f.submit 'Сохранить', class: 'btn btn-primary'
+
+
+- if user.phone_confirmations.exists?
+
+  br
+  h2 Подтверждаемые телефоны:
+
+  ul
+    - user.phone_confirmations.each do |ph|
+      li
+        em= ph.phone
+        - if ph.is_confirmed?
+          | (подтвержден)
+        - else
+          | (ожидает подтверждения)
+          = link_to 'Подтвердить', new_profile_phone_confirmation_url(phone: ph.phone, backurl: profile_url)

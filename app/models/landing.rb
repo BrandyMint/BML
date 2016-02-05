@@ -36,6 +36,10 @@ class Landing < ActiveRecord::Base
   private
 
   def create_subdomain
-    create_subdomain! subdomain: account.subdomain
+    create_subdomain! subdomain: generate_subdomain
+  end
+
+  def generate_subdomain
+    account.subdomain + SecureRandom.hex(4)
   end
 end

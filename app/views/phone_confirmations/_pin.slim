@@ -1,0 +1,13 @@
+p data-timeout=timeout pin-alert=""
+  - if timeout > 0
+    span pin-alert-timeout=""
+      | SMS должна придти в течение минуты.
+      br
+      | Запросить код повторно можно через &nbsp;
+      span pin-alert-seconds=""
+        = t 'seconds_count', count: timeout
+
+  br/
+  span.pin-alert-base
+    | SMS должна придти в течение минуты, если не пришла, &nbsp;
+    = link_to 'отправьте код повторно', phone_confirmation_path(phone: form.phone), method: :post
