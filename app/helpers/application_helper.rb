@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def application
+    OpenStruct.new Settings.app
+  end
+
   def omniauth_button(provider, title: nil)
     # link_to "/auth/#{provider}/?account_signature=#{account_signature}", class: 'btn btn-success btn-rounded' do
     link_to "/auth/#{provider}", class: 'btn btn-success btn-rounded' do
