@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title BML
+    == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    == javascript_include_tag 'application', 'data-turbolinks-track' => true
+    == csrf_meta_tags
+    == include_gon
+  body
+    header.container
+      #account-header
+        = fa_icon 'bank 4x', class: 'text-muted'
+
+    #landings-container.container
+      == render 'layouts/messages'
+      == yield

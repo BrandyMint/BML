@@ -3,7 +3,7 @@ class Account < ActiveRecord::Base
   include AccountIdent
 
   has_many :landings,    dependent: :destroy
-  has_many :collections, dependent: :destroy
+  has_many :collections, through: :landings, dependent: :destroy
 
   has_many :versions, through: :landings
 
@@ -11,6 +11,8 @@ class Account < ActiveRecord::Base
   has_many :asset_images
 
   has_many :authentications, dependent: :destroy
+  has_many :memberships, dependent: :destroy
+  has_many :users, through: :memberships
 
   def to_s
     "Аккаунт #{id}"

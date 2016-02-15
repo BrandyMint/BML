@@ -1,0 +1,7 @@
+= simple_form_for [:user, form], url: phone_confirmation_path, method: :create do |f|
+  = f.input :backurl, as: :hidden
+
+  h1.form-title Введите телефон для подтверждения
+
+  = f.input :phone, placeholder: 'Например: +7 903 389 12 28', label: 'Телефон в международном формате'
+  = f.submit 'Получить SMS c кодом для подтверджения', class: 'btn btn-success', data: { enable_when_present: true, disable_with: 'Высылаю..' }

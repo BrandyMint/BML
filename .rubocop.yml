@@ -1,0 +1,38 @@
+# This is the configuration used to check the rubocop source code.
+require: rubocop-rspec
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'bin/**/*'
+    - 'doc/**/*'
+    - 'config/initializers/simple_form*'
+    - 'db/migrate/*'
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+
+  RunRailsCops: true
+
+# https://github.com/bbatsov/rubocop/issues/1633
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Style/MethodName:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/AlignParameters:
+  Enabled: false
+  EnforcedStyle: with_fixed_indentation
+  SupportedStyles:
+    - with_first_parameter
+    - with_fixed_indentation
+
+Style/Encoding:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 10000

@@ -1,4 +1,11 @@
 ru:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              email: Неверный формат email
   errors:
     format: ! '%{attribute} %{message}'
     messages:
@@ -60,6 +67,8 @@ ru:
         many: ! '%{model}: сохранение не удалось из-за %{count} ошибок'
         one: ! '%{model}: сохранение не удалось из-за %{count} ошибки'
         other: ! '%{model}: сохранение не удалось из-за %{count} ошибки'
+    phone_validator:
+      invalid_phone: 'Неверный формат телефона. Прим.: +7 913 123 32 10'
     operator_authentication:
       invalid_credentials: Неверный логин или пин код, введите верные данные, <a href="%{pin_code_url}">запросите новый пин код</a> или <a href="%{registration_url}">зарегистрируйтесь</a>
     pin_sender:

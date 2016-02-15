@@ -13,6 +13,6 @@ a = Account.find_or_create_by id: 1
 l = a.landings.find_or_create_by title: 'Пример 1'
 v = l.versions.first || l.versions.create
 
-SectionsUpdater.new(v, LandingExamples::EXAMPLE1).update
+SectionsUpdater.new(v, regenerate_uuid: true).update(LandingExamples::EXAMPLE1)
 
 # LandingVersion.find_each { |l| SectionsUpdater.new(l, LandingExamples::EXAMPLE1).update }
