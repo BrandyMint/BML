@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129132451) do
+ActiveRecord::Schema.define(version: 20160203123203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,31 @@ ActiveRecord::Schema.define(version: 20160129132451) do
   add_index "landings", ["account_id"], name: "index_landings_on_account_id", using: :btree
   add_index "landings", ["uuid"], name: "index_landings_on_uuid", unique: true, using: :btree
 
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "account_id",                     null: false
+    t.integer  "user_id",                        null: false
+    t.string   "role",       default: "manager", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "memberships", ["account_id"], name: "index_memberships_on_account_id", using: :btree
+  add_index "memberships", ["user_id", "account_id"], name: "index_memberships_on_user_id_and_account_id", unique: true, using: :btree
+  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
+
+  create_table "phone_confirmations", force: :cascade do |t|
+    t.string   "phone",                            null: false
+    t.integer  "user_id",                          null: false
+    t.boolean  "is_confirmed",     default: false, null: false
+    t.string   "pin_code",                         null: false
+    t.datetime "pin_requested_at"
+    t.datetime "confirmed_at"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "phone_confirmations", ["user_id"], name: "index_phone_confirmations_on_user_id", using: :btree
+
   create_table "sections", force: :cascade do |t|
     t.string   "block_type",                                           null: false
     t.string   "block_view",                                           null: false
@@ -159,6 +184,28 @@ ActiveRecord::Schema.define(version: 20160129132451) do
 
   add_index "subdomains", ["zone", "subdomain"], name: "index_subdomains_on_zone_and_subdomain", unique: true, using: :btree
 
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email",                           null: false
+    t.string   "phone"
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.string   "remember_me_token"
+    t.datetime "remember_me_token_expires_at"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+    t.string   "email_confirm_token"
+    t.datetime "email_confirmed_at"
+    t.datetime "phone_confirmed_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["phone"], name: "index_users_on_phone", unique: true, using: :btree
+  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
+
   add_foreign_key "asset_files", "accounts"
   add_foreign_key "asset_files", "landing_versions"
   add_foreign_key "asset_files", "landings"
@@ -168,6 +215,9 @@ ActiveRecord::Schema.define(version: 20160129132451) do
   add_foreign_key "collections", "landings"
   add_foreign_key "landing_versions", "landings"
   add_foreign_key "landings", "accounts"
+  add_foreign_key "memberships", "accounts"
+  add_foreign_key "memberships", "users"
+  add_foreign_key "phone_confirmations", "users"
   add_foreign_key "sections", "asset_files", column: "background_image_id"
   add_foreign_key "segments", "landings"
   add_foreign_key "subdomains", "landings"

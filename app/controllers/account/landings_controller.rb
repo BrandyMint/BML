@@ -58,7 +58,7 @@ class Account::LandingsController < Account::ApplicationController
     landing.assign_attributes permitted_params
     landing.save!
     v = landing.versions.create!
-    SectionsUpdater.new(v, LandingExamples::EXAMPLE1).update
+    SectionsUpdater.new(v, regenerate_uuid: true).update(LandingExamples::EXAMPLE1)
 
     landing
   end

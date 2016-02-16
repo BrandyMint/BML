@@ -58,7 +58,18 @@ ru:
         meta_title: <head><title>
         meta_description: <meta description>
         meta_keywords: <meta keywords>
+        phone: Номер телефона
+        email: E-mail
         h1: <h1>
+      registration_form:
+        name: Ваше имя
+        password: Пароль
+      session_form:
+        login: Телефон или e-mail
+        password: Пароль
+        remember_me: Запомнить меня
+      reset_password:
+        login: Номер телефона или email
       vendor_walletone:
         legal_form: Юридическая форма
         merchant_id: Номер кошелька кассы
@@ -70,7 +81,7 @@ ru:
         last_name: Фамилия
         phone: Телефон
         phone_confirmed?: Телефон подтвержден?
-        email: Емайл
+        email: E-mail
         currency: Валюта
       menu_item:
         place: Размещается в
@@ -302,6 +313,9 @@ ru:
     placeholders:
       defaults:
         title: Название
+      session_form:
+        login: Телефон или e-mail
+        password: Пароль
       user_request:
         email: E-mail
         name: Ваше Имя

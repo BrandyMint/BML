@@ -23,7 +23,10 @@ module Bml
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths += Dir[
-      "#{Rails.root}/app/api/concerns"
+      "#{Rails.root}/app/api/concerns",
+      "#{Rails.root}/app/validators",
+      "#{Rails.root}/app/form_objects",
+      "#{Rails.root}/app/workers"
     ]
 
     config.middleware.insert_before 0, "Rack::Cors" do
