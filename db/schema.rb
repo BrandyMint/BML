@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219191737) do
+ActiveRecord::Schema.define(version: 20160220111700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,16 @@ ActiveRecord::Schema.define(version: 20160219191737) do
 
   add_index "clients", ["landing_id"], name: "index_clients_on_landing_id", using: :btree
 
+  create_table "collection_fields", force: :cascade do |t|
+    t.integer  "collection_id", null: false
+    t.string   "key",           null: false
+    t.string   "title"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "collection_fields", ["collection_id", "key"], name: "index_collection_fields_on_collection_id_and_key", unique: true, using: :btree
+
   create_table "collection_items", force: :cascade do |t|
     t.integer  "collection_id"
     t.hstore   "data"
@@ -84,15 +94,13 @@ ActiveRecord::Schema.define(version: 20160219191737) do
   add_index "collection_items", ["landing_version_id"], name: "index_collection_items_on_landing_version_id", using: :btree
 
   create_table "collections", force: :cascade do |t|
-    t.integer  "landing_id",                     null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "items_count",        default: 0, null: false
-    t.integer  "landing_version_id"
+    t.integer  "landing_id",              null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "items_count", default: 0, null: false
   end
 
   add_index "collections", ["landing_id"], name: "index_collections_on_landing_id", using: :btree
-  add_index "collections", ["landing_version_id"], name: "index_collections_on_landing_version_id", using: :btree
 
   create_table "landing_versions", force: :cascade do |t|
     t.integer  "landing_id",                                    null: false
@@ -215,9 +223,9 @@ ActiveRecord::Schema.define(version: 20160219191737) do
   add_foreign_key "asset_files", "landings"
   add_foreign_key "authentications", "accounts"
   add_foreign_key "clients", "landings"
+  add_foreign_key "collection_fields", "collections"
   add_foreign_key "collection_items", "collections"
   add_foreign_key "collection_items", "landing_versions"
-  add_foreign_key "collections", "landing_versions"
   add_foreign_key "collections", "landings"
   add_foreign_key "landing_versions", "landings"
   add_foreign_key "landings", "accounts"

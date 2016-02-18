@@ -1,8 +1,10 @@
+/ ul
+/   - Account.all.find_each do |a|
+/     li= link_to a, account_dashboard_url(a)
 
-h1 Accounts
-
-ul
-  - Account.all.find_each do |a|
-    li= link_to a, account_dashboard_url(a)
-
-p Find me in app/views/welcome/index.html.slim
+.row
+  .col-sm-9.col-sm-offset-3
+    .page-header
+      h2 Управление посадочными страницами
+  .col-sm-4.col-sm-offset-3
+    = render 'request_form', landing_version_uuid: landing_version_uuid

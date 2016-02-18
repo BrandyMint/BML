@@ -34,6 +34,15 @@ GIT
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
 
+GIT
+  remote: https://github.com/klacointe/bootstrap-kaminari-views
+  revision: 674a32f34f537b5e92bffa0cef3d0cd1c4e499b5
+  branch: bootstrap4
+  specs:
+    bootstrap-kaminari-views (0.0.5)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -98,9 +107,6 @@ GEM
     bootstrap (4.0.0.alpha3)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
-    bootstrap-kaminari-views (0.0.5)
-      kaminari (>= 0.13)
-      rails (>= 3.1)
     bugsnag (2.8.4)
       multi_json (~> 1.0)
     builder (3.2.2)
@@ -510,7 +516,7 @@ DEPENDENCIES
   active_link_to
   bond
   bootstrap (~> 4.0.0.alpha3)
-  bootstrap-kaminari-views
+  bootstrap-kaminari-views!
   bugsnag
   byebug
   capistrano (~> 3.1)

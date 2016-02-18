@@ -8,9 +8,10 @@
 #
 
 
-a = Account.find_or_create_by id: 1
+a = Account.find_or_create_by id: 1, ident: Account::ROOT_IDENT
 
 l = a.landings.find_or_create_by title: 'Пример 1'
+c = l.collections.create
 v = l.versions.first || l.versions.create
 
 SectionsUpdater.new(v, regenerate_uuid: true).update(LandingExamples::EXAMPLE1)
