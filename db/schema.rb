@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216084014) do
+ActiveRecord::Schema.define(version: 20160219191737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,7 +149,6 @@ ActiveRecord::Schema.define(version: 20160216084014) do
   add_index "phone_confirmations", ["user_id"], name: "index_phone_confirmations_on_user_id", using: :btree
 
   create_table "sections", force: :cascade do |t|
-    t.string   "block_type",                                           null: false
     t.string   "block_view",                                           null: false
     t.uuid     "uuid",                  default: "uuid_generate_v4()", null: false
     t.datetime "created_at",                                           null: false
@@ -160,6 +159,7 @@ ActiveRecord::Schema.define(version: 20160216084014) do
     t.integer  "background_image_id"
     t.hstore   "node_attributes",       default: {}
     t.hstore   "background_attributes"
+    t.text     "form"
   end
 
   add_index "sections", ["landing_version_id", "row_order"], name: "index_sections_on_landing_version_id_and_row_order", using: :btree

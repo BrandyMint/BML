@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     root 'landings#index'
   end
 
+  get '/editor/:uuid', to: 'editor#show'
+
   scope as: :account, path: '_a', module: :account, constraints: AccountConstraint do
     root 'landings#index'
 

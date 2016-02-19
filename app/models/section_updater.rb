@@ -10,7 +10,7 @@ class SectionUpdater
     section.assign_attributes(
       'row_order'       => position,
       'content'         => block['content'],
-      'block_type'      => block['type'],
+      'form'            => block['form'],
       'block_view'      => block['view'],
       'node_attributes' => block['nodeAttributes'] || {},
       'background_attributes' => (block['background'] || {}).slice(BACKGROUND_KEYS),

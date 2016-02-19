@@ -1,4 +1,5 @@
 class Account::LandingsController < Account::ApplicationController
+  include CurrentAccount
   helper_method :current_landing, :current_landing_version
 
   def index
