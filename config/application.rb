@@ -26,6 +26,7 @@ module Bml
       "#{Rails.root}/app/api/concerns",
       "#{Rails.root}/app/validators",
       "#{Rails.root}/app/form_objects",
+      "#{Rails.root}/app/value_objects",
       "#{Rails.root}/app/workers"
     ]
 

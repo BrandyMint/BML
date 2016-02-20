@@ -13,6 +13,20 @@ ru:
         phone: Номер телефона
         password: Пароль
         password_confirmation: Подтверждение пароля
+  activemodel:
+    errors:
+      models:
+        request_special_params:
+          attributes:
+            email:
+              email: неверный формат
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
   sources:
     yandex_direct: Яндекс.Директ
     google_adwords: Google Adwords

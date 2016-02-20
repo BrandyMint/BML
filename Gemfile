@@ -79,7 +79,7 @@ gem 'react-source'
 gem 'react-rails'
 
 gem 'kaminari'
-gem 'bootstrap-kaminari-views'
+gem 'bootstrap-kaminari-views', git: 'https://github.com/klacointe/bootstrap-kaminari-views', branch: 'bootstrap4'
 gem 'sidekiq'
 
 gem 'slim-rails'

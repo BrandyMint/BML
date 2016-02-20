@@ -3,6 +3,7 @@ class LandingVersion < ActiveRecord::Base
 
   belongs_to :landing, counter_cache: :versions_count
   has_many :sections, dependent: :destroy
+  has_many :collection_items
 
   has_one :account, through: :landing
 

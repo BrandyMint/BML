@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     root controller: :swagger, action: :index, as: :api_doc
   end
 
+  post 'request' => 'collection_items#create', as: :request
+
   scope as: :site, constraints: SiteConstraint do
     root 'landings#show'
 
