@@ -1,4 +1,6 @@
 class Account::AnalyticsController < Landing::ApplicationController
+  include CurrentLanding
+
   layout 'analytics'
 
   def index

@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  layout 'auth'
+  layout 'system'
 
   def new
     render locals: { session_form: SessionForm.new }

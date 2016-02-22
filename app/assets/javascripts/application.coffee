@@ -17,8 +17,6 @@
 #= require nprogress-turbolinks
 #= require bootstrap-sprockets
 #= require turbolinks
-#= require vendor.js
-#= require bundle.js
 #= require react_ujs
 #= require i18n
 #= require i18n/translations

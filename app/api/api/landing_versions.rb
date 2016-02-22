@@ -31,6 +31,11 @@ class API::LandingVersions < Grape::API
 
         present landing_version.reload, with: Entities::LandingVersionEntity
       end
+
+      desc 'Получаем данные лендоса'
+      get do
+        present landing_version.reload, with: Entities::LandingVersionEntity
+      end
     end
   end
 end

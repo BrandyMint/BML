@@ -2,6 +2,8 @@ class Account < ActiveRecord::Base
   include AccountAccessKey
   include AccountIdent
 
+  ROOT_IDENT = 'root'
+
   has_many :landings,    dependent: :destroy
   has_many :collections, through: :landings, dependent: :destroy
 
@@ -24,5 +26,9 @@ class Account < ActiveRecord::Base
 
   def api_key
     access_key
+  end
+
+  def self.root_account
+    find_by_ident ROOT_IDENT
   end
 end

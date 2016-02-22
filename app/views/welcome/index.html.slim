@@ -1,8 +1,11 @@
+/ ul
+/   - Account.all.find_each do |a|
+/     li= link_to a, account_dashboard_url(a)
 
-h1 Accounts
+.row
+  .col-sm-4.col-sm-offset-4
+    h2.welcome-header= "[bm]land"
 
-ul
-  - Account.all.find_each do |a|
-    li= link_to a, account_dashboard_url(a)
-
-p Find me in app/views/welcome/index.html.slim
+.row
+  .col-sm-4.col-sm-offset-4
+    = render 'lead_form', landing_version_uuid: landing_version_uuid

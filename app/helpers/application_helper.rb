@@ -1,6 +1,21 @@
 module ApplicationHelper
+  def setup_bml
+    # TODO отдавать данные с учтом текущего лендоса
+    config = { postLeadUrl: post_lead_url, apiUrl: api_v1_url }
+    javascript_tag "window.bmlConfig = #{config.to_json}"
+  end
+
+  def api_v1_url
+    api_url + 'v1'
+  end
+
   def application
     OpenStruct.new Settings.app
+  end
+
+  def paginate(objects, options = {})
+    options.reverse_merge! theme: 'twitter-bootstrap-4'
+    super objects, options
   end
 
   def omniauth_button(provider, title: nil)
