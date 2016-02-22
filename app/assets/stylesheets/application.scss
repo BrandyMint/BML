@@ -12,12 +12,13 @@
  *
  *= require nprogress
  *= require nprogress-bootstrap
- *= require_tree .
  *= require_self
  */
 
 @import 'bootstrap';
 @import 'spacing';
+@import 'welcome';
+@import 'custom';
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 

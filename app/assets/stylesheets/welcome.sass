@@ -9,6 +9,12 @@
   font-family: 'Open Sans', sans-serif
   // font-family: 'Whitney SSm A', 'Whitney SSm B', Helvetica, Arial
 
+.welcome-nav-header
+  position: absolute
+  text-align: right
+  width: 100%
+  padding: 2em 3em
+
 .welcome-hero
   width: 100%
   margin: 1em auto
@@ -17,6 +23,18 @@
   //position: absolute
   //top: 50%
   //transform: translateY(-50%)
+
+.welcome-loginButton
+  @extend .btn
+  @extend .btn-primary-outline
+  color: white
+  border-color: white
+  opacity: 0.8
+  &:hover
+    opacity: 1
+    background-color: white
+    color: black
+    border-color: white
 
 .welcome-header
   font-size: 3.5em
