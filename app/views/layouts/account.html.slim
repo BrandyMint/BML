@@ -8,8 +8,10 @@ html
     == include_gon
   body
     header.container
-      #account-header
-        = fa_icon 'bank 4x', class: 'text-muted'
+      .account-header
+        = link_to current_account, accounts_url
+        br
+        = link_to current_user, profile_url
 
     #landings-container.container
       == yield

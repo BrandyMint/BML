@@ -4,9 +4,13 @@ class RegistrationService
   attribute :form, RegistrationForm
 
   def call
+    account = nil
     ActiveRecord::Base.transaction do
-      create_account create_user
+      account = create_account create_user
     end
+
+    fail 'Error creating account' unless account.present?
+    return account
   end
 
   private
@@ -18,5 +22,7 @@ class RegistrationService
   def create_account(user)
     account = Account.create!
     user.memberships.create! account_id: account.id, role: :owner
+
+    return account
   end
 end

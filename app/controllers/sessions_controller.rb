@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  include CurrentAccount
+
   skip_before_action :verify_authenticity_token
 
   layout 'system'
@@ -12,7 +14,8 @@ class SessionsController < ApplicationController
     user = login session_form.login, session_form.password, session_form.remember_me
 
     if user
-      redirect_to account_dashboard_url(current_user.accounts.first)
+      set_current_account current_user.default_account
+      redirect_to account_root_url
     else
       flash[:now] = { error: t('flashes.user.session_failed') }
       render :new, locals: { session_form: session_form }

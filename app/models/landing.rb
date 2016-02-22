@@ -25,8 +25,21 @@ class Landing < ActiveRecord::Base
     title
   end
 
+  def total_leads_count
+    collections
+      .sum(:leads_count)
+  end
+
+  def default_collection
+    collections
+      .first_or_create!
+  end
+
   def default_version
-    versions.active.ordered.first
+    versions
+      .active
+      .ordered
+      .first
   end
 
   def host

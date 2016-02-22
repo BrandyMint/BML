@@ -1,0 +1,6 @@
+h2 Доступные аккаунты:
+
+ul
+  - accounts.each do |account|
+    li= link_to account, account_path(account)
+

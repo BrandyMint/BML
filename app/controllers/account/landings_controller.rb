@@ -1,6 +1,5 @@
-class Account::LandingsController < Account::ApplicationController
-  include CurrentAccount
-  helper_method :current_landing, :current_landing_version
+class Account::LandingsController < Landing::ApplicationController
+  layout 'account'
 
   def index
     render locals: { landings: landings }
@@ -20,7 +19,7 @@ class Account::LandingsController < Account::ApplicationController
 
   def create
     landing = create_landing!
-    redirect_to account_landing_editor_path landing
+    redirect_to landing_editor_path landing.default_version.uuid
   rescue ActiveRecord::RecordInvalid => err
     render 'new', locals: { landing: err.record }, layout: 'landing'
   end
@@ -43,7 +42,8 @@ class Account::LandingsController < Account::ApplicationController
   end
 
   def current_landing
-    current_account.landings.find params[:id]
+    fail "No landing_id in param" unless params[:landing_id]
+    current_account.landings.find params[:landing_id]
   end
 
   def landings
