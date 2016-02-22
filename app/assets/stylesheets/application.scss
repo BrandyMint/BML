@@ -12,10 +12,14 @@
  *
  *= require nprogress
  *= require nprogress-bootstrap
- *= require bundle.css
  *= require_tree .
  *= require_self
  */
+
+@import 'bootstrap';
+@import 'spacing';
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
 .pin-alert-base {
   display: none;

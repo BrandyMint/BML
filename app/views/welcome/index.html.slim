@@ -3,8 +3,9 @@
 /     li= link_to a, account_dashboard_url(a)
 
 .row
-  .col-sm-9.col-sm-offset-3
-    .page-header
-      h2 Управление посадочными страницами
-  .col-sm-4.col-sm-offset-3
+  .col-sm-4.col-sm-offset-4
+    h2.welcome-header= "[bm]land"
+
+.row
+  .col-sm-4.col-sm-offset-4
     = render 'lead_form', landing_version_uuid: landing_version_uuid
