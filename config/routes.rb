@@ -21,8 +21,8 @@ Rails.application.routes.draw do
     root controller: :swagger, action: :index, as: :api_doc
   end
 
-  post 'leads' => 'collection_items#create', as: :request
-  post 'request' => 'collection_items#create', as: :request
+  post 'leads' => 'leads#create', as: :post_lead
+  post 'request' => 'leads#create', as: :request
 
   scope as: :site, constraints: SiteConstraint do
     root 'landings#show'
@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   get '/editor/:uuid', to: 'editor#show'
   get '/editor/:uuid/*any', to: 'editor#show'
 
-  scope as: :account, path: '_a', module: :account, constraints: AccountConstraint do
+  scope as: :account, path: 'account', module: :account, constraints: AccountConstraint do
     root 'landings#index'
 
     resources :landings do
