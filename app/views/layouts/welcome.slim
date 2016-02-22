@@ -9,6 +9,8 @@ html
     == csrf_meta_tags
     == include_gon
   body.welcome
+    .welcome-nav-header
+      = link_to 'Вход для везунчиков', login_url, class: 'btn welcome-loginButton'
     .vertical-center
       .container.welcome-hero
         == render 'layouts/messages'
