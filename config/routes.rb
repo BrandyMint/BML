@@ -31,20 +31,20 @@ Rails.application.routes.draw do
     root controller: :landings, action: :index
     resources :landings do
       resources :leads
+      resources :analytics do
+        collection do
+          get :sources
+          get :funnel
+          get :abc
+          get :users
+        end
+      end
     end
   end
 
   #scope :landing, as: :landing, module: :landing do
     #root controller: :analytics, action: :index
     #resources :landings do
-      #resources :analytics do
-        #collection do
-          #get :sources
-          #get :funnel
-          #get :abc
-          #get :users
-        #end
-      #end
       #resources :collections
       #resource :settings
       #resources :segments

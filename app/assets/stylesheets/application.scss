@@ -12,10 +12,12 @@
  *
  *= require nprogress
  *= require nprogress-bootstrap
+ *= require font-awesome
  *= require_self
  */
 
 @import 'bootstrap';
+@import 'buttons';
 @import 'spacing';
 @import 'welcome';
 @import 'custom';

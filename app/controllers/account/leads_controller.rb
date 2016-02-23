@@ -1,5 +1,5 @@
 class Account::LeadsController < Landing::ApplicationController
-  layout 'landing'
+  layout 'leads'
 
   def index
     render locals: {

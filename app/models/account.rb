@@ -2,6 +2,7 @@ class Account < ActiveRecord::Base
   include AccountAccessKey
   include AccountIdent
 
+  DEFAULT_DOMAIN = '.bmland.ru'
   ROOT_IDENT = 'root'
 
   scope :ordered, -> { order 'id desc' }
@@ -23,11 +24,11 @@ class Account < ActiveRecord::Base
   end
 
   def domain
-    subdomain + '.bmland.ru'
+    subdomain + DEFAULT_DOMAIN
   end
 
   def subdomain
-    AccountConstraint::DOMAIN_PREFIX + ident
+    ident
   end
 
   def api_key

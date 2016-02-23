@@ -1,43 +1,16 @@
-= render 'filter'
-.row
-  .col-md-3
-    ul.nav.nav-pills.nav-stacked
-      - collections.ordered.each do |collection|
-        li.nav-item.active
-          = active_link_to collection, 
-            account_landing_leads_path(current_landing, collection_id: collection), 
-            class: 'nav-link', 
-            active: current_collection == collection
-  .col-md-9
-    - if items.blank?
-      .jumbotron
-        h1 Нет данных.
-        p.lead Коллекции данных появляются, когда пользователи заполняют формы.
-    - else
-      table.table.table-responsive.table-small-text.table-striped
-        thead.thead-default
-          tr
-            th Когда
-            - fields.each do |field|
-              th= field
-
-            / th Имя
-            / th Контакт
-            / th Тип трафика
-            / th Рекламная сеть
-            / th Фраза
-            / th Кампания
-        tbody
-          == render partial: 'item', collection: items, locals: { fields: fields }
-      nav
-        = paginate items
-      hr
-      .row
-        .col-md-12
-          .pull-right
-            ul.list-inline
-              li.list-inline-item Экспорт
-              li.list-inline-item= link_to 'amoCRM', '#'
-              li.list-inline-item= link_to 'CSV', '#'
-              li.list-inline-item= link_to 'Excel', '#'
-              li.list-inline-item= link_to 'Google Spreadsheet', '#'
+- if items.blank?
+  .jumbotron
+    h1 Нет данных.
+    p.lead Коллекции данных появляются, когда пользователи заполняют формы.
+- else
+  table.table.table-responsive.table-small-text.table-striped
+    thead.thead-default
+      tr
+        th Когда
+        - fields.each do |field|
+          th= field
+    tbody
+      == render partial: 'item', collection: items, locals: { fields: fields }
+  nav
+    = paginate items
+  -#= render 'export_links'
