@@ -28,4 +28,11 @@ RSpec.describe LandingVersionSelector do
 
     it { expect(subject.landing_version).to eq landing.default_version }
   end
+
+  describe '#landing_version (default)' do
+    let!(:landing) { create :landing, account: account }
+    let(:path) { '' }
+
+    it { expect(subject.landing_version).to eq landing.default_version }
+  end
 end

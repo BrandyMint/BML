@@ -11,7 +11,7 @@ class LandingVersionSelector
 
   def landing
     return unless account
-    @_landing ||= account.landings.find_by_path(path)
+    @_landing ||= account.landings.find_by_path(path) || account.default_landing
   end
 
   def landing_version
