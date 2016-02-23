@@ -1,4 +1,12 @@
-.page-header
+.m-t-md
+  - if params[:backurl].present?
+    = link_to params[:backurl] do
+      = fa_icon 'chevron-left', text: 'Назад'
+  - elsif current_account.present?
+    = link_to account_root_url do
+      = fa_icon 'chevron-left', text: 'В аккаунт'
+
+.page-header.m-t-md
   h1
     | Привет, #{user.name}!
 
@@ -37,4 +45,6 @@ br
           | (подтвержден)
         - else
           | (ожидает подтверждения)
-          = link_to 'Подтвердить', new_profile_phone_confirmation_url(phone: ph.phone, backurl: profile_url)
+          = link_to 'Подтвердить', 
+            new_profile_phone_confirmation_url(phone: ph.phone, backurl: profile_url),
+            class: 'm-l btn btn-sm btn-success-outline'

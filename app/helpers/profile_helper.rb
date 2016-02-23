@@ -31,8 +31,11 @@ module ProfileHelper
   def user_send_email_confirmation_link(user)
     return if user.email_confirmed? || user.email.blank?
     buffer = ''
-    buffer << '&nbsp;'
-    buffer << link_to('Подтвердить', send_email_confirmation_profile_url, method: :post)
+    buffer << '<br />'
+    buffer << link_to('Подтвердить',
+                      send_email_confirmation_profile_url,
+                      class: 'm-t btn btn-sm btn-success-outline',
+                      method: :post)
     buffer.html_safe
   end
 end

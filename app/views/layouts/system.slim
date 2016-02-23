@@ -7,10 +7,6 @@ html
     == csrf_meta_tags
     == include_gon
   body
-    header.container
-      #account-header
-        = fa_icon 'bank 4x', class: 'text-muted'
-
-    #landings-container.container
+    .container
       == render 'layouts/messages'
       == yield
