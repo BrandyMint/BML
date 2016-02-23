@@ -15,7 +15,7 @@ nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
           li.nav-item= active_link_to 'Заявки (7)', account_landing_collections_path(current_landing), class: 'nav-link'
           li.nav-item= active_link_to 'Клиенты', account_landing_clients_path(current_landing), class: 'nav-link'
           li.nav-item= active_link_to 'Мультилендинг', account_landing_versions_path(current_landing), class: 'nav-link'
-          li.nav-item= active_link_to 'Конструктор', landing_editor_path(current_landing, landing_version), class: 'nav-link'
+          li.nav-item= active_link_to 'Конструктор', landing_editor_path(landing_version.uuid), class: 'nav-link'
           /- if landing_version.present?
             /li.nav-item= link_to current_landing_version.full_title, account_landing_versions_path, class: 'nav-link'
           /- else

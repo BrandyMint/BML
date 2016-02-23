@@ -2,10 +2,14 @@
 .row
   .col-md-3
     ul.nav.nav-pills.nav-stacked
-      li.nav-item.active= active_link_to 'Форма N1', '?form=1', class: 'nav-link', active: form == 1
-      li.nav-item= active_link_to 'Форма N2', '?form=2', class: 'nav-link', active: form == 2
+      - collections.ordered.each do |collection|
+        li.nav-item.active
+          = active_link_to collection, 
+            account_landing_leads_path(current_landing, collection_id: collection), 
+            class: 'nav-link', 
+            active: current_collection == collection
   .col-md-9
-    - if !items.any? || form==2
+    - if items.blank?
       .jumbotron
         h1 Нет данных.
         p.lead Коллекции данных появляются, когда пользователи заполняют формы.

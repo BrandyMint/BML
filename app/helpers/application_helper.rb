@@ -1,7 +1,11 @@
 module ApplicationHelper
   def setup_bml
     # TODO отдавать данные с учтом текущего лендоса
-    config = { postLeadUrl: post_lead_url, apiUrl: api_v1_url }
+    config = {
+      postLeadUrl: post_lead_url,
+      apiUrl: api_v1_url,
+      apiKey: current_account.api_key
+    }
     javascript_tag "window.bmlConfig = #{config.to_json}"
   end
 
@@ -23,10 +27,6 @@ module ApplicationHelper
     link_to "/auth/#{provider}", class: 'btn btn-success btn-rounded' do
       fa_icon provider, text: title || t(provider, scope: 'operator.omniauth_buttons')
     end
-  end
-
-  def landing_editor_path(landing, version)
-    account_landing_editor_path(landing, version_id: version.try(:id) || landing.default_version.id)
   end
 
   def site_landing_version_url(landing_version)

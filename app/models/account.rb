@@ -4,6 +4,8 @@ class Account < ActiveRecord::Base
 
   ROOT_IDENT = 'root'
 
+  scope :ordered, -> { order 'id desc' }
+
   has_many :landings,    dependent: :destroy
   has_many :collections, through: :landings, dependent: :destroy
 
@@ -17,7 +19,11 @@ class Account < ActiveRecord::Base
   has_many :users, through: :memberships
 
   def to_s
-    "Аккаунт #{id}"
+    "#{domain}"
+  end
+
+  def domain
+    subdomain + '.bmland.ru'
   end
 
   def subdomain

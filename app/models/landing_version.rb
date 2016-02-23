@@ -5,6 +5,8 @@ class LandingVersion < ActiveRecord::Base
   has_many :sections, dependent: :destroy
   has_many :collection_items
 
+  has_many :leads, class_name: 'CollectionItem'
+
   has_one :account, through: :landing
 
   scope :ordered, -> { order :id }

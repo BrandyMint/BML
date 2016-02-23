@@ -1,4 +1,6 @@
-class RegistrationController < Account::ApplicationController
+class RegistrationController < ApplicationController
+  include CurrentAccount
+
   skip_before_action :verify_authenticity_token
 
   layout 'system'
@@ -13,9 +15,10 @@ class RegistrationController < Account::ApplicationController
 
   def create
     registration_form = RegistrationForm.new permitted_params
-    RegistrationService.new(form: registration_form).call
+    account = RegistrationService.new(form: registration_form).call
+    set_current_account account
 
-    redirect_to login_url, flash: { success: I18n.t('flashes.registration.signed_up') }
+    redirect_to account_root_url, flash: { success: I18n.t('flashes.registration.signed_up') }
   rescue ActiveRecord::RecordInvalid => err
     registration_form.errors = err.record.errors
     render :new, locals: { registration_form: registration_form }

@@ -1,19 +1,13 @@
 .row
-  .col-md-4
-    = link_to new_account_landing_path do
-      figure.figure
-
-        = image_tag thumbor_image_url(add_landing_image_url, ThumborHelper::LANDING_PREVIEW_SIZE), width: 320, height: 240, class: 'figure-img img-bordered img-fuild img-rounded'
-        figcaption.figure-caption
-          b Новый лендинг
-  - landings.each do |l|
-    .col-md-4
-      = link_to account_landing_analytics_path(l) do
-        figure.figure
-          = image_tag thumbor_image_url(fallback_image_url, ThumborHelper::LANDING_PREVIEW_SIZE), width: ThumborHelper::LANDING_PREVIEW_WIDTH, height: ThumborHelper::LANDING_PREVIEW_HEIGHT, class: 'figure-img img-bordered img-fuild img-rounded'
-          figcaption.figure-caption
-            b.pull-xs-left= l.title
-            p.pull-xs-right
-              span Посещений: 12 тыс.
-              br
-              span Конверсия: 7%
+  .col-md-4.col-md-offset-4
+    = link_to 'Новый', new_account_landing_path, class: 'btn btn-success-outline'
+    br
+    table.table.table-condensed
+      tbody
+        - landings.each do |l|
+          tr
+            th 
+              b= l.title
+            td Аналитика
+            td= link_to landing_leads_title(l), account_landing_leads_path(l)
+            td Клиенты

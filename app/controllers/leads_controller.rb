@@ -60,15 +60,11 @@ class LeadsController < ApplicationController
   end
 
   def collection
-    find_collection || default_collection
+    find_collection || landing_version.landing.default_collection
   end
 
   def find_collection
     # TODO
-  end
-
-  def default_collection
-    landing_version.landing.collections.first_or_create!
   end
 
   def landing_version
