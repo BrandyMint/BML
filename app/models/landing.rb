@@ -12,7 +12,7 @@ class Landing < ActiveRecord::Base
 
   validates :title, presence: true
 
-  scope :ordered, -> { order :id }
+  scope :ordered, -> { order 'id desc' }
   scope :active, -> { all }
 
   accepts_nested_attributes_for :subdomain

@@ -11,7 +11,6 @@ module CurrentLanding
 
   def set_current_landing_version(landing_version)
     Thread.current[:landing_version] = landing_version
-    set_current_account landing_version.try(:account)
   end
 
   def safe_current_landing_version

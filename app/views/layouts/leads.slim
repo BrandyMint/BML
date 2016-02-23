@@ -1,0 +1,15 @@
+- content_for :content do
+  = render 'filter'
+
+  - if collections.many?
+    .row
+      .col-md-3
+        = render 'collections_menu', collections: collections, current_collection: current_collection
+      .col-md-9
+        = yield
+  - else
+    .row
+      .col-md-12
+        = yield
+
+= render template: 'layouts/landing'

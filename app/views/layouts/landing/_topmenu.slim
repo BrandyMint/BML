@@ -1,0 +1,58 @@
+nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
+  .container
+    -#.navbar-header
+
+    .row
+      .col-lg-9
+        /= link_to account_root_path, class: 'navbar-brand' do
+          /= fa_icon 'bank'
+
+        ul.nav.navbar-nav.navbar-bml
+
+          li.nav-item.dropdown
+            = link_to current_landing, account_landing_url(current_landing), 
+              class: 'nav-link dropdown-toggle', 
+              data: { toggle: 'dropdown' }, 
+              role: 'button'
+            .dropdown-menu
+              = link_to 'Новый лендинг', 
+                new_account_landing_url,
+                class: 'dropdown-item'
+              .dropdown-divider
+              - current_account.landings.active.ordered.find_each do |l|
+                = link_to l, account_landing_url(l), 
+                  class: 'dropdown-item' + (l==current_landing ? ' active' : '')
+          /li.nav-item= active_link_to 'Аналитика', account_landing_analytics_path(current_landing), active: [['account/analytics'], ['index']], class: 'nav-link'
+          li.nav-item
+            = active_link_to landing_leads_title(current_landing), 
+              account_landing_leads_url(current_landing), 
+              active: controller_name == 'leads',
+              class: 'nav-link'
+          /li.nav-item= active_link_to 'Клиенты', account_landing_clients_path(current_landing), class: 'nav-link'
+          /li.nav-item= active_link_to 'Мультилендинг', account_landing_versions_path(current_landing), class: 'nav-link'
+          li.nav-item
+            = active_link_to 'Конструктор', 
+              landing_editor_path(current_landing.default_version.uuid), 
+              class: 'nav-link'
+          li.nav-item
+            = active_link_to 'Аналитика', account_landing_analytics_path(current_landing), 
+              class: 'nav-link',
+              active: [['account/collections', 'account/analytics', 'account/versions', 'account/segments']]
+            /= fa_icon 'line-chart'
+
+      .col-lg-3
+        .pull-xs-right
+          ul.nav.navbar-nav.navbar-right
+            li.nav-item.dropdown
+              = link_to account_landing_url(current_landing), 
+                class: 'nav-link dropdown-toggle', 
+                data: { toggle: 'dropdown' }, 
+                role: 'button' do
+                = fa_icon 'user', text: current_user
+              .dropdown-menu
+                = link_to 'Профиль', profile_url, class: 'dropdown-item'
+                = link_to "#{current_account}", account_root_url, class: 'dropdown-item'
+                .dropdown-divider
+                = link_to 'Выйти', logout_url, class: 'dropdown-item'
+
+div style='height: 55px'

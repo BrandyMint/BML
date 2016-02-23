@@ -1,5 +1,4 @@
 class SiteConstraint
-  extend CurrentAccount
   extend CurrentLanding
 
   def self.matches?(request)

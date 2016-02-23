@@ -7,8 +7,10 @@ html
     == csrf_meta_tags
     == include_gon
   body
-    -# == render 'layouts/account/topmenu', landing_version: current_landing_version
-
+    == render 'layouts/landing/topmenu', landing_version: current_landing_version
     .page-content
       .container
-        == yield
+        - if content_for? :content
+          = yield :content
+        - else
+          = yield
