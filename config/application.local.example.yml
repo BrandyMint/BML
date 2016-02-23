@@ -4,12 +4,14 @@ defaults: &defaults
   subdomain_zones:
     - 3008.vkontraste.ru
     - aydamaster.ru
-    - bml.ru
+    - bmland.ru
 
   app: &app
     title: BML
     asset_host: http://3008.vkontraste.ru
     host: http://3008.vkontraste.ru
+
+    default_domain: 3008.vkontraste.ru
 
     default_url_options: &default_url_options
       host: aydamarket.ru
@@ -68,11 +70,12 @@ production:
     <<: *app
     title: Kiiiosk
 
+    default_domain: bmland.ru
     fallback_image: images/fallback/product-none.png
-    asset_host: http://3001.vkontraste.ru
+    asset_host: http://bmland.ru
 
     default_url_options: &default_url_options
-      host: 3001.vkontraste.ru
+      host: bmland.ru
       port: 80
 
   tld_length: 2
@@ -86,6 +89,11 @@ production:
 
 test:
   <<: *defaults
+  subdomain_zones:
+    - example.com
+    - aydamaster.ru
+    - bmland.ru
+
 
   domain_zones: [3008.vkontraste.ru]
   app:
@@ -93,6 +101,7 @@ test:
 
     asset_host: http://example.com
     fallback_image: images/fallback/product-none.png
+    default_domain: example.com
 
     default_url_options: &default_url_options
       host: example.com

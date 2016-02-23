@@ -1,13 +1,13 @@
 class Subdomain < ActiveRecord::Base
   ALL_ZONES       = '*'
   AVAILABLE_ZONES = Settings.subdomain_zones + [ALL_ZONES]
-  DEFAULT_ZONE    = ALL_ZONES
-  DEFAULT_CURRENT_ZONE = AVAILABLE_ZONES.first
+  DEFAULT_ZONE    = Settings.app.default_domain
+  DEFAULT_CURRENT_ZONE = Settings.app.default_domain
 
-  belongs_to :landing, autosave: true
-  has_one :account, through: :landing
+  belongs_to :account, autosave: true
 
   before_validation :default_zone
+  before_validation :generate_subdomain
   validates :zone, presence: true, inclusion: AVAILABLE_ZONES
   validates :subdomain, presence: true, uniqueness: { scope: :zone }
 
@@ -16,6 +16,10 @@ class Subdomain < ActiveRecord::Base
   before_save :cache_current_domain
 
   private
+
+  def generate_subdomain
+    self.subdomain ||= SecureRandom.hex(4)
+  end
 
   def default_zone
     self.zone ||= DEFAULT_ZONE

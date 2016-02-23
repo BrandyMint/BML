@@ -1,5 +1,7 @@
 class Landing < ActiveRecord::Base
   include Activity
+  include LandingPath
+  # include LandingSubdomain
 
   belongs_to :account, counter_cache: true
 
@@ -8,18 +10,16 @@ class Landing < ActiveRecord::Base
   has_many :segments, dependent: :destroy
   has_many :clients, dependent: :destroy
 
-  has_one :subdomain, dependent: :destroy
-
   validates :title, presence: true
+
+  after_create :create_default_version
 
   scope :ordered, -> { order 'id desc' }
   scope :active, -> { all }
 
-  accepts_nested_attributes_for :subdomain
-
-  after_create :create_subdomain
-
-  delegate :current_domain, to: :subdomain
+  def url
+    'http://' + account.host + '/' + path
+  end
 
   def to_s
     title
@@ -42,17 +42,9 @@ class Landing < ActiveRecord::Base
       .first
   end
 
-  def host
-    'http://' + current_domain
-  end
-
   private
 
-  def create_subdomain
-    create_subdomain! subdomain: generate_subdomain
-  end
-
-  def generate_subdomain
-    account.subdomain + SecureRandom.hex(4)
+  def create_default_version
+    versions.create!
   end
 end

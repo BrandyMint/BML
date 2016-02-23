@@ -51,7 +51,7 @@ nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
                 = fa_icon 'user', text: current_user
               .dropdown-menu
                 = link_to 'Профиль', profile_url(backurl: request.url), class: 'dropdown-item'
-                = link_to "#{current_account}", account_root_url, class: 'dropdown-item'
+                = link_to 'Аккаунт', account_root_url, class: 'dropdown-item'
                 .dropdown-divider
                 = link_to 'Выйти', logout_url, class: 'dropdown-item'
 
