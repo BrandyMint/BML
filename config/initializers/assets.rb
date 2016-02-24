@@ -16,6 +16,8 @@ Rails.application.config.assets.paths << 'vendor/dist/dist'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w(
   vendor.js
+  public.js
+  components.js
   show.js show.css
   edit.js edit.css
   theme1.css

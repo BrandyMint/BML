@@ -36,5 +36,13 @@ module Bml
         resource '*', :headers => :any, :methods => [:get, :put, :post, :delete, :options]
       end
     end
+
+    config.react.server_renderer_pool_size ||= 1
+    config.react.server_renderer_time ||= 10
+    config.react.server_renderer = React::ServerRendering::SprocketsRenderer
+    config.react.server_renderer_options = {
+      files: ['components.js'],
+      replay_console: true,
+    }
   end
 end
