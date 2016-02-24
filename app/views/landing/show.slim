@@ -1,3 +1,8 @@
 #content
 == javascript_include_tag 'vendor'
-== javascript_include_tag 'bundle'
+== javascript_include_tag 'show'
+
+javascript:
+  var props = #{raw state.to_json};
+  var element = React.createElement(ShowWrapper, props);
+  ReactDOM.render(element, document.getElementById('content'));

@@ -1,7 +1,7 @@
 class RegistrationController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  layout 'system'
+  layout 'auth'
 
   def new
     if current_member.present?

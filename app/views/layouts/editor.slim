@@ -3,7 +3,7 @@ html
   head
     title= application.title
     = setup_editor_bml
-    == stylesheet_link_tag    'bundle', media: 'all', 'data-turbolinks-track' => true
+    == stylesheet_link_tag 'editor', media: 'all', 'data-turbolinks-track' => true
     == csrf_meta_tags
   body
     == yield

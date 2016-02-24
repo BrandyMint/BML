@@ -7,5 +7,7 @@ html
     == csrf_meta_tags
     == include_gon
   body
-    .page-container.container
-      == yield
+    .vertical-center
+      .container.vertical-container
+        == render 'layouts/messages'
+        == yield

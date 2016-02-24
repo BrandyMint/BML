@@ -1,19 +1,18 @@
-.middle-container
-  .page-header.text-center
-    h1= current_account
+.page-header.text-center
+  h1= current_account
 
-  .text-center.m-t-md.m-b-lg
-    = link_to 'Новый лендинг', new_account_landing_path, class: 'btn btn-success-outline'
-  table.table.table-condensed.table-hover.table-projects
-    tbody
-      - landings.each do |l|
-        tr
-          td
-            div
-              b= l.title
-            small
-              = link_to l.url, l.url, class: 'text-muted'
-          td Аналитика
-          td= link_to landing_leads_title(l), account_landing_leads_path(l)
-          td Клиенты
-          td= link_to 'Просмотр', l.url
+.text-center.m-t-md.m-b-lg
+  = link_to 'Новый лендинг', new_account_landing_path, class: 'btn btn-success-outline'
+table.table.table-condensed.table-hover.table-projects
+  tbody
+    - landings.each do |l|
+      tr
+        td
+          div
+            b= l.title
+          small
+            = link_to l.url, l.url, class: 'text-muted'
+        td Аналитика
+        td= link_to landing_leads_title(l), account_landing_leads_path(l)
+        td Клиенты
+        td= link_to 'Просмотр', l.url
