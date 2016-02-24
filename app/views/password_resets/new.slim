@@ -4,5 +4,5 @@
       h1 Восстановление пароля
   .col-sm-4.col-sm-offset-3
     = simple_form_for :reset_password, url: password_resets_path do |f|
-      = f.input :login, name: :login
+      = f.input :login, name: :login, placeholder: 'email или телефон', label: false
       = f.submit 'Восстановить', class: 'btn btn-primary'

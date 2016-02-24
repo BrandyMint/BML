@@ -1,6 +1,9 @@
-h2 Доступные аккаунты:
+.row
+  .col-sm-4.col-sm-offset-3
+    .page-header
+      h2 Доступные аккаунты:
 
-ul
-  - accounts.each do |account|
-    li= link_to account, account_path(account)
+    ul
+      - accounts.each do |account|
+        li= link_to account, account_path(account)
 

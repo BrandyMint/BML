@@ -2,7 +2,7 @@ class Account::LandingsController < Landing::ApplicationController
   layout 'account'
 
   def index
-    render locals: { landings: landings }
+    render locals: { landings: landings }, layout: 'center'
   end
 
   def new

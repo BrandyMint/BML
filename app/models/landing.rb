@@ -18,7 +18,7 @@ class Landing < ActiveRecord::Base
   scope :active, -> { all }
 
   def url
-    'http://' + account.host + '/' + path
+    'http://' + account.host + path
   end
 
   def to_s

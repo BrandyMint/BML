@@ -1,6 +1,6 @@
 class LeadsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  layout 'system'
+  layout 'blank'
 
   DATA_EXCEPTIONS = [:landing_version_uuid, :controller, :action, :utf8, :authenticity_token, :commit]
 

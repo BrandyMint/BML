@@ -7,7 +7,7 @@ class RegistrationController < ApplicationController
 
   def new
     if current_member.present?
-      redirect_to account_dashboard_url(current_member.account)
+      redirect_to accounts_url
     else
       render locals: { registration_form: RegistrationForm.new }
     end

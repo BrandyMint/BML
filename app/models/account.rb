@@ -24,7 +24,7 @@ class Account < ActiveRecord::Base
   end
 
   def to_s
-    "#{domain}"
+    "#{current_domain}"
   end
 
   def api_key
