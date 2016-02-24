@@ -23,8 +23,8 @@ Rails.application.routes.draw do
   end
 
   scope as: :site, constraints: SiteConstraint do
-    root 'landings#show'
-    #resources :landings, path: 'lp', only: [:show]
+    root 'landing#show'
+    get '*any', to: 'landing#show'
   end
 
   scope :account, as: :account, module: :account do

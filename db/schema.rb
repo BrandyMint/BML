@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222194207) do
+ActiveRecord::Schema.define(version: 20160223185524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160222194207) do
     t.datetime "created_at",                                                  null: false
     t.datetime "updated_at",                                                  null: false
     t.string   "type",                                                        null: false
-    t.uuid     "uuid",                         default: "uuid_generate_v4()", null: false
+    t.uuid     "uuid",                         default: "uuid_generate_v4()"
     t.string   "digest",                                                      null: false
   end
 
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20160222194207) do
     t.datetime "updated_at",                                    null: false
     t.boolean  "is_active",      default: true,                 null: false
     t.integer  "sections_count", default: 0,                    null: false
-    t.uuid     "uuid",           default: "uuid_generate_v4()", null: false
+    t.uuid     "uuid",           default: "uuid_generate_v4()"
     t.integer  "leads_count",    default: 0,                    null: false
   end
 
@@ -125,10 +125,12 @@ ActiveRecord::Schema.define(version: 20160222194207) do
     t.integer  "versions_count", default: 0,                    null: false
     t.integer  "segments_count", default: 0,                    null: false
     t.boolean  "is_active",      default: true,                 null: false
-    t.uuid     "uuid",           default: "uuid_generate_v4()", null: false
+    t.uuid     "uuid",           default: "uuid_generate_v4()"
     t.integer  "clients_count",  default: 0,                    null: false
+    t.string   "path",                                          null: false
   end
 
+  add_index "landings", ["account_id", "path"], name: "index_landings_on_account_id_and_path", unique: true, using: :btree
   add_index "landings", ["account_id"], name: "index_landings_on_account_id", using: :btree
   add_index "landings", ["uuid"], name: "index_landings_on_uuid", unique: true, using: :btree
 
@@ -159,7 +161,7 @@ ActiveRecord::Schema.define(version: 20160222194207) do
 
   create_table "sections", force: :cascade do |t|
     t.string   "block_view",                                           null: false
-    t.uuid     "uuid",                  default: "uuid_generate_v4()", null: false
+    t.uuid     "uuid",                  default: "uuid_generate_v4()"
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
     t.integer  "landing_version_id",                                   null: false
@@ -192,9 +194,10 @@ ActiveRecord::Schema.define(version: 20160222194207) do
     t.string   "confirmed_domain"
     t.string   "suggested_domain"
     t.string   "current_domain",                   null: false
-    t.integer  "landing_id",                       null: false
+    t.integer  "account_id"
   end
 
+  add_index "subdomains", ["account_id"], name: "index_subdomains_on_account_id", using: :btree
   add_index "subdomains", ["zone", "subdomain"], name: "index_subdomains_on_zone_and_subdomain", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -235,5 +238,5 @@ ActiveRecord::Schema.define(version: 20160222194207) do
   add_foreign_key "phone_confirmations", "users"
   add_foreign_key "sections", "asset_files", column: "background_image_id"
   add_foreign_key "segments", "landings"
-  add_foreign_key "subdomains", "landings"
+  add_foreign_key "subdomains", "accounts"
 end

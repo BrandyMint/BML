@@ -1,6 +1,14 @@
 module ApplicationHelper
-  def setup_bml
-    # TODO отдавать данные с учтом текущего лендоса
+  def setup_public_bml
+    config = {
+      postLeadUrl: post_lead_url,
+      apiUrl: api_v1_url,
+      apiKey: current_account.api_key
+    }
+    javascript_tag "window.bmlConfig = #{config.to_json}"
+  end
+
+  def setup_editor_bml
     config = {
       postLeadUrl: post_lead_url,
       apiUrl: api_v1_url,

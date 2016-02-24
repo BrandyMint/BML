@@ -1,8 +1,8 @@
 class Account < ActiveRecord::Base
   include AccountAccessKey
   include AccountIdent
+  include LandingSubdomain
 
-  DEFAULT_DOMAIN = '.bmland.ru'
   ROOT_IDENT = 'root'
 
   scope :ordered, -> { order 'id desc' }
@@ -19,16 +19,12 @@ class Account < ActiveRecord::Base
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
 
+  def default_landing
+    landings.ordered.first
+  end
+
   def to_s
     "#{domain}"
-  end
-
-  def domain
-    subdomain + DEFAULT_DOMAIN
-  end
-
-  def subdomain
-    ident
   end
 
   def api_key

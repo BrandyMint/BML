@@ -3,7 +3,13 @@ class SiteConstraint
 
   def self.matches?(request)
     landing_version = LandingVersionSelector
-      .new(host: request.host, session: request.session, params: request.params, cookies: request.cookies)
+      .new(
+        host: request.host,
+        path: request.path,
+        session: request.session,
+        params: request.params,
+        cookies: request.cookies
+        )
       .landing_version
 
     if landing_version.present?
