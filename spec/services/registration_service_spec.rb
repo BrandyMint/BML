@@ -22,5 +22,13 @@ RSpec.describe RegistrationService do
         expect { subject.call }.to raise_error ActiveRecord::RecordInvalid
       end
     end
+
+    context 'user duplicate' do
+      let!(:user) { create :user }
+      let!(:params) { user.attributes }
+      it 'must raise error' do
+        expect { subject.call }.to raise_error described_class::UserDuplicate
+      end
+    end
   end
 end

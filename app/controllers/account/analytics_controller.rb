@@ -1,4 +1,4 @@
-class Account::AnalyticsController < Landing::ApplicationController
+class Account::AnalyticsController < Landing::BaseController
   include CurrentLanding
 
   layout 'analytics'

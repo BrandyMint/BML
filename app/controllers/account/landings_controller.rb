@@ -1,4 +1,4 @@
-class Account::LandingsController < Landing::ApplicationController
+class Account::LandingsController < Account::BaseController
   layout 'account'
 
   def index

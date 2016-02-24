@@ -1,4 +1,4 @@
-class Account::EditorController < Landing::ApplicationController
+class Account::EditorController < Landing::BaseController
   layout 'editor'
 
   def edit

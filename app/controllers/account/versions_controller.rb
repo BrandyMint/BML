@@ -1,4 +1,4 @@
-class Account::VersionsController < Landing::ApplicationController
+class Account::VersionsController < Landing::BaseController
   layout 'landing'
 
   def update

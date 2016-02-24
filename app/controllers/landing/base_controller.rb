@@ -1,4 +1,4 @@
-class Landing::ApplicationController < Account::ApplicationController
+class Landing::BaseController < Account::BaseController
   layout 'landing'
 
   helper_method :current_landing, :current_landing_version

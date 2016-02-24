@@ -17,8 +17,7 @@ class SessionsController < ApplicationController
       set_current_account current_user.default_account
       redirect_to account_root_url
     else
-      flash[:now] = { error: t('flashes.user.session_failed') }
-      render :new, locals: { session_form: session_form }
+      redirect_to :back, flash: { error: t('flashes.user.session_failed') }
     end
   end
 

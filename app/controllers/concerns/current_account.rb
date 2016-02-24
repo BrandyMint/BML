@@ -28,6 +28,6 @@ module CurrentAccount
   def session_account
     return nil unless session_account_id
 
-    Account.find_by_id(session_account_id) || fail("No suche account #{session_account_id} in database")
+    Account.find_by_id(session_account_id) || fail("No such account #{session_account_id} in database")
   end
 end

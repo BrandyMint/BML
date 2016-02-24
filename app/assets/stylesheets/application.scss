@@ -24,6 +24,10 @@
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
+.alert-error {
+  @extend .alert-danger;
+}
+
 .pin-alert-base {
   display: none;
 }

@@ -1,4 +1,4 @@
-class Account::LeadsController < Landing::ApplicationController
+class Account::LeadsController < Landing::BaseController
   layout 'leads'
 
   def index
