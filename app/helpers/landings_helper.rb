@@ -1,7 +1,7 @@
 module LandingsHelper
   def render_landing_variant(variant)
     props = landing_variant_store_state(variant)
-    react_component 'Viewer', props, prerender: false
+    react_component 'Viewer', props, prerender: true
   end
 
   def landing_leads_title(landing)

@@ -3,7 +3,7 @@ module ApplicationHelper
     config = {
       postLeadUrl: post_lead_url,
       apiUrl: api_v1_url,
-      apiKey: current_account.api_key
+      apiKey: current_account.try(:api_key)
     }
     javascript_tag "window.bmlConfig = #{config.to_json}"
   end

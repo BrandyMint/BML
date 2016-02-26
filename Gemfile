@@ -76,7 +76,11 @@ gem 'virtus'
 gem 'hashie'
 
 gem 'execjs'
-# gem 'therubyracer'
+
+# Just add/require this gem after/instead (implicit) execjs gem. The latter will be monkey-patched.
+# Глюячная фигня, но идея хорошая
+# gem 'execjs-xtrn'
+
 gem 'react-rails'
 
 gem 'kaminari'
