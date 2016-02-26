@@ -2,6 +2,7 @@ module LandingsHelper
   def render_landing_variant(variant)
     props = landing_variant_store_state(variant)
     react_component 'ShowWrapper', props
+    # react_component 'DemoComponent', {}, prerender: true
   end
 
   def landing_leads_title(landing)

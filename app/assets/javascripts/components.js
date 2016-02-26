@@ -1,2 +1,1 @@
-//= require vendor
-//= require show
+//= require viewer-prerender

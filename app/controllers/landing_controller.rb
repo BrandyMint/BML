@@ -1,7 +1,7 @@
 class LandingController < ApplicationController
   include CurrentLanding
 
-  layout 'public'
+  layout 'viewer'
 
   def show
     render locals: {

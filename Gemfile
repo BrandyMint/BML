@@ -75,8 +75,7 @@ gem 'ranked-model'
 gem 'virtus'
 gem 'hashie'
 
-gem 'react-source'
-gem 'react-rails'
+gem 'react-rails', '1.6.0'
 
 gem 'kaminari'
 gem 'bootstrap-kaminari-views', git: 'https://github.com/klacointe/bootstrap-kaminari-views', branch: 'bootstrap4'
