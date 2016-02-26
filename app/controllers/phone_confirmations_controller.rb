@@ -9,7 +9,7 @@ class PhoneConfirmationsController < ApplicationController
   rescue_from PhoneBlank,            with: :blank_phone_new
   rescue_from PhoneAlreadyConfirmed, with: :phone_already_confirmed
 
-  layout 'system'
+  layout 'auth'
 
   def new
     if phone.present?

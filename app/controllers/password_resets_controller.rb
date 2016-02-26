@@ -1,5 +1,5 @@
 class PasswordResetsController < ApplicationController
-  layout 'system'
+  layout 'auth'
 
   def new
     render

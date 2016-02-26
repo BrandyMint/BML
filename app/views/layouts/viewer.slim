@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    title= current_landing.title
+    = setup_public_bml
+    == stylesheet_link_tag 'viewer', media: 'all', 'data-turbolinks-track' => true
+    == csrf_meta_tags
+  body
+    == yield
+    == javascript_include_tag 'viewer_application'

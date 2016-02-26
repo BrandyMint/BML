@@ -75,7 +75,8 @@ gem 'ranked-model'
 gem 'virtus'
 gem 'hashie'
 
-gem 'react-source'
+gem 'execjs'
+# gem 'therubyracer'
 gem 'react-rails'
 
 gem 'kaminari'
