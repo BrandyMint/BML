@@ -4,21 +4,27 @@
     /- AnalyticSource.sources.each do |source|
       /button.btn-sm.dropdown-item type='button'== source.title
 
-ul.list-inline
-  li.list-inline-item
-    .dropdown.pull-left
-      button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Тип трафика
-      .dropdown-menu
-  li.list-inline-item
-    .dropdown.pull-left
-      button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Рекламная сеть
-      .dropdown-menu
+/ ul.list-inline
+/   li.list-inline-item
+/     .dropdown.pull-left
+/       button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Тип трафика
+/       .dropdown-menu
+/   li.list-inline-item
+/     .dropdown.pull-left
+/       button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Рекламная сеть
+/       .dropdown-menu
 
+/   li.list-inline-item
+/     .dropdown.pull-left
+/       button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Фраза
+/       .dropdown-menu
+/   li.list-inline-item
+/     .dropdown.pull-left
+/       button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Кампания
+/       .dropdown-menu
+
+ul.list-inline.form-inline
   li.list-inline-item
-    .dropdown.pull-left
-      button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Фраза
-      .dropdown-menu
-  li.list-inline-item
-    .dropdown.pull-left
-      button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Кампания
-      .dropdown-menu
+    - CollectionItem.utm_fields.each do |f|
+      .form-group.input-group-sm
+        input.form-control.input-xs type="text" name=f.key placeholder=f.title value=filter.send(f.key)

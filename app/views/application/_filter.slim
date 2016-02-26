@@ -1,37 +1,39 @@
-.row
-  .col-md-6
-    ul.list-inline
-      li.list-inline-item
-        = render 'filter_date_range'
-      li.list-inline-item
-        = render 'filter_segments'
-      li.list-inline-item
-        = render 'filter_versions'
+form method="get" action=""
+  .row
+    .col-md-6
+      ul.list-inline
+        li.list-inline-item
+          = render 'filter_date_range'
+        li.list-inline-item
+          = render 'filter_segments'
+        li.list-inline-item
+          = render 'filter_versions'
 
-  .col-md-6
-    .pull-right
-      = render 'filter_source'
-/.dropdown.pull-xs-left
-  /button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Браузер
-  /.dropdown-menu
-    /button.btn-sm.dropdown-item type='button' Safari
-    /button.btn-sm.dropdown-item type='button' IE
-    /button.btn-sm.dropdown-item type='button' Firefox
-    /button.btn-sm.dropdown-item type='button' Chrome
+    .col-md-6
+      .pull-right
+        = render 'filter_source', filter: filter
+        button.btn.btn-sm.btn-primary type="submit" Применить
+  /.dropdown.pull-xs-left
+    /button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Браузер
+    /.dropdown-menu
+      /button.btn-sm.dropdown-item type='button' Safari
+      /button.btn-sm.dropdown-item type='button' IE
+      /button.btn-sm.dropdown-item type='button' Firefox
+      /button.btn-sm.dropdown-item type='button' Chrome
 
-/.dropdown.pull-xs-left
-  /button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' География
-  /.dropdown-menu
-    /button.btn-sm.dropdown-item type='button' Москва
-    /button.btn-sm.dropdown-item type='button' Санкт-петербург
-    /button.btn-sm.dropdown-item type='button' Екатеринбург
-    /button.btn-sm.dropdown-item type='button' Регионы
+  /.dropdown.pull-xs-left
+    /button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' География
+    /.dropdown-menu
+      /button.btn-sm.dropdown-item type='button' Москва
+      /button.btn-sm.dropdown-item type='button' Санкт-петербург
+      /button.btn-sm.dropdown-item type='button' Екатеринбург
+      /button.btn-sm.dropdown-item type='button' Регионы
 
-/.dropdown.pull-xs-left
-  /button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Возвращаемость
-  /.dropdown-menu
-    /button.btn-sm.dropdown-item type='button' Новый
-    /button.btn-sm.dropdown-item type='button' Повторный
+  /.dropdown.pull-xs-left
+    /button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Возвращаемость
+    /.dropdown-menu
+      /button.btn-sm.dropdown-item type='button' Новый
+      /button.btn-sm.dropdown-item type='button' Повторный
 
-/br
-/br
+  /br
+  /br

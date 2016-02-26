@@ -6,7 +6,9 @@ class Account::LeadsController < Landing::BaseController
       collections: current_landing.collections,
       current_collection: current_collection,
       fields: fields,
-      items: items
+      utm_fields: utm_fields,
+      items: items,
+      filter: leads_filter
     }
   end
 
@@ -16,8 +18,16 @@ class Account::LeadsController < Landing::BaseController
     current_collection.fields.ordered
   end
 
+  def utm_fields
+    CollectionItem.utm_fields
+  end
+
   def items
-    paginate current_collection.items.ordered
+    paginate LeadsQuery.new(filter: leads_filter).call
+  end
+
+  def leads_filter
+    LeadsFilter.new params.merge(collection: current_collection)
   end
 
   def current_collection
