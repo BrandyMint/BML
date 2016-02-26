@@ -25,8 +25,6 @@
 # SimpleNavigation
 #  require bootstrap_and_overrides
 #  require bootstrap_navbar_split_dropdowns
-#
-#= require_tree .
 
 
 $ ->
