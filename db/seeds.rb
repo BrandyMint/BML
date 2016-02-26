@@ -8,7 +8,7 @@
 #
 
 
-a = Account.find_or_create_by id: 1, ident: Account::ROOT_IDENT
+a = Account.find_or_create_by ident: Account::ROOT_IDENT
 
 l = a.landings.find_or_create_by title: 'Пример 1'
 c = l.collections.create

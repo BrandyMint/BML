@@ -1,4 +1,4 @@
-class Account::SegmentsController < Landing::ApplicationController
+class Account::SegmentsController < Landing::BaseController
   layout 'analytics'
 
   def index

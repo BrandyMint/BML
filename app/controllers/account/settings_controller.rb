@@ -1,4 +1,4 @@
-class Account::SettingsController < Landing::ApplicationController
+class Account::SettingsController < Landing::BaseController
   layout 'settings'
 
   def show

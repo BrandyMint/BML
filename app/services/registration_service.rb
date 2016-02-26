@@ -1,28 +1,34 @@
 class RegistrationService
   include Virtus.model
 
+  UserDuplicate = Class.new StandardError
+
   attribute :form, RegistrationForm
 
   def call
-    account = nil
+    user = nil
     ActiveRecord::Base.transaction do
-      account = create_account create_user
+      user = create_user
+      create_account user
     end
 
-    fail 'Error creating account' unless account.present?
-    return account
+    fail 'Error creating user' unless user.present?
+    return user
   end
 
   private
 
   def create_user
+    fail UserDuplicate if find_user
     User.create! form.attributes
+  end
+
+  def find_user
+    User.find_by(email: form.email) || User.find_by(phone: form.phone)
   end
 
   def create_account(user)
     account = Account.create!
     user.memberships.create! account_id: account.id, role: :owner
-
-    return account
   end
 end

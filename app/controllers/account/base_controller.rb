@@ -1,4 +1,4 @@
-class Account::ApplicationController < ApplicationController
+class Account::BaseController < ApplicationController
   include AuthorizeUser
   NotAuthenticated = Class.new StandardError
   NoCurrentAccount = Class.new StandardError
