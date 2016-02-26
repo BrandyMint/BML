@@ -6,9 +6,9 @@
     = simple_form_for registration_form, url: signup_url do |f|
       = f.error_notification
       .form-inputs
-        = f.input :name
-        = f.input :email
-        = f.input :phone
-        = f.input :password
+        = f.input :name, requried: true, autofocus: true
+        = f.input :email, requried: true
+        = f.input :phone, requried: true
+        = f.input :password, requried: true
       .form-actions
         = f.submit 'Зарегистрироваться', class: 'btn btn-primary'
