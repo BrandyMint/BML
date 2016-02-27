@@ -25,11 +25,6 @@ class Subdomain < ActiveRecord::Base
     self.zone ||= DEFAULT_ZONE
   end
 
-  # TODO удалить, чтобы можно было определять зону в базе
-  def zone
-    Settings.app.default_domain
-  end
-
   def cache_current_domain
     if use_domain? && confirmed_domain.present?
       self.current_domain = confirmed_domain
@@ -39,6 +34,7 @@ class Subdomain < ActiveRecord::Base
   end
 
   def current_zone
+    return DEFAULT_CURRENT_ZONE if true # TODO отключить когда появятся *.bmland.ru
     if zone == ALL_ZONES
       DEFAULT_CURRENT_ZONE
     else
