@@ -70,7 +70,7 @@ production:
     <<: *app
     title: Kiiiosk
 
-    default_domain: bmland.ru
+    default_domain: aydamaster.ru
     fallback_image: images/fallback/product-none.png
     asset_host: http://bmland.ru
 
