@@ -14,14 +14,13 @@ defaults: &defaults
     default_domain: 3008.vkontraste.ru
 
     default_url_options: &default_url_options
-      host: aydamarket.ru
+      host: 3008.vkontraste.ru
       port: 80
 
   smsc:
     login: dapi
     password: '|fc6oq6sw(c22ok7e6]bul9^u0(6mv['
-    sender: Kiiiosk
-
+    sender: bmland
 
   action_mailer: &action_mailer
     raise_delivery_errors: false
