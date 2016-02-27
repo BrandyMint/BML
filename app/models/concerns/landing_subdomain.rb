@@ -11,8 +11,6 @@ module LandingSubdomain
   end
 
   def host
-    # TODO Сменить на current_domain когда запустят *.bmland.ru
-    Settings.app.default_domain
-    # current_domain
+    current_domain
   end
 end

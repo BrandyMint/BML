@@ -71,10 +71,10 @@ production:
 
     default_domain: aydamaster.ru
     fallback_image: images/fallback/product-none.png
-    asset_host: http://bmland.ru
+    asset_host: http://aydamaster.ru
 
     default_url_options: &default_url_options
-      host: bmland.ru
+      host: aydamaster.ru
       port: 80
 
   tld_length: 2
