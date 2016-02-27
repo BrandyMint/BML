@@ -1,5 +1,4 @@
 require 'app_constraint'
-require 'account_constraint'
 require 'site_constraint'
 require 'api_constraint'
 
@@ -41,6 +40,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resource :account, only: [:edit, :update]
 
   #scope :landing, as: :landing, module: :landing do
     #root controller: :analytics, action: :index

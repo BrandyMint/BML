@@ -1,11 +1,11 @@
 nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
   .container
-    -#.navbar-header
 
     .row
       .col-lg-9
-        /= link_to account_root_path, class: 'navbar-brand' do
-          /= fa_icon 'bank'
+        .navbar-header
+          = link_to account_root_path, class: 'navbar-brand' do
+            = fa_icon 'bank', class: 'navbar-icon'
 
         ul.nav.navbar-nav.navbar-bml
 
@@ -51,7 +51,6 @@ nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
                 = fa_icon 'user', text: current_user
               .dropdown-menu
                 = link_to 'Профиль', profile_url(backurl: request.url), class: 'dropdown-item'
-                = link_to 'Аккаунт', account_root_url, class: 'dropdown-item'
                 .dropdown-divider
                 = link_to 'Выйти', logout_url, class: 'dropdown-item'
 

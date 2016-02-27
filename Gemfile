@@ -3,6 +3,9 @@ require './lib/gemfile_support'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
+  gem 'rails-assets-better-i18n-plugin'
+  gem 'rails-assets-better-popover-plugin'
+  gem 'rails-assets-better-form-validation'
 end
 
 gem 'settingslogic'

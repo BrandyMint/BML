@@ -21,6 +21,7 @@
 #= require i18n
 #= require i18n/translations
 #= require jquery.easy-pie-chart/dist/jquery.easypiechart.js
+#= require better-form
 #
 # SimpleNavigation
 #  require bootstrap_and_overrides

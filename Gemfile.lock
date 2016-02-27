@@ -354,6 +354,15 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.5.1)
       sprockets-rails
+    rails-assets-better-dom (2.0.3)
+    rails-assets-better-form-validation (1.4.1)
+      rails-assets-better-dom (~> 2.0.0)
+      rails-assets-better-i18n-plugin (~> 1.0.0)
+      rails-assets-better-popover-plugin (~> 0.5.1)
+    rails-assets-better-i18n-plugin (1.0.4)
+      rails-assets-better-dom (>= 2.0.0, < 3)
+    rails-assets-better-popover-plugin (0.5.1)
+      rails-assets-better-dom (~> 2.0.0)
     rails-assets-tether (1.1.1)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -571,6 +580,9 @@ DEPENDENCIES
   pry-theme
   rack-cors
   rails (= 4.2.5.1)
+  rails-assets-better-form-validation!
+  rails-assets-better-i18n-plugin!
+  rails-assets-better-popover-plugin!
   rails-assets-tether (>= 1.1.0)!
   ranked-model
   react-rails

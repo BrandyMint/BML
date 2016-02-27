@@ -1,7 +1,12 @@
 class AccountsController < ApplicationController
   include AuthorizeUser
+  include CurrentAccount
 
   layout 'system'
+
+  def edit
+    render locals: { account: current_account }, layout: 'account'
+  end
 
   def index
     render locals: { accounts: current_user.accounts.ordered }
