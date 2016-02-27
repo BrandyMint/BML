@@ -1,15 +1,30 @@
 .text-center.m-t-lg.m-b-lg
-  = link_to 'Создать лендинг', new_account_landing_path, class: 'btn btn-success-outline'
+  = link_to 'Создать новый лендинг', new_account_landing_path, class: 'btn btn-success-outline'
 table.table.table-condensed.table-hover.table-projects.table-centered
   tbody
     - landings.each do |l|
       tr
+        /td
+          /.text-muted
+            /= fa_icon :bullseye
         td
           div
-            b= l.title
+            b
+              = link_to account_landing_leads_path(l), style: 'color: black' do
+                = l.title
           small
             = link_to l.url, l.url, class: 'text-muted'
-        td Аналитика
-        td= link_to landing_leads_title(l), account_landing_leads_path(l)
-        td= link_to 'Редактор', landing_editor_path(l.default_version.uuid)
-        td= link_to 'Просмотр', l.url
+        td
+          = link_to landing_leads_title(l), account_landing_leads_path(l)
+        td.hoverable-cell
+          .hoverable-content
+            = link_to landing_editor_path(l.default_version.uuid) do
+              = fa_icon :editor
+        td.hoverable-cell
+          .hoverable-content
+            = link_to l.url, title: 'Просмотр', class: 'icon-link', target: '_blank', tooltip: true, data: { tooltip: true } do
+              = fa_icon :desktop, class: 'fa-2x'
+        td.hoverable-cell
+          .hoverable-content
+            = link_to edit_account_landing_path(l), class: 'icon-link', title: 'Настройка' do
+              = fa_icon :gear, class: 'fa-2x'

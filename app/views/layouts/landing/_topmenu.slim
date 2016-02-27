@@ -39,6 +39,8 @@ nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
               class: 'nav-link',
               active: [['account/collections', 'account/analytics', 'account/versions', 'account/segments']]
             /= fa_icon 'line-chart'
+          li.nav-item
+            = active_link_to 'Просмотр', current_landing.url, class: 'nav-link'
 
       .col-lg-3
         .pull-xs-right
@@ -48,7 +50,7 @@ nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
                 class: 'nav-link dropdown-toggle', 
                 data: { toggle: 'dropdown' }, 
                 role: 'button' do
-                = fa_icon 'user', text: current_user
+                = fa_icon 'user', class: 'm-r-sm', text: current_user
               .dropdown-menu
                 = link_to 'Профиль', profile_url(backurl: request.url), class: 'dropdown-item'
                 .dropdown-divider
