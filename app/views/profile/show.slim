@@ -44,7 +44,7 @@ br
           .col-md-6
             = f.input :password_confirmation
       .form-group
-        = f.submit 'Сохранить', class: 'btn btn-primary'
+        = f.submit 'Сохранить', class: 'btn btn-primary', data: {'enable-when-changed' => true, disable_with: 'Сохраняю' }
   .col-md-4
     /- if user.phone_confirmations.exists?
       /h2 Не подтвержденные телефоны:

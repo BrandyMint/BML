@@ -6,6 +6,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-better-i18n-plugin'
   gem 'rails-assets-better-popover-plugin'
   gem 'rails-assets-better-form-validation'
+  gem 'rails-assets-lodash'
 end
 
 gem 'settingslogic'

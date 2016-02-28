@@ -363,6 +363,7 @@ GEM
       rails-assets-better-dom (>= 2.0.0, < 3)
     rails-assets-better-popover-plugin (0.5.1)
       rails-assets-better-dom (~> 2.0.0)
+    rails-assets-lodash (4.5.1)
     rails-assets-tether (1.1.1)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -583,6 +584,7 @@ DEPENDENCIES
   rails-assets-better-form-validation!
   rails-assets-better-i18n-plugin!
   rails-assets-better-popover-plugin!
+  rails-assets-lodash!
   rails-assets-tether (>= 1.1.0)!
   ranked-model
   react-rails

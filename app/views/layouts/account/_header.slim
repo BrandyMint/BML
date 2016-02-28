@@ -2,10 +2,14 @@ nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
   .container
     .row
       .col-lg-9
-        = link_to current_account, account_root_url, class: 'navbar-brand'
+        = link_to account_root_url, class: 'navbar-brand' do
+          = fa_icon :bullseye
+
+
         ul.nav.navbar-nav.navbar-bml
-          li.nav-item= active_link_to 'Лендинги', account_landings_url, class: 'nav-link'
-          li.nav-item= active_link_to 'Настройка', edit_account_url, class: 'nav-link'
+          li.nav-item= active_link_to 'Лендинги', account_landings_path, class: 'nav-link'
+          li.nav-item= active_link_to 'Адрес сайта', edit_account_url, class: 'nav-link'
+          li.nav-item= active_link_to 'Сотрудники', edit_account_url, class: 'nav-link'
           /- if landing_version.present?
             /li.nav-item= link_to current_landing_version.full_title, account_landing_versions_path, class: 'nav-link'
           /- else

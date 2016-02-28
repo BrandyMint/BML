@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
 
   scope :account, as: :account, module: :account do
-    root controller: :landings, action: :index
+    root to: redirect('/account/landings')
     resources :landings do
       resources :leads
       resources :analytics do
