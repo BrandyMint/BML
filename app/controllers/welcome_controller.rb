@@ -1,4 +1,6 @@
 class WelcomeController < ApplicationController
+  include HtmlOnly
+
   layout 'welcome'
 
   def index

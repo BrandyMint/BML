@@ -25,6 +25,7 @@ module Bml
     config.autoload_paths += Dir[
       "#{Rails.root}/app/api/concerns",
       "#{Rails.root}/app/validators",
+      "#{Rails.root}/app/errors",
       "#{Rails.root}/app/form_objects",
       "#{Rails.root}/app/value_objects",
       "#{Rails.root}/app/workers"

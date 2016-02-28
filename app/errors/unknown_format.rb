@@ -1,0 +1,1 @@
+UnknownFormat = Class.new StandardError

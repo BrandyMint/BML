@@ -1,0 +1,1 @@
+NoCurrentAccount = Class.new StandardError

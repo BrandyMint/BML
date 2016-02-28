@@ -1,0 +1,1 @@
+NotAuthenticated = Class.new StandardError
