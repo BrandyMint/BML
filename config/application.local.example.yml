@@ -36,14 +36,11 @@ defaults: &defaults
      authentication: :cram_md5
 
   mailer_defaults: &mailer_defaults
-    from: 'noreply@kiiiosk.ru'
-    host: kiiiosk.ru
-
-  domain_zones: [kiiiosk.ru, kiiiosk.com, kiiiosk.kz, kiiiosk.ua]
+    from: 'noreply@aydamaster.ru'
+    host: aydamaster.ru
 
 development:
   <<: *defaults
-  domain_zones: [kiiiosk.ru, kiiiosk.com, kiiiosk.kz, kiiiosk.ua, 3001.vkontraste.ru]
   app:
     <<: *app
     asset_host: http://3008.vkontraste.ru
@@ -67,7 +64,7 @@ production:
   <<: *defaults
   app:
     <<: *app
-    title: Kiiiosk
+    title: Aydamaster
 
     default_domain: aydamaster.ru
     fallback_image: images/fallback/product-none.png
