@@ -7,7 +7,7 @@ html
     == csrf_meta_tags
     == include_gon
   body
-    == render 'layouts/landing/topmenu', landing_version: current_landing_version
+    == render 'layouts/landing/topmenu'
     .page-content
       .container
         - if content_for? :content
