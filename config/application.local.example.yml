@@ -7,7 +7,7 @@ defaults: &defaults
     - bmland.ru
 
   app: &app
-    title: BML
+    title: "[bm]land"
     asset_host: http://3008.vkontraste.ru
     host: http://3008.vkontraste.ru
 

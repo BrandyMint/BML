@@ -7,6 +7,9 @@ html
     == csrf_meta_tags
     == include_gon
   body
+    header.auth-header
+      h1.auth-header-title
+        = link_to Settings.app.title, root_url, class: 'auth-header-link'
     .vertical-center
       .container.vertical-container
         == render 'layouts/messages'
