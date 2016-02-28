@@ -14,7 +14,7 @@ class Account::LandingsController < Account::BaseController
   end
 
   def show
-    redirect_to account_landing_analytics_path(current_landing)
+    redirect_to account_landing_leads_path(params[:id])
   end
 
   def create

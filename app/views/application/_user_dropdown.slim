@@ -1,0 +1,12 @@
+ul.nav.navbar-nav.navbar-right
+  li.nav-item.dropdown
+    = link_to '#', 
+      class: 'nav-link dropdown-toggle', 
+      data: { toggle: 'dropdown' }, 
+      role: 'button' do
+      = fa_icon 'user', class: 'm-r-sm', text: current_user
+    .dropdown-menu
+      = link_to 'Профиль', profile_path(backurl: request.url), class: 'dropdown-item'
+      = active_link_to 'Аккаунт', account_root_path, class: 'dropdown-item'
+      .dropdown-divider
+      = link_to 'Выйти', logout_url, class: 'dropdown-item'

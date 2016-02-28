@@ -1,0 +1,20 @@
+nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
+  .container
+    .row
+      .col-lg-9
+        = link_to current_account, account_root_url, class: 'navbar-brand'
+        ul.nav.navbar-nav.navbar-bml
+          li.nav-item= active_link_to 'Лендинги', account_landings_url, class: 'nav-link'
+          li.nav-item= active_link_to 'Настройка', edit_account_url, class: 'nav-link'
+          /- if landing_version.present?
+            /li.nav-item= link_to current_landing_version.full_title, account_landing_versions_path, class: 'nav-link'
+          /- else
+            /li.nav-item= link_to current_landing, account_landing_versions_path(current_landing), class: 'nav-link'
+
+          /li.nav-item= active_link_to account_landing_analytics_path(current_landing), class: 'navbar-icon', active: [['account/collections', 'account/analytics', 'account/versions', 'account/segments']] do
+            /= fa_icon 'line-chart'
+
+      .col-lg-3
+        .pull-xs-right
+          = render 'user_dropdown'
+.navbar-space
