@@ -51,12 +51,19 @@ class LeadsController < ApplicationController
   def create_lead!
     # fail ActiveRecord::RecordInvalid.new(self) unless valid?
 
-    collection.items
-      .create! data: data, landing_version: landing_version
+    collection
+      .items
+      .create! lead_attributes
 
     # rescue ActiveRecord::RecordNotFound => err
     # errors.add :base, err.message
     # raise ActiveRecord::RecordInvalid.new(self)
+  end
+
+  def lead_attributes
+    {
+      data: data, landing_version: landing_version
+    }
   end
 
   def collection

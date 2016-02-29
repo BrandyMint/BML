@@ -5,9 +5,6 @@ class Settings < Settingslogic
 
   suppress_errors Rails.env.production?
 
-  Rails.configuration.action_mailer.merge!(action_mailer.try(:symbolize_keys) || {})
-  ActionDispatch::Http::URL.tld_length = Settings.tld_length
-
   def root
     Pathname.new(super.presence || Rails.root)
   end

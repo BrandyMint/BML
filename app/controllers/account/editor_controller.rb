@@ -1,25 +1,14 @@
-class Account::EditorController < Landing::BaseController
+class Account::EditorController < Account::BaseController
   layout 'editor'
 
-  def edit
-    render locals: { landing_version: landing_version }
+  helper_method :landing_version
+
+  def show
   end
 
   private
 
-  def current_landing_version
-    landing_version
-  end
-
   def landing_version
-    @_landing_version ||= find_landing_version
-  end
-
-  def find_landing_version
-    if params[:version_id].present?
-      current_landing.versions.find params[:version_id]
-    else
-      current_landing.default_version
-    end
+    @_landing_version ||= current_account.versions.find_by_uuid(params[:uuid])
   end
 end

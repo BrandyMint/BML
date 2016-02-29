@@ -5,8 +5,6 @@ class AppConstraint
     # Если заходят по IP, до домена нет, значит это домашняя страница
     # return true if request.domain.blank?
 
-    request = RequestProxy.new request
-
-    request.app?
+    Settings.domain_zones.include?(request.domain) && request.subdomain.blank?
   end
 end
