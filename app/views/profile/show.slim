@@ -25,17 +25,16 @@ br
             = f.input :email
           .col-md-6
             - unless user.email_confirmed?
-              div= user_email_confirmation_hint(user)
-
-              = user_send_email_confirmation_link
+              div.text-danger= user_email_confirmation_hint(user)
+              .m-t= user_send_email_confirmation_link
 
         .row
           .col-md-6
             = f.input :phone
           .col-md-6
-            div= user_phone_confirmation_hint(user)
             - unless user.phone_confirmed?
-              = user_send_phone_confirmation_link(user.phone)
+              div.text-danger= user_phone_confirmation_hint(user)
+              .m-t= user_send_phone_confirmation_link(user.phone)
       .form-group
         hr
         .row
