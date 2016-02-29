@@ -3,7 +3,7 @@ nav.navbar.navbar-light.navbar-top.navbar-fixed-top
     = link_to account_root_url, class: 'navbar-brand' do
       = fa_icon :bullseye
     ul.nav.navbar-nav.navbar-bml
-      li.nav-item= active_link_to 'Лендинги', account_landings_path, class: 'nav-link'
+      li.nav-item= active_link_to 'Лендинги', account_landings_path, class: 'nav-link', active: :exclusive 
       li.nav-item= active_link_to 'Адрес сайта', edit_account_url, class: 'nav-link'
       li.nav-item= active_link_to 'Сотрудники', edit_account_url, class: 'nav-link'
     .pull-xs-right
