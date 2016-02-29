@@ -8,21 +8,26 @@ module ApplicationHelper
     javascript_tag "window.bmlConfig = #{config.to_json}"
   end
 
-  def post_lead_url
-    leads_url subdomain: ''
-  end
-
   def setup_editor_bml
     config = {
       postLeadUrl: post_lead_url,
       apiUrl: api_v1_url,
-      apiKey: current_account.api_key
+      apiKey: current_account.api_key,
+      exitUrl: editor_exit_url
     }
     javascript_tag "window.bmlConfig = #{config.to_json}"
   end
 
+  def editor_exit_url
+    params[:backurl] || account_landing_leads_url(landing_version.id)
+  end
+
   def api_v1_url
     api_url + 'v1'
+  end
+
+  def post_lead_url
+    leads_url subdomain: ''
   end
 
   def application
