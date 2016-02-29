@@ -140,7 +140,10 @@
 }
 
 .middle-container {
-  margin: 0 auto;
+  @extend .container;
+  margin-top: 70px; // navbar heigh
+  position: relative;
+  width: 100%;
 }
 
 .cell-middle {

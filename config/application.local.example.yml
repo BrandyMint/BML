@@ -95,7 +95,8 @@ test:
     - bmland.ru
 
   app:
-    title: Киоск
+    # title: "[bm]land"
+    title: Ай-да Мастер!
 
     asset_host: http://example.com
     fallback_image: images/fallback/product-none.png

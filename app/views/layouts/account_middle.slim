@@ -8,6 +8,7 @@ html
     == include_gon
   body
     = render 'layouts/account/header'
-    .navbar-space
-    .container
-      == yield
+    .vertical-center
+      .middle-container
+        == render 'layouts/messages'
+        == yield

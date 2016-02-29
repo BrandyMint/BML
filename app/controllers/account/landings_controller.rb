@@ -1,5 +1,5 @@
 class Account::LandingsController < Account::BaseController
-  layout 'auth'
+  layout 'account'
 
   helper_method :current_landing
 
@@ -8,7 +8,7 @@ class Account::LandingsController < Account::BaseController
   end
 
   def new
-    render locals: { landing: build_landing }
+    render locals: { landing: build_landing }, layout: 'account_middle'
   end
 
   def edit

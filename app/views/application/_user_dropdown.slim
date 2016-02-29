@@ -7,6 +7,6 @@ ul.nav.navbar-nav.navbar-right
       = fa_icon 'user', class: 'm-r-sm', text: current_user
     .dropdown-menu
       = active_link_to 'Профиль', profile_path(backurl: request.url), class: 'dropdown-item'
-      = active_link_to 'Аккаунт', account_root_path, class: 'dropdown-item'
+      = active_link_to 'Аккаунт', account_root_path, class: 'dropdown-item', active: :exclusive
       .dropdown-divider
       = link_to 'Выйти', logout_url, class: 'dropdown-item'
