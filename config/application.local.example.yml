@@ -78,7 +78,7 @@ production:
       host: aydamaster.ru
       port: 80
 
-  tld_length: 2
+  tld_length: 1
   action_mailer:
     <<: *action_mailer
     delivery_method: :smtp
