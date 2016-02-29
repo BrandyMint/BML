@@ -30,7 +30,7 @@ nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
           /li.nav-item= active_link_to 'Мультилендинг', account_landing_versions_path(current_landing), class: 'nav-link'
           li.nav-item
             = active_link_to 'Конструктор', 
-              landing_editor_path(current_landing.default_version.uuid), 
+              account_landing_editor_path(current_landing.default_version.uuid), 
               class: 'nav-link'
           li.nav-item
             = active_link_to 'Аналитика', account_landing_analytics_path(current_landing), 

@@ -14,6 +14,9 @@ module HtmlOnly
   private
 
   def filter_html
-    raise UnknownFormat unless request.format.html?
+    raise UnknownFormat unless request.format.html_types.include? :html
+
+    # request.format.html?
+    # Не срадабывает с Accept: */*
   end
 end

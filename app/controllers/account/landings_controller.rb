@@ -21,7 +21,7 @@ class Account::LandingsController < Account::BaseController
 
   def create
     landing = create_landing!
-    redirect_to landing_editor_path landing.default_version.uuid
+    redirect_to account_landing_editor_path landing.default_version.uuid
   rescue ActiveRecord::RecordInvalid => err
     render 'new', locals: { landing: err.record }
   end
