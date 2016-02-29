@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   end
 
   scope as: :site, constraints: SiteConstraint do
-    root 'landing#show'
-    get '*any', to: 'landing#show'
+    root 'viewer#show'
+    get '*any', to: 'viewer#show'
   end
 
   scope :account, as: :account, module: :account do

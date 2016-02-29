@@ -1,4 +1,4 @@
-class LandingController < ApplicationController
+class ViewerController < ApplicationController
   include CurrentLanding
 
   layout 'viewer'
