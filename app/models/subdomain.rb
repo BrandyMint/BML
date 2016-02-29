@@ -1,6 +1,6 @@
 class Subdomain < ActiveRecord::Base
   ALL_ZONES       = '*'
-  AVAILABLE_ZONES = Settings.subdomain_zones + [ALL_ZONES]
+  AVAILABLE_ZONES = Settings.domain_zones + [ALL_ZONES]
   DEFAULT_ZONE    = Settings.app.default_domain
   DEFAULT_CURRENT_ZONE = Settings.app.default_domain
 

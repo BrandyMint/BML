@@ -1,7 +1,7 @@
 defaults: &defaults
   tld_length: 1
 
-  subdomain_zones:
+  domain_zones:
     - 3008.vkontraste.ru
     - aydamaster.ru
     - bmland.ru
@@ -62,6 +62,10 @@ development:
 
 production:
   <<: *defaults
+  domain_zones:
+    - aydamaster.ru
+    - bmland.ru
+
   app:
     <<: *app
     title: Aydamaster
@@ -85,13 +89,11 @@ production:
 
 test:
   <<: *defaults
-  subdomain_zones:
+  domain_zones:
     - example.com
     - aydamaster.ru
     - bmland.ru
 
-
-  domain_zones: [3008.vkontraste.ru]
   app:
     title: Киоск
 
