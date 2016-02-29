@@ -23,7 +23,7 @@ table.table
     - versions.each do |v|
       tr
         td
-          = link_to landing_editor_path(current_landing, v) do
+          = link_to account_landing_editor_path(current_landing, v) do
             = v.to_s
           br
           small.text-muted= link_to site_landing_version_url(v), site_landing_version_url(v), target: '_blank', class: 'text-muted'
@@ -36,7 +36,7 @@ table.table
             /= link_to site_landing_version_url(v), target: '_blank' do
               /= fa_icon 'external-link', text: 'Публичная ссылка'
             /br
-            = link_to landing_editor_path(current_landing, v) do
+            = link_to account_landing_editor_path(current_landing, v) do
               = fa_icon 'object-group', text: 'Конструктор'
             br
             = link_to edit_account_landing_version_path(id: v.id, landing: current_landing) do

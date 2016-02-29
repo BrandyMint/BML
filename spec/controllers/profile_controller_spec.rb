@@ -6,6 +6,7 @@ RSpec.describe ProfileController, type: :controller do
   include Sorcery::TestHelpers::Rails::Controller
 
   let!(:user) { create :user, :with_account }
+
   before(:each) do
     login_user user, login_url
   end

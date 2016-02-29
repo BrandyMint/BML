@@ -1,0 +1,15 @@
+require 'rails_helper'
+
+RSpec.describe LeadsController, type: :controller do
+  let!(:landing) { create :landing }
+  let(:email) { 'some@email.ru' }
+  let(:name) { 'somename' }
+  let(:form) { { email: email, name: name, landing_version_uuid: landing.default_version.uuid }}
+
+  context 'create' do
+    it do
+      expect(controller).to receive(:create_lead!)
+      post :create, form, subdomain: ''
+    end
+  end
+end

@@ -8,6 +8,10 @@ module ApplicationHelper
     javascript_tag "window.bmlConfig = #{config.to_json}"
   end
 
+  def post_lead_url
+    leads_url subdomain: ''
+  end
+
   def setup_editor_bml
     config = {
       postLeadUrl: post_lead_url,

@@ -36,6 +36,7 @@ describe SessionsController do
 
     context 'with invalid params' do
       it 'must not log in' do
+        request.env["HTTP_REFERER"] = 'some'
         get :create, session_form: { login: 'a' }
         expect(controller.current_user).not_to be_an_instance_of(User)
       end
