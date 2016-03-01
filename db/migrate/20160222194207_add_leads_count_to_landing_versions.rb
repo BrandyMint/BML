@@ -7,8 +7,8 @@ class AddLeadsCountToLandingVersions < ActiveRecord::Migration
       Collection.reset_counters c.id, :items
     end
 
-    LandingVersion.find_each do |v|
-      LandingVersion.reset_counters v.id, :leads
+    Variant.find_each do |v|
+      Variant.reset_counters v.id, :leads
     end
   end
 end
