@@ -1,16 +1,19 @@
 class API < Grape::API
+  VERSION = 'v1'
+
   default_format :json
+
 
   # С этим не работает swagger
   # format :json
-  version 'v1'
+  version VERSION
 
   mount API::Landings
-  mount API::LandingVersions
+  mount API::Variants
   mount API::Images
   mount APIPing
 
-  add_swagger_documentation api_version: 'v1',
+  add_swagger_documentation api_version: VERSION,
                             markdown: GrapeSwagger::Markdown::KramdownAdapter,
                             base_path: '',
                             hide_documentation_path: true

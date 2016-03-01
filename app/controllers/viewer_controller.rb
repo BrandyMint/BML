@@ -5,8 +5,8 @@ class ViewerController < ApplicationController
 
   def show
     render locals: {
-      current_landing: current_landing_version.landing,
-      variant: current_landing_version
+      current_landing: current_variant.landing,
+      variant: current_variant
     }
   end
 end

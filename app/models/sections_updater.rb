@@ -1,6 +1,6 @@
 class SectionsUpdater
-  def initialize(landing_version, regenerate_uuid: false)
-    @landing_version = landing_version
+  def initialize(variant, regenerate_uuid: false)
+    @variant = variant
     @regenerate_uuid = regenerate_uuid
   end
 
@@ -13,10 +13,10 @@ class SectionsUpdater
 
   private
 
-  attr_reader :raw_data, :landing_version, :regenerate_uuid
+  attr_reader :raw_data, :variant, :regenerate_uuid
 
   def update_blocks(blocks)
-    landing_version.lock!
+    variant.lock!
 
     uuids = []
     blocks.each_with_index do |block, index|
@@ -24,15 +24,15 @@ class SectionsUpdater
 
       uuids << block['uuid']
       SectionUpdater
-        .new(landing_version: landing_version, block: block)
+        .new(variant: variant, block: block)
         .update index
     end
 
-    landing_version
+    variant
       .sections
       .where.not(uuid: [uuids])
       .delete_all
 
-    landing_version.update_columns sections_count: blocks.count, updated_at: Time.now
+    variant.update_columns sections_count: blocks.count, updated_at: Time.now
   end
 end

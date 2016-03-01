@@ -8,7 +8,7 @@ html
     == include_gon
   body
     header.auth-header
-      h1.auth-header-title
+      h1.auth-header-title.bml-logo
         - if current_account.present?
           = link_to Settings.app.title, account_root_url, class: 'auth-header-link'
         - else

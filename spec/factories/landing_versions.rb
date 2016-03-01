@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :landing_version do
+  factory :variant do
     landing
     uuid { SecureRandom.uuid }
   end

@@ -2,7 +2,7 @@ class SiteConstraint
   extend CurrentLanding
 
   def self.matches?(request)
-    landing_version = LandingVersionSelector
+    variant = VariantSelector
       .new(
         host: request.host,
         path: request.path,
@@ -10,13 +10,13 @@ class SiteConstraint
         params: request.params,
         cookies: request.cookies
         )
-      .landing_version
+      .variant
 
-    if landing_version.present?
-      set_current_landing_version landing_version
+    if variant.present?
+      set_current_variant variant
       return true
     else
-      set_current_landing_version nil
+      set_current_variant nil
       return false
     end
   end

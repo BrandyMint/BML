@@ -27,15 +27,15 @@ nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
               active: controller_name == 'leads',
               class: 'nav-link'
           /li.nav-item= active_link_to 'Клиенты', account_landing_clients_path(current_landing), class: 'nav-link'
-          /li.nav-item= active_link_to 'Мультилендинг', account_landing_versions_path(current_landing), class: 'nav-link'
+          /li.nav-item= active_link_to 'Мультилендинг', account_variants_path(current_landing), class: 'nav-link'
           li.nav-item
             = active_link_to 'Конструктор', 
-              account_landing_editor_path(current_landing.default_version.uuid, backurl: request.url), 
+              account_landing_editor_path(current_landing.default_variant.uuid, backurl: request.url), 
               class: 'nav-link'
           li.nav-item
             = active_link_to 'Аналитика', account_landing_analytics_path(current_landing), 
               class: 'nav-link',
-              active: [['account/collections', 'account/analytics', 'account/versions', 'account/segments']]
+              active: [['account/collections', 'account/analytics', 'account/variants', 'account/segments']]
             /= fa_icon 'line-chart'
           li.nav-item
             = active_link_to 'Просмотр', current_landing.url, class: 'nav-link'

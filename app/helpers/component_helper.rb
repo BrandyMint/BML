@@ -1,30 +1,30 @@
 module ComponentHelper
-  def init_view(landing_version)
-    data = initial_state(landing_version, false)
+  def init_view(variant)
+    data = initial_state(variant, false)
 
     javascript_tag "window.initApp(#{data.to_json})"
   end
 
-  def init_editor(landing_version)
-    data = initial_state(landing_version, true)
+  def init_editor(variant)
+    data = initial_state(variant, true)
 
     javascript_tag "window.initApp(#{data.to_json})"
   end
 
   private
 
-  def initial_state(landing_version, edit_mode)
-    json = Entities::LandingVersionEntity.represent(landing_version).as_json[:sections]
+  def initial_state(variant, edit_mode)
+    json = Entities::VariantEntity.represent(variant).as_json[:sections]
     {
       application: {
-        exitUrl:              account_landing_analytics_path(landing_version.landing),
+        exitUrl:              account_landing_analytics_path(variant.landing),
         isEditMode:           edit_mode,
         isSaving:             false,
-        landing_version_uuid: landing_version.uuid,
+        variant_uuid: variant.uuid,
         api_key:              current_account.api_key,
         hasUnsavedChanges:    false
       },
-      blocks:               Entities::LandingVersionEntity.represent(landing_version).as_json[:sections]
+      blocks:               Entities::VariantEntity.represent(variant).as_json[:sections]
     }
   end
 end

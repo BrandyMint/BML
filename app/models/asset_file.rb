@@ -3,7 +3,7 @@ class AssetFile < ActiveRecord::Base
 
   belongs_to :account
   belongs_to :landing
-  belongs_to :landing_version
+  belongs_to :variant
 
   mount_uploader :file, ImageUploader
 

@@ -1,7 +1,7 @@
-class LandingVersion < ActiveRecord::Base
+class Variant < ActiveRecord::Base
   include Activity
 
-  belongs_to :landing, counter_cache: :versions_count
+  belongs_to :landing, counter_cache: :variants_count
   has_many :sections, dependent: :destroy
   has_many :collection_items
 
