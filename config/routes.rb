@@ -44,11 +44,15 @@ Rails.application.routes.draw do
     scope module: :account, as: :account do
       # Editor
       get '/editor/:uuid', to: 'editor#show', as: :landing_editor
-      get '/editor/:uuid/*any', to: 'editor#show'
+      get '/editor/:uuid/*any', to: 'editor#show', as: :landing_editor_any
     end
 
     resource :account, only: [:edit, :update]
-    resources :accounts, only: [:index, :show]
+    resources :accounts, only: [:index] do
+      member do
+        get action: :select, as: :select
+      end
+    end
 
     #scope :landing, as: :landing, module: :landing do
       #root controller: :analytics, action: :index

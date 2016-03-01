@@ -7,7 +7,7 @@ class Account::LeadsController < Landing::BaseController
       current_collection: current_collection,
       fields: fields,
       utm_fields: utm_fields,
-      items: items,
+      leads: leads,
       filter: leads_filter
     }
   end
@@ -19,10 +19,10 @@ class Account::LeadsController < Landing::BaseController
   end
 
   def utm_fields
-    CollectionItem.utm_fields
+    Lead.utm_fields
   end
 
-  def items
+  def leads
     paginate LeadsQuery.new(filter: leads_filter).call
   end
 

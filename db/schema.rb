@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301075637) do
+ActiveRecord::Schema.define(version: 20160301094812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,29 +82,6 @@ ActiveRecord::Schema.define(version: 20160301075637) do
 
   add_index "collection_fields", ["collection_id", "key"], name: "index_collection_fields_on_collection_id_and_key", unique: true, using: :btree
 
-  create_table "collection_items", force: :cascade do |t|
-    t.integer  "collection_id"
-    t.hstore   "data"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "variant_id"
-    t.string   "first_utm_source"
-    t.string   "first_utm_campaign"
-    t.string   "first_utm_medium"
-    t.string   "first_utm_term"
-    t.string   "first_utm_content"
-    t.string   "first_referer"
-    t.string   "last_utm_source"
-    t.string   "last_utm_campaign"
-    t.string   "last_utm_medium"
-    t.string   "last_utm_term"
-    t.string   "last_utm_content"
-    t.string   "last_referer"
-  end
-
-  add_index "collection_items", ["collection_id"], name: "index_collection_items_on_collection_id", using: :btree
-  add_index "collection_items", ["variant_id"], name: "index_collection_items_on_variant_id", using: :btree
-
   create_table "collections", force: :cascade do |t|
     t.integer  "landing_id",              null: false
     t.datetime "created_at",              null: false
@@ -131,6 +108,29 @@ ActiveRecord::Schema.define(version: 20160301075637) do
   add_index "landings", ["account_id", "path"], name: "index_landings_on_account_id_and_path", unique: true, using: :btree
   add_index "landings", ["account_id"], name: "index_landings_on_account_id", using: :btree
   add_index "landings", ["uuid"], name: "index_landings_on_uuid", unique: true, using: :btree
+
+  create_table "leads", force: :cascade do |t|
+    t.integer  "collection_id"
+    t.hstore   "data"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "variant_id"
+    t.string   "first_utm_source"
+    t.string   "first_utm_campaign"
+    t.string   "first_utm_medium"
+    t.string   "first_utm_term"
+    t.string   "first_utm_content"
+    t.string   "first_referer"
+    t.string   "last_utm_source"
+    t.string   "last_utm_campaign"
+    t.string   "last_utm_medium"
+    t.string   "last_utm_term"
+    t.string   "last_utm_content"
+    t.string   "last_referer"
+  end
+
+  add_index "leads", ["collection_id"], name: "index_leads_on_collection_id", using: :btree
+  add_index "leads", ["variant_id"], name: "index_leads_on_variant_id", using: :btree
 
   create_table "memberships", force: :cascade do |t|
     t.integer  "account_id",                     null: false
@@ -240,10 +240,10 @@ ActiveRecord::Schema.define(version: 20160301075637) do
   add_foreign_key "authentications", "accounts"
   add_foreign_key "clients", "landings"
   add_foreign_key "collection_fields", "collections"
-  add_foreign_key "collection_items", "collections"
-  add_foreign_key "collection_items", "variants"
   add_foreign_key "collections", "landings"
   add_foreign_key "landings", "accounts"
+  add_foreign_key "leads", "collections"
+  add_foreign_key "leads", "variants"
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
   add_foreign_key "phone_confirmations", "users"

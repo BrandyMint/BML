@@ -1,0 +1,8 @@
+tr
+  td.text-muted.text-nowrap
+    = I18n.l lead.created_at, format: :short
+  - fields.each do |field|
+    td= lead.data[field.key]
+
+  - utm_fields.each do |field|
+    td= lead.send(field.item_key)

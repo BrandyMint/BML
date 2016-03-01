@@ -7,7 +7,7 @@ class LeadCreator
   attribute :cookies
 
   def call
-    collection.items.create! lead_attributes
+    collection.leads.create! lead_attributes
   end
 
   private
