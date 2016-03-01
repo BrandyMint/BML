@@ -12,7 +12,7 @@ class API::Images < Grape::API
     desc 'Загружаем изображение'
     params do
       optional :landing_uuid,         type: String, desc: 'Лендинг к которому загружается это изображение'
-      optional :landing_version_uuid, type: String, desc: 'Версия лендинга к которой загружается это изображение'
+      optional :variant_uuid, type: String, desc: 'Версия лендинга к которой загружается это изображение'
       requires :file,                 type: Rack::Multipart::UploadedFile, desc: 'Содержимое изображения дла загрузки'
     end
     post do

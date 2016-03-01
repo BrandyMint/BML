@@ -21,11 +21,11 @@ class API::Landings < Grape::API
       end
 
       desc 'Варианты лендинга'
-      resources :landing_versions do
+      resources :variants do
 
         desc 'Список вариантов'
         get do
-          present landing.versions.ordered, with: Entities::LandingVersionEntity
+          present landing.variants.ordered, with: Entities::VariantEntity
         end
       end
     end

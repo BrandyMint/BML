@@ -21,7 +21,7 @@ class Account::LandingsController < Account::BaseController
 
   def create
     landing = create_landing!
-    redirect_to account_landing_editor_path landing.default_version.uuid
+    redirect_to account_landing_editor_path landing.default_variant.uuid
   rescue ActiveRecord::RecordInvalid => err
     render 'new', locals: { landing: err.record }
   end
@@ -35,7 +35,7 @@ class Account::LandingsController < Account::BaseController
 
   private
 
-  def current_landing_version
+  def current_variant
     nil
   end
 
@@ -60,7 +60,7 @@ class Account::LandingsController < Account::BaseController
     landing = build_landing
     landing.assign_attributes permitted_params
     landing.save!
-    v = landing.versions.create!
+    v = landing.variants.create!
     SectionsUpdater.new(v, regenerate_uuid: true).update(LandingExamples::EXAMPLE1)
 
     landing

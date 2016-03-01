@@ -1,6 +1,6 @@
 module LandingsHelper
-  def render_landing_variant(variant)
-    props = landing_variant_store_state(variant)
+  def render_variant(variant)
+    props = variant_store_state(variant)
     react_component 'Viewer', props, prerender: true
   end
 
@@ -14,11 +14,11 @@ module LandingsHelper
 
   private
 
-  def landing_variant_store_state(variant)
-    data = Entities::LandingVersionEntity.represent(variant).as_json
+  def variant_store_state(variant)
+    data = Entities::VariantEntity.represent(variant).as_json
     {
       application: {
-        landingVersionUuid: variant.uuid
+        landingVariantUuid: variant.uuid
       },
       blocks: data[:sections]
     }

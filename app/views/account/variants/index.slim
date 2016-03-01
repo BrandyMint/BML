@@ -1,9 +1,9 @@
 .row
   .col-md-9
-    h1 Посадочные варианты (#{versions.count})
+    h1 Посадочные варианты (#{variants.count})
   .col-md-3
     .pull-right
-      = link_to new_account_landing_version_path, class: 'btn btn-success' do
+      = link_to new_account_variant_path, class: 'btn btn-success' do
         = fa_icon 'plus', class: 'fa-in-button', text: 'Добавить вариант'
 
 br
@@ -20,26 +20,26 @@ table.table
     th
 
   tbody
-    - versions.each do |v|
+    - variants.each do |v|
       tr
         td
           = link_to account_landing_editor_path(current_landing, v) do
             = v.to_s
           br
-          small.text-muted= link_to site_landing_version_url(v), site_landing_version_url(v), target: '_blank', class: 'text-muted'
+          small.text-muted= link_to site_variant_url(v), site_variant_url(v), target: '_blank', class: 'text-muted'
         td 3 дня
         td 12 тыс
         td 10 тыс
         td 12%
         td.pull-right
           nav
-            /= link_to site_landing_version_url(v), target: '_blank' do
+            /= link_to site_variant_url(v), target: '_blank' do
               /= fa_icon 'external-link', text: 'Публичная ссылка'
             /br
             = link_to account_landing_editor_path(current_landing, v) do
               = fa_icon 'object-group', text: 'Конструктор'
             br
-            = link_to edit_account_landing_version_path(id: v.id, landing: current_landing) do
+            = link_to edit_account_variant_path(id: v.id, landing: current_landing) do
               = fa_icon :pencil, text: 'Настройка'
 
 .row

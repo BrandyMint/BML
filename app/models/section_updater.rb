@@ -1,8 +1,8 @@
 class SectionUpdater
   BACKGROUND_KEYS = %i(color position attachment repeat)
 
-  def initialize(landing_version:, block:)
-    @landing_version = landing_version
+  def initialize(variant:, block:)
+    @variant = variant
     @block           = block
   end
 
@@ -21,9 +21,9 @@ class SectionUpdater
 
   private
 
-  attr_reader :landing_version, :block
+  attr_reader :variant, :block
 
-  delegate :account, to: :landing_version
+  delegate :account, to: :variant
 
   def background_image
     image = block['backgroundImage']
@@ -52,7 +52,7 @@ class SectionUpdater
 
   def section
     @_section ||=
-      landing_version
+      variant
       .sections
       .find_or_initialize_by uuid: uuid
   end
