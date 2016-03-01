@@ -1,5 +1,5 @@
 .dropdown.pull-xs-left
   button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Вариант: Все
   .dropdown-menu
-    - current_landing.versions.ordered.find_each do |v|
+    - current_landing.variants.ordered.find_each do |v|
       button.btn-sm.dropdown-item type='button'= v

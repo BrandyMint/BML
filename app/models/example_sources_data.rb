@@ -25,7 +25,7 @@ class ExampleSourcesData
   def build_segments(source)
     segments = SEGMENTS[source.to_sym] or fail "No segments for #{source}"
     segments.map do |segment|
-      AnalyticSource::Segment.new title: segment, conversion: random_conversion, users: random_users, percent: random_conversion
+      AnalyticSource::Segment.new title: segment, convariant: random_convariant, users: random_users, percent: random_convariant
     end
   end
 
@@ -37,7 +37,7 @@ class ExampleSourcesData
     Random.rand(1000).to_f / 10
   end
 
-  def random_conversion
+  def random_convariant
     Random.rand(100).to_f / 10
   end
 end

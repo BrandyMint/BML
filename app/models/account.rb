@@ -10,7 +10,7 @@ class Account < ActiveRecord::Base
   has_many :landings,    dependent: :destroy
   has_many :collections, through: :landings, dependent: :destroy
 
-  has_many :versions, through: :landings
+  has_many :variants, through: :landings
 
   has_many :asset_files, dependent: :destroy
   has_many :asset_images

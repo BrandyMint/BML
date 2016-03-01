@@ -1,7 +1,7 @@
 class LeadCreator
   include Virtus.model
 
-  DATA_EXCEPTIONS = [:landing_version_uuid, :controller, :action, :utf8, :authenticity_token, :commit]
+  DATA_EXCEPTIONS = [:variant_uuid, :controller, :action, :utf8, :authenticity_token, :commit]
 
   attribute :params
   attribute :cookies
@@ -15,7 +15,7 @@ class LeadCreator
   def lead_attributes
     utm.attributes.merge!(
       data: data,
-      landing_version: landing_version
+      variant: variant
     )
   end
 
@@ -24,15 +24,15 @@ class LeadCreator
   end
 
   def collection
-    find_collection || landing_version.landing.default_collection
+    find_collection || variant.landing.default_collection
   end
 
   def find_collection
     # TODO
   end
 
-  def landing_version
-    @_landing_version ||= LandingVersion.where(uuid: params[:landing_version_uuid]).first!
+  def variant
+    @_variant ||= Variant.where(uuid: params[:variant_uuid]).first!
   end
 
   def data

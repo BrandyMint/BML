@@ -58,8 +58,7 @@ Rails.application.routes.draw do
         #resource :settings
         #resources :segments
         #resources :clients
-        #resources :landing_versions, path: 'v', controller: 'versions'
-        #resources :versions
+        #resources :variants
       #end
     #end
   end

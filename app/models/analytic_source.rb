@@ -7,7 +7,7 @@ class AnalyticSource
     include Virtus.model
 
     attribute :title,      String
-    attribute :conversion, Float
+    attribute :convariant, Float
     attribute :percent,    Float
     attribute :users,      Integer
   end

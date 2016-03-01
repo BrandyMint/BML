@@ -18,7 +18,7 @@ table.table.table-condensed.table-hover.table-projects.table-centered
           = link_to landing_leads_title(l), account_landing_leads_path(l)
         td.hoverable-cell
           .hoverable-content
-            = link_to account_landing_editor_path(l.default_version.uuid) do
+            = link_to account_landing_editor_path(l.default_variant.uuid) do
               = fa_icon :editor
         td.hoverable-cell
           .hoverable-content
