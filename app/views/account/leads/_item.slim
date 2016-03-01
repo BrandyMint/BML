@@ -2,3 +2,6 @@ tr
   td.text-muted= I18n.l item.created_at, format: :short
   - fields.each do |field|
     td= item.data[field.key]
+
+  - utm_fields.each do |field|
+    td= item.send(field.item_key)

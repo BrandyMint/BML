@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224042712) do
+ActiveRecord::Schema.define(version: 20160226121131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,18 @@ ActiveRecord::Schema.define(version: 20160224042712) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "landing_version_id"
+    t.string   "first_utm_source"
+    t.string   "first_utm_campaign"
+    t.string   "first_utm_medium"
+    t.string   "first_utm_term"
+    t.string   "first_utm_content"
+    t.string   "first_referer"
+    t.string   "last_utm_source"
+    t.string   "last_utm_campaign"
+    t.string   "last_utm_medium"
+    t.string   "last_utm_term"
+    t.string   "last_utm_content"
+    t.string   "last_referer"
   end
 
   add_index "collection_items", ["collection_id"], name: "index_collection_items_on_collection_id", using: :btree

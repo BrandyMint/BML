@@ -9,8 +9,10 @@
         th Когда
         - fields.each do |field|
           th= field
+        - utm_fields.each do |field|
+          th= field.title
     tbody
-      == render partial: 'item', collection: items, locals: { fields: fields }
+      == render partial: 'item', collection: items, locals: { fields: fields, utm_fields: utm_fields }
   nav
     = paginate items
   -#= render 'export_links'
