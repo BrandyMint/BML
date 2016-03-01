@@ -31,7 +31,7 @@ class Account < ActiveRecord::Base
     access_key
   end
 
-  def self.root_account
+  def self.root
     find_by_ident ROOT_IDENT
   end
 end

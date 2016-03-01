@@ -3,9 +3,7 @@ class Variant < ActiveRecord::Base
 
   belongs_to :landing, counter_cache: :variants_count
   has_many :sections, dependent: :destroy
-  has_many :collection_items
-
-  has_many :leads, class_name: 'CollectionItem'
+  has_many :leads
 
   has_one :account, through: :landing
 

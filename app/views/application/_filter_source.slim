@@ -25,6 +25,6 @@
 
 ul.list-inline.form-inline
   li.list-inline-item
-    - CollectionItem.utm_fields.each do |f|
+    - Lead.utm_fields.each do |f|
       .form-group.input-group-sm
         input.form-control.input-xs type="text" name=f.key placeholder=f.title value=filter.send(f.key)

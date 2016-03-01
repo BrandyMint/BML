@@ -1,4 +1,4 @@
-- if items.blank?
+- if leads.blank?
   .jumbotron
     h1 Нет данных.
     p.lead Коллекции данных появляются, когда пользователи заполняют формы.
@@ -12,7 +12,7 @@
         - utm_fields.each do |field|
           th= field.title
     tbody
-      == render partial: 'item', collection: items, locals: { fields: fields, utm_fields: utm_fields }
+      == render partial: 'lead', collection: leads, locals: { fields: fields, utm_fields: utm_fields }
   nav
-    = paginate items
+    = paginate leads
   -#= render 'export_links'

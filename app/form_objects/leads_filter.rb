@@ -1,7 +1,7 @@
 class LeadsFilter
   include Virtus.model
 
-  CollectionItem::UTM_FIELDS.each do |f|
+  Lead::UTM_FIELDS.each do |f|
     attribute f, String
   end
 

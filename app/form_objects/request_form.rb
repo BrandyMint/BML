@@ -5,7 +5,8 @@ class RequestForm < FormBase
   def save
     fail ActiveRecord::RecordInvalid.new(self) unless valid?
 
-    variant.collection_items
+    variant
+      .leads
       .create! data: data, collection: collection
 
   rescue ActiveRecord::RecordNotFound => err

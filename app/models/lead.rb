@@ -1,4 +1,4 @@
-class CollectionItem < ActiveRecord::Base
+class Lead < ActiveRecord::Base
   UTM_FIELDS = [
     :utm_source,
     :utm_campaign,
