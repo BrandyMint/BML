@@ -9,7 +9,7 @@ FactoryGirl.define do
 
     trait :confirmed do
       is_confirmed true
-      confirmed_at { Time.now }
+      confirmed_at { Time.zone.now }
     end
   end
 end
