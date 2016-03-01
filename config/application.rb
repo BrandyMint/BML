@@ -28,6 +28,8 @@ module Bml
       "#{Rails.root}/app/errors",
       "#{Rails.root}/app/form_objects",
       "#{Rails.root}/app/value_objects",
+      "#{Rails.root}/app/commands",
+      "#{Rails.root}/app/queries",
       "#{Rails.root}/app/workers"
     ]
 

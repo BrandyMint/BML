@@ -19,6 +19,8 @@ class Account < ActiveRecord::Base
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
 
+  has_many :utm_values
+
   def default_landing
     landings.ordered.first
   end
