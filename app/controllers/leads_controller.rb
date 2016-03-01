@@ -2,8 +2,6 @@ class LeadsController < ApplicationController
   skip_before_action :verify_authenticity_token
   layout 'blank'
 
-  DATA_EXCEPTIONS = [:landing_version_uuid, :controller, :action, :utf8, :authenticity_token, :commit]
-
   def create
     create_lead!
 
@@ -49,36 +47,6 @@ class LeadsController < ApplicationController
   end
 
   def create_lead!
-    # fail ActiveRecord::RecordInvalid.new(self) unless valid?
-
-    collection
-      .items
-      .create! lead_attributes
-
-    # rescue ActiveRecord::RecordNotFound => err
-    # errors.add :base, err.message
-    # raise ActiveRecord::RecordInvalid.new(self)
-  end
-
-  def lead_attributes
-    {
-      data: data, landing_version: landing_version
-    }
-  end
-
-  def collection
-    find_collection || landing_version.landing.default_collection
-  end
-
-  def find_collection
-    # TODO
-  end
-
-  def landing_version
-    @_landing_version ||= LandingVersion.where(uuid: params[:landing_version_uuid]).first!
-  end
-
-  def data
-    Hash[params.except(*DATA_EXCEPTIONS).map { |k, v| [k.downcase, v] }]
+    LeadCreator.new(params: params, cookies: cookies).call
   end
 end

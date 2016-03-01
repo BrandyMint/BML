@@ -1,13 +1,32 @@
 class CollectionItem < ActiveRecord::Base
+  UTM_FIELDS = [
+    :utm_source,
+    :utm_campaign,
+    :utm_medium,
+    :utm_term,
+    :utm_content,
+    :referer
+  ]
+
   belongs_to :collection, counter_cache: :leads_count
-  belongs_to :landing_version, counter_cache: :leads_count
-  has_one :landing, through: :landing_version
+  belongs_to :variant, counter_cache: :leads_count
+  has_one :landing, through: :variant
 
   scope :ordered, -> { order 'id desc' }
 
-  validates :collection, :landing_version, :data, presence: true
+  validates :collection, :variant, :data, presence: true
 
   after_create :create_collection_fields
+
+  def self.utm_fields
+    UTM_FIELDS.map do |f|
+      OpenStruct.new(
+        key: f,
+        item_key: "last_#{f}",
+        title: I18n.t("utm_fields.#{f}")
+      )
+    end
+  end
 
   private
 

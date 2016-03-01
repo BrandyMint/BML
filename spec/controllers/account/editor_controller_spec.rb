@@ -17,7 +17,7 @@ RSpec.describe Account::EditorController, type: :controller do
 
   describe 'GET #show' do
     it 'returns http success' do
-      get :show, uuid: landing.default_version.uuid
+      get :show, uuid: landing.default_variant.uuid
       expect(response.status).to eq 200
     end
   end

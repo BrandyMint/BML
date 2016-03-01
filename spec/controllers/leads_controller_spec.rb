@@ -4,7 +4,7 @@ RSpec.describe LeadsController, type: :controller do
   let!(:landing) { create :landing }
   let(:email) { 'some@email.ru' }
   let(:name) { 'somename' }
-  let(:form) { { email: email, name: name, landing_version_uuid: landing.default_version.uuid }}
+  let(:form) { { email: email, name: name, variant_uuid: landing.default_variant.uuid }}
 
   context 'create' do
     it do

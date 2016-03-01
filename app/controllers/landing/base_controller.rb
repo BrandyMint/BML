@@ -1,7 +1,7 @@
 class Landing::BaseController < Account::BaseController
   layout 'landing'
 
-  helper_method :current_landing, :current_landing_version
+  helper_method :current_landing, :current_variant
 
   private
 
@@ -9,7 +9,7 @@ class Landing::BaseController < Account::BaseController
     @_current_landing ||= current_account.landings.find params[:landing_id]
   end
 
-  def current_landing_version
+  def current_variant
     nil
   end
 end

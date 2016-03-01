@@ -1,4 +1,4 @@
-class API::LandingVersions < Grape::API
+class API::Variants < Grape::API
   include StrongParams
   include Authorization
 
@@ -7,15 +7,15 @@ class API::LandingVersions < Grape::API
   end
 
   desc 'Варианты посадочных страниц'
-  resources :landing_versions do
+  resources :variants do
     params do
       requires :uuid, type: String, desc: 'UUID Варианта'
     end
 
     namespace ':uuid' do
       helpers do
-        def landing_version
-          current_account.versions.find_by_uuid! params[:uuid]
+        def variant
+          current_account.variants.find_by_uuid! params[:uuid]
         end
       end
 
@@ -26,15 +26,15 @@ class API::LandingVersions < Grape::API
       end
       put do
         if params[:blocks].is_a? Array
-          SectionsUpdater.new(landing_version).update blocks: params[:blocks]
+          SectionsUpdater.new(variant).update blocks: params[:blocks]
         end
 
-        present landing_version.reload, with: Entities::LandingVersionEntity
+        present variant.reload, with: Entities::VariantEntity
       end
 
       desc 'Получаем данные лендоса'
       get do
-        present landing_version.reload, with: Entities::LandingVersionEntity
+        present variant.reload, with: Entities::VariantEntity
       end
     end
   end

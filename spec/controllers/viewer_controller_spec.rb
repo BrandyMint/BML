@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe ViewerController, type: :controller do
   include CurrentLanding
   let!(:landing) { create :landing }
-  let!(:landing_version) { landing.default_version }
+  let!(:variant) { landing.default_variant }
 
   before do
-    set_current_landing_version landing_version
+    set_current_variant variant
   end
 
   describe 'GET #show' do

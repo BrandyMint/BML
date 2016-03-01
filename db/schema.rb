@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224042712) do
+ActiveRecord::Schema.define(version: 20160301075637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,22 +32,22 @@ ActiveRecord::Schema.define(version: 20160224042712) do
   create_table "asset_files", force: :cascade do |t|
     t.integer  "account_id"
     t.integer  "landing_id"
-    t.integer  "landing_version_id"
-    t.string   "file",                                                        null: false
+    t.integer  "variant_id"
+    t.string   "file",                                                null: false
     t.integer  "width"
     t.integer  "height"
-    t.integer  "file_size",          limit: 8,                                null: false
-    t.datetime "created_at",                                                  null: false
-    t.datetime "updated_at",                                                  null: false
-    t.string   "type",                                                        null: false
-    t.uuid     "uuid",                         default: "uuid_generate_v4()", null: false
-    t.string   "digest",                                                      null: false
+    t.integer  "file_size",  limit: 8,                                null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.string   "type",                                                null: false
+    t.uuid     "uuid",                 default: "uuid_generate_v4()"
+    t.string   "digest",                                              null: false
   end
 
   add_index "asset_files", ["account_id", "digest"], name: "index_asset_files_on_account_id_and_digest", unique: true, using: :btree
   add_index "asset_files", ["account_id"], name: "index_asset_files_on_account_id", using: :btree
   add_index "asset_files", ["landing_id"], name: "index_asset_files_on_landing_id", using: :btree
-  add_index "asset_files", ["landing_version_id"], name: "index_asset_files_on_landing_version_id", using: :btree
+  add_index "asset_files", ["variant_id"], name: "index_asset_files_on_variant_id", using: :btree
 
   create_table "authentications", force: :cascade do |t|
     t.integer  "account_id"
@@ -87,11 +87,23 @@ ActiveRecord::Schema.define(version: 20160224042712) do
     t.hstore   "data"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.integer  "landing_version_id"
+    t.integer  "variant_id"
+    t.string   "first_utm_source"
+    t.string   "first_utm_campaign"
+    t.string   "first_utm_medium"
+    t.string   "first_utm_term"
+    t.string   "first_utm_content"
+    t.string   "first_referer"
+    t.string   "last_utm_source"
+    t.string   "last_utm_campaign"
+    t.string   "last_utm_medium"
+    t.string   "last_utm_term"
+    t.string   "last_utm_content"
+    t.string   "last_referer"
   end
 
   add_index "collection_items", ["collection_id"], name: "index_collection_items_on_collection_id", using: :btree
-  add_index "collection_items", ["landing_version_id"], name: "index_collection_items_on_landing_version_id", using: :btree
+  add_index "collection_items", ["variant_id"], name: "index_collection_items_on_variant_id", using: :btree
 
   create_table "collections", force: :cascade do |t|
     t.integer  "landing_id",              null: false
@@ -102,30 +114,16 @@ ActiveRecord::Schema.define(version: 20160224042712) do
 
   add_index "collections", ["landing_id"], name: "index_collections_on_landing_id", using: :btree
 
-  create_table "landing_versions", force: :cascade do |t|
-    t.integer  "landing_id",                                    null: false
-    t.string   "title"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.boolean  "is_active",      default: true,                 null: false
-    t.integer  "sections_count", default: 0,                    null: false
-    t.uuid     "uuid",           default: "uuid_generate_v4()", null: false
-    t.integer  "leads_count",    default: 0,                    null: false
-  end
-
-  add_index "landing_versions", ["landing_id"], name: "index_landing_versions_on_landing_id", using: :btree
-  add_index "landing_versions", ["uuid"], name: "index_landing_versions_on_uuid", unique: true, using: :btree
-
   create_table "landings", force: :cascade do |t|
     t.integer  "account_id",                                    null: false
     t.string   "title",                                         null: false
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
     t.integer  "sections_count", default: 0,                    null: false
-    t.integer  "versions_count", default: 0,                    null: false
+    t.integer  "variants_count", default: 0,                    null: false
     t.integer  "segments_count", default: 0,                    null: false
     t.boolean  "is_active",      default: true,                 null: false
-    t.uuid     "uuid",           default: "uuid_generate_v4()", null: false
+    t.uuid     "uuid",           default: "uuid_generate_v4()"
     t.integer  "clients_count",  default: 0,                    null: false
     t.string   "path",                                          null: false
   end
@@ -161,10 +159,10 @@ ActiveRecord::Schema.define(version: 20160224042712) do
 
   create_table "sections", force: :cascade do |t|
     t.string   "block_view",                                           null: false
-    t.uuid     "uuid",                  default: "uuid_generate_v4()", null: false
+    t.uuid     "uuid",                  default: "uuid_generate_v4()"
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
-    t.integer  "landing_version_id",                                   null: false
+    t.integer  "variant_id",                                           null: false
     t.text     "content"
     t.integer  "row_order",             default: 0,                    null: false
     t.integer  "background_image_id"
@@ -173,8 +171,8 @@ ActiveRecord::Schema.define(version: 20160224042712) do
     t.text     "form"
   end
 
-  add_index "sections", ["landing_version_id", "row_order"], name: "index_sections_on_landing_version_id_and_row_order", using: :btree
   add_index "sections", ["uuid"], name: "index_sections_on_uuid", unique: true, using: :btree
+  add_index "sections", ["variant_id", "row_order"], name: "index_sections_on_variant_id_and_row_order", using: :btree
 
   create_table "segments", force: :cascade do |t|
     t.integer  "landing_id"
@@ -222,16 +220,29 @@ ActiveRecord::Schema.define(version: 20160224042712) do
   add_index "users", ["phone"], name: "index_users_on_phone", unique: true, using: :btree
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
 
+  create_table "variants", force: :cascade do |t|
+    t.integer  "landing_id",                                    null: false
+    t.string   "title"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.boolean  "is_active",      default: true,                 null: false
+    t.integer  "sections_count", default: 0,                    null: false
+    t.uuid     "uuid",           default: "uuid_generate_v4()"
+    t.integer  "leads_count",    default: 0,                    null: false
+  end
+
+  add_index "variants", ["landing_id"], name: "index_variants_on_landing_id", using: :btree
+  add_index "variants", ["uuid"], name: "index_variants_on_uuid", unique: true, using: :btree
+
   add_foreign_key "asset_files", "accounts"
-  add_foreign_key "asset_files", "landing_versions"
   add_foreign_key "asset_files", "landings"
+  add_foreign_key "asset_files", "variants"
   add_foreign_key "authentications", "accounts"
   add_foreign_key "clients", "landings"
   add_foreign_key "collection_fields", "collections"
   add_foreign_key "collection_items", "collections"
-  add_foreign_key "collection_items", "landing_versions"
+  add_foreign_key "collection_items", "variants"
   add_foreign_key "collections", "landings"
-  add_foreign_key "landing_versions", "landings"
   add_foreign_key "landings", "accounts"
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
@@ -239,4 +250,5 @@ ActiveRecord::Schema.define(version: 20160224042712) do
   add_foreign_key "sections", "asset_files", column: "background_image_id"
   add_foreign_key "segments", "landings"
   add_foreign_key "subdomains", "accounts"
+  add_foreign_key "variants", "landings"
 end

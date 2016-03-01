@@ -27,6 +27,13 @@ ru:
       previous: "&lsaquo;"
       next: "&rsaquo;"
       truncate: "&hellip;"
+  utm_fields:
+    utm_source: Источник
+    utm_campaign: Кампания
+    utm_medium: Тип трафика
+    utm_term: Фраза
+    utm_content: Рекламная сеть
+    referer: Referer
   sources:
     yandex_direct: Яндекс.Директ
     google_adwords: Google Adwords

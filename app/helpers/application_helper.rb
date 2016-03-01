@@ -19,7 +19,7 @@ module ApplicationHelper
   end
 
   def editor_exit_url
-    params[:backurl] || account_landing_leads_url(landing_version.id)
+    params[:backurl] || account_landing_leads_url(variant.id)
   end
 
   def api_v1_url
@@ -46,15 +46,15 @@ module ApplicationHelper
     end
   end
 
-  def site_landing_version_url(landing_version)
-    if landing_version.is_a? Landing
-      landing = landing_version
-      landing_version = landing_version.default_version
+  def site_variant_url(variant)
+    if variant.is_a? Landing
+      landing = variant
+      variant = variant.default_variant
     else
-      landing = landing_version.landing
+      landing = variant.landing
     end
 
-    landing.host + "?version_id=#{landing_version.id}"
+    landing.host + "?variant_id=#{variant.id}"
   end
 
   def tel_to(tel, opts = {})

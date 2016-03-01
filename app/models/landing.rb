@@ -6,13 +6,13 @@ class Landing < ActiveRecord::Base
   belongs_to :account, counter_cache: true
 
   has_many :collections, dependent: :destroy
-  has_many :versions, class_name: 'LandingVersion', dependent: :destroy
+  has_many :variants, dependent: :destroy
   has_many :segments, dependent: :destroy
   has_many :clients, dependent: :destroy
 
   validates :title, presence: true
 
-  after_create :create_default_version
+  after_create :create_default_variant
 
   scope :ordered, -> { order 'id desc' }
   scope :active, -> { all }
@@ -35,8 +35,8 @@ class Landing < ActiveRecord::Base
       .first_or_create!
   end
 
-  def default_version
-    versions
+  def default_variant
+    variants
       .active
       .ordered
       .first
@@ -44,7 +44,7 @@ class Landing < ActiveRecord::Base
 
   private
 
-  def create_default_version
-    versions.create!
+  def create_default_variant
+    variants.create!
   end
 end

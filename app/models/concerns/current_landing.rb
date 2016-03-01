@@ -1,21 +1,21 @@
 module CurrentLanding
-  NoCurrentLandingVersion = Class.new StandardError
+  NoCurrentVariant = Class.new StandardError
 
-  def current_landing_version
-    if Thread.current[:landing_version].present?
-      Thread.current[:landing_version]
+  def current_variant
+    if Thread.current[:variant].present?
+      Thread.current[:variant]
     else
-      fail NoCurrentLandingVersion
+      fail NoCurrentVariant
     end
   end
 
-  def set_current_landing_version(landing_version)
-    Thread.current[:landing_version] = landing_version
+  def set_current_variant(variant)
+    Thread.current[:variant] = variant
   end
 
-  def safe_current_landing_version
-    current_landing_version
-  rescue NoCurrentLandingVersion
+  def safe_current_variant
+    current_variant
+  rescue NoCurrentVariant
     nil
   end
 end

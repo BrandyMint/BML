@@ -5,7 +5,7 @@ class RequestForm < FormBase
   def save
     fail ActiveRecord::RecordInvalid.new(self) unless valid?
 
-    landing_version.collection_items
+    variant.collection_items
       .create! data: data, collection: collection
 
   rescue ActiveRecord::RecordNotFound => err
@@ -16,11 +16,11 @@ class RequestForm < FormBase
   private
 
   def collection
-    landing_version.landing.collections.first!
+    variant.landing.collections.first!
   end
 
-  def landing_version
-    @_landing_version ||= LandingVersion.where(uuid: params[:landing_version_uuid]).first!
+  def variant
+    @_variant ||= Variant.where(uuid: params[:variant_uuid]).first!
   end
 
   def data
@@ -28,6 +28,6 @@ class RequestForm < FormBase
   end
 
   def data_exceptions
-    [:landing_version_uuid, :controller, :action, :utf8, :authenticity_token, :commit]
+    [:variant_uuid, :controller, :action, :utf8, :authenticity_token, :commit]
   end
 end

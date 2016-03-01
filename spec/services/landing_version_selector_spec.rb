@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe LandingVersionSelector do
+RSpec.describe VariantSelector do
   let(:host) { account.host }
   let(:path) { 'lp1' }
   let(:session) { {} }
@@ -22,17 +22,17 @@ RSpec.describe LandingVersionSelector do
     it { expect(subject.landing).to eq landing }
   end
 
-  describe '#landing_version' do
+  describe '#variant' do
     let!(:landing) { create :landing, account: account }
     let(:path) { landing.path }
 
-    it { expect(subject.landing_version).to eq landing.default_version }
+    it { expect(subject.variant).to eq landing.default_variant }
   end
 
-  describe '#landing_version (default)' do
+  describe '#variant (default)' do
     let!(:landing) { create :landing, account: account }
     let(:path) { '' }
 
-    it { expect(subject.landing_version).to eq landing.default_version }
+    it { expect(subject.variant).to eq landing.default_variant }
   end
 end
