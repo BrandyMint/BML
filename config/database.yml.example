@@ -1,10 +1,11 @@
 test:
   adapter: postgresql
   encoding: unicode
-  database: bml_test
+  database: <%= ENV['PGDATABASE'] %>
   pool: 5
-  username: postgres
-  password:
+  username: <%= ENV['PGUSER'] %>
+  password: 
+  host: <%= ENV['PGHOST'] %>
 development:
   adapter: postgresql
   encoding: unicode
@@ -15,7 +16,8 @@ development:
 production:
   adapter: postgresql
   encoding: unicode
-  database: bml_test
+  database: <%= ENV['PGDATABASE'] %>
   pool: 5
-  username: postgres
-  password:
+  username: <%= ENV['PGUSER'] %>
+  password: 
+  host: <%= ENV['PGHOST'] %>
