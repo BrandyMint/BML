@@ -7,7 +7,8 @@ class LeadCreator
   attribute :cookies
 
   def call
-    collection.leads.create! lead_attributes
+    lead = collection.leads.create! lead_attributes
+    update_utm_values lead
   end
 
   private
@@ -17,6 +18,10 @@ class LeadCreator
       data: data,
       variant: variant
     )
+  end
+
+  def update_utm_values(lead)
+    UtmValuesUpdate.new(lead: lead).call
   end
 
   def utm

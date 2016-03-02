@@ -6,6 +6,7 @@ class LeadsFilter
   end
 
   attribute :collection, Collection
+  attribute :variant, Variant
   attribute :sort_field, Symbol, default: :id
   attribute :sort_order, Symbol, default: :asc
 end

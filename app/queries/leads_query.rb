@@ -11,6 +11,8 @@ class LeadsQuery
       s = s.where(f.item_key => filter_value) if filter_value.present?
     end
 
+    s = s.where(variant: filter.variant) if filter.variant.present?
+
     s.order order
   end
 

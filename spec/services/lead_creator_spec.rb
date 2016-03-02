@@ -20,7 +20,10 @@ RSpec.describe LeadCreator do
           last_utm_source: '111'
         }
       end
-      before { subject.call }
+      before do
+        allow(subject).to receive(:update_utm_values)
+        subject.call
+      end
       it 'must create lead' do
         expect(variant.leads.last.first_utm_source).to eq '123'
       end
