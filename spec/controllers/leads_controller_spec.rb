@@ -9,7 +9,6 @@ RSpec.describe LeadsController, type: :controller do
   context 'create' do
     it do
       expect(controller).to receive(:create_lead)
-      expect(controller).to receive(:update_utm_values)
       post :create, form, subdomain: ''
     end
   end

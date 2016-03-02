@@ -3,8 +3,7 @@ class LeadsController < ApplicationController
   layout 'blank'
 
   def create
-    lead = create_lead
-    update_utm_values lead
+    create_lead
 
     if request.xhr?
       respond_to do |format|
@@ -49,9 +48,5 @@ class LeadsController < ApplicationController
 
   def create_lead
     LeadCreator.new(params: params, cookies: cookies).call
-  end
-
-  def update_utm_values(lead)
-    UtmValuesUpdate.new(lead: lead).call
   end
 end

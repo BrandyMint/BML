@@ -12,6 +12,7 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require csrf-token.js
 #= require tether
 #= require nprogress
 #= require nprogress-turbolinks
@@ -23,6 +24,9 @@
 #= require jquery.easy-pie-chart/dist/jquery.easypiechart.js
 #= require better-form
 #= require enableWhenChanged
+#= require select2/dist/js/select2.full.min
+#= require select2/dist/js/i18n/ru.js
+#= require leadsFilter.js
 #
 # SimpleNavigation
 #  require bootstrap_and_overrides

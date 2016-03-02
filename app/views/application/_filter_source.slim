@@ -23,8 +23,10 @@
 /       button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Кампания
 /       .dropdown-menu
 
-ul.list-inline.form-inline
-  li.list-inline-item
-    - Lead.utm_fields.each do |f|
-      .form-group.input-group-sm
-        input.form-control.input-xs type="text" name=f.key placeholder=f.title value=filter.send(f.key)
+/ ul.list-inline.form-inline
+/   li.list-inline-item
+- Lead.utm_fields.each do |f|
+  .form-group.input-group-sm.col-xs-2
+    select.form-control type="text" filter-term='' name=f.key data-placeholder=f.title value=filter.send(f.key)
+      - if filter.send(f.key)
+        option value=filter.send(f.key) = filter.send(f.key)

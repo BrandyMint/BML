@@ -13,6 +13,7 @@
  *= require nprogress
  *= require nprogress-bootstrap
  *= require font-awesome
+ *= require select2/dist/css/select2.min.css
  *= require_self
  */
 
@@ -26,7 +27,7 @@
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,800);
 
-body { 
+body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 200;
 }
@@ -45,3 +46,15 @@ body {
   }
 }
 
+.lead-filter {
+  .form-group {
+    padding: 0 3px;
+  }
+}
+
+.select2-container .select2-selection--single {
+  height: 31px;
+}
+.select2-container {
+  font-size: 0.9rem;
+}

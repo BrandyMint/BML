@@ -17,9 +17,9 @@
   };
 
   setUtmCookies = function(prefix, condition) {
-    for( field of UTM_FIELDS ) {
-      if(condition(field, prefix))
-        setCookieFromParam(field, prefix);
+    for( i in UTM_FIELDS ) {
+      if(condition(UTM_FIELDS[i], prefix))
+        setCookieFromParam(UTM_FIELDS[i], prefix);
     };
 
     if(condition('referer', prefix))
