@@ -1,11 +1,6 @@
 module ApplicationHelper
-  def setup_public_bml
-    config = {
-      postLeadUrl: post_lead_url,
-      apiUrl: api_v1_url,
-      apiKey: current_account.try(:api_key)
-    }
-    javascript_tag "window.bmlConfig = #{config.to_json}"
+  def human_boolean(value)
+    value ? 'Да' : 'Нет'
   end
 
   def setup_editor_bml
@@ -13,6 +8,7 @@ module ApplicationHelper
       postLeadUrl: post_lead_url,
       apiUrl: api_v1_url,
       apiKey: current_account.api_key,
+      variantUuid: current_variant.uuid,
       exitUrl: editor_exit_url
     }
     javascript_tag "window.bmlConfig = #{config.to_json}"

@@ -1,4 +1,4 @@
-class SiteConstraint
+class ViewerConstraint
   extend CurrentLanding
 
   def self.matches?(request)

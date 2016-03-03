@@ -1,4 +1,23 @@
 module LandingsHelper
+  def landing_short_title(landing)
+    truncate landing.title, length: 25
+  end
+
+  def setup_viewer_bml
+    config = {
+      postLeadUrl: post_lead_url,
+      # Не передаем, потом что лендинг могут сохранить и там окажется секретный api-ключ
+      #apiUrl: api_v1_url,
+      #apiKey: current_account.try(:api_key),
+      variantUuid: current_variant.uuid
+    }
+    javascript_tag "window.bmlConfig = #{config.to_json}"
+  end
+
+  def landing_head_title(landing)
+    landing.head_title.presence || landing.title
+  end
+
   def render_variant(variant)
     props = variant_store_state(variant)
     react_component 'Viewer', props, prerender: true

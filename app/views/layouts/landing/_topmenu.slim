@@ -10,15 +10,19 @@ nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
               class: 'nav-link dropdown-toggle', 
               data: { toggle: 'dropdown' }, 
               role: 'button' do
-              = fa_icon 'bullseye', class: 'm-r-sm', text: current_landing
+              = fa_icon 'bullseye', class: 'm-r-sm', text: landing_short_title(current_landing)
 
             .dropdown-menu
               = link_to 'Новый лендинг', 
                 new_account_landing_url,
                 class: 'dropdown-item'
+              - if current_account.landings_count > 1
+                = link_to "Список лендингов (#{current_account.landings_count})",
+                  account_landings_url,
+                  class: 'dropdown-item'
               .dropdown-divider
               - current_account.landings.active.ordered.find_each do |l|
-                = link_to l, account_landing_url(l), 
+                = link_to landing_short_title(l), account_landing_url(l), 
                   class: 'dropdown-item' + (l==current_landing ? ' active' : '')
           /li.nav-item= active_link_to 'Аналитика', account_landing_analytics_path(current_landing), active: [['account/analytics'], ['index']], class: 'nav-link'
           li.nav-item
@@ -39,6 +43,8 @@ nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
             /= fa_icon 'line-chart'
           li.nav-item
             = active_link_to 'Просмотр', current_landing.url, class: 'nav-link'
+          li.nav-item
+            = active_link_to 'Настройки', edit_account_landing_path(current_landing), class: 'nav-link'
 
       .col-lg-3
         .pull-xs-right

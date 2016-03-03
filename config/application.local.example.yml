@@ -6,6 +6,11 @@ defaults: &defaults
     - aydamaster.ru
     - bmland.ru
 
+  exclusion_landing_paths:
+    - /assets
+    - /images
+    - /robots.txt
+
   app: &app
     title: "[bm]land"
     asset_host: http://3008.vkontraste.ru

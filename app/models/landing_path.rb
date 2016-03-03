@@ -3,7 +3,10 @@ module LandingPath
 
   included do
     before_validation :generate_path
-    validates :path, uniqueness: true
+    validates :path,
+      uniqueness: true,
+      uri_component: { component: :ABS_PATH },
+      exclusion: Settings.exclusion_landing_paths
   end
 
   private

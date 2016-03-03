@@ -1,0 +1,19 @@
+h3 Варианты:
+table.table.table-condensed
+  thead
+    tr
+      th Вариант
+      th Активный
+      th По-умолчанию
+  - landing.variants.ordered.find_each do |v|
+    tr
+      td
+        div= v
+        small.text-muted= v.uuid
+      td
+        = human_boolean v.is_active
+      td
+        - if landing.default_variant == v
+          span по-умолчанию
+      td
+        = link_to 'Отключить', account_landing_variant_path(landing, v), method: :delete

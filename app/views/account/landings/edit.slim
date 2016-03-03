@@ -1,14 +1,11 @@
 = simple_form_for [:account, landing] do |f|
-  = f.input :title, label: 'Название лендинга'
+  = f.input :title
+  = f.input :path
+  .form-group
+    = f.input :head_title
+    = f.input :meta_keywords
+    = f.input :meta_description
 
-  = f.simple_fields_for :subdomain do |sf|
-    .row
-      .col-md-3
-        = sf.input :subdomain, label: 'Поддомен'
-      .col-md-3
-        = sf.input :zone, collection: Subdomain::AVAILABLE_ZONES, include_blank: false, label: 'Зона'
-      .col-md-6
-        = sf.input :suggested_domain, label: 'Предполагаемый домен'
   = f.button :submit, 'Сохранить', class: 'btn-primary'
 
 hr
@@ -20,3 +17,5 @@ code Ключ для API: #{current_account.api_key}
 
 hr
 = render 'yandex_authentication', authentications: current_account.authentications.by_provider(:yandex)
+hr
+= render 'variants', landing: landing

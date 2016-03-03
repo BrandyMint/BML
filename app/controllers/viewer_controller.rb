@@ -3,6 +3,8 @@ class ViewerController < ApplicationController
 
   layout 'viewer'
 
+  helper_method :current_variant
+
   def show
     render locals: {
       current_landing: current_variant.landing,
