@@ -29,6 +29,11 @@ class Account::VariantsController < Landing::BaseController
     render locals: { variants: variants }
   end
 
+  def destroy
+    variant.deactivate!
+    redirect_to :back
+  end
+
   private
 
   def build_variant

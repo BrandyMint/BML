@@ -1,5 +1,5 @@
 require 'app_constraint'
-require 'site_constraint'
+require 'viewer_constraint'
 require 'api_constraint'
 
 Rails.application.routes.draw do
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   ### Viewer
   #
-  scope as: :site, constraints: SiteConstraint do
+  scope as: :site, constraints: ViewerConstraint do
     root 'viewer#show'
     get '*any', to: 'viewer#show'
   end
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       root to: redirect('/account/landings')
       resources :landings do
         resources :leads
+        resources :variants
         resources :analytics do
           collection do
             get :sources
@@ -62,7 +63,6 @@ Rails.application.routes.draw do
         #resource :settings
         #resources :segments
         #resources :clients
-        #resources :variants
       #end
     #end
   end

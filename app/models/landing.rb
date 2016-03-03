@@ -1,7 +1,6 @@
 class Landing < ActiveRecord::Base
   include Activity
   include LandingPath
-  # include LandingSubdomain
 
   belongs_to :account, counter_cache: true
 
@@ -37,7 +36,7 @@ class Landing < ActiveRecord::Base
   end
 
   def default_variant
-    variants
+    @_default_variant ||= variants
       .active
       .ordered
       .first

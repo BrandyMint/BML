@@ -35,6 +35,8 @@ class VariantSelector
   def session_variant
     return nil unless session[:variant_id].present?
     active_variants.find session[:variant_id]
+  rescue ActiveRecord::RecordNotFound
+    nil
   end
 
   def param_variant
