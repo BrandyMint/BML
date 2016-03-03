@@ -8,10 +8,10 @@ RSpec.describe UtmValuesUpdate do
   describe '#call' do
     it 'must upsert utm values' do
       subject.call
-      expect(lead.variant.utm_values.count).to eq Lead.utm_fields.size
+      expect(lead.landing.utm_values.count).to eq Lead.utm_fields.size
 
       subject.call
-      expect(lead.variant.utm_values.count).to eq Lead.utm_fields.size
+      expect(lead.landing.utm_values.count).to eq Lead.utm_fields.size
     end
   end
 end

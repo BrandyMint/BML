@@ -17,7 +17,6 @@ class UtmValuesUpdate
     [
       :account_id,
       :landing_id,
-      :variant_id,
       :key_type,
       :value,
       :created_at,
@@ -37,7 +36,6 @@ class UtmValuesUpdate
     [
       lead.variant.landing.account_id,
       lead.variant.landing_id,
-      lead.variant_id,
       field.key,
       lead.send(field.item_key),
       time.to_s(:db),
