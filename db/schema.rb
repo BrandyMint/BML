@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302143824) do
+ActiveRecord::Schema.define(version: 20160303133410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -186,21 +186,6 @@ ActiveRecord::Schema.define(version: 20160302143824) do
 
   add_index "segments", ["landing_id"], name: "index_segments_on_landing_id", using: :btree
 
-  create_table "subdomains", force: :cascade do |t|
-    t.string   "subdomain",                        null: false
-    t.string   "zone",                             null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.boolean  "use_domain",       default: false, null: false
-    t.string   "confirmed_domain"
-    t.string   "suggested_domain"
-    t.string   "current_domain",                   null: false
-    t.integer  "account_id"
-  end
-
-  add_index "subdomains", ["account_id"], name: "index_subdomains_on_account_id", using: :btree
-  add_index "subdomains", ["zone", "subdomain"], name: "index_subdomains_on_zone_and_subdomain", unique: true, using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email",                           null: false
@@ -251,6 +236,21 @@ ActiveRecord::Schema.define(version: 20160302143824) do
   add_index "variants", ["landing_id"], name: "index_variants_on_landing_id", using: :btree
   add_index "variants", ["uuid"], name: "index_variants_on_uuid", unique: true, using: :btree
 
+  create_table "web_addresses", force: :cascade do |t|
+    t.string   "subdomain",                        null: false
+    t.string   "zone",                             null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "use_domain",       default: false, null: false
+    t.string   "confirmed_domain"
+    t.string   "suggested_domain"
+    t.string   "current_domain",                   null: false
+    t.integer  "account_id"
+  end
+
+  add_index "web_addresses", ["account_id"], name: "index_web_addresses_on_account_id", using: :btree
+  add_index "web_addresses", ["zone", "subdomain"], name: "index_web_addresses_on_zone_and_subdomain", unique: true, using: :btree
+
   add_foreign_key "asset_files", "accounts"
   add_foreign_key "asset_files", "landings"
   add_foreign_key "asset_files", "variants"
@@ -266,8 +266,8 @@ ActiveRecord::Schema.define(version: 20160302143824) do
   add_foreign_key "phone_confirmations", "users"
   add_foreign_key "sections", "asset_files", column: "background_image_id"
   add_foreign_key "segments", "landings"
-  add_foreign_key "subdomains", "accounts"
   add_foreign_key "utm_values", "accounts"
   add_foreign_key "utm_values", "landings"
   add_foreign_key "variants", "landings"
+  add_foreign_key "web_addresses", "accounts"
 end

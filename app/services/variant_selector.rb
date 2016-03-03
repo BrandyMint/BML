@@ -7,7 +7,7 @@ class VariantSelector
     @path    = path
   end
 
-  delegate :account, to: :subdomain, allow_nil: true
+  delegate :account, to: :web_address, allow_nil: true
 
   def landing
     return unless account
@@ -27,9 +27,9 @@ class VariantSelector
 
   attr_reader :host, :cookies, :params, :session, :path
 
-  def subdomain
-    # @_subdomain ||= Subdomain.find_by_current_domain host
-    @_subdomain ||= Subdomain.find_by_subdomain host.split('.').first
+  def web_address
+    # @_web_address ||= WebAddress.find_by_current_domain host
+    @_web_address ||= WebAddress.find_by_subdomain host.split('.').first
   end
 
   def session_variant
