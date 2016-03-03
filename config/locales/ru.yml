@@ -13,6 +13,11 @@ ru:
         phone: Номер телефона
         password: Пароль
         password_confirmation: Подтверждение пароля
+      web_address:
+        current_domain: Используемый домен
+        suggested_domain: Домен (предполагаемый)
+        subdomain: Поддомен
+        zone: Зона
   activemodel:
     errors:
       models:

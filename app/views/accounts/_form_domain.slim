@@ -1,0 +1,5 @@
+= f.simple_fields_for :web_addresses, account.default_web_address do |ff|
+  = render 'web_address_fields', f: ff
+
+/ .form-group
+/   = link_to_add_association 'Add', f, :web_addresses, class: 'btn btn-default btn-outline btn-rounded btn-sm'

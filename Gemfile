@@ -116,6 +116,10 @@ gem 'gon'
 # Use Unicorn as the app server
 gem 'unicorn'
 
+gem 'simpleidn'
+gem 'public_suffix'
+gem 'babosa'
+
 group :development, :test do
   gem 'bond'
   gem 'jist'

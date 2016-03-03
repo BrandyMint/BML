@@ -1,0 +1,38 @@
+.nested-fields
+  fieldset.form-group
+    legend Домен
+    .row
+      - if f.object.current_domain.present?
+        .col-md-6
+          span.text-muted
+            ' Используется
+            b= link_to SimpleIDN.to_unicode(f.object.current_domain), 'home_url', target: '_blank'
+        / .col-md-6
+        /   span.text-muted= t 'operator.settings.reserve_domain'
+        /   b= link_to f.object.subdomained_host, f.object.subdomained_url
+
+      .col-md-6
+        = f.input :suggested_domain,
+          input_html: { value: SimpleIDN.to_unicode(f.object.suggested_domain) },
+          hint: 'Домен, который Вы планируете использовать в дальнейшем. Ваш магазин автоматически перейдет на этот домен, как только вы настроите DNS.'
+      .col-md-6
+        p Порядок установки личного домена:
+        ul
+          li Прописать домен в поле "Домен (предполагаемый)".
+          li
+            = "Настроить DNS Вашего домена на IP адрес #{Settings.app.title}. "
+            = link_to 'Подробнее..', 'helpscout'
+
+  fieldset.form-group
+    legend Поддомен
+    .row
+      .col-lg-6
+        = f.input :subdomain, hint: "Текущий поддомен в зоне <em>#{f.object.zone}</em>. Используется для операторской панели и резервного адреса.".html_safe
+      .col-lg-6
+        = f.input :zone, collection: Settings.domain_zones, include_blank: false
+
+  / .col-md-1.col-xs-2.p-l-none
+  /   = link_to_remove_association f, class: 'btn btn-circle btn-default btn-sm' do
+  /     = fa_icon 'times'
+  / .col-md-12
+  /   %hr

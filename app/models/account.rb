@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
   include AccountAccessKey
   include AccountIdent
-  include LandingWebAddress
+  include AccountWebAddresses
 
   ROOT_IDENT = 'root'
 
@@ -23,10 +23,6 @@ class Account < ActiveRecord::Base
 
   def default_landing
     landings.ordered.first
-  end
-
-  def default_web_address
-    web_address
   end
 
   def to_s
