@@ -1,0 +1,11 @@
+{
+  "name": "bml",
+  "dependencies": {
+    "select2": "^4.0.1"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ]
+}

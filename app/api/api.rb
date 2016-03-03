@@ -10,6 +10,7 @@ class API < Grape::API
 
   mount API::Landings
   mount API::Variants
+  mount API::UtmValues
   mount API::Images
   mount APIPing
 

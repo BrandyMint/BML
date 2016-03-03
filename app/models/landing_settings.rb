@@ -1,5 +1,5 @@
 class LandingSettings < FormBase
-  include ActiveModel::Convariant
+  include ActiveModel::Conversion
   attribute :domain, String
   attribute :title, String
 end

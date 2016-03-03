@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301094812) do
+ActiveRecord::Schema.define(version: 20160302071135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160301094812) do
     t.datetime "created_at",                                          null: false
     t.datetime "updated_at",                                          null: false
     t.string   "type",                                                null: false
-    t.uuid     "uuid",                 default: "uuid_generate_v4()"
+    t.uuid     "uuid",                 default: "uuid_generate_v4()", null: false
     t.string   "digest",                                              null: false
   end
 
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20160301094812) do
     t.integer  "variants_count", default: 0,                    null: false
     t.integer  "segments_count", default: 0,                    null: false
     t.boolean  "is_active",      default: true,                 null: false
-    t.uuid     "uuid",           default: "uuid_generate_v4()"
+    t.uuid     "uuid",           default: "uuid_generate_v4()", null: false
     t.integer  "clients_count",  default: 0,                    null: false
     t.string   "path",                                          null: false
   end
@@ -159,7 +159,7 @@ ActiveRecord::Schema.define(version: 20160301094812) do
 
   create_table "sections", force: :cascade do |t|
     t.string   "block_view",                                           null: false
-    t.uuid     "uuid",                  default: "uuid_generate_v4()"
+    t.uuid     "uuid",                  default: "uuid_generate_v4()", null: false
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
     t.integer  "variant_id",                                           null: false
@@ -220,6 +220,22 @@ ActiveRecord::Schema.define(version: 20160301094812) do
   add_index "users", ["phone"], name: "index_users_on_phone", unique: true, using: :btree
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
 
+  create_table "utm_values", force: :cascade do |t|
+    t.integer  "account_id", null: false
+    t.integer  "landing_id", null: false
+    t.integer  "variant_id", null: false
+    t.string   "key_type",   null: false
+    t.string   "value",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "utm_values", ["account_id"], name: "index_utm_values_on_account_id", using: :btree
+  add_index "utm_values", ["key_type"], name: "index_utm_values_on_key_type", using: :btree
+  add_index "utm_values", ["landing_id"], name: "index_utm_values_on_landing_id", using: :btree
+  add_index "utm_values", ["value"], name: "index_utm_values_on_value", using: :btree
+  add_index "utm_values", ["variant_id", "key_type", "value"], name: "index_utm_values_on_variant_id_and_key_type_and_value", unique: true, using: :btree
+
   create_table "variants", force: :cascade do |t|
     t.integer  "landing_id",                                    null: false
     t.string   "title"
@@ -227,7 +243,7 @@ ActiveRecord::Schema.define(version: 20160301094812) do
     t.datetime "updated_at",                                    null: false
     t.boolean  "is_active",      default: true,                 null: false
     t.integer  "sections_count", default: 0,                    null: false
-    t.uuid     "uuid",           default: "uuid_generate_v4()"
+    t.uuid     "uuid",           default: "uuid_generate_v4()", null: false
     t.integer  "leads_count",    default: 0,                    null: false
   end
 
@@ -250,5 +266,8 @@ ActiveRecord::Schema.define(version: 20160301094812) do
   add_foreign_key "sections", "asset_files", column: "background_image_id"
   add_foreign_key "segments", "landings"
   add_foreign_key "subdomains", "accounts"
+  add_foreign_key "utm_values", "accounts"
+  add_foreign_key "utm_values", "landings"
+  add_foreign_key "utm_values", "variants"
   add_foreign_key "variants", "landings"
 end

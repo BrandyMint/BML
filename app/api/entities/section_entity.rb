@@ -4,7 +4,7 @@ class Entities::SectionEntity < Grape::Entity
 
   expose :content
   expose :form
-  expose :background_image, as: :backgroundImage, using: API::Entities::AssetImageEntity
+  expose :background_image, as: :backgroundImage, using: Entities::AssetImageEntity
   expose :background_attributes, as: :background
   expose :node_attributes, as: :nodeAttributes
   expose :meta

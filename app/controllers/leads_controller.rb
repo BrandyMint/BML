@@ -3,7 +3,7 @@ class LeadsController < ApplicationController
   layout 'blank'
 
   def create
-    create_lead!
+    create_lead
 
     if request.xhr?
       respond_to do |format|
@@ -46,7 +46,7 @@ class LeadsController < ApplicationController
       status: 400
   end
 
-  def create_lead!
+  def create_lead
     LeadCreator.new(params: params, cookies: cookies).call
   end
 end

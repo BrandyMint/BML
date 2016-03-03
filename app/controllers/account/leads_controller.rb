@@ -27,7 +27,14 @@ class Account::LeadsController < Landing::BaseController
   end
 
   def leads_filter
-    LeadsFilter.new params.merge(collection: current_collection)
+    LeadsFilter.new filter_params
+  end
+
+  def filter_params
+    params.merge(
+      collection: current_collection,
+      variant: current_variant,
+    )
   end
 
   def current_collection
@@ -38,5 +45,15 @@ class Account::LeadsController < Landing::BaseController
     return nil unless params[:collection_id]
 
     current_landing.collections.find params[:collection_id]
+  end
+
+  def current_variant
+    find_variant || current_landing.default_variant
+  end
+
+  def find_variant
+    return nil unless params[:variant_id]
+
+    current_landing.variants.find_by id: params[:variant_id]
   end
 end
