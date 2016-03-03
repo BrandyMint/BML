@@ -28,8 +28,12 @@ class VariantSelector
   attr_reader :host, :cookies, :params, :session, :path
 
   def web_address
-    # @_web_address ||= WebAddress.find_by_current_domain host
-    @_web_address ||= WebAddress.find_by_subdomain host.split('.').first
+    @_web_address ||= find_web_address
+  end
+
+  def find_web_address
+    WebAddress.find_by_current_domain(host) ||
+      WebAddress.find_by_subdomain(host.split('.').first)
   end
 
   def session_variant
