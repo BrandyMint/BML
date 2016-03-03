@@ -4,7 +4,6 @@ class Variant < ActiveRecord::Base
   belongs_to :landing, counter_cache: :variants_count
   has_many :sections, dependent: :destroy
   has_many :leads
-  has_many :utm_values, dependent: :delete_all
 
   has_one :account, through: :landing
 
