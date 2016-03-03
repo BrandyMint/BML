@@ -1,4 +1,4 @@
-class Subdomain < ActiveRecord::Base
+class WebAddress < ActiveRecord::Base
   ALL_ZONES       = '*'
   AVAILABLE_ZONES = Settings.domain_zones + [ALL_ZONES]
   DEFAULT_ZONE    = Settings.app.default_domain
