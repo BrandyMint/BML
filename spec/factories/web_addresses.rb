@@ -1,4 +1,4 @@
 FactoryGirl.define do
-  factory :subdomain do
+  factory :web_address do
   end
 end

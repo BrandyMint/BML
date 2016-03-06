@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
   include AccountAccessKey
   include AccountIdent
-  include LandingSubdomain
+  include AccountWebAddresses
 
   ROOT_IDENT = 'root'
 

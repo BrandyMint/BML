@@ -15,7 +15,7 @@ module ApplicationHelper
   end
 
   def editor_exit_url
-    params[:backurl] || account_landing_leads_url(variant.id)
+    params[:backurl] || account_landing_leads_url(current_variant.id)
   end
 
   def api_v1_url
@@ -66,7 +66,7 @@ module ApplicationHelper
   end
 
   def account_dashboard_url(account)
-    account_root_url(subdomain: account.subdomain)
+    account_root_url(subdomain: account.default_web_address)
   end
 
   def add_landing_image_url

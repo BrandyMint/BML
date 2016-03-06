@@ -103,4 +103,7 @@ Rails.application.routes.draw do
     concerns :profile
     concerns :account
   end
+
+  get '*anything', to: 'errors#site_not_found'
+  get '', to: 'errors#site_not_found'
 end

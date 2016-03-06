@@ -30,6 +30,7 @@ module Bml
       "#{Rails.root}/app/value_objects",
       "#{Rails.root}/app/commands",
       "#{Rails.root}/app/queries",
+      "#{Rails.root}/app/utils",
       "#{Rails.root}/app/workers"
     ]
 

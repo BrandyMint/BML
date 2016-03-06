@@ -8,6 +8,7 @@ Rails.application.config.assets.version = AppVersion.to_s
 
 # Bower
 Rails.application.config.assets.paths << 'vendor/components'
+Rails.application.config.assets.paths << 'vendor/assets/components'
 
 # Для картинок, чтобы их можно было брать через assets/images/themes/t1/dog.pn
 Rails.application.config.assets.paths << 'vendor/dist/dist'
