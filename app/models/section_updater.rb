@@ -11,7 +11,7 @@ class SectionUpdater
       'row_order'       => position,
       'content'         => block['content'],
       'form'            => block['form'],
-      'block_view'      => block['view'],
+      'block_view'      => block['viewName'],
       'node_attributes' => block['nodeAttributes'] || {},
       'background_attributes' => (block['background'] || {}).slice(BACKGROUND_KEYS),
       'background_image' => background_image
@@ -34,13 +34,18 @@ class SectionUpdater
       AssetImage.find_by_uuid image['uuid']
 
     elsif image['url'].present?
-      filename = Rails.root.join 'vendor/dist/src' + image['url']
-      digest = AssetFileDigest.digest_of_file filename
+      raise 'Dont use .. in url' if image['url'].include? '..'
 
-      AssetFile.shared.find_by_digest(digest) ||
-        account.asset_images.find_by_digest(digest) ||
-        account.asset_images.create!(file: filename.open)
+      if image['url'].start_with? '/'
+        filename = Rails.root.join 'vendor/dist/src' + image['url']
+        digest = AssetFileDigest.digest_of_file filename
 
+        AssetFile.shared.find_by_digest(digest) ||
+          account.asset_images.find_by_digest(digest) ||
+          account.asset_images.create!(file: filename.open)
+      else
+        # TODO Сохранять прямые ссыслки
+      end
     else
       nil
     end
