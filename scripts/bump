@@ -1,0 +1,4 @@
+semver inc minor
+git add .
+message=`semver`
+git commit -m "$message"
