@@ -28,6 +28,14 @@ class Lead < ActiveRecord::Base
     end
   end
 
+  def to_s
+    "Заявка N#{public_id}"
+  end
+
+  def public_id
+    id
+  end
+
   private
 
   def create_collection_fields

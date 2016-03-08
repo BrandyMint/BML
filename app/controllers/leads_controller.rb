@@ -1,17 +1,17 @@
 class LeadsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  layout 'blank'
+  layout 'lead'
 
   def create
     create_lead
 
     if request.xhr?
       respond_to do |format|
-        format.html { render layout: false }
-        format.json { render json: { result: 'ok', message: 'Ваша заявка принята!' } }
+        format.html { render locals: { lead: lead }, layout: false }
+        format.json { render json: { result: 'ok', message: 'Ваша заявка принята!', lead: lead.as_json } }
       end
     else
-      render
+      render locals: { lead: lead }
     end
 
   rescue ActiveRecord::RecordInvalid => err
@@ -47,6 +47,10 @@ class LeadsController < ApplicationController
   end
 
   def create_lead
-    LeadCreator.new(params: params, cookies: cookies).call
+    @lead = LeadCreator.new(params: params, cookies: cookies).call
+  end
+
+  def lead
+    @lead ||= create_lead
   end
 end

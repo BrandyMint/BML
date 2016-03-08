@@ -9,6 +9,7 @@ class LeadCreator
   def call
     lead = collection.leads.create! lead_attributes
     update_utm_values lead
+    lead
   end
 
   private
