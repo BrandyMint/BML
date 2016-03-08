@@ -1,4 +1,4 @@
-semver inc minor
+semver inc patch
 version=`semver`
 message="Bump ${version}"
 echo $message
