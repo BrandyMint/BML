@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(version: 20160303133410) do
   create_table "utm_values", force: :cascade do |t|
     t.integer  "account_id", null: false
     t.integer  "landing_id", null: false
+    t.integer  "variant_id", null: false
     t.string   "key_type",   null: false
     t.string   "value",      null: false
     t.datetime "created_at", null: false
@@ -219,8 +220,9 @@ ActiveRecord::Schema.define(version: 20160303133410) do
 
   add_index "utm_values", ["account_id"], name: "index_utm_values_on_account_id", using: :btree
   add_index "utm_values", ["key_type"], name: "index_utm_values_on_key_type", using: :btree
-  add_index "utm_values", ["landing_id", "key_type", "value"], name: "index_utm_values_on_landing_id_and_key_type_and_value", unique: true, using: :btree
+  add_index "utm_values", ["landing_id"], name: "index_utm_values_on_landing_id", using: :btree
   add_index "utm_values", ["value"], name: "index_utm_values_on_value", using: :btree
+  add_index "utm_values", ["variant_id", "key_type", "value"], name: "index_utm_values_on_variant_id_and_key_type_and_value", unique: true, using: :btree
 
   create_table "variants", force: :cascade do |t|
     t.integer  "landing_id",                                    null: false
@@ -268,6 +270,7 @@ ActiveRecord::Schema.define(version: 20160303133410) do
   add_foreign_key "segments", "landings"
   add_foreign_key "utm_values", "accounts"
   add_foreign_key "utm_values", "landings"
+  add_foreign_key "utm_values", "variants"
   add_foreign_key "variants", "landings"
   add_foreign_key "web_addresses", "accounts"
 end
