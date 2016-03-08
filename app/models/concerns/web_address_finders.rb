@@ -1,4 +1,4 @@
-module AccountWebAddressFinders
+module WebAddressFinders
   def find_by_domain(domain)
     find_by_domain_scope domain, &method(:by_domain)
   end
@@ -8,28 +8,28 @@ module AccountWebAddressFinders
   end
 
   def find_by_request(request)
-    landing = nil
+    model = nil
     if Settings.domain_zones.include?(request.domain)
-      landing = Landing.by_subdomain(request.subdomain).first
+      model = by_subdomain(request.subdomain).first
     end
-    landing || Landing.find_by_domain(request.host)
+    model || find_by_domain(request.host)
   end
 
   def find_by_host(host)
     return nil unless host.present?
     subdomain = DomainExtractor.extract_subdomain_from_host host
 
-    Landing.by_subdomain(subdomain).first ||
-    Landing.find_by_domain(host)
+    by_subdomain(subdomain).first ||
+      find_by_domain(host)
   end
 
   private
 
   def find_by_domain_scope(domain)
     domain = DomainCleaner.search_prepare domain
-    landing = yield(domain).first
+    model = yield(domain).first
 
-    return landing if landing.present?
+    return model if model.present?
     redomain domain, &proc { |d| yield(d).first }
   rescue PG::Error => err
     Bugsnag.notify err
