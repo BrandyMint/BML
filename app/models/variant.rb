@@ -13,6 +13,10 @@ class Variant < ActiveRecord::Base
     "#{landing} / #{to_s}"
   end
 
+  def usable_title
+    title.presence || landing.head_title.presence || landing.title
+  end
+
   def to_s
     title.presence || I18n.l(updated_at, format: :short)
   end

@@ -12,6 +12,7 @@ class API::Landings < Grape::API
 
     params do
       requires :landing_uuid, type: String, desc: 'UUID Лендинга'
+      optional :full, type: Boolean, desc: 'Презентировать весь лендос', default: false
     end
     namespace ':landing_uuid' do
       helpers do
@@ -25,7 +26,11 @@ class API::Landings < Grape::API
 
         desc 'Список вариантов'
         get do
-          present landing.variants.ordered, with: Entities::VariantEntity
+          if params[:full]
+            present landing.variants.active.ordered, with: Entities::VariantEntity
+          else
+            present landing.variants.active.ordered, with: Entities::VariantInfoEntity
+          end
         end
       end
     end
