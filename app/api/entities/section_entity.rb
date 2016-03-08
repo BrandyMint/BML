@@ -8,5 +8,5 @@ class Entities::SectionEntity < Grape::Entity
   expose :background_attributes, as: :background
   expose :node_attributes, as: :nodeAttributes
   expose :meta
-  expose :block_view, as: :view
+  expose :block_view, as: :viewName
 end
