@@ -1,4 +1,7 @@
 semver inc minor
+version=`semver`
+message="Bump ${version}"
+echo $message
 git add .
-message=`semver`
 git commit -m "$message"
+git push
