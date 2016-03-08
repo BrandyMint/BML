@@ -1,3 +1,5 @@
+require 'no_compression'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -26,7 +28,9 @@ Rails.application.configure do
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
-  # config.assets.css_compressor = :sass
+
+  # падает на ошибке в SASS
+  config.assets.css_compressor = NoCompression.new
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
