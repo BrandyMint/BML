@@ -2,7 +2,7 @@ module AccountWebAddresses
   extend ActiveSupport::Concern
 
   included do
-    extend AccountWebAddressFinders
+    extend WebAddressFinders
     has_many :web_addresses, dependent: :destroy
     accepts_nested_attributes_for :web_addresses, reject_if: :all_blank, allow_destroy: true
 
