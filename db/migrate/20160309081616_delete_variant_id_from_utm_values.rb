@@ -1,5 +1,11 @@
 class DeleteVariantIdFromUtmValues < ActiveRecord::Migration
-  def change
-    remove_column :utm_values, :variant_id
+  def up
+    if UtmValue.columns.map(&:name).include?('variant_id')
+      remove_column :utm_values, :variant_id
+    end
+  end
+
+  def down
+    # do nothing
   end
 end
