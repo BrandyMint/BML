@@ -274,6 +274,7 @@ GEM
     net-ssh (3.0.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    non-stupid-digest-assets (1.0.4)
     notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
@@ -568,6 +569,7 @@ DEPENDENCIES
   letter_opener
   listen (~> 3.0)
   mini_magick
+  non-stupid-digest-assets
   nprogress-rails
   omniauth
   omniauth-twitter

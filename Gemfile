@@ -38,6 +38,8 @@ gem 'nprogress-rails'
 gem 'semver2'
 # gem 'pg'
 
+gem 'non-stupid-digest-assets'
+
 # Только для JS
 gem 'bootstrap', '~> 4.0.0.alpha3'
 

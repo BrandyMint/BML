@@ -16,6 +16,7 @@ Rails.application.config.assets.paths << 'vendor/dist/dist'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w(
+  *.gif *.png *.jpg *.svg *.ttf *.woff *.woff2
   welcome.js
   vendor.js
   components.js
