@@ -4,7 +4,6 @@ class API::Landings < Grape::API
 
   desc 'Посадочные страницы'
   resources :landings do
-
     desc 'Список доступных лендингов'
     get do
       present current_account.landings.ordered, with: Entities::LandingEntity
@@ -23,7 +22,6 @@ class API::Landings < Grape::API
 
       desc 'Варианты лендинга'
       resources :variants do
-
         desc 'Список вариантов'
         get do
           if params[:full]

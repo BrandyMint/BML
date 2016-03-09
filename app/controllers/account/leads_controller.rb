@@ -33,7 +33,7 @@ class Account::LeadsController < Landing::BaseController
   def filter_params
     params.merge(
       collection: current_collection,
-      variant: current_variant,
+      variant: current_variant
     )
   end
 

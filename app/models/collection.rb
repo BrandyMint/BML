@@ -6,6 +6,6 @@ class Collection < ActiveRecord::Base
   scope :ordered, -> { order :id }
 
   def to_s
-    "Коллекция #{created_at.to_s}"
+    "Коллекция #{created_at}"
   end
 end

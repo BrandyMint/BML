@@ -3,7 +3,6 @@ class API < Grape::API
 
   default_format :json
 
-
   # С этим не работает swagger
   # format :json
   version VERSION

@@ -10,7 +10,7 @@ class Variant < ActiveRecord::Base
   scope :ordered, -> { order :id }
 
   def full_title
-    "#{landing} / #{to_s}"
+    "#{landing} / #{self}"
   end
 
   def usable_title

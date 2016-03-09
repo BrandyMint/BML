@@ -1,6 +1,5 @@
 # encoding: utf-8
 class OmniauthController < Account::BaseController
-
   skip_before_action :verify_authenticity_token, only: :create
 
   def create

@@ -6,7 +6,7 @@ module HtmlOnly
   included do
     before_action :filter_html
 
-    rescue_from UnknownFormat do |exception|
+    rescue_from UnknownFormat do |_exception|
       render inline: 'Supports html only', status: 415
     end
   end
@@ -14,7 +14,7 @@ module HtmlOnly
   private
 
   def filter_html
-    raise UnknownFormat unless request.format.html_types.include? :html
+    fail UnknownFormat unless request.format.html_types.include? :html
 
     # request.format.html?
     # Не срадабывает с Accept: */*

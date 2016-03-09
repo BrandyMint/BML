@@ -43,4 +43,3 @@ class ProfileController < ApplicationController
                                      :password_confirmation)
   end
 end
-

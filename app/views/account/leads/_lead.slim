@@ -1,5 +1,7 @@
 tr
   td.text-muted.text-nowrap
+    = lead.number
+  td.text-muted.text-nowrap
     = I18n.l lead.created_at, format: :short
   - fields.each do |field|
     td= lead.data[field.key]

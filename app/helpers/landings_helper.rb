@@ -7,8 +7,8 @@ module LandingsHelper
     config = {
       postLeadUrl: post_lead_url,
       # Не передаем, потом что лендинг могут сохранить и там окажется секретный api-ключ
-      #apiUrl: api_v1_url,
-      #apiKey: current_account.try(:api_key),
+      # apiUrl: api_v1_url,
+      # apiKey: current_account.try(:api_key),
       variantUuid: current_variant.uuid
     }
     javascript_tag "window.bmlConfig = #{config.to_json}"
@@ -20,7 +20,7 @@ module LandingsHelper
 
   def render_variant(variant)
     props = variant_store_state(variant)
-    react_component 'Viewer', props, prerender: true
+    react_component 'Viewer', props, prerender: false
   end
 
   def landing_leads_title(landing)
@@ -37,7 +37,7 @@ module LandingsHelper
     data = Entities::VariantEntity.represent(variant).as_json
     {
       application: {
-        landingVariantUuid: variant.uuid
+        variantUuid: variant.uuid
       },
       blocks: data[:sections]
     }

@@ -3,7 +3,7 @@ class SectionUpdater
 
   def initialize(variant:, block:)
     @variant = variant
-    @block           = block
+    @block = block
   end
 
   def update(position)
@@ -34,7 +34,7 @@ class SectionUpdater
       AssetImage.find_by_uuid image['uuid']
 
     elsif image['url'].present?
-      raise 'Dont use .. in url' if image['url'].include? '..'
+      fail 'Dont use .. in url' if image['url'].include? '..'
 
       if image['url'].start_with? '/'
         filename = Rails.root.join 'vendor/dist/src' + image['url']
@@ -58,7 +58,7 @@ class SectionUpdater
   def section
     @_section ||=
       variant
-      .sections
-      .find_or_initialize_by uuid: uuid
+        .sections
+        .find_or_initialize_by uuid: uuid
   end
 end

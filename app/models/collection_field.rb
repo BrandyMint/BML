@@ -7,10 +7,10 @@ class CollectionField < ActiveRecord::Base
 
   def self.upsert(fields)
     time = Time.zone.now
-    record = self.new fields.reverse_merge(created_at: time, updated_at: time)
+    record = new fields.reverse_merge(created_at: time, updated_at: time)
     payload = record.attributes.except('id')
     values = payload.values.map { |v| "'#{v}'" }
-    self.connection.execute "INSERT INTO #{table_name} (#{payload.keys.join(', ')}) VALUES (#{values.join(', ')}) ON CONFLICT DO NOTHING"
+    connection.execute "INSERT INTO #{table_name} (#{payload.keys.join(', ')}) VALUES (#{values.join(', ')}) ON CONFLICT DO NOTHING"
   end
 
   def to_s

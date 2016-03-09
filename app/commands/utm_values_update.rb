@@ -36,8 +36,8 @@ class UtmValuesUpdate
   def get_field_values(field)
     time = Time.zone.now
     [
-      lead.variant.landing.account_id,
-      lead.variant.landing_id,
+      lead.landing.account_id,
+      lead.landing_id,
       field.key,
       lead.send(field.item_key),
       time.to_s(:db),

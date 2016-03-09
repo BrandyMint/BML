@@ -1,5 +1,5 @@
 class SwaggerUI::ApplicationController < ApplicationController
-  layout "swagger"
+  layout 'swagger'
 
   helper_method :discovery_url, :api_key, :support_header_params
 
@@ -16,6 +16,6 @@ class SwaggerUI::ApplicationController < ApplicationController
   end
 
   def discovery_url
-    "http://<%= request.host%>:<%=request.port%>/api/swagger_doc"
+    'http://<%= request.host%>:<%=request.port%>/api/swagger_doc'
   end
 end
