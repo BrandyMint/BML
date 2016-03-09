@@ -1,1 +1,1 @@
-NonStupidDigestAssets.whitelist += [/fonts\/.*/, /images\/.*/, "image.png"]
+NonStupidDigestAssets.whitelist += [/fonts\/.*/, /images\/.*/, /\.css/, /\.js/, "image.png"]
