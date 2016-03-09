@@ -13,7 +13,7 @@ class RegistrationService
     end
 
     fail 'Error creating user' unless user.present?
-    return user
+    user
   end
 
   private

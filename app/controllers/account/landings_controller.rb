@@ -12,7 +12,7 @@ class Account::LandingsController < Account::BaseController
   end
 
   def edit
-    render locals: { landing: current_landing}, layout: 'landing'
+    render locals: { landing: current_landing }, layout: 'landing'
   end
 
   def show
@@ -44,7 +44,7 @@ class Account::LandingsController < Account::BaseController
   end
 
   def current_landing
-    fail "No landing_id in param" unless params[:id]
+    fail 'No landing_id in param' unless params[:id]
     current_account.landings.find params[:id]
   end
 

@@ -24,7 +24,7 @@ module ComponentHelper
         api_key:              current_account.api_key,
         hasUnsavedChanges:    false
       },
-      blocks:               Entities::VariantEntity.represent(variant).as_json[:sections]
+      blocks: Entities::VariantEntity.represent(variant).as_json[:sections]
     }
   end
 end

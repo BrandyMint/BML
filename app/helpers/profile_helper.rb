@@ -34,6 +34,6 @@ module ProfileHelper
     link_to('Отправить SMS для подтверждения',
                       new_profile_phone_confirmation_url(phone: phone, backurl: request.url),
                       class: 'btn btn-sm btn-warning-outline'
-                     )
+           )
   end
 end

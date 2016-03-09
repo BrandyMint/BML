@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   layout 'auth'
 
   def new
-    render locals: { session_form: SessionForm.new( remember_me: true ) }
+    render locals: { session_form: SessionForm.new(remember_me: true) }
   end
 
   def create

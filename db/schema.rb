@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303133410) do
+ActiveRecord::Schema.define(version: 20160309081850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,9 +130,19 @@ ActiveRecord::Schema.define(version: 20160303133410) do
     t.string   "last_utm_term"
     t.string   "last_utm_content"
     t.string   "last_referer"
+    t.integer  "number",             null: false
+    t.string   "public_number",      null: false
+    t.integer  "landing_id",         null: false
+    t.string   "utm_source"
+    t.string   "utm_campaign"
+    t.string   "utm_medium"
+    t.string   "utm_term"
+    t.string   "utm_content"
+    t.string   "referer"
   end
 
   add_index "leads", ["collection_id"], name: "index_leads_on_collection_id", using: :btree
+  add_index "leads", ["landing_id", "public_number"], name: "index_leads_on_landing_id_and_public_number", unique: true, using: :btree
   add_index "leads", ["variant_id"], name: "index_leads_on_variant_id", using: :btree
 
   create_table "memberships", force: :cascade do |t|
@@ -211,7 +221,6 @@ ActiveRecord::Schema.define(version: 20160303133410) do
   create_table "utm_values", force: :cascade do |t|
     t.integer  "account_id", null: false
     t.integer  "landing_id", null: false
-    t.integer  "variant_id", null: false
     t.string   "key_type",   null: false
     t.string   "value",      null: false
     t.datetime "created_at", null: false
@@ -222,7 +231,6 @@ ActiveRecord::Schema.define(version: 20160303133410) do
   add_index "utm_values", ["key_type"], name: "index_utm_values_on_key_type", using: :btree
   add_index "utm_values", ["landing_id"], name: "index_utm_values_on_landing_id", using: :btree
   add_index "utm_values", ["value"], name: "index_utm_values_on_value", using: :btree
-  add_index "utm_values", ["variant_id", "key_type", "value"], name: "index_utm_values_on_variant_id_and_key_type_and_value", unique: true, using: :btree
 
   create_table "variants", force: :cascade do |t|
     t.integer  "landing_id",                                    null: false
@@ -262,6 +270,7 @@ ActiveRecord::Schema.define(version: 20160303133410) do
   add_foreign_key "collections", "landings"
   add_foreign_key "landings", "accounts"
   add_foreign_key "leads", "collections"
+  add_foreign_key "leads", "landings"
   add_foreign_key "leads", "variants"
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
@@ -270,7 +279,6 @@ ActiveRecord::Schema.define(version: 20160303133410) do
   add_foreign_key "segments", "landings"
   add_foreign_key "utm_values", "accounts"
   add_foreign_key "utm_values", "landings"
-  add_foreign_key "utm_values", "variants"
   add_foreign_key "variants", "landings"
   add_foreign_key "web_addresses", "accounts"
 end

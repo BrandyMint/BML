@@ -27,7 +27,7 @@ class LeadsController < ApplicationController
       #
 
       render 'error',
-        locals: { backurl: request.referer, message: err.message},
+        locals: { backurl: request.referer, message: err.message },
         flash: { error: err.message }
     end
   end
@@ -36,14 +36,14 @@ class LeadsController < ApplicationController
 
   def render_html_error(err)
     render 'error',
-      locals: { message: err.record.errors.to_a.join("<br>") },
+      locals: { message: err.record.errors.to_a.join('<br>') },
       layout: false,
       status: 400
   end
 
   def render_json_error(err)
     render json: { result: 'error', message: err.record.errors.as_json },
-      status: 400
+           status: 400
   end
 
   def create_lead

@@ -1,5 +1,5 @@
 class VariantSelector
-  def initialize(host:, path:, session:, params:, cookies: )
+  def initialize(host:, path:, session:, params:, cookies:)
     @host    = host
     @session = session
     @cookies = cookies

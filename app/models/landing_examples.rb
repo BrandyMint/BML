@@ -8,13 +8,13 @@ module LandingExamples
         backgroundVideos: [
           { src: 'assets/video/video.mp4', type: 'video/mp4' },
           { src: 'assets/video/video.webm', type: 'video/webm' },
-          { src: 'assets/video/video.ogv', type: 'video/ogg' },
+          { src: 'assets/video/video.ogv', type: 'video/ogg' }
         ],
         backgroundImage: {
           uuid: nil,
           url: '/assets/images/themes/t1/intro-bg.jpg',
           width: nil,
-          height: nil,
+          height: nil
         },
         content: {
           header: 'Посадочная страница со взрывной эффективностью!',
@@ -22,16 +22,16 @@ module LandingExamples
           items: [
             {
               title: 'Вперед!',
-              url: '#',
-            },
-          ],
-        },
+              url: '#'
+            }
+          ]
+        }
       },
       {
         uuid: '440c3460-a7e8-0133-b838-746d04736cf8',
         view: 'InlineForm1',
         content: {
-          title: 'Подписка',
+          title: 'Подписка'
         },
         form: {
           submitTitle: 'Подписаться',
@@ -40,18 +40,18 @@ module LandingExamples
               title: '',
               placeholder: 'Имя',
               key: 'name',
-              inputType: 'text',
+              inputType: 'text'
             },
             {
               title: '',
               placeholder: 'Емайл',
               key: 'email',
-              inputType: 'email',
-            },
-          ],
+              inputType: 'email'
+            }
+          ]
         },
         nodeAttributes: {},
-        meta: {},
+        meta: {}
       },
       {
         uuid: '440c3460-a7e8-0133-a838-746d04736cf8',
@@ -62,16 +62,16 @@ module LandingExamples
           image: {
             url: '/assets/images/themes/t1/ipad.png',
             height: 354,
-            width: 458,
-          },
+            width: 458
+          }
         },
         backgroundImage: {
         },
         nodeAttributes: {
           id: '44086800-a7e8-0133-a838-',
-          class: '',
+          class: ''
         },
-        meta: {},
+        meta: {}
       },
       {
         uuid: '440bb620-a7e8-0133-a838-746d04736cf8',
@@ -83,26 +83,26 @@ module LandingExamples
             {
               icon: 'twitter',
               title: 'Twitter',
-              url: 'twitter.com',
+              url: 'twitter.com'
             },
             {
               icon: 'github',
               title: 'GitHub',
-              url: 'github.com',
-            },
-          ],
+              url: 'github.com'
+            }
+          ]
         },
         backgroundImage: {
           uuid: nil,
           url: '/assets/images/themes/t1/intro-bg.jpg',
           width: nil,
-          height: nil,
+          height: nil
         },
         nodeAttributes: {
           id: '44086800-a7e8-013',
-          class: '',
+          class: ''
         },
-        meta: {},
+        meta: {}
       },
       {
         uuid: '440c9d50-a7e8-0133-a838-746d04736cf8',
@@ -113,16 +113,16 @@ module LandingExamples
           image: {
             url: '/assets/images/themes/t1/dog.png',
             height: 383,
-            width: 458,
-          },
+            width: 458
+          }
         },
         backgroundImage: {
         },
         nodeAttributes: {
           id: '44086800-a7e8-0133-a838-746d0473',
-          class: '',
+          class: ''
         },
-        meta: {},
+        meta: {}
       },
       {
         uuid: '440d06f0-a7e8-0133-a838-746d04736cf8',
@@ -133,16 +133,16 @@ module LandingExamples
           image: {
             url: '/assets/images/themes/t1/phones.png',
             height: 302,
-            width: 458,
-          },
+            width: 458
+          }
         },
         backgroundImage: {
         },
         nodeAttributes: {
           id: '44086800-a7e8-0133-746d04736cf8',
-          class: '',
+          class: ''
         },
-        meta: {},
+        meta: {}
       },
       {
         uuid: '440d6ea0-a7e8-0133-a838-746d04736cf8',
@@ -153,26 +153,26 @@ module LandingExamples
             {
               icon: 'twitter',
               title: 'Twitter',
-              url: 'twitter.com',
+              url: 'twitter.com'
             },
             {
               icon: 'github',
               title: 'GitHub',
-              url: 'github.com',
-            },
-          ],
+              url: 'github.com'
+            }
+          ]
         },
         backgroundImage: {
           uuid: nil,
           url: '/assets/images/themes/t1/banner-bg.jpg',
           width: nil,
-          height: nil,
+          height: nil
         },
         nodeAttributes: {
           id: '44086800-a7e8-013asd3-746d04736cf8',
-          class: '',
+          class: ''
         },
-        meta: {},
+        meta: {}
       },
       {
         uuid: '44086800-a7e8-0133-a838-646d04736cf8',
@@ -180,28 +180,28 @@ module LandingExamples
         content: {
           center: {
             lat: 59.938043,
-            lng: 30.337157,
+            lng: 30.337157
           },
           zoom: 9,
           places: [
             {
               location: {
                 lat: 59.955413,
-                lng: 30.337844,
+                lng: 30.337844
               },
-              title: 'A',
+              title: 'A'
             },
             {
               location: {
                 lat: 59.724465,
-                lng: 30.080121,
+                lng: 30.080121
               },
-              title: 'B',
-            },
-          ],
+              title: 'B'
+            }
+          ]
         },
         nodeAttributes: {},
-        meta: {},
+        meta: {}
       },
       {
         uuid: '440ddca0-a7e8-0133-a838-746d04736cf8',
@@ -211,27 +211,26 @@ module LandingExamples
           items: [
             {
               title: 'Домой',
-              url: '#top',
+              url: '#top'
             },
             {
               title: 'О нас',
-              url: '#about',
+              url: '#about'
             },
             {
               title: 'Услуги',
-              url: '#services',
-            },
-          ],
+              url: '#services'
+            }
+          ]
         },
         backgroundImage: {
         },
         nodeAttributes: {
           id: '44086800-a7e8-013asd3-746d04736cf8',
-          class: '',
+          class: ''
         },
-        meta: {},
-      },
+        meta: {}
+      }
     ]
   }
-
 end

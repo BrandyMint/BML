@@ -8,7 +8,7 @@ class Landing::BaseController < Account::BaseController
   def setup_gon
     gon.i18n = {
       locale:        I18n.locale,
-      defaultLocale: I18n.default_locale,
+      defaultLocale: I18n.default_locale
     }
     gon.api_url = api_url
     gon.access_token = current_account.access_key

@@ -9,7 +9,6 @@ class OmniauthAuthenticator
   def authentificate
     return find || attach || raise_error
   rescue StandardError => err
-    binding.pry
     Bugsnag.notify err, metaData: { account_id: account.id, provider: provider, uid: uid, auth_hash: auth_hash }
     raise err
   end

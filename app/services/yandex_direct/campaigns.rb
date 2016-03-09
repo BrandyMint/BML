@@ -7,9 +7,9 @@ module YandexDirect
     STATUSES = %w(ACCEPTED DRAFT MODERATION REJECTED)
 
     FIELD_NAMES = %w(BlockedIps ExcludedSites Currency DailyBudget Notification
-      EndDate Funds ClientInfo Id Name NegativeKeywords
-      RepresentedBy StartDate Statistics State Status
-      StatusPayment StatusClarification SourceId TimeTargeting TimeZone Type)
+                     EndDate Funds ClientInfo Id Name NegativeKeywords
+                     RepresentedBy StartDate Statistics State Status
+                     StatusPayment StatusClarification SourceId TimeTargeting TimeZone Type)
 
     SHORT_FIELD_NAMES = %w(Type Funds Currency Id Name Statistics ClientInfo State Status)
 

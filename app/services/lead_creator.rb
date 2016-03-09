@@ -1,7 +1,7 @@
 class LeadCreator
   include Virtus.model
 
-  DATA_EXCEPTIONS = [:variant_uuid, :controller, :action, :utf8, :authenticity_token, :commit]
+  DATA_EXCEPTIONS = [:variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit]
 
   attribute :params
   attribute :cookies
@@ -26,7 +26,45 @@ class LeadCreator
   end
 
   def utm
-    UtmEntity.new cookies.to_h
+    @_utm ||= build_utm
+  end
+
+  def build_utm
+    if params[:tracking]
+      build_utm_from_tracking params[:tracking]
+    else
+      UtmEntity.new cookies.to_h
+    end
+  end
+
+  # {\"initial\":{\"params\":{},\"referrer\":\"http://3008.vkontraste.ru/account/landings/14/leads\"},\"current\":{\"params\":{\"utm_source\":\"123\"},\"referrer\":\"\"}}
+  def build_utm_from_tracking(tracking)
+    tracking = JSON.parse(tracking);
+    first_params = OpenStruct.new(tracking['initial']['params'])
+    first_referrer = tracking['initial']['referrer']
+
+    last_params = OpenStruct.new(tracking['current']['params'])
+    last_referrer = tracking['current']['referrer']
+
+    UtmEntity.new(
+      first_utm_source: first_params.utm_source,
+      first_utm_campaign: first_params.utm_campaign,
+      first_utm_medium: first_params.utm_medium,
+      first_utm_term: first_params.utm_term,
+      first_utm_content: first_params.utm_content,
+      first_referer: first_referrer,
+
+      last_utm_source: last_params.utm_source,
+      last_utm_campaign: last_params.utm_campaign,
+      last_utm_medium: last_params.utm_medium,
+      last_utm_term: last_params.utm_term,
+      last_utm_content: last_params.utm_content,
+      last_referer: last_referrer
+
+    )
+  rescue => err
+    raise err unless Rails.env.production?
+    Bugsnag.notify err, metaData: { tracking: tracking }
   end
 
   def collection
