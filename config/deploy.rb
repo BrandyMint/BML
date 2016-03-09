@@ -82,7 +82,7 @@ namespace :deploy do
   task :bowerinstall do
     on roles(:web) do
       within release_path do
-        execute :bower, 'install'
+        execute "export NVM_DIR=\"/home/wwwbml/.nvm\"; [ -s \"$NVM_DIR/nvm.sh\" ] && . $NVM_DIR/nvm.sh; cd #{fetch(:release_path)} && nvm exec npm install && nvm exec bower install"
       end
     end
   end
