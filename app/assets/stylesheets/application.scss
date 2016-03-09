@@ -12,8 +12,9 @@
  *
  *= require nprogress
  *= require nprogress-bootstrap
+ *= require selectize/dist/css/selectize.css
+ *= require selectize/dist/css/selectize.bootstrap3.css
  *= require font-awesome
- *= require select2/dist/css/select2.min.css
  *= require_self
  */
 
@@ -47,14 +48,17 @@ body {
 }
 
 .lead-filter {
-  .form-group {
-    padding: 0 3px;
+  .filter-group {
+    float: left;
+    padding: 0 5px 10px 0;
   }
-}
-
-.select2-container .select2-selection--single {
-  height: 31px;
-}
-.select2-container {
-  font-size: 0.9rem;
+  .selectize-control {
+    font-size: 0.9rem;
+    height: 31px;
+  }
+  .selectize-input {
+    height: 31px;
+    min-height: auto;
+    padding: 4px 12px;
+  }
 }

@@ -8,6 +8,10 @@ class API::UtmValues < Grape::API
       def current_landing
         @_current_landing ||= current_account.landings.find params[:landing_id]
       end
+
+      def autocomplete_query
+        UtmValuesQuery.new.search(params[:key_type], params[:query], current_landing.id)
+      end
     end
 
     desc 'Autocomplete', entity: Entities::UtmValueEntity
@@ -16,7 +20,7 @@ class API::UtmValues < Grape::API
       requires :query, type: String
     end
     get :autocomplete do
-      utm_values = Entities::UtmValueEntity.represent current_landing.utm_values.by_key_value(params[:key_type], params[:query])
+      utm_values = Entities::UtmValueEntity.represent autocomplete_query
       present items: utm_values
     end
   end
