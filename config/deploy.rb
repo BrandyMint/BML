@@ -78,7 +78,7 @@ namespace :deploy do
     end
   end
 
-  desc 'Debloy bower'
+  desc 'Deploy bower'
   task :bowerinstall do
     on roles(:web) do
       within release_path do
@@ -116,7 +116,7 @@ namespace :deploy do
 #  end
 
   before :compile_assets, 'clearcache'
-#  before :compile_assets, 'bowerinstall'
+  before :compile_assets, 'bowerinstall'
   after :publishing, :restart
   before :started, :sidekiqquiet
   after :finishing, 'deploy:cleanup'
