@@ -1,0 +1,1 @@
+UnknownSite = Class.new SiteError

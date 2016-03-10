@@ -13,6 +13,6 @@ class Account::BaseController < ApplicationController
   end
 
   def authorize_member
-    fail NotAuthenticated unless current_member.present?
+    fail NotAuthorized unless current_member.present?
   end
 end

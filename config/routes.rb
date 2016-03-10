@@ -22,6 +22,11 @@ Rails.application.routes.draw do
     root controller: :swagger, action: :index, as: :api_doc
   end
 
+  scope :api do
+    mount API => '/', as: :api2
+    root controller: :swagger, action: :index, as: :api_doc2
+  end
+
 
   ### Viewer
   #
