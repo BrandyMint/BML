@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include CurrentAccount
   include CurrentMember
   include MessageVerifierConcern
+  include HandleErrors
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

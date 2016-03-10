@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery!
   has_many :memberships, dependent: :destroy
   has_many :accounts, through: :memberships
-  has_many :phone_confirmations, autosave: true
+  has_many :phone_confirmations, autosave: true, dependent: :delete_all
 
   validates :name, :email, presence: true
   validates :phone, phone: true, uniqueness: true, allow_blank: true

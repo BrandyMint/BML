@@ -1,1 +1,1 @@
-NotAuthenticated = Class.new StandardError
+NotAuthenticated = Class.new SiteError

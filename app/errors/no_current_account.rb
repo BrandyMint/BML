@@ -1,1 +1,1 @@
-NoCurrentAccount = Class.new StandardError
+NoCurrentAccount = Class.new SiteError

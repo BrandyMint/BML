@@ -10,6 +10,9 @@ defaults: &defaults
     - /assets
     - /images
     - /robots.txt
+    - /api
+    - /admin
+    - /fonts
 
   reserved_subdomains:
     - www
@@ -22,7 +25,7 @@ defaults: &defaults
     asset_host: http://3008.vkontraste.ru
     host: http://3008.vkontraste.ru
 
-    default_domain: 3008.vkontraste.ru
+    default_domain: bmland.ru
 
     default_url_options: &default_url_options
       host: 3008.vkontraste.ru
@@ -52,6 +55,11 @@ defaults: &defaults
 
 development:
   <<: *defaults
+  domain_zones:
+    - aydamaster.ru
+    - bmland.ru
+    - localhost
+
   app:
     <<: *app
     asset_host: http://3008.vkontraste.ru
@@ -79,7 +87,7 @@ production:
 
   app:
     <<: *app
-    title: Aydamaster
+    title: bmland.ru
 
     default_domain: aydamaster.ru
     fallback_image: images/fallback/product-none.png

@@ -1,1 +1,1 @@
-NotAuthorized = Class.new StandardError
+NotAuthorized = Class.new SiteError

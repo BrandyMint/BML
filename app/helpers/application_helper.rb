@@ -19,7 +19,8 @@ module ApplicationHelper
   end
 
   def api_v1_url
-    api_url + 'v1'
+    url = api_url.include?('localhost') ? api2_url : api_url
+    url + 'v1'
   end
 
   def post_lead_url

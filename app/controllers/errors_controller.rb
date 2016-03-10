@@ -24,7 +24,7 @@ class ErrorsController < ApplicationController
       account.attach_domain request.host
       redirect_to request.url
     else
-      render 'no_account', layout: 'system/error', locals: { account: account }, formats: 'html', status: 404
+      fail UnknownSite
     end
   end
 

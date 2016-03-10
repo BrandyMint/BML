@@ -24,6 +24,7 @@ module Bml
     config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths += Dir[
       "#{Rails.root}/app/api/concerns",
+      "#{Rails.root}/app/errors/concerns",
       "#{Rails.root}/app/validators",
       "#{Rails.root}/app/errors",
       "#{Rails.root}/app/form_objects",
