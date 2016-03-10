@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UtmValuesUpdate do
-  let(:lead) { build :lead, :with_utm_fields }
+  let(:lead) { create :lead, :with_utm_fields }
 
   subject { described_class.new(lead: lead) }
 

@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :lead do
     collection
+    landing { collection.landing }
     variant { create :variant, landing: collection.landing }
     data { { name: 'asdf' } }
   end
