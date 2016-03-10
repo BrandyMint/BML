@@ -47,7 +47,7 @@ class LeadsController < ApplicationController
   end
 
   def create_lead
-    @_lead ||= LeadCreator.new(params: params, cookies: cookies).call
+    @_lead ||= LeadCreator.new(request: request).call
   end
 
   def lead

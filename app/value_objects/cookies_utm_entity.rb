@@ -1,4 +1,4 @@
-class UtmEntity
+class CookiesUtmEntity
   include Virtus.value_object
 
   values do
