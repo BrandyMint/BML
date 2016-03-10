@@ -1,9 +1,19 @@
 require 'app_constraint'
 require 'viewer_constraint'
 require 'api_constraint'
+require 'sidekiq/web'
+require 'sidekiq-status/web'
+require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
   default_url_options Settings.app.default_url_options.symbolize_keys
+
+  scope subdomain: 'admin', constraints: { subdomain: 'admin' } do
+    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+      username == Secrets.sidekiq.username && password == Secrets.sidekiq.password
+    end if Rails.env.production?
+    mount Sidekiq::Web, at: "/sidekiq"
+  end
 
   ### API application
   #

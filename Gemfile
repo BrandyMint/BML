@@ -91,7 +91,14 @@ gem 'react-rails'
 
 gem 'kaminari'
 gem 'bootstrap-kaminari-views', git: 'https://github.com/klacointe/bootstrap-kaminari-views', branch: 'bootstrap4'
-gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', require: nil
+gem 'sidekiq-reset_statistics'
+gem 'sidekiq-failures', github: 'mhfs/sidekiq-failures'
+gem 'sidekiq-unique-jobs'
+gem 'sidekiq-status'
+# gem 'sidekiq-statsd'
+gem 'sidekiq', '~> 3.5.0'
+gem 'sidekiq-cron'
 
 gem 'slim-rails'
 
