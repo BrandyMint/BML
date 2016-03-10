@@ -92,10 +92,16 @@ production:
   action_mailer:
     <<: *action_mailer
     delivery_method: :smtp
+    #smtp_settings:
+      #user_name: ''
+      #password: ''
+      #address: ''
+      #domain: ''
+      #port: 2525
+      #authentication: :cram_md5
     smtp_settings:
-      address: korm.local
-      port: 1025   # mailcatcher
-    raise_delivery_errors: true
+      address: localhost
+      port: 25
 
 test:
   <<: *defaults
