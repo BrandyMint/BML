@@ -9,4 +9,6 @@ class LeadsFilter
   attribute :variant, Variant
   attribute :sort_field, Symbol, default: :id
   attribute :sort_order, Symbol, default: :asc
+
+  attr_accessor :popular_utm_options
 end

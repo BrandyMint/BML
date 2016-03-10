@@ -24,8 +24,7 @@
 #= require jquery.easy-pie-chart/dist/jquery.easypiechart.js
 #= require better-form
 #= require enableWhenChanged
-#= require select2/dist/js/select2.full.min
-#= require select2/dist/js/i18n/ru.js
+#= require selectize/dist/js/standalone/selectize.min.js
 #= require leadsFilter.js
 #
 # SimpleNavigation

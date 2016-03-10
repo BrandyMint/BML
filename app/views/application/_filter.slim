@@ -4,8 +4,10 @@
       .col-md-12
         - if current_landing.variants.many?
           = render 'filter_variants', filter: filter
+      .col-md-12
         = render 'filter_source', filter: filter
-        button.btn.btn-sm.btn-primary type="submit" Применить
+        / .filter-group
+        /   button.btn.btn-sm.btn-primary type="submit" Применить
 
     /.dropdown.pull-xs-left
       /button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' Браузер

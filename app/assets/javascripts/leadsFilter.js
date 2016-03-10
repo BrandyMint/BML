@@ -4,31 +4,38 @@ $(function(){
     $(this).closest('form').submit();
   });
 
-  $('[filter-term]').select2({
-    minimumInputLength: 1,
-    tags: "true",
-    ajax: {
-      url: gon.api_url + "v1/utm_values/autocomplete.json",
-      dataType: 'json',
-      delay: 250,
-      data: function (params) {
-        return {
-          query: params.term,
-          key_type: $(this).attr('name'),
+  $('[filter-term]').selectize({
+    valueField: 'value',
+    labelField: 'value',
+    searchField: 'value',
+    create: false,
+    onChange: function(value) {
+      this.$input.closest('form').submit();
+    },
+    render: {
+      option: function(item, escape) {
+        var useCount = item.use_count ? ' (' + item.use_count + ')' : ''
+        return '<div><span>' + item.value + useCount + '</span></div>';
+      }
+    },
+    load: function(query, callback) {
+      if (!query.length) return callback();
+      $.ajax({
+        url: gon.api_url + "v1/utm_values/autocomplete.json",
+        type: 'GET',
+        dataType: 'json',
+        data: {
+          query: query,
+          key_type: this.$input.attr('name'),
           landing_id: gon.current_landing_id
+        },
+        error: function() {
+          callback();
+        },
+        success: function(res) {
+          callback(res.items);
         }
-      },
-      processResults: function(data, params){
-        return {
-          results: data.items
-        }
-      },
-      cache: true
+      });
     }
-  })
-  .on('change', function(e){
-    var option = $(this).find(':selected');
-    option.attr('value', option.text());
-    $(this).closest('form').submit();
   });
 });

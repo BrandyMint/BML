@@ -1,7 +1,9 @@
 class Account::LeadsController < Landing::BaseController
+  include AccountLeadsHelper
   layout 'leads'
 
   def index
+    leads_filter.popular_utm_options = popular_utm_options(current_landing.id)
     render locals: {
       collections: current_landing.collections,
       current_collection: current_collection,
@@ -27,7 +29,7 @@ class Account::LeadsController < Landing::BaseController
   end
 
   def leads_filter
-    LeadsFilter.new filter_params
+    @_leads_filter ||= LeadsFilter.new filter_params
   end
 
   def filter_params

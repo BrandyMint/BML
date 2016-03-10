@@ -1,7 +1,7 @@
 {
   "name": "bml",
   "dependencies": {
-    "select2": "^4.0.1"
+    "selectize": "^0.12.1"
   },
   "ignore": [
     "**/.*",
