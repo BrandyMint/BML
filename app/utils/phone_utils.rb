@@ -1,5 +1,7 @@
 module PhoneUtils
-  def self.clean_phone(phone)
+  extend self
+
+  def clean_phone(phone)
     return if phone.blank?
     if phone.length == '11'
       if phone[0] == '7'
