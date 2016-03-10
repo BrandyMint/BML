@@ -8,7 +8,7 @@ set :bundle_without, %w(development test).join(' ')
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 set :deploy_to, -> { "/home/wwwbml/#{fetch(:application)}" }
 
-server '176.9.83.4', user: 'wwwbml', port: 22, roles: %w(web app db)
+server '176.9.83.4', user: 'wwwbml', port: 22, roles: %w(web app db sidekiq)
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 set :rails_env, :production
