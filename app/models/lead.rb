@@ -11,6 +11,7 @@ class Lead < ActiveRecord::Base
   belongs_to :collection, counter_cache: :leads_count
   belongs_to :variant, counter_cache: :leads_count
   belongs_to :landing
+  has_one :viewer, primary_key: :viewer_uid, foreign_key: :uid
 
   scope :ordered, -> { order 'id desc' }
 

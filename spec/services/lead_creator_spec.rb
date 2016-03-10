@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe LeadCreator do
   let(:params) { {} }
   let(:cookies) { {} }
+  let(:session) { OpenStruct.new(id: 'xxx') }
+  let(:request) { OpenStruct.new(cookies: cookies, params: params, session: session) }
 
-  subject { described_class.new(cookies: cookies, params: params) }
+  subject { described_class.new(request: request) }
 
   describe '#call' do
     context 'no landing' do
@@ -26,6 +28,7 @@ RSpec.describe LeadCreator do
       end
       it 'must create lead' do
         expect(variant.leads.last.first_utm_source).to eq '123'
+        expect(variant.leads.last.viewer).to be_a Viewer
       end
     end
   end

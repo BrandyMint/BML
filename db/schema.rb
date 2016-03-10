@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309081850) do
+ActiveRecord::Schema.define(version: 20160310142449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,27 @@ ActiveRecord::Schema.define(version: 20160309081850) do
 
   add_index "collections", ["landing_id"], name: "index_collections_on_landing_id", using: :btree
 
+  create_table "landing_views", force: :cascade do |t|
+    t.string   "viewer_uid",   null: false
+    t.integer  "account_id"
+    t.integer  "landing_id"
+    t.integer  "variant_id"
+    t.string   "url",          null: false
+    t.string   "utm_source"
+    t.string   "utm_campaign"
+    t.string   "utm_medium"
+    t.string   "utm_term"
+    t.string   "utm_content"
+    t.string   "referer"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "landing_views", ["account_id"], name: "index_landing_views_on_account_id", using: :btree
+  add_index "landing_views", ["landing_id"], name: "index_landing_views_on_landing_id", using: :btree
+  add_index "landing_views", ["variant_id"], name: "index_landing_views_on_variant_id", using: :btree
+  add_index "landing_views", ["viewer_uid"], name: "index_landing_views_on_viewer_uid", using: :btree
+
   create_table "landings", force: :cascade do |t|
     t.integer  "account_id",                                      null: false
     t.string   "title",                                           null: false
@@ -139,6 +160,7 @@ ActiveRecord::Schema.define(version: 20160309081850) do
     t.string   "utm_term"
     t.string   "utm_content"
     t.string   "referer"
+    t.string   "viewer_uid"
   end
 
   add_index "leads", ["collection_id"], name: "index_leads_on_collection_id", using: :btree
@@ -246,6 +268,14 @@ ActiveRecord::Schema.define(version: 20160309081850) do
   add_index "variants", ["landing_id"], name: "index_variants_on_landing_id", using: :btree
   add_index "variants", ["uuid"], name: "index_variants_on_uuid", unique: true, using: :btree
 
+  create_table "viewers", force: :cascade do |t|
+    t.string   "uid",        default: "uuid_generate_v4()", null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
+  add_index "viewers", ["uid"], name: "index_viewers_on_uid", unique: true, using: :btree
+
   create_table "web_addresses", force: :cascade do |t|
     t.string   "subdomain",                        null: false
     t.string   "zone",                             null: false
@@ -268,10 +298,15 @@ ActiveRecord::Schema.define(version: 20160309081850) do
   add_foreign_key "clients", "landings"
   add_foreign_key "collection_fields", "collections"
   add_foreign_key "collections", "landings"
+  add_foreign_key "landing_views", "accounts"
+  add_foreign_key "landing_views", "landings"
+  add_foreign_key "landing_views", "variants"
+  add_foreign_key "landing_views", "viewers", column: "viewer_uid", primary_key: "uid"
   add_foreign_key "landings", "accounts"
   add_foreign_key "leads", "collections"
   add_foreign_key "leads", "landings"
   add_foreign_key "leads", "variants"
+  add_foreign_key "leads", "viewers", column: "viewer_uid", primary_key: "uid"
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
   add_foreign_key "phone_confirmations", "users"

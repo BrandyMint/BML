@@ -3,21 +3,31 @@ class LeadCreator
 
   DATA_EXCEPTIONS = [:variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit]
 
-  attribute :params
-  attribute :cookies
+  attribute :request
 
   def call
-    lead = collection.leads.create! lead_attributes
-    update_utm_values lead
-    lead
+    ActiveRecord::Base.transaction do
+      lead = collection.leads.create! lead_attributes
+      update_utm_values lead
+      lead
+    end
   end
 
   private
 
+  def params
+    request.params
+  end
+
+  def cookies
+    request.cookies
+  end
+
   def lead_attributes
     utm.attributes.merge!(
       data: data,
-      variant: variant
+      variant: variant,
+      viewer_uid: viewer.uid
     )
   end
 
@@ -33,7 +43,7 @@ class LeadCreator
     if params[:tracking]
       build_utm_from_tracking params[:tracking]
     else
-      UtmEntity.new cookies.to_h
+      CookiesUtmEntity.new cookies.to_h
     end
   end
 
@@ -46,7 +56,7 @@ class LeadCreator
     last_params = OpenStruct.new(tracking['current']['params'])
     last_referrer = tracking['current']['referrer']
 
-    UtmEntity.new(
+    CookiesUtmEntity.new(
       first_utm_source: first_params.utm_source,
       first_utm_campaign: first_params.utm_campaign,
       first_utm_medium: first_params.utm_medium,
@@ -73,6 +83,10 @@ class LeadCreator
 
   def find_collection
     # TODO
+  end
+
+  def viewer
+    @_viewer ||= FindOrCreateViewer.new(uid: request.session.id).call
   end
 
   def variant
