@@ -19,7 +19,7 @@ class Landing < ActiveRecord::Base
   scope :active, -> { all }
 
   def url
-    'http://' + account.host + path
+    'http://' + account.host + host_port.to_s + path
   end
 
   def to_s
@@ -44,6 +44,10 @@ class Landing < ActiveRecord::Base
   end
 
   private
+
+  def host_port
+    ':' + Settings.app.default_url_options.port.to_s unless Settings.app.default_url_options.port == 80
+  end
 
   def create_default_variant
     variants.create!
