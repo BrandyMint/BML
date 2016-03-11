@@ -1,4 +1,4 @@
-* [ ] добавить fonts.css
+* [.] добавить fonts.css
 * [ ] Обработка ошибок NoCurrentAccount и NotAuthenticated
 * [ ] Вставлять метрику и аналитику
 * [ ] Задеплоитья
