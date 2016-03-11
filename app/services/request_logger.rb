@@ -3,10 +3,11 @@ class RequestLogger
 
   attribute :worker
   attribute :request
+  attribute :viewer, Viewer
   attribute :variant, Variant
 
   def call
-    worker.perform_async uid, utms, url, variant.id
+    worker.perform_async viewer.uid, utms, url, variant.id
   end
 
   private
@@ -16,11 +17,7 @@ class RequestLogger
       .to_h.merge(referer: request.referer)
   end
 
-  def uid
-    request.session.id
-  end
-
   def url
-    request.original_url
+    request.original_url.split('?')[0]
   end
 end

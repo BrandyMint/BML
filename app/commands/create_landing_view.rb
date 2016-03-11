@@ -16,8 +16,8 @@ class CreateLandingView
     utms.merge(
       {
         viewer_uid: viewer.uid,
-        account_id: variant.account.id,
-        landing_id: variant.landing.id,
+        account_id: variant.account_id,
+        landing_id: variant.landing_id,
         variant_id: variant.id,
         url: url
       }

@@ -2,10 +2,10 @@ class ParamsUtmEntity
   include Virtus.value_object
 
   values do
-    attribute :utm_source
-    attribute :utm_campaign
-    attribute :utm_medium
-    attribute :utm_term
-    attribute :utm_content
+    attribute :utm_source, String
+    attribute :utm_campaign, String
+    attribute :utm_medium, String
+    attribute :utm_term, String
+    attribute :utm_content, String
   end
 end
