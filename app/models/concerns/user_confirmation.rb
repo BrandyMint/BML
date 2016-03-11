@@ -4,8 +4,8 @@ module UserConfirmation
   included do
     before_save :clear_is_delivery_email
 
-    before_save :require_email_confirmation,  if: :email_changed?
-    before_save :require_phone_confirmation,  if: :phone_changed?
+    before_save :require_email_confirmation, if: :email_changed?
+    before_save :require_phone_confirmation, if: :phone_changed?
 
     after_commit :deliver_email_confirmation!, on: [:create, :update], if: :is_delivery_email
   end

@@ -56,6 +56,9 @@ ru:
       not_confirmed: Не найден оператор с таким e-mail
       confirmation_sent: Ссылка для потверждения отправлена на Ваш e-mail
       session_failed: Неправильный email или пароль
+    password_reset:
+      created: 'Инструкции отправлены на ваш email'
+      updated: 'Пароль изменён'
   mailers:
     user_mailer:
       reset_password_instructions:
@@ -70,5 +73,5 @@ ru:
           Если вы не хотите менять свой пароль, проигнорируйте это письмо
   services:
     pin_sender:
-      sms_text: Для входа на сайт используйте пин код %{pin}
+      sms_text: Пин-код %{pin}
 
