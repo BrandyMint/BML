@@ -37,12 +37,9 @@ defaults: &defaults
       <<: *default_url_options
     delivery_method: :smtp
     smtp_settings:
-     user_name: '22034c1b99ccfa0a1'
-     password: '5954903ecb3318'
-     address: 'mailtrap.io'
-     domain: 'mailtrap.io'
-     port: 2525
-     authentication: :cram_md5
+      address: localhost
+      port: 25
+
 
   mailer_defaults: &mailer_defaults
     from: 'noreply@aydamaster.ru'
