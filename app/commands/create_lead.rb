@@ -1,4 +1,4 @@
-class LeadCreator
+class CreateLead
   include Virtus.model
 
   DATA_EXCEPTIONS = [:variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit]
