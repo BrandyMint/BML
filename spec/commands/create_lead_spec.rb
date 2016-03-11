@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe CreateLead do
   let(:params) { {} }
   let(:cookies) { {} }
-  let(:session) { OpenStruct.new(id: 'xxx') }
-  let(:request) { OpenStruct.new(cookies: cookies, params: params, session: session) }
+  let(:session) { double(id: 'xxx') }
+  let(:request) { double(cookies: cookies, params: params, session: session) }
 
   subject { described_class.new(request: request) }
 

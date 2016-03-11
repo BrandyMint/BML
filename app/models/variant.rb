@@ -9,6 +9,8 @@ class Variant < ActiveRecord::Base
 
   scope :ordered, -> { order :id }
 
+  before_create :set_account
+
   def full_title
     "#{landing} / #{self}"
   end
@@ -19,5 +21,11 @@ class Variant < ActiveRecord::Base
 
   def to_s
     title.presence || I18n.l(updated_at, format: :short)
+  end
+
+  private
+
+  def set_account
+    self.account_id = landing.account_id
   end
 end

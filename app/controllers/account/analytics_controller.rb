@@ -1,5 +1,5 @@
 class Account::AnalyticsController < Landing::BaseController
-  include CurrentLanding
+  include CurrentVariant
 
   layout 'analytics'
 

@@ -1,4 +1,4 @@
-module CurrentLanding
+module CurrentVariant
   NoCurrentVariant = Class.new StandardError
 
   def current_variant

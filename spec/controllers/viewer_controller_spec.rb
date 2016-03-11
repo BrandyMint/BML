@@ -1,12 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe ViewerController, type: :controller do
-  include CurrentLanding
+  include CurrentVariant
   let!(:landing) { create :landing }
   let!(:variant) { landing.default_variant }
+  let!(:viewer)  { create :viewer }
 
   before do
     set_current_variant variant
+    allow(controller).to receive(:current_viewer).and_return(viewer)
   end
 
   describe 'GET #show' do
