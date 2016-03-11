@@ -103,7 +103,7 @@ production:
       port: 25
   mailer_defaults:
     from: 'noreply@aydamaster.ru'
-    host: localhost
+    host: aydamaster.ru
 
 test:
   <<: *defaults
