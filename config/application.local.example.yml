@@ -108,7 +108,7 @@ production:
       address: localhost
       port: 25
   mailer_defaults:
-    from: 'noreply@aydamaste.ru'
+    from: 'noreply@aydamaster.ru'
     host: localhost
 
 test:
