@@ -95,19 +95,19 @@ production:
       port: 80
 
   tld_length: 1
-  action_mailer:
-    <<: *action_mailer
+  action_mailer: &action_mailer
+    raise_delivery_errors: false
+    default_url_options:
+      host: aydamaster.ru
+      port: 80
     delivery_method: :smtp
-    #smtp_settings:
-      #user_name: ''
-      #password: ''
-      #address: ''
-      #domain: ''
-      #port: 2525
-      #authentication: :cram_md5
     smtp_settings:
       address: localhost
       port: 25
+  mailer_defaults:
+    from: 'noreply@aydamaste.ru'
+    host: localhost
+
 
 test:
   <<: *defaults
