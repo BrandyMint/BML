@@ -11,7 +11,7 @@ development:
   encoding: unicode
   database: bml_test
   pool: 5
-  username: 
+  username: <%= ENV['PGUSER'] %>
   password:
 production:
   adapter: postgresql
