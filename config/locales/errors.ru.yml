@@ -8,6 +8,8 @@ ru:
               email: Неверный формат email
   errors:
     format: ! '%{attribute} %{message}'
+    humanized:
+      unknown_site: Нет такого сайта на нашей платформе
     messages:
       invalid_domain: Не валидное имя домена
       invalid_subdomain: Не валидное имя поддомена (должны быть только латинские букцы, цифры, -, _ без точек)
