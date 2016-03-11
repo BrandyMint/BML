@@ -3,14 +3,14 @@ module LandingsHelper
     truncate landing.title, length: 25
   end
 
-  def setup_viewer_bml
+  def setup_viewer_bml(variant: , viewer_uid: )
     config = {
       postLeadUrl: post_lead_url,
       # Не передаем, потом что лендинг могут сохранить и там окажется секретный api-ключ
       # apiUrl: api_v1_url,
       # apiKey: current_account.try(:api_key),
-      variantUuid: current_variant.uuid,
-      viewerUid: '' # TODO
+      variantUuid: variant.uuid,
+      viewerUid: viewer_uid,
     }
     javascript_tag "window.bmlConfig = #{config.to_json}"
   end

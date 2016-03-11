@@ -15,7 +15,6 @@ class ViewerConstraint
 
     if variant.present?
       set_current_variant variant
-      set_session_viewer request
       return true
     else
       set_current_variant nil

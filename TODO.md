@@ -1,3 +1,4 @@
+* [ ] Разбить на приложения aydamaster и bmland
 * [x] добавить fonts.css
 * [x] Обработка ошибок NoCurrentAccount и NotAuthenticated
 * [x] Задеплоитья
