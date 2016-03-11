@@ -17,12 +17,12 @@ Rails.application.config.assets.paths << 'vendor/dist/dist'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w(
   *.gif *.png *.jpg *.svg *.ttf *.woff *.woff2
+  fonts.css
   welcome.js
   vendor.js
   components.js
   viewer_application.js
   viewer.js viewer.css
   editor.js editor.css
-  theme1.css
   swagger_ui.js swagger_ui.css
 )

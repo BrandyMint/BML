@@ -3,7 +3,8 @@ html
   head
     title= landing_head_title current_landing
     = setup_viewer_bml
-    == stylesheet_link_tag 'viewer', media: 'all', 'data-turbolinks-track' => true
+    == stylesheet_link_tag 'viewer', media: 'all'
+    == stylesheet_link_tag 'fonts', media: 'all'
     == csrf_meta_tags
   body
     == yield
