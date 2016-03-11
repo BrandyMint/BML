@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe LeadCreator do
+RSpec.describe CreateLead do
   let(:params) { {} }
   let(:cookies) { {} }
   let(:session) { OpenStruct.new(id: 'xxx') }
