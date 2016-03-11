@@ -21,8 +21,8 @@ module LandingExamples
           subheader: 'Удобный конструктор сайта с автоматической аналитикой',
           items: [
             {
-              title: 'Вперед!',
-              url: '#'
+              text: 'Вперед!',
+              href: '#'
             }
           ]
         }
@@ -31,7 +31,7 @@ module LandingExamples
         uuid: '440c3460-a7e8-0133-b838-746d04736cf8',
         viewName: 'InlineForm1',
         content: {
-          title: 'Подписка'
+          text: ''
         },
         form: {
           submitTitle: 'Подписаться',
@@ -81,14 +81,12 @@ module LandingExamples
           subheader: 'Шаблон для посадочной страницы',
           items: [
             {
-              icon: 'twitter',
-              title: 'Twitter',
-              url: 'twitter.com'
+              text: 'Twitter',
+              href: 'twitter.com'
             },
             {
-              icon: 'github',
-              title: 'GitHub',
-              url: 'github.com'
+              text: 'GitHub',
+              href: 'github.com'
             }
           ]
         },
@@ -151,14 +149,12 @@ module LandingExamples
           text: 'Присоединяйся к нам в соцсетях!',
           items: [
             {
-              icon: 'twitter',
-              title: 'Twitter',
-              url: 'twitter.com'
+              text: 'Twitter',
+              href: 'twitter.com'
             },
             {
-              icon: 'github',
-              title: 'GitHub',
-              url: 'github.com'
+              text: 'GitHub',
+              href: 'github.com'
             }
           ]
         },
@@ -207,19 +203,19 @@ module LandingExamples
         uuid: '440ddca0-a7e8-0133-a838-746d04736cf8',
         viewName: 'Footer1',
         content: {
-          copyrightText: 'Copyright © BML landing 2016. All Rights Reserved',
-          items: [
+          text: 'Copyright © BML landing 2016. All Rights Reserved',
+          links: [
             {
-              title: 'Домой',
-              url: '#top'
+              text: 'Домой',
+              href: '#top'
             },
             {
-              title: 'О нас',
-              url: '#about'
+              text: 'О нас',
+              href: '#about'
             },
             {
-              title: 'Услуги',
-              url: '#services'
+              text: 'Услуги',
+              href: '#services'
             }
           ]
         },

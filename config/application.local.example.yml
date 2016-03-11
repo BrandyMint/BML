@@ -31,11 +31,6 @@ defaults: &defaults
       host: 3008.vkontraste.ru
       port: 80
 
-  smsc:
-    login: dapi
-    password: '|fc6oq6sw(c22ok7e6]bul9^u0(6mv['
-    sender: bmland
-
   action_mailer: &action_mailer
     raise_delivery_errors: false
     default_url_options:
@@ -56,14 +51,16 @@ development:
     - aydamaster.ru
     - bmland.ru
     - localhost
+    - bmland.dev
 
   app:
     <<: *app
-    asset_host: http://3008.vkontraste.ru
+    asset_host: http://bmland.dev
 
+    default_domain: bmland.dev
     default_url_options: &default_url_options
-      host: 3008.vkontraste.ru
-      port: 80
+      host: bmland.dev
+      port: 3008
 
   tld_length: 2
   action_mailer:
@@ -107,7 +104,6 @@ production:
   mailer_defaults:
     from: 'noreply@aydamaster.ru'
     host: localhost
-
 
 test:
   <<: *defaults

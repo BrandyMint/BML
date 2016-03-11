@@ -9,7 +9,8 @@ module LandingsHelper
       # Не передаем, потом что лендинг могут сохранить и там окажется секретный api-ключ
       # apiUrl: api_v1_url,
       # apiKey: current_account.try(:api_key),
-      variantUuid: current_variant.uuid
+      variantUuid: current_variant.uuid,
+      viewerUid: '' # TODO
     }
     javascript_tag "window.bmlConfig = #{config.to_json}"
   end

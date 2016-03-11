@@ -3,7 +3,8 @@ class LandingViewWorker
 
   def perform(uid, utms, url, variant_id)
     ActiveRecord::Base.transaction do
-      CreateLandingView.new(find_or_create_viewer(uid), utms, url, find_variant(variant_id)).call
+      # FIX
+      # CreateLandingView.new(find_or_create_viewer(uid), utms, url, find_variant(variant_id)).call
     end
   rescue => err
     raise err unless Rails.env.production?

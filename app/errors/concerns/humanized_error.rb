@@ -5,7 +5,7 @@ module HumanizedError
       @options = {}
     elsif options.is_a? Symbol
       key = options
-      opts2.reverse_merge! default: key.to_s, scope: [:errors, class_key]
+      opts2.reverse_merge! default: key.to_s, scope: [:errors, :humanized, class_key]
       @options = opts2
       @message ||= I18n.t key, opts2
     else
