@@ -16,8 +16,6 @@ module CurrentViewer
   end
 
   def save_viewer
-    now = Time.now
-    sql = ActiveRecord::Base.send(:sanitize_sql_array, ["INSERT INTO viewers (uid, created_at, updated_at) VALUES (?, ?, ?) ON CONFLICT (uid) DO UPDATE SET updated_at = ?", current_viewer_uid, now, now, now])
-    ActiveRecord::Base.connection.execute(sql)
+    Viewer.touch_or_create current_viewer_uid
   end
 end

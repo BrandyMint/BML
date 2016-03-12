@@ -3,10 +3,13 @@ require 'rails_helper'
 RSpec.describe CreateLead do
   let(:params) { {} }
   let(:cookies) { {} }
-  let(:session) { double(id: 'xxx') }
-  let(:request) { double(cookies: cookies, params: params, session: session) }
+  let(:viewer_uid) { 'xxx' }
 
-  subject { described_class.new(request: request) }
+  subject { described_class.new(params: params, cookies: cookies, viewer_uid: viewer_uid) }
+
+  before do
+    Viewer.touch_or_create viewer_uid
+  end
 
   describe '#call' do
     context 'no landing' do

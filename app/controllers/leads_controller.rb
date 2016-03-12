@@ -1,4 +1,6 @@
 class LeadsController < ApplicationController
+  include CurrentViewer
+
   skip_before_action :verify_authenticity_token
   layout 'lead'
 
@@ -47,7 +49,11 @@ class LeadsController < ApplicationController
   end
 
   def create_lead
-    @_lead ||= CreateLead.new(request: request).call
+    @_lead ||= CreateLead.new(
+      params: params,
+      cookies: cookies,
+      viewer_uid: current_viewer_uid,
+    ).call
   end
 
   def lead

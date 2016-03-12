@@ -3,7 +3,9 @@ class CreateLead
 
   DATA_EXCEPTIONS = [:variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit]
 
-  attribute :request
+  attribute :params
+  attribute :cookies
+  attribute :viewer_uid
 
   def call
     ActiveRecord::Base.transaction do
@@ -15,19 +17,11 @@ class CreateLead
 
   private
 
-  def params
-    request.params
-  end
-
-  def cookies
-    request.cookies
-  end
-
   def lead_attributes
     utm.attributes.merge!(
       data: data,
       variant: variant,
-      viewer_uid: viewer.uid
+      viewer_uid: viewer_uid
     )
   end
 
@@ -83,10 +77,6 @@ class CreateLead
 
   def find_collection
     # TODO
-  end
-
-  def viewer
-    @_viewer ||= FindOrCreateViewer.new(uid: request.session.id).call
   end
 
   def variant
