@@ -24,12 +24,16 @@ module LandingsHelper
     react_component 'Viewer', props, prerender: false
   end
 
+  def landing_leads_details(landing)
+    I18n.t :leads_count, count: landing.total_leads_count
+  end
+
   def landing_leads_title(landing)
     count = landing.total_leads_count
     title = 'Заявки'
     return title if count == 0
 
-    (title + "&nbsp;(#{count})").html_safe
+    (title + "&nbsp;<span class=\"text-muted\">(#{count})</span>").html_safe
   end
 
   private

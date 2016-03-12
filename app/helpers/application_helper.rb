@@ -1,4 +1,16 @@
 module ApplicationHelper
+  def truncate_url(url)
+    buffer = url_without_protocol url
+    buffer = truncate buffer, length: 30, omission: "...#{buffer[-7, 7]}"
+    link_to buffer, url, title: url, target: '_blank', class: 'text-muted'
+    # url.gsub(/(...).{4,}(...)/, '\1...\2')
+  end
+
+  def url_without_protocol(url)
+    a = Addressable::URI.parse url
+    a.host + a.path
+  end
+
   def human_boolean(value)
     value ? 'Да' : 'Нет'
   end

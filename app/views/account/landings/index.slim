@@ -1,4 +1,6 @@
 .text-center.m-t-lg.m-b-lg
+  = current_account.host
+.text-center.m-t-lg.m-b-lg
   = link_to 'Создать новый лендинг', new_account_landing_path, class: 'btn btn-success-outline'
 table.table.table-condensed.table-hover.table-projects.table-centered
   tbody
@@ -8,23 +10,16 @@ table.table.table-condensed.table-hover.table-projects.table-centered
           /.text-muted
             /= fa_icon :bullseye
         td
-          div
+          div.m-b-sm
             b
               = link_to account_landing_leads_path(l), style: 'color: black' do
                 = l.title
-          small
-            = link_to l.url, l.url, class: 'text-muted'
-        td
-          = link_to landing_leads_title(l), account_landing_leads_path(l)
-        td.hoverable-cell
-          .hoverable-content
-            = link_to account_landing_editor_path(l.default_variant.uuid) do
-              = fa_icon :editor
-        td.hoverable-cell
-          .hoverable-content
-            = link_to l.url, title: 'Просмотр', class: 'icon-link', target: '_blank', tooltip: true, data: { tooltip: true } do
-              = fa_icon :desktop, class: 'fa-2x'
-        td.hoverable-cell
-          .hoverable-content
-            = link_to edit_account_landing_path(l), class: 'icon-link', title: 'Настройка' do
-              = fa_icon :gear, class: 'fa-2x'
+
+          .row
+            .col-md-6
+              small
+                .text-muted
+                  = url_without_protocol l.url
+            .col-md-6
+              small
+                .text-muted.pull-right= landing_leads_details(l)

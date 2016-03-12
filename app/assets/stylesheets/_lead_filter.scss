@@ -1,0 +1,17 @@
+.lead-filter {
+  font-size: 12px;
+  margin-bottom: 15px;
+
+  .filter-group {
+    float: left;
+    padding: 0 5px 10px 0;
+  }
+  .selectize-control {
+    font-size: 12px;
+  }
+  .selectize-input {
+    height: 20px;
+    min-height: auto;
+    padding: 4px 12px;
+  }
+}

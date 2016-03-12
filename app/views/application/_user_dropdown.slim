@@ -7,12 +7,12 @@ ul.nav.navbar-nav.navbar-right
       = fa_icon 'user', class: 'm-r-sm', text: current_user
     .dropdown-menu
       = active_link_to 'Профиль', profile_path(backurl: request.url), class: 'dropdown-item'
-      = active_link_to account_root_path, class: 'dropdown-item', active: :exclusive do
+      = active_link_to account_root_path, class: 'dropdown-item', active: controller_name == 'landings' do
         | Аккаунт
         div
           small.text-muted= current_account
       - if current_user.memberships.many?
-        = active_link_to 'Аккаунты', accounts_path, class: 'dropdown-item'
+        = active_link_to 'Другие аккаунты..', accounts_path, class: 'dropdown-item'
 
       .dropdown-divider
       = link_to 'Выйти', logout_url, class: 'dropdown-item'

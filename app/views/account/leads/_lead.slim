@@ -4,7 +4,9 @@ tr
   td.text-muted.text-nowrap
     = I18n.l lead.created_at, format: :short
   - fields.each do |field|
-    td= lead.data[field.key]
+    td= lead.data[field.key].presence || '-'
 
-  - utm_fields.each do |field|
-    td= lead.send(field.item_key)
+  - utm_fields.reject { |i| i.key == :referer}.each do |field|
+    td= lead.send(field.item_key) || '-'
+
+  td= truncate_url lead.referer
