@@ -50,19 +50,18 @@ development:
   domain_zones:
     - aydamaster.ru
     - bmland.ru
-    - localhost
-    - bmland.dev
+    - <%= ENV['HOST'] || 'bmland.dev' %>
 
   app:
     <<: *app
-    asset_host: http://bmland.dev
+    asset_host: <%= ENV['ASSET_HOST'] || 'http://bmland.dev' %>
 
-    default_domain: bmland.dev
+    default_domain: <%= ENV['HOST'] %>
     default_url_options: &default_url_options
-      host: bmland.dev
-      port: 3008
+      host: <%= ENV['HOST'] || 'bmland.dev' %>
+      port: <%= ENV['PORT'] || 3000 %>
 
-  tld_length: 2
+  tld_length: <%= ENV['TLD'] || 2 %>
   action_mailer:
     <<: *action_mailer
     delivery_method: :letter_opener
