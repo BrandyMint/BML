@@ -1,6 +1,6 @@
 module LandingsHelper
   def landing_short_title(landing)
-    truncate landing.title, length: 25
+    truncate_middle landing.title, length: 25
   end
 
   def setup_viewer_bml(variant: , viewer_uid: )

@@ -8,6 +8,7 @@ nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
           li.nav-item.dropdown
             = link_to account_landing_url(current_landing), 
               class: 'nav-link dropdown-toggle', 
+              title: current_landing.title,
               data: { toggle: 'dropdown' }, 
               role: 'button' do
               = fa_icon 'bullseye', class: 'm-r-sm', text: landing_short_title(current_landing)
@@ -44,7 +45,7 @@ nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
             /= fa_icon 'line-chart'
           li.nav-item
             = active_link_to current_landing.url, class: 'nav-link' do
-              = fa_icon 'newspaper-o', text: 'Просмотр', class: 'menu-hor-icon'
+              = fa_icon 'newspaper-o', text: 'Сайт', class: 'menu-hor-icon'
           li.nav-item
             = active_link_to edit_account_landing_path(current_landing), class: 'nav-link' do
               = fa_icon 'gears', text: 'Настройки', class: 'menu-hor-icon'

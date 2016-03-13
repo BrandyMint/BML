@@ -1,8 +1,11 @@
 module ApplicationHelper
-  def truncate_url(url)
-    buffer = url_without_protocol url
-    buffer = truncate buffer, length: 30, omission: "...#{buffer[-7, 7]}"
+  def truncate_url(url, length: 30)
+    buffer = truncate_middle url_without_protocol url
     link_to buffer, url, title: url, target: '_blank', class: 'text-muted'
+  end
+
+  def truncate_middle(buffer, length: 30, finish: 7)
+    buffer = truncate buffer, length: length, omission: "...#{buffer[-finish, finish]}"
     # url.gsub(/(...).{4,}(...)/, '\1...\2')
   end
 
@@ -37,10 +40,6 @@ module ApplicationHelper
 
   def post_lead_url
     leads_url subdomain: ''
-  end
-
-  def application
-    OpenStruct.new Settings.app
   end
 
   def paginate(objects, options = {})
