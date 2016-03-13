@@ -1,4 +1,4 @@
-$(function(){
+var initFilter = function(){
   $('[filter-variant]').on('click', function (e) {
     $(this).parents('.dropdown').find('[name=variant_id]').val($(this).attr('value'));
     $(this).closest('form').submit();
@@ -38,4 +38,6 @@ $(function(){
       });
     }
   });
-});
+};
+
+$(document).on('ready page:load', initFilter);
