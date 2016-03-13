@@ -10,10 +10,10 @@ html
     header.auth-header
       h1.auth-header-title.bml-logo
         - if current_account.present?
-          = link_to Settings.app.title, account_root_url, class: 'auth-header-link'
+          = link_to AppSettings.title, account_root_url, class: 'auth-header-link'
         - else
-          = link_to Settings.app.title, root_url, class: 'auth-header-link'
+          = link_to AppSettings.title, root_url, class: 'auth-header-link'
     .vertical-center.auth-content
-      .container.vertical-container.vertical-container-corrected
+      .container.vertical-container
         == render 'layouts/messages'
         == yield

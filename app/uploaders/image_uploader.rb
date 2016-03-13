@@ -59,7 +59,7 @@ class ImageUploader < FileUploader
   end
 
   def default_url
-    ActionController::Base.helpers.asset_url Settings.app.fallback_image
+    ActionController::Base.helpers.asset_url Settings.fallback_image
   end
 
   protected

@@ -1,8 +1,8 @@
 class WebAddress < ActiveRecord::Base
   ALL_ZONES       = '*'
   AVAILABLE_ZONES = Settings.domain_zones + [ALL_ZONES]
-  DEFAULT_ZONE    = Settings.app.default_domain
-  DEFAULT_CURRENT_ZONE = Settings.app.default_domain
+  DEFAULT_ZONE    = AppSettings.default_domain
+  DEFAULT_CURRENT_ZONE = AppSettings.default_domain
   DOMAIN_PATTERN = Regexp.union(*Settings.domain_zones)
 
   # http://tools.ietf.org/html/rfc2181#section-11

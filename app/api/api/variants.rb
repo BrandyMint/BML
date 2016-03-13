@@ -32,7 +32,7 @@ class API::Variants < Grape::API
         present variant.reload, with: Entities::VariantEntity
       end
 
-      desc 'Получаем данные лендоса'
+      desc 'Получаем данные сайта'
       get do
         present variant.reload, with: Entities::VariantEntity
       end

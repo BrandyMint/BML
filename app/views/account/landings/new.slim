@@ -1,5 +1,5 @@
 .row
   .col-md-6.col-md-offset-3
     = simple_form_for [:account, landing] do |f|
-      = f.input :title, label: 'Создаем новый лендиг', autofocus: true, placeholder: 'Например: Прием заказов в парикмахерскую'
+      = f.input :title, label: 'Создаем новый сайт', autofocus: true, placeholder: 'Например: Прием заказов в парикмахерскую'
       = f.button :submit, 'Создать', class: 'btn-primary'

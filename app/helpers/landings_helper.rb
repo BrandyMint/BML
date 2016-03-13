@@ -6,7 +6,7 @@ module LandingsHelper
   def setup_viewer_bml(variant: , viewer_uid: )
     config = {
       postLeadUrl: post_lead_url,
-      # Не передаем, потом что лендинг могут сохранить и там окажется секретный api-ключ
+      # Не передаем, потом что сайт могут сохранить и там окажется секретный api-ключ
       # apiUrl: api_v1_url,
       # apiKey: current_account.try(:api_key),
       variantUuid: variant.uuid,

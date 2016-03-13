@@ -4,14 +4,14 @@ class API::Landings < Grape::API
 
   desc 'Посадочные страницы'
   resources :landings do
-    desc 'Список доступных лендингов'
+    desc 'Список доступных сайтов'
     get do
       present current_account.landings.ordered, with: Entities::LandingEntity
     end
 
     params do
-      requires :landing_uuid, type: String, desc: 'UUID Лендинга'
-      optional :full, type: Boolean, desc: 'Презентировать весь лендос', default: false
+      requires :landing_uuid, type: String, desc: 'UUID Сайта'
+      optional :full, type: Boolean, desc: 'Презентировать весь сайт', default: false
     end
     namespace ':landing_uuid' do
       helpers do
@@ -20,7 +20,7 @@ class API::Landings < Grape::API
         end
       end
 
-      desc 'Варианты лендинга'
+      desc 'Варианты сайта'
       resources :variants do
         desc 'Список вариантов'
         get do

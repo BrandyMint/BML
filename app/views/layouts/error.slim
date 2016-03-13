@@ -1,1 +1,15 @@
-system.slim
+doctype html 
+html
+  head
+    title BML
+    == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    == javascript_include_tag 'application', 'data-turbolinks-track' => true
+    == csrf_meta_tags
+    == include_gon
+  body
+    .vertical-center
+      .container.vertical-container.vertical-container-corrected
+        .row
+          .col-sm-5.col-sm-offset-3
+            == render 'layouts/messages'
+        == yield

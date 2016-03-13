@@ -78,12 +78,12 @@ production:
     - aydamaster.ru
     - bmland.ru
 
+  fallback_image: /images/fallback/product-none.png
   app:
     <<: *app
     title: bmland.ru
 
     default_domain: aydamaster.ru
-    fallback_image: images/fallback/product-none.png
     asset_host: http://aydamaster.ru
 
     default_url_options: &default_url_options

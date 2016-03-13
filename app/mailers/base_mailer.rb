@@ -12,7 +12,7 @@ class BaseMailer < ActionMailer::Base
 
   def test_email(email)
     Rails.logger.info "test mail mail to #{email}"
-    mail to: email, subject: "Тестовое письмо #{Settings.app.title}"
+    mail to: email, subject: "Тестовое письмо #{AppSettings.title}"
   end
 
   class CancelMailing < StandardError; end

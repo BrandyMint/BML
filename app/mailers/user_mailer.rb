@@ -16,6 +16,6 @@ class UserMailer < BaseMailer
     fail NoEmail, "User: #{user_id}" unless @user.email.present?
 
     mail(to: @user.email,
-         subject: "#{Settings.app.title}: E-mail confirmation")
+         subject: "#{AppSettings.title}: E-mail confirmation")
   end
 end

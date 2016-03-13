@@ -1,10 +1,6 @@
-/ ul
-/   - Account.all.find_each do |a|
-/     li= link_to a, account_dashboard_url(a)
-
 .row
   .col-sm-4.col-sm-offset-4
-    h2.welcome-header.bml-logo= "[bm]land"
+    h2.welcome-header.bml-logo= AppSettings.title
     div.welcome-subheader Система управления процессом приземления
 
 .row
