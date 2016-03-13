@@ -83,6 +83,8 @@ gem 'hashie'
 
 gem 'execjs'
 
+gem 'addressable'
+
 # Just add/require this gem after/instead (implicit) execjs gem. The latter will be monkey-patched.
 # Глюячная фигня, но идея хорошая
 # gem 'execjs-xtrn'

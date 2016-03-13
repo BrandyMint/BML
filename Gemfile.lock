@@ -574,6 +574,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to
+  addressable
   babosa
   bond
   bootstrap (~> 4.0.0.alpha3)
