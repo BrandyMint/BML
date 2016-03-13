@@ -25,6 +25,16 @@ class Account::VariantsController < Landing::BaseController
     render 'edit', locals: { variant: err.record }
   end
 
+  def deactivate
+    variant.deactivate!
+    redirect_to :back
+  end
+
+  def activate
+    variant.activate!
+    redirect_to :back
+  end
+
   def index
     render locals: { variants: variants }
   end

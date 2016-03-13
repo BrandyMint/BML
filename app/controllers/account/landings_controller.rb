@@ -1,8 +1,6 @@
 class Account::LandingsController < Account::BaseController
   layout 'account'
 
-  helper_method :current_landing
-
   def index
     render locals: { landings: landings }
   end
@@ -12,7 +10,7 @@ class Account::LandingsController < Account::BaseController
   end
 
   def edit
-    render locals: { landing: current_landing }, layout: 'landing'
+    redirect_to address_account_landing_setting_url(params[:id])
   end
 
   def show
@@ -26,13 +24,6 @@ class Account::LandingsController < Account::BaseController
     render 'new', locals: { landing: err.record }
   end
 
-  def update
-    current_landing.update_attributes! permitted_params
-    redirect_to edit_account_landing_path current_landing
-  rescue ActiveRecord::RecordInvalid
-    render 'edit', locals: { landing: err.record }
-  end
-
   private
 
   def current_variant
@@ -41,11 +32,6 @@ class Account::LandingsController < Account::BaseController
 
   def build_landing
     current_account.landings.build
-  end
-
-  def current_landing
-    fail 'No landing_id in param' unless params[:id]
-    current_account.landings.find params[:id]
   end
 
   def landings

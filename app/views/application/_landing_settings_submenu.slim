@@ -1,0 +1,5 @@
+ul.nav.nav-pills.nav-stacked
+  li.nav-item= active_link_to 'Адрес сайта', address_account_landing_settings_url(landing), class: 'nav-link', active: [[],['address']]
+  li.nav-item= active_link_to 'Meta-теги', meta_account_landing_settings_url(landing), class: 'nav-link', active: [[],['meta']]
+  li.nav-item= active_link_to 'Yandex.Direct', direct_account_landing_settings_url(landing), class: 'nav-link', active: [[],['direct']]
+  li.nav-item= active_link_to 'Варианты', variants_account_landing_settings_url(landing), class: 'nav-link', active: [[],['variants']]

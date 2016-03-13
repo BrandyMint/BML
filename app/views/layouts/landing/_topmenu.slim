@@ -47,7 +47,7 @@ nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
             = active_link_to current_landing.url, class: 'nav-link' do
               = fa_icon 'newspaper-o', text: 'Сайт', class: 'menu-hor-icon'
           li.nav-item
-            = active_link_to edit_account_landing_path(current_landing), class: 'nav-link' do
+            = active_link_to edit_account_landing_path(current_landing), class: 'nav-link', active: controller_name == 'landing_settings' do
               = fa_icon 'gears', text: 'Настройки', class: 'menu-hor-icon'
 
       .col-lg-3

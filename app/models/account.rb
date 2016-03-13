@@ -7,7 +7,7 @@ class Account < ActiveRecord::Base
 
   scope :ordered, -> { order 'id desc' }
 
-  has_many :landings,    dependent: :destroy
+  has_many :landings,    dependent: :destroy, class_name: '::Landing'
   has_many :collections, through: :landings, dependent: :destroy
 
   has_many :variants, through: :landings

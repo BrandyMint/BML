@@ -1,3 +1,4 @@
+* [ ] ru.activerecord.errors.models.landing.attributes.path.uri_component
 * [ ] Разбить на приложения aydamaster и bmland
 * [x] добавить fonts.css
 * [x] Обработка ошибок NoCurrentAccount и NotAuthenticated

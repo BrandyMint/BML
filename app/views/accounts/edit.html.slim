@@ -3,3 +3,5 @@
     = simple_form_for account, url: account_path do |f|
       = render 'form_domain', account: account, f: f
       = f.submit 'Сохранить', class: 'btn btn-primary'
+hr
+code Ключ для API: #{current_account.api_key}

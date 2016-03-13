@@ -1,0 +1,8 @@
+- content_for :content do
+  .row
+    .col-md-3
+      = render 'landing_settings_submenu', landing: landing
+    .col-md-9
+      = yield
+
+= render template: 'layouts/landing'

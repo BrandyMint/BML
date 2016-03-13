@@ -41,10 +41,7 @@ class Landing < ActiveRecord::Base
   end
 
   def default_variant
-    @_default_variant ||= variants
-      .active
-      .ordered
-      .first
+    @_default_variant ||= variants.active.ordered.first || variants.ordered.first
   end
 
   private

@@ -1,0 +1,9 @@
+= simple_form_for [:account, landing], url: account_landing_settings_url(landing) do |f|
+  = hidden_field_tag :subaction, :address
+  .row
+    .col-md-6
+      = f.input :path, label: 'Путь', hint: current_account.host
+  .row
+    .col-md-6
+      .form-group
+        = f.button :submit, 'Сохранить', class: 'btn-primary'

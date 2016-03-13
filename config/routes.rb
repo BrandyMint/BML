@@ -44,10 +44,23 @@ Rails.application.routes.draw do
     scope :account, as: :account, module: :account do
       root to: redirect('/account/landings')
       resources :landings do
+        resource :settings, only: [:update], controller: 'landing_settings' do
+          member do
+            get :address
+            get :meta
+            get :direct
+            get :variants
+          end
+        end
         resources :leads
         resources :viewers
         resources :views
-        resources :variants
+        resources :variants do
+          member do
+            post :activate
+            post :deactivate
+          end
+        end
         resources :analytics do
           collection do
             get :sources
