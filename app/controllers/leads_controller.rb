@@ -36,6 +36,16 @@ class LeadsController < ApplicationController
 
   private
 
+  DATA_EXCEPTIONS = [:variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit]
+
+  def current_variant
+    @_current_variant ||= Variant.where(uuid: variant_uuid).first! || fail("No such variant #{variant_uuid}")
+  end
+
+  def variant_uuid
+    params[:variant_uuid]
+  end
+
   def render_html_error(err)
     render 'error',
       locals: { message: err.record.errors.to_a.join('<br>') },
@@ -48,10 +58,16 @@ class LeadsController < ApplicationController
            status: 400
   end
 
+  def lead_params
+    Hash[params.except(*DATA_EXCEPTIONS).map { |k, v| [k.downcase, v] }]
+  end
+
   def create_lead
     @_lead ||= CreateLead.new(
-      params: params,
-      cookies: cookies,
+      data:       lead_params,
+      variant:    current_variant,
+      tracking:   params[:tracking],
+      cookies:    cookies,
       viewer_uid: current_viewer_uid,
     ).call
   end

@@ -3,10 +3,12 @@ tr
     = lead.number
   td.text-muted.text-nowrap
     = I18n.l lead.created_at, format: :short
+  td.text-muted
+    = lead.viewer_uid
   - fields.each do |field|
-    td= lead.data[field.key].presence || '-'
+    td= lead.data[field.key].presence || empty_value_html
 
   - utm_fields.reject { |i| i.key == :referer}.each do |field|
-    td= lead.send(field.item_key) || '-'
+    td= lead.send(field.item_key) || empty_value_html
 
   td= truncate_url lead.referer

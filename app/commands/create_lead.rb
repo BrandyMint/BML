@@ -1,10 +1,11 @@
 class CreateLead
   include Virtus.model
 
-  DATA_EXCEPTIONS = [:variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit]
 
-  attribute :params
+  attribute :data
+  attribute :tracking
   attribute :cookies
+  attribute :variant
   attribute :viewer_uid
 
   def call
@@ -34,8 +35,8 @@ class CreateLead
   end
 
   def build_utm
-    if params[:tracking]
-      build_utm_from_tracking params[:tracking]
+    if tracking.present?
+      build_utm_from_tracking tracking
     else
       CookiesUtmEntity.new cookies.to_h
     end
@@ -79,11 +80,4 @@ class CreateLead
     # TODO
   end
 
-  def variant
-    @_variant ||= Variant.where(uuid: params[:variant_uuid]).first!
-  end
-
-  def data
-    Hash[params.except(*DATA_EXCEPTIONS).map { |k, v| [k.downcase, v] }]
-  end
 end

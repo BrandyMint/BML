@@ -4,6 +4,14 @@ module ApplicationHelper
     link_to buffer, url, title: url, target: '_blank', class: 'text-muted'
   end
 
+  def empty_value
+    '&middot;'.html_safe
+  end
+
+  def empty_value_html
+    content_tag :span, empty_value, class: 'text-muted'
+  end
+
   def truncate_middle(buffer, length: 30, finish: 7)
     buffer = truncate buffer, length: length, omission: "...#{buffer[-finish, finish]}"
     # url.gsub(/(...).{4,}(...)/, '\1...\2')
