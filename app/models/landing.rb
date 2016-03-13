@@ -22,6 +22,10 @@ class Landing < ActiveRecord::Base
     'http://' + account.host + host_port.to_s + path
   end
 
+  def viewers
+    Viewer.where(landing_id: id)
+  end
+
   def to_s
     title
   end

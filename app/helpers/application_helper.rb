@@ -1,4 +1,9 @@
 module ApplicationHelper
+
+  def utm_fields_only
+    Lead.utm_fields.reject { |i| i.key == :referer}
+  end
+
   def truncate_url(url, length: 30)
     buffer = truncate_middle url_without_protocol url
     link_to buffer, url, title: url, target: '_blank', class: 'text-muted'

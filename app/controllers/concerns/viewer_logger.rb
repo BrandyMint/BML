@@ -18,6 +18,6 @@ module ViewerLogger
   end
 
   def log_request
-    LandingViewWorker.perform_async current_viewer_uid, utms, current_url, current_variant.id
+    LandingViewWorker.perform_async current_viewer_uid, utms, current_url, current_variant.id, request.user_agent, request.remote_ip
   end
 end

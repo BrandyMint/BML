@@ -16,6 +16,8 @@ module CurrentViewer
   end
 
   def save_viewer
-    Viewer.touch_or_create current_viewer_uid
+    TouchOrCreateViewer
+      .new(viewer_uid: current_viewer_uid, remote_ip: request.remote_ip, user_agent: request.user_agent, landing_id: current_landing.id)
+      .call
   end
 end

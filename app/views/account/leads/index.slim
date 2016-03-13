@@ -11,10 +11,10 @@
         th viewer
         - fields.each do |field|
           th= field
-        - utm_fields.each do |field|
+        - Lead.utm_fields.each do |field|
           th= field.title
     tbody
-      == render partial: 'lead', collection: leads, locals: { fields: fields, utm_fields: utm_fields }
+      == render partial: 'lead', collection: leads, locals: { fields: fields }
   nav
     = paginate leads
   -#= render 'export_links'

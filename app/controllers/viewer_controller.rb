@@ -9,9 +9,15 @@ class ViewerController < ApplicationController
 
   def show
     render locals: {
-      current_landing: current_variant.landing,
-      variant: current_variant,
-      viewer_uid: current_viewer_uid
+      current_landing: current_landing,
+      variant:         current_variant,
+      viewer_uid:      current_viewer_uid
     }
+  end
+
+  private
+
+  def current_landing
+    @_current_landing ||= current_variant.landing
   end
 end

@@ -81,4 +81,9 @@ ru:
     few: '%{count} заявки'
     many: '%{count} заявок'
     other: '%{count} заявок'
-
+  views_count:
+    zero: 'Без посещений'
+    one: '%{count} посещение'
+    few: '%{count} посещения'
+    many: '%{count} посещений'
+    other: '%{count} посещений'

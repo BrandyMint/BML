@@ -1,12 +1,11 @@
 class CreateLead
-  include Virtus.model
+  include Virtus.model(strict: true)
 
-
-  attribute :data
-  attribute :tracking
-  attribute :cookies
-  attribute :variant
-  attribute :viewer_uid
+  attribute :data,       Hash
+  attribute :tracking,   String
+  attribute :cookies,    Hash
+  attribute :variant,    Variant
+  attribute :viewer_uid, String
 
   def call
     ActiveRecord::Base.transaction do
@@ -52,20 +51,19 @@ class CreateLead
     last_referrer = tracking['current']['referrer']
 
     CookiesUtmEntity.new(
-      first_utm_source: first_params.utm_source,
+      first_utm_source:   first_params.utm_source,
       first_utm_campaign: first_params.utm_campaign,
-      first_utm_medium: first_params.utm_medium,
-      first_utm_term: first_params.utm_term,
-      first_utm_content: first_params.utm_content,
-      first_referer: first_referrer,
+      first_utm_medium:   first_params.utm_medium,
+      first_utm_term:     first_params.utm_term,
+      first_utm_content:  first_params.utm_content,
+      first_referer:      first_referrer,
 
-      last_utm_source: last_params.utm_source,
-      last_utm_campaign: last_params.utm_campaign,
-      last_utm_medium: last_params.utm_medium,
-      last_utm_term: last_params.utm_term,
-      last_utm_content: last_params.utm_content,
-      last_referer: last_referrer
-
+      last_utm_source:    last_params.utm_source,
+      last_utm_campaign:  last_params.utm_campaign,
+      last_utm_medium:    last_params.utm_medium,
+      last_utm_term:      last_params.utm_term,
+      last_utm_content:   last_params.utm_content,
+      last_referer:       last_referrer
     )
   rescue => err
     raise err unless Rails.env.production?
@@ -77,7 +75,6 @@ class CreateLead
   end
 
   def find_collection
-    # TODO
+    # TODO в будущем коллекция может указываться в параметрах
   end
-
 end
