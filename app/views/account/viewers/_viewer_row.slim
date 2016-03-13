@@ -4,8 +4,10 @@ tr
     = viewer_row.remote_ip
     .text-muted
       small= viewer_row.user_agent
-  td= I18n.l viewer_row.created_at, format: :short
-  td= I18n.l viewer_row.updated_at, format: :short
-  td
+  td.text-nowrap
+    = I18n.l viewer_row.created_at, format: :short
+  td.text-nowrap
+    = I18n.l viewer_row.updated_at, format: :short
+  td.text-nowrap
     .pull-right
       = views_link viewer_row
