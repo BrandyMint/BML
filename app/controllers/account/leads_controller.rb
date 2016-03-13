@@ -1,5 +1,7 @@
 class Account::LeadsController < Landing::BaseController
   include AccountLeadsHelper
+  include VariantInParameter
+
   layout 'leads'
 
   def index
@@ -8,7 +10,6 @@ class Account::LeadsController < Landing::BaseController
       collections: current_landing.collections,
       current_collection: current_collection,
       fields: fields,
-      utm_fields: utm_fields,
       leads: leads,
       filter: leads_filter
     }
@@ -18,10 +19,6 @@ class Account::LeadsController < Landing::BaseController
 
   def fields
     current_collection.fields.ordered
-  end
-
-  def utm_fields
-    Lead.utm_fields
   end
 
   def leads
@@ -47,15 +44,5 @@ class Account::LeadsController < Landing::BaseController
     return nil unless params[:collection_id]
 
     current_landing.collections.find params[:collection_id]
-  end
-
-  def current_variant
-    find_variant || current_landing.default_variant
-  end
-
-  def find_variant
-    return nil unless params[:variant_id]
-
-    current_landing.variants.find_by id: params[:variant_id]
   end
 end

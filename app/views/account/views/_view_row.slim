@@ -1,0 +1,15 @@
+tr
+  td.text-nowrap
+    .time= I18n.l view_row.created_at, format: :short
+    .text-muted
+      small= "Вариант #{view_row.variant_id}"
+  td
+    = view_row.remote_ip
+  td
+    = view_row.url
+    .text-muted
+      small= view_row.referer
+    .text-muted
+      small= view_row.user_agent
+  - utm_fields_only.each do |field|
+    td= view_row.send(field.item_key) || empty_value_html

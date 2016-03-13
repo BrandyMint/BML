@@ -42,6 +42,10 @@ class LeadsController < ApplicationController
     @_current_variant ||= Variant.where(uuid: variant_uuid).first! || fail("No such variant #{variant_uuid}")
   end
 
+  def current_landing
+    current_variant.landing
+  end
+
   def variant_uuid
     params[:variant_uuid]
   end

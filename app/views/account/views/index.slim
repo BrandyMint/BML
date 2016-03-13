@@ -1,0 +1,22 @@
+- if views.blank?
+  .jumbotron
+    h1 Нет данных
+    p.lead На этом сайте еще небыло ни одного посетителя.
+- else
+  .page-head
+    h2 Посещения
+    .page-subhead
+      = "Пользователь #{viewer}"
+  table.table.table-small-text.table-striped
+    thead.thead-default
+      tr
+        th Когда
+        th Номер варианта
+        th IP
+        th Путь
+        - utm_fields_only.each do |field|
+          th= field.title
+    tbody
+      = render partial: 'view_row', collection: views
+  nav
+    = paginate views

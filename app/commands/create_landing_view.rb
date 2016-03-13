@@ -5,6 +5,8 @@ class CreateLandingView
   attribute :variant, Variant
   attribute :url
   attribute :utms
+  attribute :remote_ip
+  attribute :user_agent
 
   def call
     LandingView.create! view_attributes
@@ -15,6 +17,8 @@ class CreateLandingView
   def view_attributes
     utms.merge(
       {
+        user_agent: user_agent,
+        remote_ip:  remote_ip,
         viewer_uid: viewer.uid,
         account_id: variant.account_id,
         landing_id: variant.landing_id,

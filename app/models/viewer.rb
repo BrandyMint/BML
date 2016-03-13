@@ -1,11 +1,15 @@
 class Viewer < ActiveRecord::Base
-  has_many :views, class_name: 'LandingView', primary_key: :uid, foreign_key: :viewer_uid
+  belongs_to :landing
 
-  def self.touch_or_create(viewer_uid)
-    sql = ActiveRecord::Base.send(
-      :sanitize_sql_array,
-      ["INSERT INTO viewers (uid, created_at, updated_at) VALUES (?, current_timestamp, current_timestamp) ON CONFLICT (uid) DO UPDATE SET updated_at = statement_timestamp()", viewer_uid ]
-    )
-    ActiveRecord::Base.connection.execute(sql)
+  def views
+    LandingView.where(landing_id: landing_id, viewer_uid: uid)
+  end
+
+  def to_s
+    uid
+  end
+
+  def views_count
+    @_views_count ||= views.count
   end
 end

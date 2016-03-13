@@ -1,0 +1,19 @@
+- if viewers.blank?
+  .jumbotron
+    h1 Нет данных
+    p.lead На этом сайте еще небыло ни одного посетителя.
+- else
+  h2 Посетители
+  table.table.table-small-text.table-striped
+    thead.thead-default
+      tr
+        th Идентификатор
+        th IP
+        th Первый заход
+        th Последний заход
+        th
+          .pull-right Посещения
+    tbody
+      = render partial: 'viewer_row', collection: viewers
+  nav
+    = paginate viewers

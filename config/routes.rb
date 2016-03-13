@@ -45,6 +45,8 @@ Rails.application.routes.draw do
       root to: redirect('/account/landings')
       resources :landings do
         resources :leads
+        resources :viewers
+        resources :views
         resources :variants
         resources :analytics do
           collection do
