@@ -34,8 +34,8 @@ class SectionUpdater
       AssetImage.find_by_uuid image['uuid']
     elsif image['url'].present?
       build_background_by_url image['url']
-    else
-      raise "Странное содержимое #{image}"
+    elsif image.present?
+      raise "Странное содержимое #{image.to_h}"
     end
   end
 
