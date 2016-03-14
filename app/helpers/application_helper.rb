@@ -1,4 +1,11 @@
 module ApplicationHelper
+  def bugsnag_script
+    javascript_tag(
+      src: "//d2wy8f7a9ursnm.cloudfront.net/bugsnag-2.min.js",
+      data: { apikey: Bugsnag.configuration.api_key, appversion: AppVersion.to_s, releasestage: Rails.env }
+    )
+  end
+
   def utm_fields_only
     Lead.utm_fields.reject { |i| i.key == :referer }
   end

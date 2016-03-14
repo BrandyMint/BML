@@ -3,7 +3,10 @@ html
   head
     title= AppSettings.title
     = setup_editor_bml
-    == stylesheet_link_tag 'editor', media: 'all', 'data-turbolinks-track' => true
+    = bugsnag_script
+    == stylesheet_link_tag 'viewer', media: 'all'
+    == stylesheet_link_tag 'fonts', media: 'all'
+    == stylesheet_link_tag 'editor', media: 'all'
     == csrf_meta_tags
   body
     == yield
