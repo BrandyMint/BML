@@ -125,7 +125,7 @@ test:
       host: example.com
       port: 3000
 
-    host: http://app.example.com:3000
+    host: http://example.com:3000
 
   capybara:
     port: 57500

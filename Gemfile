@@ -176,7 +176,10 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rack_session_access'
   gem 'test_after_commit'
+  gem 'capybara-email'
+  gem 'capybara-screenshot'
 end
 
 group :development do

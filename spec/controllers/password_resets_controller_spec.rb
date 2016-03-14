@@ -13,7 +13,7 @@ RSpec.describe PasswordResetsController, type: :controller do
   describe 'POST #create' do
     it 'redirects' do
       post :create, reset_password: { login: 123 }
-      expect(response.status).to eq 302
+      expect(response.status).to eq 200
     end
   end
 
