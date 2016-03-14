@@ -29,7 +29,6 @@ RSpec.describe TouchOrCreateViewer, type: :model do
 
       subject.call
       viewer = Viewer.first
-      puts viewer.updated_at
       expect(viewer.uid).to eq viewer_uid
       expect(viewer.created_at).to eq last_viewer.created_at
       expect(viewer.updated_at).to_not eq last_updated_at

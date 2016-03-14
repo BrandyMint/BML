@@ -84,17 +84,6 @@ Rails.application.routes.draw do
         get action: :select, as: :select
       end
     end
-
-    #scope :landing, as: :landing, module: :landing do
-      #root controller: :analytics, action: :index
-      #resources :landings do
-    #ooo
-        #resources :collections
-        #resource :settings
-        #resources :segments
-        #resources :clients
-      #end
-    #end
   end
 
   concern :authorization do
