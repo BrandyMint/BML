@@ -1,0 +1,1 @@
+./scripts/bump && bundle exec cap production deploy
