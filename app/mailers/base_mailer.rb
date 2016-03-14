@@ -32,7 +32,7 @@ class BaseMailer < ActionMailer::Base
     end
   end
 
-  def send_mail_with_worker(name, method, *args)
+  def self.send_mail_with_worker(name, method, *args)
     MailerWorker.perform_async name, method, *args
   end
 
