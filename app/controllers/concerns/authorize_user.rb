@@ -6,6 +6,6 @@ module AuthorizeUser
   end
 
   def authorize_user
-    fail NotAuthenticated unless current_user.present?
+    raise NotAuthenticated unless current_user.present?
   end
 end

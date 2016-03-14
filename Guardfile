@@ -1,19 +1,4 @@
-# A sample Guardfile
-# More info at https://github.com/guard/guard#readme
-
-## Uncomment and set this to only include directories you want to watch
-# directories %w(app lib config test spec features) \
-#  .select{|d| Dir.exists?(d) ? d : UI.warning("Directory #{d} does not exist")}
-
-## Note: if you are using the `directories` clause above and you are not
-## watching the project directory ('.'), then you will want to move
-## the Guardfile to a watched dir and symlink it back, e.g.
-#
-#  $ mkdir config
-#  $ mv Guardfile config/
-#  $ ln -s config/Guardfile .
-#
-# and, you'll have to watch "config/Guardfile" instead of "Guardfile"
+notification :tmux, display_message: true
 
 guard :bundler do
   require 'guard/bundler'
@@ -27,7 +12,7 @@ guard :bundler do
   files.each { |file| watch(helper.real_path(file)) }
 end
 
-guard 'ctags-bundler', :src_path => ["app", "lib", "spec/support"] do
+guard 'ctags-bundler', src_path: ['app', 'lib', 'spec/support'] do
   watch(/^(app|lib|spec\/support)\/.*\.rb$/)
   watch('Gemfile.lock')
 end
@@ -57,8 +42,8 @@ end
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-guard :rspec, cmd: "bundle exec rspec" do
-  require "guard/rspec/dsl"
+guard :rspec, cmd: 'bundle exec rspec' do
+  require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 
   # Feel free to open issues for suggestions and improvements
@@ -80,9 +65,9 @@ guard :rspec, cmd: "bundle exec rspec" do
 
   watch(rails.controllers) do |m|
     [
-      rspec.spec.("routing/#{m[1]}_routing"),
-      rspec.spec.("controllers/#{m[1]}_controller"),
-      rspec.spec.("acceptance/#{m[1]}")
+      rspec.spec.call("routing/#{m[1]}_routing"),
+      rspec.spec.call("controllers/#{m[1]}_controller"),
+      rspec.spec.call("acceptance/#{m[1]}")
     ]
   end
 
@@ -92,21 +77,20 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
 
   # Capybara features specs
-  watch(rails.view_dirs)     { |m| rspec.spec.("features/#{m[1]}") }
-  watch(rails.layouts)       { |m| rspec.spec.("features/#{m[1]}") }
+  watch(rails.view_dirs)     { |m| rspec.spec.call("features/#{m[1]}") }
+  watch(rails.layouts)       { |m| rspec.spec.call("features/#{m[1]}") }
 
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$}) do |m|
-    Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
+    Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance'
   end
 end
 
-guard :rubocop do
-  watch(%r{.+\.rb$})
+guard :rubocop, halt_on_fail: true, all_on_start: false, cli: ['--rails'] do
+  watch(%r{^app/.+\.rb$}) { |m| m }
+  watch(%r{^spec/.+\.rb$}) { |m| m }
+  watch(%r{^config/.+\.rb$}) { |m| m }
+  watch(%r{^lib/.+\.rb$}) { |m| m }
   watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
 end
-
-# Add files and commands to this file, like the example:
-#   watch(%r{file/path}) { `command(s)` }
-#

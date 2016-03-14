@@ -5,7 +5,7 @@ class ExampleInsights
       { text: 'Версия N3 имеет более высокую корвесию', type: 'success' },
       { text: '50% пользователей не доскроливают страницу до конца', type: 'warning' },
       { text: 'На версию N4 за сутки не пришел ни один пользователь!', type: 'danger' }
-    ]
+    ].freeze
 
   def self.build
     INSIGHTS.map do |i|

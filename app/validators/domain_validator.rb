@@ -14,8 +14,8 @@ class DomainValidator < ActiveModel::Validator
     return if value.blank?
 
     record.errors[field_name] << I18n.t('errors.messages.no_www') if value.start_with? 'www.'
-    unless PublicSuffix.valid? SimpleIDN.to_unicode value
-      record.errors[field_name] << I18n.t('errors.messages.invalid_domain')
-    end
+
+    return if PublicSuffix.valid? SimpleIDN.to_unicode value
+    record.errors[field_name] << I18n.t('errors.messages.invalid_domain')
   end
 end

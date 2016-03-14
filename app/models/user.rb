@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true
 
   def default_account
-    accounts.first || fail("User #{id} has no accounts")
+    accounts.first || raise("User #{id} has no accounts")
   end
 
   def to_s

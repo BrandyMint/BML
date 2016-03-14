@@ -71,7 +71,7 @@ class PhoneConfirmationsController < ApplicationController
   end
 
   def validate_already_confirmed
-    fail PhoneAlreadyConfirmed if phone_confirmation.phone == phone && phone_confirmation.is_confirmed?
+    raise PhoneAlreadyConfirmed if phone_confirmation.phone == phone && phone_confirmation.is_confirmed?
   end
 
   def success_redirect
@@ -87,7 +87,7 @@ class PhoneConfirmationsController < ApplicationController
   end
 
   def validate_phone
-    fail PhoneBlank if phone.blank?
+    raise PhoneBlank if phone.blank?
   end
 
   def phone_confirmation

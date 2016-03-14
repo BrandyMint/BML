@@ -2,7 +2,7 @@ module YandexDirect
   MAX_CAMPAIGNS = 10
 
   class BaseResource
-    API_URL = 'https://api.direct.yandex.com/json/v5/'
+    API_URL = 'https://api.direct.yandex.com/json/v5/'.freeze
 
     def initialize(token)
       @token = token
@@ -14,7 +14,7 @@ module YandexDirect
       campaign_ids.each_slice(MAX_CAMPAIGNS) do |ids|
         result = get selectionCriteria: { CampaignIds: ids }
         result = result['result'][items_key_name]
-        items += items if items.present?
+        items += result if items.present?
       end
       items
     end

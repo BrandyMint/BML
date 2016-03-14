@@ -3,7 +3,7 @@ class RequestForm < FormBase
   validates :params, presence: true
 
   def save
-    fail ActiveRecord::RecordInvalid.new(self) unless valid?
+    raise ActiveRecord::RecordInvalid, self unless valid?
 
     variant
       .leads
@@ -11,7 +11,7 @@ class RequestForm < FormBase
 
   rescue ActiveRecord::RecordNotFound => err
     errors.add :base, err.message
-    raise ActiveRecord::RecordInvalid.new(self)
+    raise ActiveRecord::RecordInvalid, self
   end
 
   private

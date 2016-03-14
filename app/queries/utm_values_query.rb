@@ -50,7 +50,7 @@ class UtmValuesQuery
 
   def exec_query(query)
     ActiveRecord::Base.connection.execute(sanitize(query))
-      .to_a.map(&:symbolize_keys)
+                      .to_a.map(&:symbolize_keys)
   end
 
   def sanitize(query)

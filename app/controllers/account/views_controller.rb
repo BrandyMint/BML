@@ -13,7 +13,7 @@ class Account::ViewsController < Landing::BaseController
   end
 
   def find_viewer
-    current_landing.viewers.find_by_uid(params[:viewer_uid]) || fail('No such viewer')
+    current_landing.viewers.find_by_uid(params[:viewer_uid]) || raise('No such viewer')
   end
 
   def views

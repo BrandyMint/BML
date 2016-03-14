@@ -14,7 +14,6 @@ module ComponentHelper
   private
 
   def initial_state(variant, edit_mode)
-    json = Entities::VariantEntity.represent(variant).as_json[:sections]
     {
       application: {
         exitUrl:              account_landing_analytics_path(variant.landing),

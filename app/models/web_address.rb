@@ -1,5 +1,5 @@
 class WebAddress < ActiveRecord::Base
-  ALL_ZONES       = '*'
+  ALL_ZONES       = '*'.freeze
   AVAILABLE_ZONES = Settings.domain_zones + [ALL_ZONES]
   DEFAULT_ZONE    = AppSettings.default_domain
   DEFAULT_CURRENT_ZONE = AppSettings.default_domain
@@ -37,7 +37,7 @@ class WebAddress < ActiveRecord::Base
             uniqueness: { allow_blank: true },
             format: { without: DOMAIN_PATTERN }
 
-  # TODO DISABLE subdomains with AccountConstraint::DOMAIN_PREFIX
+  # TODO: DISABLE subdomains with AccountConstraint::DOMAIN_PREFIX
   #
 
   before_save :prepare_domains
@@ -59,11 +59,11 @@ class WebAddress < ActiveRecord::Base
   end
 
   def cache_current_domain
-    if use_domain? && confirmed_domain.present?
-      self.current_domain = confirmed_domain
-    else
-      self.current_domain = subdomain + '.' + current_zone
-    end
+    self.current_domain = if use_domain? && confirmed_domain.present?
+                            confirmed_domain
+                          else
+                            subdomain + '.' + current_zone
+                          end
   end
 
   def prepare_domains

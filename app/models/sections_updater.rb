@@ -33,6 +33,6 @@ class SectionsUpdater
       .where.not(uuid: [uuids])
       .delete_all
 
-    variant.update_columns sections_count: blocks.count, updated_at: Time.now
+    variant.update_columns sections_count: blocks.count, updated_at: Time.zone.now
   end
 end

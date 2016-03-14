@@ -1,7 +1,7 @@
 class ImageUploader < FileUploader
   # process :convert => 'png'
   include CarrierWave::MiniMagick
-  EXTENSION_WHITE_LIST = %w(jpg jpeg gif png svg)
+  EXTENSION_WHITE_LIST = %w(jpg jpeg gif png svg).freeze
 
   def extension_white_list
     EXTENSION_WHITE_LIST

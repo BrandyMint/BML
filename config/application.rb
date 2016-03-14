@@ -35,10 +35,10 @@ module Bml
       "#{Rails.root}/app/workers"
     ]
 
-    config.middleware.insert_before 0, "Rack::Cors" do
+    config.middleware.insert_before 0, 'Rack::Cors' do
       allow do
         origins '*'
-        resource '*', :headers => :any, :methods => [:get, :put, :post, :delete, :options]
+        resource '*', headers: :any, methods: [:get, :put, :post, :delete, :options]
       end
     end
 
@@ -47,7 +47,7 @@ module Bml
     config.react.server_renderer = React::ServerRendering::SprocketsRenderer
     config.react.server_renderer_options = {
       files: ['components.js'],
-      replay_console: true,
+      replay_console: true
     }
   end
 end

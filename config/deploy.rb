@@ -1,3 +1,5 @@
+# rubocop:disable Rails/Output
+#
 lock '3.4.0'
 
 require 'capistrano-db-tasks'
@@ -96,14 +98,14 @@ namespace :deploy do
       end
     end
   end
-#  desc 'Notify http://bugsnag.com'
+  #  desc 'Notify http://bugsnag.com'
 
-#  task :notify_bugsnag do
-#    run_locally do
-#      execute :rake, 'bugsnag:deploy BUGSNAG_API_KEY=4a44154fd5297480cd452591689a0368', '--trace' # Bugsnag rails
-#      execute :rake, 'bugsnag:deploy BUGSNAG_API_KEY=b4b0403a0d68f22990b80a757afa7400', '--trace' # Bugsnag JS
-#    end
-#  end
+  #  task :notify_bugsnag do
+  #    run_locally do
+  #      execute :rake, 'bugsnag:deploy BUGSNAG_API_KEY=4a44154fd5297480cd452591689a0368', '--trace' # Bugsnag rails
+  #      execute :rake, 'bugsnag:deploy BUGSNAG_API_KEY=b4b0403a0d68f22990b80a757afa7400', '--trace' # Bugsnag JS
+  #    end
+  #  end
 
   task :sidekiqquiet do
     on roles(:sidekiq) do
@@ -111,9 +113,9 @@ namespace :deploy do
     end
   end
 
-#  unless ENV['OFF_NOTIFY']
-#    after 'deploy:updated', 'notify_bugsnag'
-#  end
+  #  unless ENV['OFF_NOTIFY']
+  #    after 'deploy:updated', 'notify_bugsnag'
+  #  end
 
   before :compile_assets, 'clearcache'
   before :compile_assets, 'bowerinstall'

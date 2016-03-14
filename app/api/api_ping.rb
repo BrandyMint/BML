@@ -4,7 +4,7 @@ class APIPing < Grape::API
   default_format :txt
   resource :ping do
     get do
-      'ok ' + Time.now.to_s
+      'ok ' + Time.zone.now.to_s
     end
   end
 end

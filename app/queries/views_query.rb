@@ -22,4 +22,3 @@ class ViewsQuery
     scope.order :id
   end
 end
-

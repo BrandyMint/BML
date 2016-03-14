@@ -22,7 +22,7 @@ class OmniauthAuthenticator
   end
 
   def raise_error
-    fail 'Auth is not found and not created'
+    raise 'Auth is not found and not created'
   end
 
   def find

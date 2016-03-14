@@ -7,7 +7,7 @@ module UserConfirmation
     before_save :require_email_confirmation, if: :email_changed?
     before_save :require_phone_confirmation, if: :phone_changed?
 
-    after_commit :deliver_email_confirmation!, on: [:create, :update], if: :is_delivery_email
+    after_commit :deliver_email_confirmation!, on: [:create, :update], if: :delivery_email?
   end
 
   def one_of_confirmed_phones?(phone)
@@ -48,11 +48,11 @@ module UserConfirmation
 
   def email_confirmation_url
     Rails.application.routes.url_helpers
-      .email_confirmation_url token: email_confirm_token
+         .email_confirmation_url token: email_confirm_token
   end
 
   def deliver_email_confirmation!
-    @is_delivery_email = false
+    clear_is_delivery_email
     UserMailer.delay.email_confirmation id
   end
 
@@ -71,18 +71,21 @@ module UserConfirmation
 
   def require_email_confirmation
     self.email_confirmed_at = nil
-    if email.present?
-      self.email_confirm_token = Sorcery::Model::TemporaryToken.generate_random_token
-      @is_delivery_email = true
-    end
+    return unless email.present?
+    self.email_confirm_token = Sorcery::Model::TemporaryToken.generate_random_token
+    set_delivery_email
   end
 
-  def is_delivery_email
-    @is_delivery_email
+  def set_delivery_email
+    @_delivery_email = true
+  end
+
+  def delivery_email?
+    @_delivery_email
   end
 
   def clear_is_delivery_email
-    @is_delivery_email = false
+    @_delivery_email = false
     true
   end
 end

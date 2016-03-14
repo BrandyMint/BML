@@ -1,8 +1,8 @@
 module YandexDirect
   class Sitelinks < BaseResource
-    FIELD_NAMES = %w(Id Sitelinks)
+    FIELD_NAMES = %w(Id Sitelinks).freeze
 
-    def get(fieldNames: FIELD_NAMES, selectionCriteria: {})
+    def get(fieldNames: FIELD_NAMES, _selectionCriteria: {})
       make_response(
         method: :get,
         params: {

@@ -8,24 +8,22 @@ class ErrorsController < ApplicationController
   end
 
   def error
-    fail "Проверка ловли ошибок #{AppVersion}"
+    raise "Проверка ловли ошибок #{AppVersion}"
   end
 
   def not_found
-    fail ActiveRecord::RecordNotFound
+    raise ActiveRecord::RecordNotFound
   end
 
   private
 
   def domain_not_found
-    account = Account.find_by_suggested_domain request.host
+    account = Account.find_by_suggested_domain(request.host)
 
-    if account.present?
-      account.attach_domain request.host
-      redirect_to request.url
-    else
-      fail UnknownSite
-    end
+    raise UnknownSite unless account.present?
+
+    account.attach_domain request.host
+    redirect_to request.url
   end
 
   def reserved_domain?

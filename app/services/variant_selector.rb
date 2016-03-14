@@ -49,7 +49,7 @@ class VariantSelector
   end
 
   def calculate_variant
-    # TODO алгоритм выборки версии
+    # TODO: АЛГОРИТМ ВЫБОРКИ ВАРИАНТА
     active_variants.active.sample
   end
 

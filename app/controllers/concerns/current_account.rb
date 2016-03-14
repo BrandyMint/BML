@@ -13,7 +13,7 @@ module CurrentAccount
     session_account
   end
 
-  def set_current_account(account)
+  def current_account=(account)
     session[SESSION_KEY] = account.id
   end
 

@@ -29,12 +29,11 @@ class Account::LandingSettingsController < Account::BaseController
   end
 
   def current_landing
-    fail 'No landing_id in param' unless params[:landing_id]
+    raise 'No landing_id in param' unless params[:landing_id]
     @_current_landing ||= current_account.landings.find params[:landing_id]
   end
 
   def permitted_params
     params.require(:landing).permit(:title, :path, :head_title, :meta_keywords, :meta_description)
   end
-
 end

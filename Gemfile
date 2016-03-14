@@ -47,7 +47,7 @@ gem 'gravatarify'
 
 gem 'bugsnag'
 
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'
 
 # gem 'yandex-api'
 # gem 'yandex-api-direct'
@@ -63,7 +63,7 @@ gem 'omniauth-twitter'
 gem 'grape'
 gem 'grape-entity'
 gem 'grape-swagger'
-#gem 'grape-swagger-ui', github: 'kb-platform/grape-swagger-ui'
+# gem 'grape-swagger-ui', github: 'kb-platform/grape-swagger-ui'
 # gem 'grape-swagger-ui', path: '../grape-swagger-ui'
 # gem 'swagger-ui_rails'
 gem 'hashie-forbidden_attributes'
@@ -184,7 +184,6 @@ group :development do
   gem 'web-console', '~> 2.0'
 end
 
-
 group :deploy do
   gem 'capistrano', '~> 3.1', require: false
   gem 'capistrano-rbenv', '~> 2.0', require: false
@@ -196,4 +195,3 @@ group :deploy do
   #
   gem 'capistrano-db-tasks', require: false, github: 'planetio/capistrano-db-tasks'
 end
-

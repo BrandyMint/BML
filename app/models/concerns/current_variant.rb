@@ -2,14 +2,12 @@ module CurrentVariant
   NoCurrentVariant = Class.new StandardError
 
   def current_variant
-    if Thread.current[:variant].present?
-      Thread.current[:variant]
-    else
-      fail NoCurrentVariant
-    end
+    raise NoCurrentVariant unless Thread.current[:variant].present?
+
+    Thread.current[:variant]
   end
 
-  def set_current_variant(variant)
+  def current_variant=(variant)
     Thread.current[:variant] = variant
   end
 

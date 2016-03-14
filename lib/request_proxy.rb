@@ -1,8 +1,8 @@
 class RequestProxy < SimpleDelegator
   attr_reader :tld_length
 
-  APP_DOMAIN = 'app'
-  API_DOMAIN = 'api'
+  APP_DOMAIN = 'app'.freeze
+  API_DOMAIN = 'api'.freeze
 
   def initialize(request)
     @tld_length = find_tld_length request.host

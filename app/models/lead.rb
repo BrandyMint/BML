@@ -6,7 +6,7 @@ class Lead < ActiveRecord::Base
     :utm_term,
     :utm_content,
     :referer
-  ]
+  ].freeze
 
   belongs_to :collection, counter_cache: :leads_count
   belongs_to :variant, counter_cache: :leads_count
@@ -22,7 +22,7 @@ class Lead < ActiveRecord::Base
   before_create :fill_current_utms
   after_create :create_collection_fields
 
-  # TODO вынести в хелперы
+  # TODO: вынести в хелперы
   #
   def self.utm_fields
     UTM_FIELDS.map do |f|
@@ -45,7 +45,7 @@ class Lead < ActiveRecord::Base
   private
 
   def fill_current_utms
-    # TODO думать какие устанвить first/last
+    # TODO: думать какие устанвить first/last
     self.utm_source = last_utm_source
     self.utm_campaign = last_utm_campaign
     self.utm_medium = last_utm_medium

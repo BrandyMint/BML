@@ -2,7 +2,7 @@ module CurrentViewer
   extend ActiveSupport::Concern
 
   included do
-    before_filter :save_viewer
+    before_action :save_viewer
   end
 
   private

@@ -9,10 +9,10 @@ class OmniauthController < Account::BaseController
 
   rescue OAuth2::Error => e
     Bugsnag.notify e,
-      metaData: {
-        account_id: omniauth_account.id,
-        auth_hash: auth_hash,
-        session: session }
+                   metaData: {
+                     account_id: omniauth_account.id,
+                     auth_hash: auth_hash,
+                     session: session }
     redirect_to back_url, flash: { error: I18n.t('flashes.sessions.unknown_error') }
   end
 
@@ -42,7 +42,7 @@ class OmniauthController < Account::BaseController
   end
 
   def omniauth_account
-    # TODO take account from session
+    # TODO: take account from session
     Account.first
   end
 

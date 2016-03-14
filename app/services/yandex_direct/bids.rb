@@ -1,7 +1,7 @@
 module YandexDirect
   class Bids < BaseResource
     FIELD_NAMES = %w(KeywordId AdGroupId CampaignId Bid ContextBid StrategyPriority
-                     CompetitorsBids SearchPrices ContextCoverage MinSearchPrice CurrentSearchPrice AuctionBids)
+                     CompetitorsBids SearchPrices ContextCoverage MinSearchPrice CurrentSearchPrice AuctionBids).freeze
 
     def get(fieldNames: FIELD_NAMES, selectionCriteria: {})
       make_response(

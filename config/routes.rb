@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     Sidekiq::Web.use Rack::Auth::Basic do |username, password|
       username == Secrets.sidekiq.username && password == Secrets.sidekiq.password
     end if Rails.env.production?
-    mount Sidekiq::Web, at: "/sidekiq"
+    mount Sidekiq::Web, at: '/sidekiq'
   end
 
   ### API application
@@ -27,14 +27,12 @@ Rails.application.routes.draw do
     root controller: :swagger, action: :index, as: :api_doc2
   end
 
-
   ### Viewer
   #
   scope as: :site, constraints: ViewerConstraint do
     root 'viewer#show'
     get '*any', to: 'viewer#show'
   end
-
 
   concern :account do
     ### Account

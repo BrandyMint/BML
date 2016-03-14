@@ -1,11 +1,10 @@
 module ApplicationHelper
-
   def utm_fields_only
-    Lead.utm_fields.reject { |i| i.key == :referer}
+    Lead.utm_fields.reject { |i| i.key == :referer }
   end
 
   def truncate_url(url, length: 30)
-    buffer = truncate_middle url_without_protocol url
+    buffer = truncate_middle url_without_protocol(url), length: length
     link_to buffer, url, title: url, target: '_blank', class: 'text-muted'
   end
 
@@ -18,8 +17,7 @@ module ApplicationHelper
   end
 
   def truncate_middle(buffer, length: 30, finish: 7)
-    buffer = truncate buffer, length: length, omission: "...#{buffer[-finish, finish]}"
-    # url.gsub(/(...).{4,}(...)/, '\1...\2')
+    truncate buffer, length: length, omission: "...#{buffer[-finish, finish]}"
   end
 
   def url_without_protocol(url)

@@ -1,9 +1,9 @@
 class PhoneConfirmation < ActiveRecord::Base
-  if Rails.env.development?
-    REQUEST_TIMEOUT = 20.seconds
-  else
-    REQUEST_TIMEOUT = 60.seconds
-  end
+  REQUEST_TIMEOUT = if Rails.env.development?
+                      20.seconds
+                    else
+                      60.seconds
+                    end
 
   PIN_CODE_LENGTH = 6
 
@@ -37,7 +37,7 @@ class PhoneConfirmation < ActiveRecord::Base
   end
 
   def deliver_pin_code
-    fail RequestTimeout, request_timeout unless can_resend?
+    raise RequestTimeout, request_timeout unless can_resend?
     deliver_pin_code!
   end
 
@@ -81,7 +81,7 @@ class PhoneConfirmation < ActiveRecord::Base
   end
 
   def test_persisted!
-    fail NotPersisted unless persisted?
+    raise NotPersisted unless persisted?
   end
 
   def clean_phone

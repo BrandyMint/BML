@@ -10,7 +10,7 @@ RSpec.describe Account::EditorController, type: :controller do
 
   before(:each) do
     login_user user, login_url
-    controller.send :set_current_account, account
+    controller.send 'current_account=', account
   end
 
   let!(:landing) { create :landing, account: account }

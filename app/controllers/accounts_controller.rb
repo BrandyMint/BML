@@ -23,7 +23,7 @@ class AccountsController < ApplicationController
   def select
     account = current_user.accounts.find params[:id]
     flash[:info] = "Переключили на аккаунт #{account}"
-    set_current_account account
+    self.current_account = account
     redirect_to account_root_url
   end
 

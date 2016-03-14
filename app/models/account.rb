@@ -3,7 +3,7 @@ class Account < ActiveRecord::Base
   include AccountIdent
   include AccountWebAddresses
 
-  ROOT_IDENT = 'root'
+  ROOT_IDENT = 'root'.freeze
 
   scope :ordered, -> { order 'id desc' }
 
@@ -25,9 +25,7 @@ class Account < ActiveRecord::Base
     landings.ordered.first
   end
 
-  def to_s
-    "#{current_domain}"
-  end
+  delegate :to_s, to: :current_domain
 
   def api_key
     access_key

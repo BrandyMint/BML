@@ -1,3 +1,5 @@
+# rubocop:disable Style/ModuleFunction
+
 module DomainExtractor
   extend self
 

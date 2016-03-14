@@ -12,7 +12,7 @@ class SmsWorker
       sms = Smsc::Sms.new Secrets.smsc.login, Secrets.smsc.password
       res = sms.message message.strip.chomp, phones, sender: Secrets.smsc.sender
 
-      fail Error.new 'raise' if message == 'raise'
+      raise Error, 'raise message' if message == 'raise'
 
       if res.body.start_with? 'OK'
         Rails.logger.debug "SMS #{res.body}"
@@ -20,9 +20,11 @@ class SmsWorker
         Rails.logger.error "SMS #{res.body}"
         error = Error.new res.body.to_s
         # SupportMailer.sos_mail('На SMSC кончились деньги: https://smsc.ru/pay/') if error.code == 3 || error.message == 'no money'
-        fail error if error.fatal?
+        raise error if error.fatal?
       end
     elsif !Rails.env.test?
+
+      # rubocop:disable Rails/Output
       puts
       puts '---------------------------------'
       puts "SEND SMS to #{phones}: #{message}"
@@ -64,11 +66,11 @@ class SmsWorker
     def parse(message)
       m = REGEXP.match message
 
-      fail "Unknown body format #{message}" unless m
+      raise "Unknown body format #{message}" unless m
 
       [m[1].to_i, m[2]]
     end
 
-    alias_method :message, :body
+    alias message body
   end
 end

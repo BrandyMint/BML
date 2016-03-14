@@ -24,11 +24,9 @@ class BaseMailer < ActionMailer::Base
     end
 
     def method_missing(method, *args)
-      if @mailer.instance_methods.include? method.to_sym
-        @mailer.send_mail_with_worker @mailer.name, method, *args
-      else
-        fail NameError, "No such method #{method} in mailer #{@mailer}"
-      end
+      raise NameError, "No such method #{method} in mailer #{@mailer}" unless @mailer.instance_methods.include? method.to_sym
+
+      @mailer.send_mail_with_worker @mailer.name, method, *args
     end
   end
 

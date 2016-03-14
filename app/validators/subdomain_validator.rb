@@ -13,10 +13,8 @@ class SubdomainValidator < ActiveModel::Validator
   def validate_field(record, field_name)
     value = record.send field_name
 
-    return if value.blank?
+    return if value.blank? || REGEXP.match(value)
 
-    unless REGEXP.match value
-      record.errors[field_name] << I18n.t('errors.messages.invalid_subdomain')
-    end
+    record.errors[field_name] << I18n.t('errors.messages.invalid_subdomain')
   end
 end

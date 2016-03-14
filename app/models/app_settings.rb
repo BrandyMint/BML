@@ -1,17 +1,17 @@
 class AppSettings
   include Singleton
 
-  ATTRIBUTES = %i(title default_domain)
+  ATTRIBUTES = %i(title default_domain).freeze
 
   def self.current
     instance
   end
 
   class << self
-    delegate *ATTRIBUTES, to: :current
+    delegate(*ATTRIBUTES, to: :current)
   end
 
-  delegate *ATTRIBUTES, to: :settings
+  delegate(*ATTRIBUTES, to: :settings)
 
   private
 

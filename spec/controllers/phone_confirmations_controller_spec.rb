@@ -1,3 +1,5 @@
+# rubocop:disable Style/AlignParameters
+#
 require 'rails_helper'
 
 RSpec.describe PhoneConfirmationsController, type: :controller do

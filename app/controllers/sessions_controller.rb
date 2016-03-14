@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     user = login session_form.login, session_form.password, session_form.remember_me
 
     if user
-      set_current_account current_user.default_account
+      self.current_account = current_user.default_account
       redirect_to account_root_url
     else
       redirect_to :back, flash: { error: t('flashes.user.session_failed') }

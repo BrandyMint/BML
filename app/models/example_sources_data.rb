@@ -6,7 +6,7 @@ class ExampleSourcesData
     social: ['Группа vkontakte'],
     organic: %w(Москва Регионы),
     mails: ['Возвращайся скорее', 'Скидки до 15%']
-  }
+  }.freeze
 
   def self.build
     new.build
@@ -23,7 +23,7 @@ class ExampleSourcesData
   private
 
   def build_segments(source)
-    segments = SEGMENTS[source.to_sym] or fail "No segments for #{source}"
+    (segments = SEGMENTS[source.to_sym]) || raise("No segments for #{source}")
     segments.map do |segment|
       AnalyticSource::Segment.new title: segment, convariant: random_convariant, users: random_users, percent: random_convariant
     end

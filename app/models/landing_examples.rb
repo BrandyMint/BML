@@ -228,5 +228,5 @@ module LandingExamples
         meta: {}
       }
     ]
-  }
+  }.freeze
 end

@@ -13,8 +13,8 @@ module ViewerLogger
 
   def utms
     ParamsUtmEntity.new(params)
-      .to_h
-      .merge(referer: request.referer)
+                   .to_h
+                   .merge(referer: request.referer)
   end
 
   def log_request

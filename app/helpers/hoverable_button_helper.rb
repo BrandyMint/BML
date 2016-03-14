@@ -1,6 +1,7 @@
+# rubocop:disable Metrics/ParameterLists
 module HoverableButtonHelper
-  OFF_CLASSES = 'btn btn-outline btn-warning btn-sm'
-  ON_CLASSES  = 'btn btn-success btn-sm'
+  OFF_CLASSES = 'btn btn-outline btn-warning btn-sm'.freeze
+  ON_CLASSES  = 'btn btn-success btn-sm'.freeze
 
   ON_ICON     = :check
   OFF_ICON    = :ban
@@ -12,6 +13,7 @@ module HoverableButtonHelper
       classes:       ON_CLASSES,
       hover_classes: OFF_CLASSES,
       hover_title:   hover_title,
+      method:        method,
       icon:          icon || ON_ICON,
       hover_icon:    hover_icon || OFF_ICON,
       disable_with:  disable_with || t(:making_off, scope: [:operator, :toggle_buttons, :disable_with])
@@ -25,6 +27,7 @@ module HoverableButtonHelper
       classes:       OFF_CLASSES,
       hover_classes: ON_CLASSES,
       hover_title:   hover_title,
+      method:        method,
       icon:          icon || OFF_ICON,
       hover_icon:    hover_icon || ON_ICON,
       disable_with:  disable_with || t(:making_on, scope: [:operator, :toggle_buttons, :disable_with])
@@ -36,19 +39,19 @@ module HoverableButtonHelper
       hover: { title: hover_title, class: hover_classes, icon: hover_icon }
     }
     opts = { data: { 'disable-with' => disable_with, rehover: rehover }, class: classes }
-    opts[:method] = method unless method.to_s.upcase == 'GET'
+    opts[:method] = method unless method.to_s.casecmp('GET').zero?
     link_to url, opts do
       fa_icon icon, text: title
     end
   end
 
-  #def button
-    #link_to(
-      #I18n.t('shared.is_on'),
-      #off_path,
-      #method: :post,
-      #class: 'btn btn-rounded btn-success btn-sm btn-toggle btn-outline active',
-      #data: { 'hover-text' => I18n.t('shared.turn_off') }
-    #)
-  #end
+  # def button
+  # link_to(
+  # I18n.t('shared.is_on'),
+  # off_path,
+  # method: :post,
+  # class: 'btn btn-rounded btn-success btn-sm btn-toggle btn-outline active',
+  # data: { 'hover-text' => I18n.t('shared.turn_off') }
+  # )
+  # end
 end

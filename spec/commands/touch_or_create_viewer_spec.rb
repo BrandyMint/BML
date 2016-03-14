@@ -24,7 +24,7 @@ RSpec.describe TouchOrCreateViewer, type: :model do
       expect(viewer.uid).to eq viewer_uid
       expect(viewer.created_at).to eq viewer.updated_at
 
-      last_viewer =  viewer
+      last_viewer = viewer
       last_updated_at = viewer.updated_at
 
       subject.call
@@ -35,4 +35,3 @@ RSpec.describe TouchOrCreateViewer, type: :model do
     end
   end
 end
-

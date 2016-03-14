@@ -43,7 +43,7 @@ class CreateLead
 
   # {\"initial\":{\"params\":{},\"referrer\":\"http://3008.vkontraste.ru/account/landings/14/leads\"},\"current\":{\"params\":{\"utm_source\":\"123\"},\"referrer\":\"\"}}
   def build_utm_from_tracking(tracking)
-    tracking = JSON.parse(tracking);
+    tracking = JSON.parse(tracking)
     first_params = OpenStruct.new(tracking['initial']['params'])
     first_referrer = tracking['initial']['referrer']
 
@@ -75,6 +75,6 @@ class CreateLead
   end
 
   def find_collection
-    # TODO в будущем коллекция может указываться в параметрах
+    # TODO: в будущем коллекция может указываться в параметрах
   end
 end

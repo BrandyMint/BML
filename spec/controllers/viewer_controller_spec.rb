@@ -7,7 +7,7 @@ RSpec.describe ViewerController, type: :controller do
   let!(:viewer)  { create :viewer, landing: landing }
 
   before do
-    set_current_variant variant
+    self.current_variant = variant
     allow(controller).to receive(:current_viewer_uid).and_return(viewer.uid)
   end
 

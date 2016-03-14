@@ -4,7 +4,7 @@ class SectionData < Hash
   end
 
   def self.dump(sd)
-    fail 'must be a SectionData' unless sd.is_a? SectionData
+    raise 'must be a SectionData' unless sd.is_a? SectionData
     JSON.dump sd
   end
 end

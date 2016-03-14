@@ -1,7 +1,7 @@
 class Membership < ActiveRecord::Base
   extend Enumerize
 
-  ROLES = %I(owner manager)
+  ROLES = %I(owner manager).freeze
   DEFAULT_ROLE = :manager
 
   belongs_to :account

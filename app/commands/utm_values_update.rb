@@ -10,7 +10,7 @@ class UtmValuesUpdate
   private
 
   def upsert
-    # TODO Проверить что правильно делать если нет utm меток или они есть не все.
+    # TODO: Проверить что правильно делать если нет utm меток или они есть не все.
     return unless values.present?
     ActiveRecord::Base.connection.execute "INSERT INTO #{UtmValue.table_name} (#{payload.join(', ')}) VALUES #{values.join(', ')} ON CONFLICT DO NOTHING"
   end

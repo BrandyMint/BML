@@ -1,5 +1,5 @@
 class API < Grape::API
-  VERSION = 'v1'
+  VERSION = 'v1'.freeze
 
   default_format :json
 

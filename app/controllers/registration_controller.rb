@@ -29,7 +29,7 @@ class RegistrationController < ApplicationController
 
   def authenticate(user)
     auto_login user
-    set_current_account user.default_account
+    self.current_account = user.default_account
   end
 
   def permitted_params

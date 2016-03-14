@@ -1,5 +1,5 @@
 class SectionUpdater
-  BACKGROUND_KEYS = %i(color position attachment repeat)
+  BACKGROUND_KEYS = %i(color position attachment repeat).freeze
 
   def initialize(variant:, block:)
     @variant = variant
@@ -32,33 +32,35 @@ class SectionUpdater
 
     if image['uuid'].present?
       AssetImage.find_by_uuid image['uuid']
-
     elsif image['url'].present?
-      fail 'Dont use .. in url' if image['url'].include? '..'
-
-      if image['url'].start_with? '/'
-        filename = Rails.root.join 'vendor/dist/src' + image['url']
-        digest = AssetFileDigest.digest_of_file filename
-
-        AssetFile.shared.find_by_digest(digest) ||
-          account.asset_images.find_by_digest(digest) ||
-          account.asset_images.create!(file: filename.open)
-      else
-        # TODO Сохранять прямые ссыслки
-      end
+      build_background_by_url image['url']
     else
-      nil
+      raise "Странное содержимое #{image}"
     end
   end
 
+  def build_background_by_url(url)
+    raise 'Dont use .. in url' if url.include? '..'
+
+    # TODO: СОХРАНЯТЬ ПРЯМЫЕ ССЫЛКИ
+    return if url.start_with? 'http'
+
+    filename = Rails.root.join 'vendor/dist/src' + url
+    digest = AssetFileDigest.digest_of_file filename
+
+    AssetFile.shared.find_by_digest(digest) ||
+      account.asset_images.find_by_digest(digest) ||
+      account.asset_images.create!(file: filename.open)
+  end
+
   def uuid
-    block['uuid'] || fail('No uuid in block')
+    block['uuid'] || raise('No uuid in block')
   end
 
   def section
     @_section ||=
       variant
-        .sections
-        .find_or_initialize_by uuid: uuid
+      .sections
+      .find_or_initialize_by uuid: uuid
   end
 end

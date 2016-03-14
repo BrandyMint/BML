@@ -9,10 +9,10 @@ class Account::BaseController < ApplicationController
   private
 
   def exists_account
-    fail NoCurrentAccount unless current_account.present?
+    raise NoCurrentAccount unless current_account.present?
   end
 
   def authorize_member
-    fail NotAuthorized unless current_member.present?
+    raise NotAuthorized unless current_member.present?
   end
 end

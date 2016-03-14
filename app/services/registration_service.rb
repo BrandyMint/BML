@@ -12,14 +12,14 @@ class RegistrationService
       create_account user
     end
 
-    fail 'Error creating user' unless user.present?
+    raise 'Error creating user' unless user.present?
     user
   end
 
   private
 
   def create_user
-    fail UserDuplicate if find_user
+    raise UserDuplicate if find_user
     User.create! form.attributes
   end
 

@@ -16,15 +16,13 @@ class CreateLandingView
 
   def view_attributes
     utms.merge(
-      {
-        user_agent: user_agent,
-        remote_ip:  remote_ip,
-        viewer_uid: viewer.uid,
-        account_id: variant.account_id,
-        landing_id: variant.landing_id,
-        variant_id: variant.id,
-        url: url
-      }
+      user_agent: user_agent,
+      remote_ip:  remote_ip,
+      viewer_uid: viewer.uid,
+      account_id: variant.account_id,
+      landing_id: variant.landing_id,
+      variant_id: variant.id,
+      url: url
     )
   end
 end

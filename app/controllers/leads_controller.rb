@@ -23,23 +23,23 @@ class LeadsController < ApplicationController
         format.json { render_json_error err }
       end
     else
-      # TODO кидать назад не совсем удачно.
+      # TODO: кидать назад не совсем удачно.
       # 1. На предыдущей странице не узнают какие были ошибки, не смогу выделить.
       # Может быть надо передавать список ошибочных полей и текст ошибки в параметрах.
       #
 
       render 'error',
-        locals: { backurl: request.referer, message: err.message },
-        flash: { error: err.message }
+             locals: { backurl: request.referer, message: err.message },
+             flash: { error: err.message }
     end
   end
 
   private
 
-  DATA_EXCEPTIONS = [:variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit]
+  DATA_EXCEPTIONS = [:variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit].freeze
 
   def current_variant
-    @_current_variant ||= Variant.where(uuid: variant_uuid).first! || fail("No such variant #{variant_uuid}")
+    @_current_variant ||= Variant.where(uuid: variant_uuid).first! || raise("No such variant #{variant_uuid}")
   end
 
   def current_landing
@@ -52,9 +52,9 @@ class LeadsController < ApplicationController
 
   def render_html_error(err)
     render 'error',
-      locals: { message: err.record.errors.to_a.join('<br>') },
-      layout: false,
-      status: 400
+           locals: { message: err.record.errors.to_a.join('<br>') },
+           layout: false,
+           status: 400
   end
 
   def render_json_error(err)
@@ -72,7 +72,7 @@ class LeadsController < ApplicationController
       variant:    current_variant,
       tracking:   params[:tracking] || '',
       cookies:    cookies,
-      viewer_uid: current_viewer_uid,
+      viewer_uid: current_viewer_uid
     ).call
   end
 

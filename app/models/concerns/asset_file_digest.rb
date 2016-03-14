@@ -9,7 +9,7 @@ module AssetFileDigest
 
   def self.digest_of_file(file)
     Digest::SHA256.file(file)
-      .hexdigest
+                  .hexdigest
   end
 
   private
