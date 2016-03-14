@@ -39,6 +39,7 @@ defaults: &defaults
     smtp_settings:
       address: localhost
       port: 25
+      openssl_verify_mode: 'none'
 
 
   mailer_defaults: &mailer_defaults
@@ -100,6 +101,7 @@ production:
     smtp_settings:
       address: localhost
       port: 25
+      openssl_verify_mode: 'none'
   mailer_defaults:
     from: 'noreply@aydamaster.ru'
     host: aydamaster.ru
