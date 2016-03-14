@@ -1,0 +1,1 @@
+NoCurrentVariant = Class.new SiteError
