@@ -17,13 +17,17 @@ table.table.table-condensed.m-t-lg
         - if current_landing.default_variant == v
           div.text-muted.text-nowrap= "(по-умолчанию)"
         small.text-muted.text-nowrap= v.uuid
+
+        hr
+        .text-muted
+          = "Блоки: #{v.sections.count}"
       td style="width: 400px"
         ul.list-inline.pull-right
           
           /= link_to site_variant_url(v), target: '_blank' do
             /= fa_icon 'external-link', text: 'Публичная ссылка'
           li.list-inline-item
-            = link_to account_landing_editor_path(current_landing, v), class: 'btn btn-sm btn-secondary' do
+            = link_to account_landing_editor_path(current_landing, uuid: v.uuid), class: 'btn btn-sm btn-secondary' do
               = fa_icon 'pencil-square-o', text: 'Конструктор'
           li.list-inline-item
             = link_to edit_account_landing_variant_path(id: v.id, landing: current_landing), class: 'btn btn-sm btn-secondary' do

@@ -3,6 +3,10 @@ class Account::EditorController < Account::BaseController
 
   helper_method :current_variant
 
+  before_action do
+    raise NoCurrentVariant unless current_variant.present?
+  end
+
   def show
   end
 

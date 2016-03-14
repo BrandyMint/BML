@@ -4,6 +4,7 @@ module ApplicationHelper
   end
 
   def truncate_url(url, length: 30)
+    return unless url.present?
     buffer = truncate_middle url_without_protocol(url), length: length
     link_to buffer, url, title: url, target: '_blank', class: 'text-muted'
   end

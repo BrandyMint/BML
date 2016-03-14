@@ -87,3 +87,5 @@ ru:
     few: '%{count} посещения'
     many: '%{count} посещений'
     other: '%{count} посещений'
+  buttons:
+    restore: 'Восстановить'

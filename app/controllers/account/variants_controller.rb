@@ -59,6 +59,6 @@ class Account::VariantsController < Landing::BaseController
   end
 
   def permitted_params
-    params.require(:variant).permit(:title)
+    params.require(:variant).permit(:title, :data)
   end
 end

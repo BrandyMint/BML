@@ -1,3 +1,6 @@
+* [ ] Если два варианта,то не понятно какой из них открывается в конструкторе,
+    какой на сайте.
+* [ ] Переимеовать blocks в sections, убрать из презентация пустые поля
 * [ ] ru.activerecord.errors.models.landing.attributes.path.uri_component
 * [ ] Разбить на приложения aydamaster и bmland
 * [x] добавить fonts.css
