@@ -1,5 +1,5 @@
 class CreateLead
-  include Virtus.model(strict: true)
+  include Virtus.model(strict: true, nullify_blank: true)
 
   attribute :data,       Hash
   attribute :tracking,   String

@@ -70,7 +70,7 @@ class LeadsController < ApplicationController
     @_lead ||= CreateLead.new(
       data:       lead_params,
       variant:    current_variant,
-      tracking:   params[:tracking],
+      tracking:   params[:tracking] || '',
       cookies:    cookies,
       viewer_uid: current_viewer_uid,
     ).call
