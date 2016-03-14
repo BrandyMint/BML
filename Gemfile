@@ -11,6 +11,8 @@ end
 
 gem 'settingslogic'
 
+gem 'rollout'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
@@ -37,6 +39,12 @@ gem 'phone', github: 'BrandyMint/phone', branch: 'feature/russia'
 gem 'nprogress-rails'
 gem 'semver2'
 # gem 'pg'
+
+gem 'hiredis'
+# gem 'redis', '>= 2.2.0', require: ['redis', 'redis/connection/hiredis']
+gem 'redis', require: ['redis', 'redis/connection/hiredis']
+gem 'redis-namespace'
+gem 'redis-objects'
 
 gem 'non-stupid-digest-assets'
 

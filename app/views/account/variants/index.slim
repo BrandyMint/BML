@@ -5,8 +5,9 @@
       span.text-muted= " (#{variants.count})"
   .col-md-3
     .pull-right
-      = link_to new_account_landing_variant_path(current_landing), class: 'btn btn-success' do
-        = fa_icon 'plus', class: 'fa-in-button', text: 'Добавить вариант'
+      - if $rollout.active?(:variants, current_account)
+        = link_to new_account_landing_variant_path(current_landing), class: 'btn btn-success' do
+          = fa_icon 'plus', class: 'fa-in-button', text: 'Добавить вариант'
 
 table.table.table-condensed.m-t-lg
   - variants.find_each do |v|
