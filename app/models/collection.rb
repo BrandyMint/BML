@@ -8,4 +8,8 @@ class Collection < ActiveRecord::Base
   def to_s
     "Коллекция #{created_at}"
   end
+
+  def last_lead_at
+    @_last_lead_at ||= leads.ordered.last.try(:created_at)
+  end
 end

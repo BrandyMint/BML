@@ -1,9 +1,9 @@
 class Account::VariantsController < Landing::BaseController
-  layout 'landing'
+  layout 'landing_settings'
 
   def update
     variant.update_attributes! permitted_params
-    redirect_to account_variants_path(current_landing)
+    redirect_to account_landing_variants_path(current_landing)
   rescue ActiveRecord::RecordInvalid => err
     render 'edit', locals: { variant: err.record }
   end

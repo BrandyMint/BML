@@ -10,7 +10,7 @@ class Account::LandingsController < Account::BaseController
   end
 
   def edit
-    redirect_to address_account_landing_setting_url(params[:id])
+    redirect_to address_account_landing_settings_url(params[:id])
   end
 
   def show

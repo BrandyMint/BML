@@ -11,10 +11,6 @@ class Account::LandingSettingsController < Account::BaseController
     render locals: { landing: current_landing }
   end
 
-  def variants
-    render locals: { landing: current_landing }
-  end
-
   def direct
     render locals: { landing: current_landing }
   end

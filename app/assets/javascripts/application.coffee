@@ -26,6 +26,7 @@
 #= require enableWhenChanged
 #= require selectize/dist/js/standalone/selectize.min.js
 #= require leadsFilter.js
+#= require rehover.js
 #
 # SimpleNavigation
 #  require bootstrap_and_overrides

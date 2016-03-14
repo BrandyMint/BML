@@ -49,16 +49,16 @@ Rails.application.routes.draw do
             get :address
             get :meta
             get :direct
-            get :variants
           end
         end
         resources :leads
         resources :viewers
         resources :views
+        resources :collections
         resources :variants do
           member do
-            post :activate
-            post :deactivate
+            patch :activate
+            patch :deactivate
           end
         end
         resources :analytics do

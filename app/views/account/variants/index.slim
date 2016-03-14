@@ -1,47 +1,38 @@
 .row
   .col-md-9
-    h1 Посадочные варианты (#{variants.count})
+    h1 
+      | Посадочные варианты
+      span.text-muted= " (#{variants.count})"
   .col-md-3
     .pull-right
-      = link_to new_account_variant_path, class: 'btn btn-success' do
+      = link_to new_account_landing_variant_path(current_landing), class: 'btn btn-success' do
         = fa_icon 'plus', class: 'fa-in-button', text: 'Добавить вариант'
 
-br
-
-
-table.table
- thead.thead-default
-  tr
-    th Вариант
-    th Срок действия
-    th Посетителей
-    th Посещений
-    th Конверсия
-    th
-
-  tbody
-    - variants.each do |v|
-      tr
-        td
-          = link_to account_landing_editor_path(current_landing, v) do
-            = v.to_s
-          br
-          small.text-muted= link_to site_variant_url(v), site_variant_url(v), target: '_blank', class: 'text-muted'
-        td 3 дня
-        td 12 тыс
-        td 10 тыс
-        td 12%
-        td.pull-right
-          nav
-            /= link_to site_variant_url(v), target: '_blank' do
-              /= fa_icon 'external-link', text: 'Публичная ссылка'
-            /br
-            = link_to account_landing_editor_path(current_landing, v) do
-              = fa_icon 'object-group', text: 'Конструктор'
-            br
-            = link_to edit_account_variant_path(id: v.id, landing: current_landing) do
+table.table.table-condensed.m-t-lg
+  - variants.find_each do |v|
+    tr
+      td
+        -# small.text-muted= link_to site_variant_url(v), site_variant_url(v), target: '_blank', class: 'text-muted'
+        h3
+          = v
+          - if current_landing.default_variant == v
+            small.text-muted== "&nbsp;(по-умолчанию)"
+        small.text-muted= v.uuid
+      td style="width: 400px"
+        ul.list-inline.pull-right
+          
+          /= link_to site_variant_url(v), target: '_blank' do
+            /= fa_icon 'external-link', text: 'Публичная ссылка'
+          li.list-inline-item
+            = link_to account_landing_editor_path(current_landing, v), class: 'btn btn-sm btn-secondary' do
+              = fa_icon 'pencil-square-o', text: 'Конструктор'
+          li.list-inline-item
+            = link_to edit_account_landing_variant_path(id: v.id, landing: current_landing), class: 'btn btn-sm btn-secondary' do
               = fa_icon :pencil, text: 'Настройка'
+          li.list-inline-item
+            = variant_activation_button v
 
+hr.m-t-lg.m-b-lg
 .row
   .col-md-6
     .bd-callout.bd-callout-danger
