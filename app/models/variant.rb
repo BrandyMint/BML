@@ -23,6 +23,14 @@ class Variant < ActiveRecord::Base
     title.presence || I18n.l(updated_at, format: :short)
   end
 
+  def data=(raw)
+    SectionsUpdater.new(self).update JSON.parse raw
+  end
+
+  def data
+    JSON.pretty_generate Entities::VariantEntity.represent(self, clear: true).as_json
+  end
+
   private
 
   def set_account

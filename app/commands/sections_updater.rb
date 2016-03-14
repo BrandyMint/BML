@@ -5,9 +5,15 @@ class SectionsUpdater
   end
 
   def update(raw_data)
+    # TODO: Обновлять title у варианта
+    #
     raw_data = Hashie::Mash.new raw_data
+    blocks = raw_data['blocks'] || raw_data['sections']
+
+    return unless blocks.is_a? Array
+
     Section.transaction do
-      update_blocks raw_data['blocks'] if raw_data['blocks'].is_a? Array
+      update_blocks blocks
     end
   end
 

@@ -10,4 +10,4 @@ tr
   - utm_fields_only.each do |field|
     td= lead.send(field.item_key) || empty_value_html
 
-  td= truncate_url lead.referer
+  td= truncate_url(lead.referer).presence || empty_value_html

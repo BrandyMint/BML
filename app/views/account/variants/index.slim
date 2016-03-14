@@ -17,6 +17,10 @@ table.table.table-condensed.m-t-lg
         - if current_landing.default_variant == v
           div.text-muted.text-nowrap= "(по-умолчанию)"
         small.text-muted.text-nowrap= v.uuid
+
+        hr
+        .text-muted
+          = "Блоки: #{v.sections.count}"
       td style="width: 400px"
         ul.list-inline.pull-right
           
