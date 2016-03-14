@@ -13,11 +13,10 @@ table.table.table-condensed.m-t-lg
     tr
       td
         -# small.text-muted= link_to site_variant_url(v), site_variant_url(v), target: '_blank', class: 'text-muted'
-        h3
-          = v
-          - if current_landing.default_variant == v
-            small.text-muted== "&nbsp;(по-умолчанию)"
-        small.text-muted= v.uuid
+        h3= v
+        - if current_landing.default_variant == v
+          div.text-muted.text-nowrap= "(по-умолчанию)"
+        small.text-muted.text-nowrap= v.uuid
       td style="width: 400px"
         ul.list-inline.pull-right
           

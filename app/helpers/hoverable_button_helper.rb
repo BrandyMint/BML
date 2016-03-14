@@ -3,6 +3,8 @@ module HoverableButtonHelper
   OFF_CLASSES = 'btn btn-outline btn-warning btn-sm'.freeze
   ON_CLASSES  = 'btn btn-success btn-sm'.freeze
 
+  SWITCH_METHOD = :patch
+
   ON_ICON     = :check
   OFF_ICON    = :ban
 
@@ -13,7 +15,7 @@ module HoverableButtonHelper
       classes:       ON_CLASSES,
       hover_classes: OFF_CLASSES,
       hover_title:   hover_title,
-      method:        method,
+      method:        method || SWITCH_METHOD,
       icon:          icon || ON_ICON,
       hover_icon:    hover_icon || OFF_ICON,
       disable_with:  disable_with || t(:making_off, scope: [:operator, :toggle_buttons, :disable_with])
@@ -27,7 +29,7 @@ module HoverableButtonHelper
       classes:       OFF_CLASSES,
       hover_classes: ON_CLASSES,
       hover_title:   hover_title,
-      method:        method,
+      method:        method || SWITCH_METHOD,
       icon:          icon || OFF_ICON,
       hover_icon:    hover_icon || ON_ICON,
       disable_with:  disable_with || t(:making_on, scope: [:operator, :toggle_buttons, :disable_with])
