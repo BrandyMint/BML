@@ -8,12 +8,11 @@ module BugsnagSupport
   private
 
   def add_info_to_bugsnag(notif)
-    if current_user.present?
-      notif.user = {
-        email: current_user.email,
-        name: current_user.name,
-        id: current_user.id
-      }
-    end
+    return unless current_user.present?
+    notif.user = {
+      email: current_user.email,
+      name: current_user.name,
+      id: current_user.id
+    }
   end
 end

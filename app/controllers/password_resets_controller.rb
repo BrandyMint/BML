@@ -7,9 +7,11 @@ class PasswordResetsController < ApplicationController
 
   def create
     PasswordResetService.new(login: params[:reset_password][:login]).call
-    redirect_to login_url, flash: { success: I18n.t('flashes.password_reset.created') }
+    flash.now[:success] = I18n.t('flashes.password_reset.created')
+    render
   rescue ActiveRecord::RecordNotFound
-    redirect_to login_url, flash: { success: I18n.t('flashes.password_reset.created') }
+    flash.now[:success] = I18n.t('flashes.password_reset.created')
+    render
   end
 
   def edit

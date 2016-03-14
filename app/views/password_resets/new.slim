@@ -4,16 +4,16 @@
       h1 Восстановление пароля
   .col-sm-4.col-sm-offset-3
     = simple_form_for :reset_password, url: password_resets_path do |f|
-      = f.input :login, 
-        name: :login, 
-        required: true, 
-        autofocus: true, 
-        placeholder: 'Ваш email или телефон', 
+      = f.input :login,
+        name: :login,
+        required: true,
+        autofocus: true,
+        placeholder: 'Ваш email или телефон',
         label: 'Введите email или телефон чтобы получить инструкцию для восстановления пароля'
-      = f.submit 'Восстановить', class: 'btn btn-primary'
+      = f.submit I18n.t('buttons.restore'), class: 'btn btn-primary'
 
     br
     hr
-    div 
+    div
       = "Вспомнил пароль? "
       = link_to 'Авторизоваться', login_url
