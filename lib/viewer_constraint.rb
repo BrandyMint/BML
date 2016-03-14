@@ -3,14 +3,15 @@ class ViewerConstraint
   extend CurrentViewer
 
   def self.matches?(request)
-    variant = VariantSelector
+    variant =
+      VariantSelector
       .new(
-          host: request.host,
-          path: request.path,
-          session: request.session,
-          params: request.params,
-          cookies: request.cookies
-          )
+        host: request.host,
+        path: request.path,
+        session: request.session,
+        params: request.params,
+        cookies: request.cookies
+      )
       .variant
 
     if variant.present?
