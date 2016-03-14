@@ -32,9 +32,11 @@ module SubmoduleStrategy
   def fetch_revision
     context.capture(:git, 'rev-parse --short HEAD')
   end
+
   # put the working tree in a release-branch,
   # make sure the submodules are up-to-date
   # and copy everything to the release path
+
   def release
     release_branch = fetch(:release_branch, File.basename(release_path))
     git :checkout, '-B', release_branch,

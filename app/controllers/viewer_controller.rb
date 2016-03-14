@@ -1,4 +1,5 @@
 class ViewerController < ApplicationController
+  include HtmlOnly
   include CurrentVariant
   include CurrentViewer
   include ViewerLogger

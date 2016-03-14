@@ -7,6 +7,8 @@ class ViewsQuery
   def call
     scope = basic_scope
 
+    scope = scope.where(viewer_uid: viewer_uid) if viewer_uid.present?
+
     scope = order scope
 
     scope
@@ -15,10 +17,10 @@ class ViewsQuery
   private
 
   def basic_scope
-    LandingView.where(landing_id: landing_id, viewer_uid: viewer_uid)
+    LandingView.where(landing_id: landing_id)
   end
 
   def order(scope)
-    scope.order :id
+    scope.order('id desc')
   end
 end
