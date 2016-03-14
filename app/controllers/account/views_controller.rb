@@ -13,12 +13,13 @@ class Account::ViewsController < Landing::BaseController
   end
 
   def find_viewer
+    return unless params[:viewer_uid]
     current_landing.viewers.find_by_uid(params[:viewer_uid]) || raise('No such viewer')
   end
 
   def views
     paginate ViewsQuery
-      .new(landing_id: current_landing.id, viewer_uid: viewer.uid)
+      .new(landing_id: current_landing.id, viewer_uid: viewer.try(:uid))
       .call
   end
 end

@@ -3,10 +3,13 @@
     h1 Нет данных
     p.lead На этом сайте еще небыло ни одного посетителя.
 - else
-  .page-head
+  .page-title.m-b-lg
     h2 Посещения
-    .page-subhead
-      = "Пользователь #{viewer}"
+    - if viewer.present?
+      .page-subhead
+        = "Пользователь #{viewer}"
+        .text-muted= viewer.user_agent
+        .text-muted= viewer.remote_ip
   table.table.table-small-text.table-striped
     thead.thead-default
       tr

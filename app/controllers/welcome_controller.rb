@@ -1,20 +1,21 @@
 class WelcomeController < ApplicationController
   include HtmlOnly
+  include CurrentViewer
+  include ViewerLogger
 
   layout 'welcome'
 
   def index
-    # redirect_to 'http://molodost.bz' if request.domain.ends_with? 'bmland.ru'
-    # redirect_to 'http://molodost.bz'
-    render locals: { variant_uuid: default_variant.uuid }
+    render locals: { variant_uuid: current_variant.uuid }
   end
 
   private
 
-  delegate :default_landing, to: :account_root
-  delegate :default_variant, to: :default_landing
+  def current_landing
+    @_current_landing ||= Account.root.landings.active.where(path: '/').first
+  end
 
-  def account_root
-    Account.root
+  def current_variant
+    current_landing.default_variant
   end
 end

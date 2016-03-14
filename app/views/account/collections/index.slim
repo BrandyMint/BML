@@ -9,6 +9,9 @@ table.table.table-condensed
       tr
         td
           = c
+          .text-muted
+            small
+              = c.fields.join(', ')
         td
           - if c.last_lead_at.present?
             = I18n.l c.last_lead_at, format: :short
