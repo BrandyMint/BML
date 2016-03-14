@@ -16,12 +16,9 @@ table.table.table-condensed.m-t-lg
         -# small.text-muted= link_to site_variant_url(v), site_variant_url(v), target: '_blank', class: 'text-muted'
         h3= v
         - if current_landing.default_variant == v
-          div.text-muted.text-nowrap= "(по-умолчанию)"
-        small.text-muted.text-nowrap= v.uuid
-
-        hr
-        .text-muted
-          = "Блоки: #{v.sections.count}"
+          span.text-nowrap.label.label-default по-умолчанию
+        .text-muted.m-t-sm
+          = "Блоков: #{v.sections.count} шт."
       td style="width: 400px"
         ul.list-inline.pull-right
           
