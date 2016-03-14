@@ -1,8 +1,12 @@
 module ApplicationHelper
   def bugsnag_script
-    javascript_tag(
-      src: "//d2wy8f7a9ursnm.cloudfront.net/bugsnag-2.min.js",
-      data: { apikey: Bugsnag.configuration.api_key, appversion: AppVersion.to_s, releasestage: Rails.env }
+    javascript_include_tag(
+      '//d2wy8f7a9ursnm.cloudfront.net/bugsnag-2.min.js',
+      data: {
+        apikey: Bugsnag.configuration.api_key,
+        appversion: AppVersion.to_s,
+        releasestage: Rails.env
+      }
     )
   end
 

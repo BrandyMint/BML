@@ -11,7 +11,7 @@ class VariantSelector
 
   def landing
     return unless account
-    @_landing ||= account.landings.find_by_path(path) || account.default_landing
+    @_landing ||= account.landings.find_by_path(path) || default_landing
   end
 
   def variant
@@ -29,6 +29,12 @@ class VariantSelector
 
   def web_address
     @_web_address ||= find_web_address
+  end
+
+  def default_landing
+    return unless path.blank? || path == '/'
+
+    account.default_landing
   end
 
   def find_web_address

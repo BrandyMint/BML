@@ -6,10 +6,10 @@ class ViewerConstraint
     variant =
       VariantSelector
       .new(
-        host: request.host,
-        path: request.path,
+        host:    request.host,
+        path:    request.path,
         session: request.session,
-        params: request.params,
+        params:  request.params,
         cookies: request.cookies
       )
       .variant

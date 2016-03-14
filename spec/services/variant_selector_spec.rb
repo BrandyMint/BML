@@ -31,8 +31,15 @@ RSpec.describe VariantSelector do
 
   describe '#variant (default)' do
     let!(:landing) { create :landing, account: account }
-    let(:path) { '' }
+    let(:path) { '/' }
 
     it { expect(subject.variant).to eq landing.default_variant }
+  end
+
+  describe '#variant (unknown)' do
+    let!(:landing) { create :landing, account: account }
+    let(:path) { 'unknown' }
+
+    it { expect(subject.variant).to eq nil }
   end
 end
