@@ -1,7 +1,7 @@
 class Collection < ActiveRecord::Base
   belongs_to :landing
-  has_many :leads
-  has_many :fields, class_name: 'CollectionField'
+  has_many :leads, dependent: :destroy
+  has_many :fields, dependent: :destroy, class_name: 'CollectionField'
 
   scope :ordered, -> { order :id }
 
