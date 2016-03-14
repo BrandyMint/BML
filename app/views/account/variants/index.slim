@@ -22,9 +22,9 @@ table.table.table-condensed.m-t-lg
           
           /= link_to site_variant_url(v), target: '_blank' do
             /= fa_icon 'external-link', text: 'Публичная ссылка'
-          li.list-inline-item
-            = link_to account_landing_editor_path(current_landing, v), class: 'btn btn-sm btn-secondary' do
-              = fa_icon 'pencil-square-o', text: 'Конструктор'
+          /li.list-inline-item
+            /= link_to account_landing_editor_path(current_landing, v), class: 'btn btn-sm btn-secondary' do
+              /= fa_icon 'pencil-square-o', text: 'Конструктор'
           li.list-inline-item
             = link_to edit_account_landing_variant_path(id: v.id, landing: current_landing), class: 'btn btn-sm btn-secondary' do
               = fa_icon :pencil, text: 'Настройка'
