@@ -18,6 +18,10 @@ class Landing < ActiveRecord::Base
   scope :ordered, -> { order 'id desc' }
   scope :active, -> { all }
 
+  def used?
+    leads.any? && variants.select(&:used?).any?
+  end
+
   def url
     'http://' + account.host + host_port.to_s + path
   end

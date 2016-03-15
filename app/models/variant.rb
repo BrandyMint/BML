@@ -15,6 +15,11 @@ class Variant < ActiveRecord::Base
     "#{landing} / #{self}"
   end
 
+  def used?
+    # TODO: Проверять что секии не дефолтные
+    sections.any?
+  end
+
   def usable_title
     title.presence || landing.head_title.presence || landing.title
   end

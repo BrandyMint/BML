@@ -24,6 +24,12 @@ class Account::LandingsController < Account::BaseController
     render 'new', locals: { landing: err.record }
   end
 
+  def destroy
+    landing = current_account.landings.find params[:id]
+    landing.destroy!
+    redirect_to account_url
+  end
+
   private
 
   def current_variant
