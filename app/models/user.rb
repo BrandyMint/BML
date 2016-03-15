@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  include UserConfirmation
-
   authenticates_with_sorcery!
+  include UserConfirmation
+  include UserPasswordReset
   has_many :memberships, dependent: :destroy
   has_many :accounts, through: :memberships
   has_many :phone_confirmations, autosave: true, dependent: :delete_all
@@ -33,12 +33,5 @@ class User < ActiveRecord::Base
     else
       super value
     end
-  end
-
-  # Переопрееляем sorcery-ский метод, потому что
-  # он передает мейлеру в аргументах user, вместо ID,
-  # а sidekiq этого не любит
-  def send_reset_password_email!
-    UserMailer.delay.reset_password_email id
   end
 end
