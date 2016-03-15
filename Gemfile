@@ -139,6 +139,16 @@ gem 'simpleidn'
 gem 'public_suffix'
 gem 'babosa'
 
+# http://errm.github.io/statsd-slides/#/10
+# https://signalvnoise.com/posts/3091-pssst-your-rails-application-has-a-secret-to-tell-you
+# http://matt.aimonetti.net/posts/2013/06/26/practical-guide-to-graphite-monitoring/
+# SaaS: librato
+gem 'statsd-ruby'
+gem 'statsd-instrument'
+gem 'sidekiq-statsd'
+gem 'nunes'
+
+
 group :development, :test do
   gem 'bond'
   gem 'jist'
