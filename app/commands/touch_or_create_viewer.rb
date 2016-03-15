@@ -7,17 +7,12 @@ class TouchOrCreateViewer
   attribute :user_agent, String
 
   def call
-    ActiveRecord::Base.connection.execute(
-      ActiveRecord::Base.send(
-        :sanitize_sql_array,
-        sql_array
-      )
-    )
+    PlainSQLQuery.execute_query(sql)
   end
 
   private
 
-  def sql_array
+  def sql
     [
       "INSERT INTO viewers (landing_id, uid, remote_ip, user_agent, created_at, updated_at)
       VALUES (?, ?, ?, ?, current_timestamp, current_timestamp)

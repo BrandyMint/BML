@@ -6,6 +6,7 @@ class LeadsController < ApplicationController
 
   def create
     create_lead
+    send_notifications
 
     if request.xhr?
       respond_to do |format|
@@ -74,6 +75,22 @@ class LeadsController < ApplicationController
       cookies:    cookies,
       viewer_uid: current_viewer_uid
     ).call
+  end
+
+  def send_notifications
+    LeadCreatedNotifier.new(
+      phones: notification_phones,
+      email_members: notification_memberships,
+      lead: lead
+    ).call
+  end
+
+  def notification_phones
+    NotificationPhonesQuery.new(account_id: current_account.id).call
+  end
+
+  def notification_memberships
+    current_account.memberships.with_email_notification.includes(:user)
   end
 
   def lead

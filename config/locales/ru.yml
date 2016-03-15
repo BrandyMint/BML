@@ -71,9 +71,19 @@ ru:
           Здравствуйте, %{email}.
           Чтобы сменить ваш пароль на сайте, пройдите по ссылке %{url}
           Если вы не хотите менять свой пароль, проигнорируйте это письмо
-  services:
-    pin_sender:
-      sms_text: Пин-код %{pin}
+    lead_mailer:
+      new_lead_email:
+        subject: 'Новая заявка %{public_number}'
+        body: |
+          Создана новая заявка.<br>
+          %{data}
+        body_text: |
+          Создана новая заявка.
+          %{data}
+  notifications:
+    sms:
+      new_pin_code: 'Пин-код %{pin_code}'
+      lead_created: 'Новая заявка %{public_number}'
 
   leads_count:
     zero: 'Без заявок'

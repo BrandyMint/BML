@@ -6,7 +6,7 @@ class MailerWorker
 
   def perform(mailer, method, *args)
     mail = mailer.constantize.send method, *args
-    mail.deliver!
+    mail.deliver_now!
   rescue Net::SMTPSyntaxError => err
     Bugsnag.notify err, metadata: { mail: mail.inspect }
     # logger.error "#{err} #{mail.inspect}"

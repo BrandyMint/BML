@@ -44,7 +44,7 @@ class PhoneConfirmation < ActiveRecord::Base
   def deliver_pin_code!
     test_persisted!
     generate_pin_code!
-    SmsWorker.perform_async phone, I18n.t('services.pin_sender.sms_text', pin: pin_code)
+    SmsWorker.perform_async phone, I18n.t('notifications.sms.new_pin_code', pin_code: pin_code)
     @request_timeout = nil
     update_column :pin_requested_at, Time.zone.now
   end

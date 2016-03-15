@@ -32,6 +32,8 @@ module Bml
       "#{Rails.root}/app/commands",
       "#{Rails.root}/app/queries",
       "#{Rails.root}/app/utils",
+      "#{Rails.root}/app/notifiers",
+      "#{Rails.root}/app/notifiers/concerns",
       "#{Rails.root}/app/workers"
     ]
 

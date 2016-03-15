@@ -49,15 +49,10 @@ class UtmValuesQuery
   end
 
   def exec_query(query)
-    ActiveRecord::Base.connection.execute(sanitize(query))
-                      .to_a.map(&:symbolize_keys)
-  end
-
-  def sanitize(query)
-    ActiveRecord::Base.send(:sanitize_sql_array, query)
+    PlainSQLQuery.execute_query(query).to_a.map(&:symbolize_keys)
   end
 
   def landing_query(landing_id)
-    landing_id ? sanitize(['AND v.landing_id = %d', landing_id]) : ''
+    landing_id ? PlainSQLQuery.sanitize(['AND v.landing_id = %d', landing_id]) : ''
   end
 end
