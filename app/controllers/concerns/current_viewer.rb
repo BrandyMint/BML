@@ -7,12 +7,12 @@ module CurrentViewer
 
   private
 
-  def current_viewer_uid
-    viewers_session[current_variant.landing.uuid] ||= UUID.generate
+  def session_key
+    "viewer_#{current_variant.landing_id}"
   end
 
-  def viewers_session
-    session[:viewers] ||= {}
+  def current_viewer_uid
+    params[:viewer_uid] || session[session_key] ||= UUID.generate
   end
 
   def save_viewer
