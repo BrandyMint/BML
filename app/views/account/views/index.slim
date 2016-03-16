@@ -7,18 +7,20 @@
     h2 Посещения
     - if viewer.present?
       .page-subhead
-        = "Пользователь #{viewer}"
+        = "Посетитель #{viewer}"
         .text-muted= viewer.user_agent
         .text-muted= viewer.remote_ip
   table.table.table-small-text.table-striped
     thead.thead-default
       tr
         th Когда
+        - unless viewer.present?
+          th Посетитель
         th IP
         th Путь
         - utm_fields_only.each do |field|
           th= field.title
     tbody
-      = render partial: 'view_row', collection: views
+      = render partial: 'view_row', collection: views, locals: { viewer: viewer }
   nav
     = paginate views

@@ -37,7 +37,7 @@ class LeadsController < ApplicationController
 
   private
 
-  DATA_EXCEPTIONS = [:variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit].freeze
+  DATA_EXCEPTIONS = [:viewer_uid, :variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit].freeze
 
   def current_variant
     @_current_variant ||= Variant.where(uuid: variant_uuid).first! || raise("No such variant #{variant_uuid}")

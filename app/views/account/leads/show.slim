@@ -1,0 +1,32 @@
+
+.row
+  .col-md-6
+    .page-title
+      h2 Заявка N#{lead.number}
+      .text-muted
+        small= lead.public_number
+  .col-md-6
+    - if lead.viewer_uid.present?
+      .pull-right= link_to 'Посетитель', account_landing_viewer_url(current_landing, lead.viewer)
+      br
+      .pull-right.text-muted
+        small= lead.viewer_uid
+
+hr
+
+h3 Данные формы:
+
+.content.m-t-lg
+  dl.dl-horizontal
+   - lead.data.keys.sort.each do |key|
+    dt.col-sm-3= key
+    dd.col-sm-9= lead.data[ key ].presence || empty_value_html
+
+
+h3 Источники
+.content.m-t-lg
+  dl.dl-horizontal
+    - Lead::ATTRIBUTES.each do |a|
+      - value = lead.send(a)
+      dt.col-sm-3= t a, scope: [:lead, :attributes]
+      dd.col-sm-9= value || empty_value_html

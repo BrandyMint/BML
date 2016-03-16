@@ -8,6 +8,8 @@ class Lead < ActiveRecord::Base
     :referer
   ].freeze
 
+  Lead::ATTRIBUTES = UTM_FIELDS + UTM_FIELDS.map { |a| "last_#{a}" } + UTM_FIELDS.map { |a| "first_#{a}" }
+
   belongs_to :collection, counter_cache: :leads_count
   belongs_to :variant, counter_cache: :leads_count
   belongs_to :landing

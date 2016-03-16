@@ -1,8 +1,8 @@
 tr
   td.text-muted.text-nowrap
-    = lead.number
+    = link_to lead.number, account_landing_lead_url(current_landing, lead)
   td.text-muted.text-nowrap
-    = link_to account_landing_views_url(landing: current_landing, viewer_uid: lead.viewer_uid) do
+    = link_to account_landing_lead_url(current_landing, lead) do
       = I18n.l lead.created_at, format: :short
   - fields.each do |field|
     td= lead.data[field.key].presence || empty_value_html

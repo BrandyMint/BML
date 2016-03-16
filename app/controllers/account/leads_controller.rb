@@ -7,12 +7,18 @@ class Account::LeadsController < Landing::BaseController
   def index
     leads_filter.popular_utm_options = popular_utm_options(current_landing.id)
     render locals: {
-      collections: current_landing.collections,
+      collections:        current_landing.collections,
       current_collection: current_collection,
-      fields: fields,
-      leads: leads,
-      filter: leads_filter
+      fields:             fields,
+      leads:              leads,
+      filter:             leads_filter
     }
+  end
+
+  def show
+    lead = current_landing.leads.find params[:id]
+
+    render locals: { lead: lead }, layout: 'lead_show'
   end
 
   private
