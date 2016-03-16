@@ -254,7 +254,7 @@ ActiveRecord::Schema.define(version: 20160315120746) do
 
   add_index "utm_values", ["account_id"], name: "index_utm_values_on_account_id", using: :btree
   add_index "utm_values", ["key_type"], name: "index_utm_values_on_key_type", using: :btree
-  add_index "utm_values", ["landing_id", "key_type", "value"], name: "index_utm_values_on_landing_id_and_key_type_and_value", unique: true, using: :btree
+  add_index "utm_values", ["landing_id"], name: "index_utm_values_on_landing_id", using: :btree
   add_index "utm_values", ["value"], name: "index_utm_values_on_value", using: :btree
 
   create_table "variants", force: :cascade do |t|
