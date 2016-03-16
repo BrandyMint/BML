@@ -14,12 +14,10 @@ module LandingPath
   private
 
   def clear_path
-    if self.path.blank?
-      self.path = '/'
-    end
-    if self.path.length > 1
-      self.path = self.path.slice(0, self.path.length-1) if self.path.end_with? '/'
-    end
+    self.path = '/' if path.blank?
+    return unless path.length > 1
+
+    self.path = path.slice(0, path.length - 1) if path.end_with? '/'
   end
 
   def generate_path
