@@ -7,6 +7,7 @@ RSpec.describe NotificationPhonesQuery do
   let!(:account) { user.memberships.first.account }
 
   before do
+    # Коллбэки мухлюют, когда ставится телефон
     user.update_column :phone_confirmed_at, Time.zone.now
     user2.update_column :phone_confirmed_at, Time.zone.now
 
