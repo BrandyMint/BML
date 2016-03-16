@@ -11,11 +11,16 @@ class CreateLead
     ActiveRecord::Base.transaction do
       lead = collection.leads.create! lead_attributes
       update_utm_values lead
+      AttachClient
+        .new(lead: lead)
+        .call
       lead
     end
   end
 
   private
+
+  delegate :landing, to: :variant
 
   def lead_attributes
     utm.attributes.merge!(
@@ -71,7 +76,7 @@ class CreateLead
   end
 
   def collection
-    find_collection || variant.landing.default_collection
+    find_collection || landing.default_collection
   end
 
   def find_collection

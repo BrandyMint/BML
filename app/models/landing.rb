@@ -7,7 +7,7 @@ class Landing < ActiveRecord::Base
   has_many :collections, dependent: :destroy
   has_many :variants, dependent: :destroy
   has_many :segments, dependent: :destroy
-  has_many :clients, dependent: :destroy
+  has_many :clients, dependent: :nullify
   has_many :utm_values, dependent: :delete_all
   has_many :leads
 

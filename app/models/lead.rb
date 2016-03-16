@@ -13,6 +13,7 @@ class Lead < ActiveRecord::Base
   belongs_to :collection, counter_cache: :leads_count
   belongs_to :variant, counter_cache: :leads_count
   belongs_to :landing
+  belongs_to :client
 
   scope :ordered, -> { order 'id desc' }
 
@@ -34,6 +35,18 @@ class Lead < ActiveRecord::Base
         title: I18n.t("utm_fields.#{f}")
       )
     end
+  end
+
+  def name
+    data['name']
+  end
+
+  def phone
+    data['phone']
+  end
+
+  def email
+    data['email']
   end
 
   def to_s
