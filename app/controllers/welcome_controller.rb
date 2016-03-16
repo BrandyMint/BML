@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
   include HtmlOnly
   include CurrentViewer
+  include CurrentVariant
   include ViewerLogger
 
   layout 'welcome'

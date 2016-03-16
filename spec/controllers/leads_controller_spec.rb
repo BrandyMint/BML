@@ -9,6 +9,7 @@ RSpec.describe LeadsController, type: :controller do
   context 'create' do
     it do
       expect(controller).to receive(:create_lead)
+      expect(controller).to receive(:send_notifications)
       post :create, form, subdomain: ''
     end
   end
