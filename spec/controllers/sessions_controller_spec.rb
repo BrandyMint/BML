@@ -23,6 +23,8 @@ describe SessionsController do
         it 'must log in' do
           post :create, session_form: { login: user.email, password: password }
           expect(controller.current_user).to be_an_instance_of(User)
+          expect(response.status).to eq 302
+          expect(response.redirect_url).to eq account_root_url
         end
       end
 
@@ -30,6 +32,8 @@ describe SessionsController do
         it 'must log in' do
           post :create, session_form: { login: user.phone, password: password }
           expect(controller.current_user).to be_an_instance_of(User)
+          expect(response.status).to eq 302
+          expect(response.redirect_url).to eq account_root_url
         end
       end
     end
@@ -39,6 +43,37 @@ describe SessionsController do
         request.env['HTTP_REFERER'] = 'some'
         get :create, session_form: { login: 'a' }
         expect(controller.current_user).not_to be_an_instance_of(User)
+      end
+    end
+
+    context 'invite' do
+      let!(:invite) { create :invite }
+      let(:account) { invite.account }
+      let(:form) { { login: user.email, password: password } }
+      context 'background' do
+        it 'must not be a member of account' do
+          expect(account.users).to_not include user
+        end
+      end
+
+      it 'must bind user to account' do
+        post :create, session_form: form, invite_key: invite.key
+
+        expect(controller.current_user).to be_an_instance_of(User)
+        expect(response.status).to eq 302
+        expect(response.redirect_url).to eq account_root_url
+        expect(account.users).to include user
+      end
+    end
+
+    context 'phone confirmation' do
+      let(:form) { { login: user.phone, password: password } }
+      it 'must confirm phone' do
+        expect_any_instance_of(User).to receive(:confirm_phone!)
+        post :create, session_form: form
+
+        expect(controller.current_user).to be_an_instance_of(User)
+        expect(response.status).to eq 302
       end
     end
   end

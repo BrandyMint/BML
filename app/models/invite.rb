@@ -3,6 +3,7 @@ class Invite < ActiveRecord::Base
   include InviteActivation
   include InviteSends
   include DisableUpdate
+  include MemberRoles
 
   INVITATION_ROLES = %w(master analyst guest).freeze
 
@@ -25,7 +26,7 @@ class Invite < ActiveRecord::Base
     when user.email.present?
       where 'email=? or key=?', user.email, user.invite_key
     else
-      raise 'User without phone and email '
+      raise 'User without phone and email'
     end
   }
 
@@ -36,6 +37,6 @@ class Invite < ActiveRecord::Base
   end
 
   def url
-    Rails.application.routes.url_helpers.new_user_url invite_key: key
+    Rails.application.routes.url_helpers.new_user_url invite_key: key, host: AppSettings.host
   end
 end

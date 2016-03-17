@@ -1,0 +1,16 @@
+- if invites.any?
+  .ibox
+    .ibox-title
+      h3= t 'invites.list_title', count: invites.count
+    .ibox-content.no-padding
+      .project-list.table-responsive
+        table.table.table-hover.table-last
+          - invites.each do |invite|
+            tr
+              td= mail_to invite.email
+              td= tel_to invite.phone
+              td= link_to t('invites.invite_link'), invite.url, class: 'btn btn-secondary btn-sm'
+              td Пригласили #{distance_of_time_in_words_to_now invite.created_at}
+              td= member_role_label invite
+              td.project-actions
+                = element_navigation invite

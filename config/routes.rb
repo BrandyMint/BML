@@ -70,7 +70,13 @@ Rails.application.routes.draw do
   end
 
   concern :profile do
-    resource :profile, controller: :profile, only: [:show, :update] do
+    resource :settings, controller: :profile, as: :profile, only: [:show, :update] do
+      resources :invites
+      resources :members, as: :memberships do
+        member do
+          post :send_email_confirmation
+        end
+      end
       post :send_email_confirmation
     end
 

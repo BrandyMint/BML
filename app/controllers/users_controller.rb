@@ -2,14 +2,14 @@
 # пользователя без аккаунта
 #
 class UsersController < ApplicationController
-  # include InvitesHelper
+  include InvitesHelper
   layout 'auth'
 
   def new
     if invite.present?
       render :invite, locals: { user: build_user }
     else
-      render :new, locals: { user: build_user }
+      redirect_to login_url, flash: { error: I18n.t('invites.no_invite') }
     end
   end
 
@@ -18,26 +18,15 @@ class UsersController < ApplicationController
 
     if user.save
       auto_login user
-      redirect_success
+      redirect_to account_root_url
+    elsif invite.present?
+      render :invite, locals: { user: user }
     else
-      if invite.present?
-        render :invite, locals: { user: user }
-      else
-        render :new, locals: { user: user }
-      end
+      redirect_to login_url, flash: { error: I18n.t('invites.no_invite') }
     end
   end
 
   private
-
-  def redirect_success
-    account = current_user.invited_account || current_user.accounts.first
-    if account.present?
-      redirect_to account.user_url
-    else
-      redirect_to profile_url
-    end
-  end
 
   def build_user
     user = if invite.present?

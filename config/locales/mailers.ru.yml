@@ -1,0 +1,46 @@
+ru:
+  mailers:
+    user_mailer:
+      reset_password_instructions:
+        subject: Инструкции по восстановлению пароля
+        body: |
+          Здравствуйте, %{email}.<br>
+          Чтобы сменить ваш пароль на сайте, пройдите <a href="%{url}"> по ссылке</a><br>
+          Если вы не хотите менять свой пароль, проигнорируйте это письмо
+        body_text: |
+          Здравствуйте, %{email}.
+          Чтобы сменить ваш пароль на сайте, пройдите по ссылке %{url}
+          Если вы не хотите менять свой пароль, проигнорируйте это письмо
+      email_confirmation:
+        subject: '%{title}: Подтверждение e-mail'
+        body: |
+          <p>Привет, %{username}!</p>
+          <p>Для подтверждения e-mail на %{title} пройдите по <a href="%{url}">этой ссылке</a></p>
+        body_text: |
+          Привет, %{username}!
+          Для подтверждения e-mail на %{title}
+          пройдите по этой ссылке: %{url}
+    lead_mailer:
+      new_lead_email:
+        subject: 'Новая заявка %{public_number}'
+        body: |
+          Создана новая заявка.<br>
+          %{data}
+        body_text: |
+          Создана новая заявка.
+          %{data}
+    invite_mailer:
+      new_invite:
+        subject: "Приглашение в проект %{account}"
+        body: |
+          %{inviter} приглашает Вас принять участие в проекте %{account} в роли %{role}<br>
+          Для регистрации перейдите по ссылке: <a href="%{url}">%{url}</a>
+        body_text: |
+          %{inviter} приглашает Вас принять участие в проекте %{account} в роли %{role}
+          Для регистрации перейдите по ссылке: %{url}
+      added_to_account:
+        subject: "Приглашение в проект %{account}"
+        body: |
+          %{inviter} приглашает Вас принять участие в проекте <a href="%{url}">%{account}</a> в роли %{role}
+        body_text: |
+          %{inviter} приглашает Вас принять участие в проекте %{account} (%{url}) в роли %{role}

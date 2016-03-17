@@ -1,6 +1,5 @@
 class AccountsController < ApplicationController
   include AuthorizeUser
-  include CurrentAccount
 
   layout 'auth'
 

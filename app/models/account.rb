@@ -20,6 +20,7 @@ class Account < ActiveRecord::Base
   has_many :authentications, dependent: :destroy
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
+  has_many :invites, dependent: :destroy
 
   has_many :utm_values, dependent: :delete_all
 

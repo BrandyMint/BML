@@ -1,0 +1,14 @@
+ru:
+  enumerize:
+    invite:
+      role:
+        owner: Владелец
+        master: Мастер
+        analyst: Аналитик
+        guest: Гость
+    membership:
+      role:
+        owner: Владелец
+        master: Мастер
+        analyst: Аналитик
+        guest: Гость

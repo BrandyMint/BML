@@ -111,6 +111,21 @@ ActiveRecord::Schema.define(version: 20160320200805) do
 
   add_index "collections", ["landing_id"], name: "index_collections_on_landing_id", using: :btree
 
+  create_table "invites", force: :cascade do |t|
+    t.integer  "user_inviter_id",                    null: false
+    t.integer  "account_id",                         null: false
+    t.string   "key",                                null: false
+    t.string   "role",            default: "master", null: false
+    t.string   "phone"
+    t.string   "email"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "invites", ["account_id", "phone"], name: "index_invites_on_account_id_and_phone", unique: true, using: :btree
+  add_index "invites", ["email", "account_id"], name: "index_invites_on_email_and_account_id", unique: true, using: :btree
+  add_index "invites", ["key"], name: "index_invites_on_key", using: :btree
+
   create_table "landing_views", force: :cascade do |t|
     t.integer  "account_id"
     t.integer  "landing_id"
@@ -191,13 +206,13 @@ ActiveRecord::Schema.define(version: 20160320200805) do
   add_index "leads", ["variant_id"], name: "index_leads_on_variant_id", using: :btree
 
   create_table "memberships", force: :cascade do |t|
-    t.integer  "account_id",                             null: false
-    t.integer  "user_id",                                null: false
-    t.string   "role",               default: "manager", null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.boolean  "email_notification", default: true,      null: false
-    t.boolean  "sms_notification",   default: true,      null: false
+    t.integer  "account_id",                        null: false
+    t.integer  "user_id",                           null: false
+    t.string   "role",                              null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "email_notification", default: true, null: false
+    t.boolean  "sms_notification",   default: true, null: false
   end
 
   add_index "memberships", ["account_id"], name: "index_memberships_on_account_id", using: :btree
@@ -363,6 +378,8 @@ ActiveRecord::Schema.define(version: 20160320200805) do
   add_foreign_key "clients", "landings"
   add_foreign_key "collection_fields", "collections"
   add_foreign_key "collections", "landings"
+  add_foreign_key "invites", "accounts"
+  add_foreign_key "invites", "users", column: "user_inviter_id"
   add_foreign_key "landing_views", "accounts"
   add_foreign_key "landing_views", "landings"
   add_foreign_key "landing_views", "variants"

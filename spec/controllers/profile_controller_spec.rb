@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ProfileController, type: :controller do
-  include SystemControllerSupport
+  include AccountControllerSupport
   include Sorcery::TestHelpers::Rails::Integration
   include Sorcery::TestHelpers::Rails::Controller
 
@@ -26,7 +26,7 @@ RSpec.describe ProfileController, type: :controller do
   end
 
   describe 'POST send_email_confirmation' do
-    it 'must redirect' do
+    it 'must send confirmation email' do
       allow(user).to receive(:deliver_email_confirmation!)
       post :send_email_confirmation
       expect(response.status).to eq 302

@@ -3,7 +3,7 @@ class ProfileController < ApplicationController
   before_action :require_login
   skip_before_action :require_login, only: [:confirm_email]
 
-  layout 'auth'
+  layout 'account_settings'
 
   def show
     render locals: { user: current_user }
@@ -13,7 +13,7 @@ class ProfileController < ApplicationController
     current_user.update! permitted_params
     redirect_to profile_url
   rescue ActiveRecord::RecordInvalid => e
-    render :edit, locals: { user: e.record }
+    render :show, locals: { user: e.record }
   end
 
   def send_email_confirmation

@@ -46,55 +46,11 @@ ru:
     social: Соц.сети
     organic: Прямые заходы
     mails: Рассылки
-  flashes:
-    registration:
-      signed_up: Вы успешно зарегистрировались!
-      session_problems: Проблемы с авторизацией
-      user_exists_html: 'Похоже, такой пользователь уже существует. <br /><a href="%{url}">Войти</a>'
-    user:
-      confirmed: E-mail успешно подтверждён
-      not_confirmed: Не найден оператор с таким e-mail
-      confirmation_sent: Ссылка для потверждения отправлена на Ваш e-mail
-      session_failed: Неправильный email или пароль
-    password_reset:
-      created: 'Инструкции отправлены на ваш email'
-      updated: 'Пароль изменён'
-  mailers:
-    user_mailer:
-      reset_password_instructions:
-        subject: Инструкции по восстановлению пароля
-        body: |
-          Здравствуйте, %{email}.<br>
-          Чтобы сменить ваш пароль на сайте, пройдите <a href="%{url}"> по ссылке</a><br>
-          Если вы не хотите менять свой пароль, проигнорируйте это письмо
-        body_text: |
-          Здравствуйте, %{email}.
-          Чтобы сменить ваш пароль на сайте, пройдите по ссылке %{url}
-          Если вы не хотите менять свой пароль, проигнорируйте это письмо
-    lead_mailer:
-      new_lead_email:
-        subject: 'Новая заявка %{number}'
-        body: |
-          Создана новая заявка.<br>
-          %{data}
-        body_text: |
-          Создана новая заявка.
-          %{data}
-    invite_mailer:
-      new_invite:
-        subject: "Приглашение в проект %{account}"
-        body: |
-          %{inviter} приглашает Вас принять участие в проекте %{account} в роли %{role}<br>
-          Для регистрации перейдите по ссылке: %{url}
-        body_text: |
-          %{inviter} приглашает Вас принять участие в проекте %{account} в роли %{role}
-          Для регистрации перейдите по ссылке: %{url}
   notifications:
     sms:
       new_pin_code: 'Пин-код %{pin_code}'
       lead_created: '%{site}: Заявка %{number} - %{lead_url}'
       invite_created: 'Вас пригласили в %{account}, зарегистрироваться - %{url}'
-
 
   leads_count:
     zero: 'Без заявок'
@@ -124,7 +80,6 @@ ru:
       invited: По приглашению?
       logged_in_with: 'Вы уже авторизованы под именем<br /> <b>%{name}</b>.'
       continue_logged: 'Продолжить под этим именем..'
-      accept_invite: 'Принять приглашение'
       forgot_password: Забыли пароль?
   invites:
     invite: Пригласить
@@ -132,3 +87,9 @@ ru:
     empty: Приглашений нет
     cancel: Отменить приглашение?
     restore_password: Восстановить
+    list_title: 'Список приглашений (%{count})'
+    invite_member: Пригласить участника
+    edit: Редактирование участника
+    no_invite: Это приглашение уже активировано или не существует
+  account:
+    members: Участники
