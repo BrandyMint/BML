@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery!
   include UserConfirmation
   include UserPasswordReset
+  include PhoneAndEmail
   has_many :memberships, dependent: :destroy
   has_many :accounts, through: :memberships
   has_many :phone_confirmations, autosave: true, dependent: :delete_all
@@ -17,21 +18,5 @@ class User < ActiveRecord::Base
 
   def to_s
     name
-  end
-
-  def phone=(value)
-    if value.present?
-      super PhoneUtils.clean_phone value
-    else
-      super nil
-    end
-  end
-
-  def email=(value)
-    if value.present?
-      super EmailUtils.clean_email value
-    else
-      super value
-    end
   end
 end

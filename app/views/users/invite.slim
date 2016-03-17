@@ -1,0 +1,15 @@
+.form-flatbox
+  = simple_form_for user, url: user_path do |f|
+    h1.form-title #{invite.user_inviter} приглашает Вас присоединиться к магазину #{link_to invite.account, invite.account.home_url, target: '_blank'}.
+
+    p Пожалуйста, представьтесь, чтобы мы знали как к Вам обращаться.
+    br
+
+    -#= f.error_notification message: user.errors[:invite_key].first
+    = hidden_field_tag :invite_key, invite_key
+
+    = f.input :name, wrapper_html: { class: 'form-group-first' }, label: false, required: true
+    = f.input :phone, label: false, disabled: invite.phone.present?, placeholder: 'Номер телефона (не обязательно)'
+    = f.input :email, label: false, disabled: invite.email.present?
+    .form-group.form-group-last
+      = f.button :submit, t('shared.next'), class: 'btn btn-success btn-block'

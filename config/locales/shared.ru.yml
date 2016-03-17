@@ -1,0 +1,39 @@
+shared:
+  actions: Действия
+  add: Добавить
+  add_more: Добавить ещё
+  create: Создать
+  create_new: Добавить
+  show: Просмотр
+  edit: Изменить
+  delete: Удалить
+  delete_confirm: Удаляем насовсем?
+  archive_confirm: Точно архивировать?
+  archive: В архив
+  restore: Восстановить
+  reset: Сбросить
+  cancel: Отменить
+  save: Сохранить
+  apply: Применить
+  find: Найти
+  set: Установить
+  load: Загрузить
+  is_on: Включен
+  is_off: Отключен
+  turn_on: Включить
+  turn_off: Отключить
+  action_turn_on: Нажмите, чтобы включить
+  action_turn_off: Нажмите, чтобы отключить
+  amount: Количество
+  go: Вперед
+  log_in: Войти
+  next: Продолжить
+  selected: Выбрано
+  from: из
+  entrance: Вход
+  city: Город
+  empty: пусто
+  unknown: неизвестный
+  undetected: не распознан
+  "yes": Да
+  "no": Нет

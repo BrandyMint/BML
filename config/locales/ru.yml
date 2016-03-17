@@ -80,10 +80,21 @@ ru:
         body_text: |
           Создана новая заявка.
           %{data}
+    invite_mailer:
+      new_invite:
+        subject: "Приглашение в проект %{account}"
+        body: |
+          %{inviter} приглашает Вас принять участие в проекте %{account} в роли %{role}<br>
+          Для регистрации перейдите по ссылке: %{url}
+        body_text: |
+          %{inviter} приглашает Вас принять участие в проекте %{account} в роли %{role}
+          Для регистрации перейдите по ссылке: %{url}
   notifications:
     sms:
       new_pin_code: 'Пин-код %{pin_code}'
       lead_created: '%{site}: Заявка %{number} - %{lead_url}'
+      invite_created: 'Вас пригласили в %{account}, зарегистрироваться - %{url}'
+
 
   leads_count:
     zero: 'Без заявок'
@@ -99,3 +110,25 @@ ru:
     other: '%{count} посещений'
   buttons:
     restore: 'Восстановить'
+  user:
+    registration:
+      title: Регистрация пользователя
+      by_invite: '(по приглашению %{account})'
+    login:
+      already_registered: Уже зарегистрированы?
+      auth: Авторизация
+      no_account: Еще нет аккаунта?
+      already_has_account: Уже есть аккаунт?
+      register_user: Зарегистрироваться без аккаунта
+      register: Зарегистрироваться
+      invited: По приглашению?
+      logged_in_with: 'Вы уже авторизованы под именем<br /> <b>%{name}</b>.'
+      continue_logged: 'Продолжить под этим именем..'
+      accept_invite: 'Принять приглашение'
+      forgot_password: Забыли пароль?
+  invites:
+    invite: Пригласить
+    invite_link: ссылка для приглашения
+    empty: Приглашений нет
+    cancel: Отменить приглашение?
+    restore_password: Восстановить

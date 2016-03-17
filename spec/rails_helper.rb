@@ -10,6 +10,7 @@ require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
 require 'rack_session_access/capybara'
 require 'sidekiq/testing'
+require 'email_spec'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 Capybara::Screenshot.autosave_on_failure = true
@@ -35,6 +36,13 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include FeatureHelpers, type: :feature
+
+  config.before :all do
+    Sidekiq::Testing.inline!
+  end
+
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
 
   # sql logging
   # ActiveRecord::Base.logger = Logger.new(STDOUT) if defined?(ActiveRecord::Base)
