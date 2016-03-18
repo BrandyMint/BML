@@ -4,7 +4,9 @@ RSpec.feature 'Password reset', type: :feature do
   let!(:user) { create :user, :with_account }
 
   background do
-    Capybara.app_host = Settings.app.host
+    Capybara.app_host = AppSettings.host
+
+    create :account, :root
   end
 
   scenario 'by email' do

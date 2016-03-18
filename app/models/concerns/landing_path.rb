@@ -2,8 +2,8 @@ module LandingPath
   extend ActiveSupport::Concern
 
   included do
-    before_validation :clear_path
     before_validation :generate_path
+    before_validation :clear_path
     before_save :clear_path
     validates :path,
               uniqueness: true,

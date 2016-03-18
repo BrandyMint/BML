@@ -29,7 +29,7 @@
       .col-lg-6
         = f.input :subdomain, hint: "Текущий поддомен в зоне <em>#{f.object.zone}</em>. Используется для операторской панели и резервного адреса.".html_safe
       .col-lg-6
-        = f.input :zone, collection: Settings.domain_zones, include_blank: false
+        = f.input :zone, collection: AppSettings.domain_zones, include_blank: false
 
   / .col-md-1.col-xs-2.p-l-none
   /   = link_to_remove_association f, class: 'btn btn-circle btn-default btn-sm' do

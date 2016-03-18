@@ -1,7 +1,7 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :developer unless Rails.env.production?
 
-  OmniAuth.config.full_host = Settings.app.host
+  OmniAuth.config.full_host = proc { |_env| AppSettings.host }
 
   if Secrets.yandex.present?
     provider :yandex, Secrets.yandex.id, Secrets.yandex.secret

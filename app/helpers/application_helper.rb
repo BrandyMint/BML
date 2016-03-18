@@ -32,12 +32,6 @@ module ApplicationHelper
     truncate buffer, length: length, omission: "...#{buffer[-finish, finish]}"
   end
 
-  def url_without_protocol(url)
-    return '' unless url.present?
-    a = Addressable::URI.parse url
-    a.host + a.path
-  end
-
   def human_boolean(value)
     value ? 'Да' : 'Нет'
   end

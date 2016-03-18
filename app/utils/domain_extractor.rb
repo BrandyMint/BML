@@ -13,7 +13,7 @@ module DomainExtractor
   end
 
   def extract_subdomain_from_domain(domain)
-    domain.sub '.' + Settings.app.default_url_options.host, ''
+    domain.sub '.' + AppSettings.default_url_options.host, ''
   end
 
   def tld_length
@@ -21,6 +21,6 @@ module DomainExtractor
   end
 
   def named_host?(host)
-    Settings.domain_zones.include? extract_domain(host)
+    AppSettings.domain_zones.include? extract_domain(host)
   end
 end

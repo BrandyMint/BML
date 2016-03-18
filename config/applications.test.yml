@@ -1,0 +1,12 @@
+apps:
+  -
+    title: Ай-да Мастер!
+    asset_host: http://example.com
+    from: 'noreplay@example.com'
+    tld_length: 1
+    domain_zones:
+      - example.com
+
+    default_url_options:
+      host: example.com
+      port: 3000

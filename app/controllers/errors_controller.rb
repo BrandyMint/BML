@@ -27,6 +27,7 @@ class ErrorsController < ApplicationController
   end
 
   def reserved_domain?
-    Settings.domain_zones.include? RequestProxy.new(request).domain
+    Settings.domains.include?(request.domain)
+    # AppSettings.domain_zones.include? RequestProxy.new(request).domain
   end
 end

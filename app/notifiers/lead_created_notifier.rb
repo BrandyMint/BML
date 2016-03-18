@@ -1,6 +1,7 @@
 class LeadCreatedNotifier
   include Virtus.model strict: true
   include NotifierHelpers
+  include LeadUrlHelper
 
   attribute :lead, Lead
   attribute :account, Account
@@ -37,8 +38,8 @@ class LeadCreatedNotifier
 
   def sms_payload
     {
-      site:     lead.landing.url,
-      lead_url:  Rails.application.routes.url_helpers.account_landing_lead_url(lead.landing, lead),
+      site:     lead.landing.short_name,
+      lead_url: admin_lead_url,
       number:   lead.number
     }
   end

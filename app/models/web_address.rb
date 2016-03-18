@@ -1,9 +1,9 @@
 class WebAddress < ActiveRecord::Base
   ALL_ZONES       = '*'.freeze
-  AVAILABLE_ZONES = Settings.domain_zones + [ALL_ZONES]
+  AVAILABLE_ZONES = AppSettings.domain_zones + [ALL_ZONES]
   DEFAULT_ZONE    = AppSettings.default_domain
   DEFAULT_CURRENT_ZONE = AppSettings.default_domain
-  DOMAIN_PATTERN = Regexp.union(*Settings.domain_zones)
+  DOMAIN_PATTERN = Regexp.union(*AppSettings.domain_zones)
 
   # http://tools.ietf.org/html/rfc2181#section-11
   SUBDOMAIN_MAX_LENGTH = 63

@@ -2,9 +2,9 @@ class BaseMailer < ActionMailer::Base
   helper :application
   # helper :money
 
-  default Settings.mailer_defaults.symbolize_keys
-
-  self.default_url_options = Settings.action_mailer.default_url_options.symbolize_keys
+  def default_url_options
+    AppSettings.default_url_options.symbolize_keys
+  end
 
   def self.delay
     Proxy.new(self)
@@ -12,7 +12,7 @@ class BaseMailer < ActionMailer::Base
 
   def test_email(email)
     Rails.logger.info "test mail mail to #{email}"
-    mail to: email, subject: "Тестовое письмо #{AppSettings.title}"
+    mail from: AppSettings.from, to: email, subject: "Тестовое письмо #{AppSettings.title}"
   end
 
   class CancelMailing < StandardError; end

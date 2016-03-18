@@ -21,8 +21,17 @@ module AccountWebAddresses
     web_address.try :confirm
   end
 
-  def host
+  def hostname
     current_domain
+  end
+
+  def url
+    a = Addressable::URI.new
+    a.host = hostname
+    a.port = AppSettings.default_url_options.port.presence
+    a.port = nil if a.port.to_s == '80'
+    a.scheme = 'http'
+    a.to_s
   end
 
   def default_web_address

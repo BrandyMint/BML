@@ -9,7 +9,7 @@ module WebAddressFinders
 
   def find_by_request(request)
     model = nil
-    if Settings.domain_zones.include?(request.domain)
+    if AppSettings.domain_zones.include?(request.domain)
       model = by_subdomain(request.subdomain).first
     end
     model || find_by_domain(request.host)
