@@ -83,7 +83,7 @@ ru:
   notifications:
     sms:
       new_pin_code: 'Пин-код %{pin_code}'
-      lead_created: 'Новая заявка %{number}'
+      lead_created: '%{site}: Заявка %{number} - %{lead_url}'
 
   leads_count:
     zero: 'Без заявок'

@@ -23,7 +23,11 @@ class Landing < ActiveRecord::Base
   end
 
   def url
-    'http://' + account.host + host_port.to_s + path
+    'http://' + url_without_protocol
+  end
+
+  def url_without_protocol
+    account.host + host_port.to_s + path
   end
 
   def viewers

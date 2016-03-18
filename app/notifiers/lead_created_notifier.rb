@@ -37,7 +37,9 @@ class LeadCreatedNotifier
 
   def sms_payload
     {
-      number: lead.number
+      site:     lead.landing.url,
+      lead_url:  Rails.application.routes.url_helpers.account_landing_lead_url(lead.landing, lead),
+      number:   lead.number
     }
   end
 end

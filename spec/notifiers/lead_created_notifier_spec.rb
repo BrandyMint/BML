@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe LeadCreatedNotifier do
-  let!(:lead) { build :lead }
-  let!(:account) { build :account }
+  let!(:lead) { create :lead }
+  let!(:account) { lead.landing.account }
 
   subject { described_class.new(lead: lead, account: account) }
 
