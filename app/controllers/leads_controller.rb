@@ -5,8 +5,7 @@ class LeadsController < ApplicationController
   layout 'lead'
 
   def create
-    create_lead
-    send_notifications
+    send_notifications create_lead
 
     if request.xhr?
       respond_to do |format|
@@ -81,22 +80,11 @@ class LeadsController < ApplicationController
     ).call
   end
 
-  def send_notifications
-    LeadCreatedNotifier.new(
-      phones: notification_phones,
-      email_members: notification_memberships,
-      lead: lead
-    ).call
+  def send_notifications(lead)
+    LeadCreatedNotifier.new(lead: lead, account: current_account).call
   rescue => e
+    raise e unless Rails.env.production?
     Bugsnag.notify e
-  end
-
-  def notification_phones
-    NotificationPhonesQuery.new(account_id: current_account.id).call
-  end
-
-  def notification_memberships
-    current_account.memberships.with_email_notification.includes(:user)
   end
 
   def lead

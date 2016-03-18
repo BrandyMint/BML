@@ -1,22 +1,29 @@
 class LeadCreatedNotifier
-  include Virtus.model
+  include Virtus.model strict: true
   include NotifierHelpers
 
-  attribute :phones
-  attribute :email_members
-  attribute :lead
+  attribute :lead, Lead
+  attribute :account, Account
 
   def call
     safe do
-      send_sms phones, :lead_created, sms_payload
+      send_sms notification_phones, :lead_created, sms_payload
       send_emails
     end
   end
 
   private
 
+  def notification_phones
+    NotificationPhonesQuery.new(account_id: account.id).call
+  end
+
+  def notification_memberships
+    account.memberships.with_email_notification.includes(:user)
+  end
+
   def send_emails
-    email_members.each do |member|
+    notification_memberships.each do |member|
       send_email member.user.email, LeadMailer, :new_lead_email, email_payload(member)
     end
   end

@@ -18,6 +18,12 @@ FactoryGirl.define do
     password 'password'
     email_confirm_token 'confirm_token'
 
+    trait :confirmed do
+      after :create do |user|
+        user.update_columns phone_confirmed_at: Time.zone.now, email_confirmed_at: Time.zone.now
+      end
+    end
+
     trait :with_account do
       after(:create) do |user|
         account = create :account

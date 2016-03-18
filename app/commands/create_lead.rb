@@ -14,7 +14,7 @@ class CreateLead
 
       attach_client lead
       lead
-    end
+    end || raise("Заявка не создана #{data}")
   end
 
   private
