@@ -30,7 +30,7 @@ class LeadCreatedNotifier
 
   def sms_payload
     {
-      public_number: lead.public_number
+      number: lead.number
     }
   end
 end

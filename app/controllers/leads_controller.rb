@@ -40,7 +40,7 @@ class LeadsController < ApplicationController
   DATA_EXCEPTIONS = [:viewer_uid, :variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit].freeze
 
   def current_account
-    fail 'Тут не может быть current_account'
+    raise 'Тут не может быть current_account'
   end
 
   def current_variant

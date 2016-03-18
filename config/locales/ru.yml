@@ -73,7 +73,7 @@ ru:
           Если вы не хотите менять свой пароль, проигнорируйте это письмо
     lead_mailer:
       new_lead_email:
-        subject: 'Новая заявка %{public_number}'
+        subject: 'Новая заявка %{number}'
         body: |
           Создана новая заявка.<br>
           %{data}
@@ -83,7 +83,7 @@ ru:
   notifications:
     sms:
       new_pin_code: 'Пин-код %{pin_code}'
-      lead_created: 'Новая заявка %{public_number}'
+      lead_created: 'Новая заявка %{number}'
 
   leads_count:
     zero: 'Без заявок'
