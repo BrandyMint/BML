@@ -13,6 +13,7 @@ module CurrentMember
 
   def find_current_member
     return nil unless current_user.present?
+    return nil unless current_account.present?
     member = current_account.memberships.by_user(current_user).first
 
     return member if member.present?
