@@ -10,6 +10,9 @@ ru:
     format: ! '%{attribute} %{message}'
     humanized:
       unknown_site: Нет такого сайта на нашей платформе
+      not_authenticated: Представьтесь, чтобы получить доступ к ресурсу.
+      not_authorized: У Вас нет доступа к этому ресурсу.
+
     messages:
       invalid_domain: Не валидное имя домена
       invalid_subdomain: Не валидное имя поддомена (должны быть только латинские букцы, цифры, -, _ без точек)
