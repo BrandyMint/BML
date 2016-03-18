@@ -3,13 +3,11 @@ class Landing::BaseController < Account::BaseController
 
   helper_method :current_landing, :current_variant
 
+  before_action :setup_gon_access
+
   private
 
-  def setup_gon
-    gon.i18n = {
-      locale:        I18n.locale,
-      defaultLocale: I18n.default_locale
-    }
+  def setup_gon_access
     gon.api_url = api_url
     gon.access_token = current_account.access_key
     gon.current_landing_id = current_landing.id

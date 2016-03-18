@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception unless Rails.env.development?
 
-  before_action :setup_gon
+  before_action :setup_gon_locales
 
   private
 
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
       .per(params[:per])
   end
 
-  def setup_gon
+  def setup_gon_locales
     gon.i18n = {
       locale:        I18n.locale,
       defaultLocale: I18n.default_locale
