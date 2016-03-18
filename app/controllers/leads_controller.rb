@@ -40,7 +40,7 @@ class LeadsController < ApplicationController
   DATA_EXCEPTIONS = [:viewer_uid, :variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit].freeze
 
   def current_account
-    raise 'Тут не может быть current_account'
+    current_landing.account
   end
 
   def current_variant
@@ -92,7 +92,7 @@ class LeadsController < ApplicationController
   end
 
   def notification_phones
-    NotificationPhonesQuery.new(account_id: current_landing.account_id).call
+    NotificationPhonesQuery.new(account_id: current_account.id).call
   end
 
   def notification_memberships
