@@ -54,7 +54,6 @@ module HandleErrors
   end
 
   def rescue_site_error(error)
-    binding.pry
     render 'errors/show', locals: { error: error }, layout: 'error', formats: 'html', status: error.try(:http_status) || DEFAULT_HTTP_STATUS
   end
 end

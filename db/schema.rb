@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20160318150729) do
     t.datetime "created_at",                                          null: false
     t.datetime "updated_at",                                          null: false
     t.string   "type",                                                null: false
-    t.uuid     "uuid",                 default: "uuid_generate_v4()", null: false
+    t.uuid     "uuid",                 default: "uuid_generate_v4()"
     t.string   "digest",                                              null: false
   end
 
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 20160318150729) do
     t.integer  "variants_count",   default: 0,                    null: false
     t.integer  "segments_count",   default: 0,                    null: false
     t.boolean  "is_active",        default: true,                 null: false
-    t.uuid     "uuid",             default: "uuid_generate_v4()", null: false
+    t.uuid     "uuid",             default: "uuid_generate_v4()"
     t.integer  "clients_count",    default: 0,                    null: false
     t.string   "path",                                            null: false
     t.string   "head_title"
@@ -204,7 +204,7 @@ ActiveRecord::Schema.define(version: 20160318150729) do
 
   create_table "sections", force: :cascade do |t|
     t.string   "block_view",                                           null: false
-    t.uuid     "uuid",                  default: "uuid_generate_v4()", null: false
+    t.uuid     "uuid",                  default: "uuid_generate_v4()"
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
     t.integer  "variant_id",                                           null: false
@@ -272,7 +272,7 @@ ActiveRecord::Schema.define(version: 20160318150729) do
     t.datetime "updated_at",                                    null: false
     t.boolean  "is_active",      default: true,                 null: false
     t.integer  "sections_count", default: 0,                    null: false
-    t.uuid     "uuid",           default: "uuid_generate_v4()", null: false
+    t.uuid     "uuid",           default: "uuid_generate_v4()"
     t.integer  "leads_count",    default: 0,                    null: false
     t.integer  "account_id",                                    null: false
   end
