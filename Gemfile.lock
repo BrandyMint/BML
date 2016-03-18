@@ -438,6 +438,9 @@ GEM
       redis (~> 3.0, >= 3.0.4)
     redis-objects (1.0.0)
       redis (>= 3.0.2)
+    redis-session-store (0.8.1)
+      actionpack (>= 3, < 5.1)
+      redis
     request_store (1.0.8)
     rollout (2.1.0)
     rspec (3.4.0)
@@ -662,6 +665,7 @@ DEPENDENCIES
   redis
   redis-namespace
   redis-objects
+  redis-session-store
   rollout
   rspec
   rspec-collection_matchers
