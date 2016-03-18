@@ -9,12 +9,15 @@ module HandleErrors
   )
 
   included do
+    # SiteError указываем первым, таким образом он в переборе ошибки будет последним и не поймает
+    # наследованные классы
+    #
+    rescue_from SiteError,                    with: :rescue_site_error
     rescue_from ActiveRecord::RecordNotFound, with: :rescue_not_found
     rescue_from NoCurrentAccount,             with: :rescue_no_current_account
     rescue_from UnknownSite,                  with: :rescue_site_error
     rescue_from NotAuthenticated,             with: :rescue_not_authenticated
     rescue_from NotAuthorized,                with: :rescue_not_authorized
-    rescue_from SiteError,                    with: :rescue_site_error
   end
 
   private
@@ -51,6 +54,7 @@ module HandleErrors
   end
 
   def rescue_site_error(error)
+    binding.pry
     render 'errors/show', locals: { error: error }, layout: 'error', formats: 'html', status: error.try(:http_status) || DEFAULT_HTTP_STATUS
   end
 end
