@@ -7,10 +7,6 @@ module ViewerLogger
 
   private
 
-  def current_url
-    request.original_url.split('?')[0]
-  end
-
   def utms
     ParamsUtmEntity.new(params)
                    .to_h
@@ -18,6 +14,6 @@ module ViewerLogger
   end
 
   def log_request
-    LandingViewWorker.perform_async current_viewer_uid, utms, current_url, current_variant.id, request.user_agent, request.remote_ip
+    LandingViewWorker.perform_async current_viewer_uid, utms, request.original_url, current_variant.id, request.user_agent, request.remote_ip
   end
 end

@@ -88,7 +88,7 @@ class LeadsController < ApplicationController
       lead: lead
     ).call
   rescue => e
-    Bugsnat.notify e
+    Bugsnag.notify e
   end
 
   def notification_phones

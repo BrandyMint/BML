@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316151739) do
+ActiveRecord::Schema.define(version: 20160318150729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20160316151739) do
     t.datetime "created_at",                                          null: false
     t.datetime "updated_at",                                          null: false
     t.string   "type",                                                null: false
-    t.uuid     "uuid",                 default: "uuid_generate_v4()"
+    t.uuid     "uuid",                 default: "uuid_generate_v4()", null: false
     t.string   "digest",                                              null: false
   end
 
@@ -100,15 +100,15 @@ ActiveRecord::Schema.define(version: 20160316151739) do
     t.integer  "account_id"
     t.integer  "landing_id"
     t.integer  "variant_id"
-    t.string   "url",          null: false
+    t.string   "url",          limit: 4096, null: false
     t.string   "utm_source"
     t.string   "utm_campaign"
     t.string   "utm_medium"
     t.string   "utm_term"
     t.string   "utm_content"
-    t.string   "referer"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "referer",      limit: 4096
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "viewer_uid"
     t.string   "remote_ip"
     t.string   "user_agent"
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 20160316151739) do
     t.integer  "variants_count",   default: 0,                    null: false
     t.integer  "segments_count",   default: 0,                    null: false
     t.boolean  "is_active",        default: true,                 null: false
-    t.uuid     "uuid",             default: "uuid_generate_v4()"
+    t.uuid     "uuid",             default: "uuid_generate_v4()", null: false
     t.integer  "clients_count",    default: 0,                    null: false
     t.string   "path",                                            null: false
     t.string   "head_title"
@@ -204,7 +204,7 @@ ActiveRecord::Schema.define(version: 20160316151739) do
 
   create_table "sections", force: :cascade do |t|
     t.string   "block_view",                                           null: false
-    t.uuid     "uuid",                  default: "uuid_generate_v4()"
+    t.uuid     "uuid",                  default: "uuid_generate_v4()", null: false
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
     t.integer  "variant_id",                                           null: false
@@ -272,7 +272,7 @@ ActiveRecord::Schema.define(version: 20160316151739) do
     t.datetime "updated_at",                                    null: false
     t.boolean  "is_active",      default: true,                 null: false
     t.integer  "sections_count", default: 0,                    null: false
-    t.uuid     "uuid",           default: "uuid_generate_v4()"
+    t.uuid     "uuid",           default: "uuid_generate_v4()", null: false
     t.integer  "leads_count",    default: 0,                    null: false
     t.integer  "account_id",                                    null: false
   end
