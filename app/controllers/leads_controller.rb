@@ -39,6 +39,10 @@ class LeadsController < ApplicationController
 
   DATA_EXCEPTIONS = [:viewer_uid, :variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit].freeze
 
+  def current_account
+    fail 'Тут не может быть current_account'
+  end
+
   def current_variant
     @_current_variant ||= Variant.where(uuid: variant_uuid).first! || raise("No such variant #{variant_uuid}")
   end
@@ -83,10 +87,12 @@ class LeadsController < ApplicationController
       email_members: notification_memberships,
       lead: lead
     ).call
+  rescue => e
+    Bugsnat.notify e
   end
 
   def notification_phones
-    NotificationPhonesQuery.new(account_id: current_account.id).call
+    NotificationPhonesQuery.new(account_id: current_landing.account_id).call
   end
 
   def notification_memberships

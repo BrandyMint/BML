@@ -11,9 +11,8 @@ class CreateLead
     ActiveRecord::Base.transaction do
       lead = collection.leads.create! lead_attributes
       update_utm_values lead
-      AttachClient
-        .new(lead: lead)
-        .call
+
+      attach_client lead
       lead
     end
   end
@@ -21,6 +20,14 @@ class CreateLead
   private
 
   delegate :landing, to: :variant
+
+  def attach_client(lead)
+    AttachClient
+      .new(lead: lead)
+      .call
+  rescue => e
+    Bugsnag.notify e
+  end
 
   def lead_attributes
     utm.attributes.merge!(
