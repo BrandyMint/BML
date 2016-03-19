@@ -6,6 +6,7 @@ class UserMailer < BaseMailer
     raise NoEmail, "User: #{user_id}" unless @user.email.present?
 
     mail(to: @user.email,
+         from: AppSettings.from,
          subject: I18n.t('mailers.user_mailer.reset_password_instructions.subject'))
   end
 
@@ -16,6 +17,7 @@ class UserMailer < BaseMailer
     raise NoEmail, "User: #{user_id}" unless @user.email.present?
 
     mail(to: @user.email,
+         from: AppSettings.from,
          subject: "#{AppSettings.title}: E-mail confirmation")
   end
 end

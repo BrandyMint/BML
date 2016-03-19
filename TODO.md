@@ -1,3 +1,14 @@
+Автоматизировать tld_length
+
+Использовать ключ
+default_domain: bmland.ru
+host: bmland.ru (вчислять из default_url_options)
+
+default_url_options вписвать в action_mailer автоавома
+tld_length: 1
+
+
+
 * [ ] Если два варианта,то не понятно какой из них открывается в конструкторе,
     какой на сайте.
 * [x] Отключить создание вариантов

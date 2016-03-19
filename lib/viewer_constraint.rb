@@ -1,10 +1,21 @@
 class ViewerConstraint
-  extend CurrentVariant
-  extend CurrentViewer
+  include CurrentVariant
 
-  def self.matches?(request)
-    variant =
-      VariantSelector
+  def matches?(request)
+    variant = select_variant request
+    if variant.present?
+      self.current_variant = variant
+      return true
+    else
+      self.current_variant = nil
+      return false
+    end
+  end
+
+  private
+
+  def select_variant(request)
+    VariantSelector
       .new(
         host:    request.host,
         path:    request.path,
@@ -13,13 +24,5 @@ class ViewerConstraint
         cookies: request.cookies
       )
       .variant
-
-    if variant.present?
-      self.current_variant = variant
-      return true
-    else
-      self.current_variant = nil
-      return false
-    end
   end
 end

@@ -1,6 +1,7 @@
 class Landing < ActiveRecord::Base
   include Activity
   include LandingPath
+  include UrlHelper
 
   belongs_to :account, counter_cache: true
 
@@ -23,11 +24,11 @@ class Landing < ActiveRecord::Base
   end
 
   def url
-    'http://' + url_without_protocol
+    account.url + path
   end
 
-  def url_without_protocol
-    account.host + host_port.to_s + path
+  def short_name
+    url_without_protocol url
   end
 
   def viewers
@@ -53,10 +54,6 @@ class Landing < ActiveRecord::Base
   end
 
   private
-
-  def host_port
-    ':' + Settings.app.default_url_options.port.to_s unless Settings.app.default_url_options.port == 80
-  end
 
   def create_default_variant
     variants.create!

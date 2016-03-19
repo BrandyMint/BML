@@ -1,0 +1,2 @@
+ASSET_HOST=http://3008.vkontraste.ru HOST=3008.vkontraste.ru PORT=80 TLD=2 rails c
+

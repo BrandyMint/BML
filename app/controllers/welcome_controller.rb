@@ -13,7 +13,7 @@ class WelcomeController < ApplicationController
   private
 
   def current_landing
-    @_current_landing ||= Account.root.landings.active.where(path: '/').first
+    @_current_landing ||= Account.root.landings.active.where(path: '/').first || raise("У рутового аккаунта нет ни одного активного сайта с путем '/'")
   end
 
   def current_variant

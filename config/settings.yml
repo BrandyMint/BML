@@ -1,0 +1,19 @@
+tld_length: <%= ENV['TLD'] || 1 %>
+fallback_image: /images/fallback/product-none.png
+exclusion_landing_paths:
+  - /assets
+  - /images
+  - /robots.txt
+  - /api
+  - /admin
+  - /fonts
+
+reserved_subdomains:
+  - www
+  - app
+  - api
+  - admin
+  - super
+  - root
+  - assets
+  - images

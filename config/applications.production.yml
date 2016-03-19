@@ -1,0 +1,25 @@
+apps:
+  -
+    title: bmland
+    asset_host: http://bmland.ru
+    from: 'noreply@bmland.ru'
+    tld_length: 1
+    domain_zones:
+      - bmland.ru
+
+    default_url_options: &bmland_default_url_options
+      host: bmland.ru
+      port: 80
+
+
+  -
+    title: Ай, да мастер!
+    asset_host: http://aydamaster.ru
+    from: 'noreply@aydamaster.ru'
+    tld_length: 1
+    domain_zones:
+      - aydamaster.ru
+
+    default_url_options: &aydamaster_default_url_options
+      host: aydamaster.ru
+      port: 80
