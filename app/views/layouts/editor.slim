@@ -4,9 +4,9 @@ html
     title= AppSettings.title
     = setup_editor_bml
     = bugsnag_script
-    == stylesheet_link_tag 'viewer', media: 'all'
-    == stylesheet_link_tag 'fonts', media: 'all'
-    == stylesheet_link_tag 'editor', media: 'all'
+    == stylesheet_link_tag "viewer?v=#{AppVersion}", media: 'all'
+    == stylesheet_link_tag "fonts?v=#{AppVersion}", media: 'all'
+    == stylesheet_link_tag "editor?v=#{AppVersion}", media: 'all'
     == csrf_meta_tags
   body
     == yield
