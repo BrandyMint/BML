@@ -19,6 +19,6 @@ activate_timeout = ($pin_alert) ->
   return unless timeout > 0
   interval = setInterval timer.bind($pin_alert), 1000
 
-$ ->
+$(document).on 'ready page:load', ->
   $pin_alert = $ '[pin-alert]'
   activate_timeout $pin_alert if $pin_alert.length > 0

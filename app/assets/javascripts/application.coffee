@@ -36,4 +36,12 @@
 $ ->
   I18n.defaultLocale = gon.i18n.defaultLocale
   I18n.locale        = gon.i18n.locale
+  NProgress.configure
+    showSpinner: false
+    ease: 'ease'
+    speed: 500
+
   $.ajaxSetup cache: true
+
+$(document).on 'ready page:load', ->
+  $('.dropdown-toggle').dropdown()

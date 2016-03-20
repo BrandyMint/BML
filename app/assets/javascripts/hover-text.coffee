@@ -1,4 +1,4 @@
-$ ->
+$(document).on 'ready page:load', ->
   onHover = (el) ->
     $el = $ el.target
     $el.data 'hoverSaved', $el.text()

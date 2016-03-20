@@ -1,4 +1,4 @@
-$ ->
+$(document).on 'ready page:load', ->
   onHover = (event) ->
     $el = $ event.target
 
@@ -15,7 +15,10 @@ $ ->
 
     saved = $el.data 'saved'
 
-    $el.attr 'class', saved.class
-    $el.html saved.content
+    if saved
+      $el.attr 'class', saved.class
+      $el.html saved.content
+    else
+      console.error? "Cтранное дело, нет сохраненых данных у rehover-элемента", $el
 
   $('[data-rehover]').hover onHover, onLeave
