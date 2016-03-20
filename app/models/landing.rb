@@ -6,13 +6,14 @@ class Landing < ActiveRecord::Base
   belongs_to :account, counter_cache: true
 
   has_many :collections, dependent: :destroy
-  has_many :leads, dependent: :delete
-  has_many :landing_views, dependent: :delete
-  has_many :variants, dependent: :destroy
-  has_many :segments, dependent: :delete
-  has_many :clients, dependent: :delete
-  has_many :utm_values, dependent: :delete_all
 
+  has_many :segments, dependent: :delete_all
+  has_many :clients, dependent: :delete_all
+  has_many :utm_values, dependent: :delete_all
+  has_many :leads, dependent: :delete_all
+  has_many :landing_views, dependent: :delete_all
+
+  has_many :variants, dependent: :destroy
   validates :title, presence: true
 
   after_create :create_default_variant
