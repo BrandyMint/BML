@@ -13,6 +13,12 @@ gem 'settingslogic'
 
 gem 'rollout'
 
+# Openbill
+#
+gem 'sequel'
+gem 'money'
+gem 'money-rails', github: 'RubyMoney/money-rails'
+
 gem 'redis-session-store'
 
 gem 'activeadmin', github: 'activeadmin/activeadmin'

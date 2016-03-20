@@ -2,6 +2,7 @@ class Account < ActiveRecord::Base
   include AccountAccessKey
   include AccountIdent
   include AccountWebAddresses
+  include AccountBilling
 
   ROOT_IDENT = 'root'.freeze
 

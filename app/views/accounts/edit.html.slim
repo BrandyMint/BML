@@ -5,3 +5,5 @@
       = f.submit 'Сохранить', class: 'btn btn-primary'
 hr
 code Ключ для API: #{current_account.api_key}
+hr
+p Баланс #{humanized_money_with_symbol account.billing_account.amount}

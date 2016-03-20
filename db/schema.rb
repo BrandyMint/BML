@@ -116,11 +116,11 @@ ActiveRecord::Schema.define(version: 20160320200805) do
     t.integer  "landing_id"
     t.integer  "variant_id"
     t.string   "url",          limit: 4096, null: false
-    t.string   "utm_source"
-    t.string   "utm_campaign"
-    t.string   "utm_medium"
-    t.string   "utm_term"
-    t.string   "utm_content"
+    t.string   "utm_source",   limit: 4096
+    t.string   "utm_campaign", limit: 4096
+    t.string   "utm_medium",   limit: 4096
+    t.string   "utm_term",     limit: 4096
+    t.string   "utm_content",  limit: 4096
     t.string   "referer",      limit: 4096
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
@@ -205,7 +205,7 @@ ActiveRecord::Schema.define(version: 20160320200805) do
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
 
   create_table "openbill_accounts", id: :bigserial, force: :cascade do |t|
-    t.string   "owner_uri",           limit: 2048,                   null: false
+    t.string   "uri",                 limit: 2048,                   null: false
     t.decimal  "amount_cents",                     default: 0.0,     null: false
     t.string   "amount_currency",     limit: 3,    default: "USD",   null: false
     t.text     "details"
@@ -220,7 +220,7 @@ ActiveRecord::Schema.define(version: 20160320200805) do
   add_index "openbill_accounts", ["created_at"], name: "index_accounts_on_created_at", using: :btree
   add_index "openbill_accounts", ["id"], name: "index_accounts_on_id", unique: true, using: :btree
   add_index "openbill_accounts", ["meta"], name: "index_accounts_on_meta", using: :gin
-  add_index "openbill_accounts", ["owner_uri"], name: "index_accounts_on_owner_uri", unique: true, using: :btree
+  add_index "openbill_accounts", ["uri"], name: "index_accounts_on_uri", unique: true, using: :btree
 
   create_table "openbill_transactions", id: :bigserial, force: :cascade do |t|
     t.string   "username",        limit: 255,                    null: false
@@ -229,14 +229,14 @@ ActiveRecord::Schema.define(version: 20160320200805) do
     t.integer  "to_account_id",                                  null: false
     t.decimal  "amount_cents",                                   null: false
     t.string   "amount_currency", limit: 3,                      null: false
-    t.string   "order_uri",       limit: 2048,                   null: false
+    t.string   "uri",             limit: 2048,                   null: false
     t.text     "details",                                        null: false
     t.hstore   "meta",                         default: {},      null: false
   end
 
   add_index "openbill_transactions", ["created_at"], name: "index_transactions_on_created_at", using: :btree
   add_index "openbill_transactions", ["meta"], name: "index_transactions_on_meta", using: :gin
-  add_index "openbill_transactions", ["order_uri"], name: "index_transactions_on_order_uri", unique: true, using: :btree
+  add_index "openbill_transactions", ["uri"], name: "index_transactions_on_uri", unique: true, using: :btree
 
   create_table "phone_confirmations", force: :cascade do |t|
     t.string   "phone",                            null: false
@@ -311,7 +311,6 @@ ActiveRecord::Schema.define(version: 20160320200805) do
   add_index "utm_values", ["account_id"], name: "index_utm_values_on_account_id", using: :btree
   add_index "utm_values", ["key_type"], name: "index_utm_values_on_key_type", using: :btree
   add_index "utm_values", ["landing_id", "key_type", "value"], name: "index_utm_values_on_landing_id_and_key_type_and_value", unique: true, using: :btree
-  add_index "utm_values", ["landing_id"], name: "index_utm_values_on_landing_id", using: :btree
   add_index "utm_values", ["value"], name: "index_utm_values_on_value", using: :btree
 
   create_table "variants", force: :cascade do |t|
