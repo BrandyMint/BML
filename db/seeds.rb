@@ -6,4 +6,6 @@ v = l.variants.first || l.variants.create
 
 SectionsUpdater.new(v, regenerate_uuid: true).update(LandingExamples::EXAMPLE1)
 
+Billing.payments_account
+
 # LandingVersion.find_each { |l| SectionsUpdater.new(l, LandingExamples::EXAMPLE1).update }

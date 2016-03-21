@@ -1,3 +1,6 @@
 [submodule "vendor/dist"]
 	path = vendor/dist
 	url = git@github.com:BrandyMint/bml-react.git
+[submodule "vendor/openbill"]
+	path = vendor/openbill
+	url = git@github.com:dapi/openbill-core.git

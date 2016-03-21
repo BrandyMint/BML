@@ -1,7 +1,7 @@
 test:
   adapter: postgresql
   encoding: unicode
-  database: test_<%= ENV['PGDATABASE'] %><%= ENV['BUILD_NUMBER'] || ENV['TEST_ENV_NUMBER'] %>
+  database: bml_test_<%= ENV['PGDATABASE'] %><%= ENV['BUILD_NUMBER'] || ENV['TEST_ENV_NUMBER'] %>
   pool: 5
   username: <%= ENV['PGUSER'] %>
   password: 
@@ -9,7 +9,7 @@ test:
 development:
   adapter: postgresql
   encoding: unicode
-  database: bml_test
+  database: bml_development
   pool: 5
   username: <%= ENV['PGUSER'] %>
   password:
