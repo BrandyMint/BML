@@ -1,10 +1,12 @@
 class AttachClient
   include Virtus.model(strict: true, nullify_blank: true)
+  UNKNOWN_NAME = 'Неизвестное имя'.freeze
 
   attribute :lead, Lead
 
   def call
     lead.update_attribute :client, client
+    client
   end
 
   private
@@ -20,6 +22,10 @@ class AttachClient
   end
 
   def create_client
-    landing.clients.create!(email: lead.email, phone: lead.phone, name: lead.name, landing: landing)
+    landing.clients.create!(
+      email: lead.email,
+      phone: lead.phone,
+      name: lead.name || UNKNOWN_NAME,
+      landing: landing)
   end
 end
