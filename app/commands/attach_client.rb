@@ -5,6 +5,8 @@ class AttachClient
   attribute :lead, Lead
 
   def call
+    return unless lead.email.present? || lead.phone.present?
+
     lead.update_attribute :client, client
     client
   end
