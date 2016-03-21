@@ -100,6 +100,9 @@ Rails.application.routes.draw do
         username == Secrets.sidekiq.username && password == Secrets.sidekiq.password
       end if Rails.env.production?
       mount Sidekiq::Web, at: '/sidekiq'
+
+      get '/', to: redirect('/admin')
+      ActiveAdmin.routes(self)
     end
 
     ### API application

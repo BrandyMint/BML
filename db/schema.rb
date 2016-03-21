@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318150729) do
+ActiveRecord::Schema.define(version: 20160320200805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,21 @@ ActiveRecord::Schema.define(version: 20160318150729) do
   add_index "accounts", ["access_key"], name: "index_accounts_on_access_key", unique: true, using: :btree
   add_index "accounts", ["ident"], name: "index_accounts_on_ident", unique: true, using: :btree
 
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+
   create_table "asset_files", force: :cascade do |t|
     t.integer  "account_id"
     t.integer  "landing_id"
@@ -41,7 +56,7 @@ ActiveRecord::Schema.define(version: 20160318150729) do
     t.datetime "created_at",                                          null: false
     t.datetime "updated_at",                                          null: false
     t.string   "type",                                                null: false
-    t.uuid     "uuid",                 default: "uuid_generate_v4()"
+    t.uuid     "uuid",                 default: "uuid_generate_v4()", null: false
     t.string   "digest",                                              null: false
   end
 
@@ -127,7 +142,7 @@ ActiveRecord::Schema.define(version: 20160318150729) do
     t.integer  "variants_count",   default: 0,                    null: false
     t.integer  "segments_count",   default: 0,                    null: false
     t.boolean  "is_active",        default: true,                 null: false
-    t.uuid     "uuid",             default: "uuid_generate_v4()"
+    t.uuid     "uuid",             default: "uuid_generate_v4()", null: false
     t.integer  "clients_count",    default: 0,                    null: false
     t.string   "path",                                            null: false
     t.string   "head_title"
@@ -189,6 +204,40 @@ ActiveRecord::Schema.define(version: 20160318150729) do
   add_index "memberships", ["user_id", "account_id"], name: "index_memberships_on_user_id_and_account_id", unique: true, using: :btree
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
 
+  create_table "openbill_accounts", id: :bigserial, force: :cascade do |t|
+    t.string   "owner_uri",           limit: 2048,                   null: false
+    t.decimal  "amount_cents",                     default: 0.0,     null: false
+    t.string   "amount_currency",     limit: 3,    default: "USD",   null: false
+    t.text     "details"
+    t.integer  "transactions_count",               default: 0,       null: false
+    t.integer  "last_transaction_id"
+    t.datetime "last_transaction_at"
+    t.hstore   "meta",                             default: {},      null: false
+    t.datetime "created_at",                       default: "now()"
+    t.datetime "updated_at",                       default: "now()"
+  end
+
+  add_index "openbill_accounts", ["created_at"], name: "index_accounts_on_created_at", using: :btree
+  add_index "openbill_accounts", ["id"], name: "index_accounts_on_id", unique: true, using: :btree
+  add_index "openbill_accounts", ["meta"], name: "index_accounts_on_meta", using: :gin
+  add_index "openbill_accounts", ["owner_uri"], name: "index_accounts_on_owner_uri", unique: true, using: :btree
+
+  create_table "openbill_transactions", id: :bigserial, force: :cascade do |t|
+    t.string   "username",        limit: 255,                    null: false
+    t.datetime "created_at",                   default: "now()"
+    t.integer  "from_account_id",                                null: false
+    t.integer  "to_account_id",                                  null: false
+    t.decimal  "amount_cents",                                   null: false
+    t.string   "amount_currency", limit: 3,                      null: false
+    t.string   "order_uri",       limit: 2048,                   null: false
+    t.text     "details",                                        null: false
+    t.hstore   "meta",                         default: {},      null: false
+  end
+
+  add_index "openbill_transactions", ["created_at"], name: "index_transactions_on_created_at", using: :btree
+  add_index "openbill_transactions", ["meta"], name: "index_transactions_on_meta", using: :gin
+  add_index "openbill_transactions", ["order_uri"], name: "index_transactions_on_order_uri", unique: true, using: :btree
+
   create_table "phone_confirmations", force: :cascade do |t|
     t.string   "phone",                            null: false
     t.integer  "user_id",                          null: false
@@ -204,7 +253,7 @@ ActiveRecord::Schema.define(version: 20160318150729) do
 
   create_table "sections", force: :cascade do |t|
     t.string   "block_view",                                           null: false
-    t.uuid     "uuid",                  default: "uuid_generate_v4()"
+    t.uuid     "uuid",                  default: "uuid_generate_v4()", null: false
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
     t.integer  "variant_id",                                           null: false
@@ -272,7 +321,7 @@ ActiveRecord::Schema.define(version: 20160318150729) do
     t.datetime "updated_at",                                    null: false
     t.boolean  "is_active",      default: true,                 null: false
     t.integer  "sections_count", default: 0,                    null: false
-    t.uuid     "uuid",           default: "uuid_generate_v4()"
+    t.uuid     "uuid",           default: "uuid_generate_v4()", null: false
     t.integer  "leads_count",    default: 0,                    null: false
     t.integer  "account_id",                                    null: false
   end
@@ -325,6 +374,9 @@ ActiveRecord::Schema.define(version: 20160318150729) do
   add_foreign_key "leads", "variants"
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
+  add_foreign_key "openbill_accounts", "openbill_transactions", column: "last_transaction_id", name: "openbill_accounts_last_transaction_id_fkey", on_update: :restrict, on_delete: :restrict
+  add_foreign_key "openbill_transactions", "openbill_accounts", column: "from_account_id", name: "openbill_transactions_from_account_id_fkey", on_update: :restrict, on_delete: :restrict
+  add_foreign_key "openbill_transactions", "openbill_accounts", column: "to_account_id", name: "openbill_transactions_to_account_id_fkey"
   add_foreign_key "phone_confirmations", "users"
   add_foreign_key "sections", "asset_files", column: "background_image_id"
   add_foreign_key "segments", "landings"

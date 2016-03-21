@@ -25,4 +25,10 @@ class ApplicationController < ActionController::Base
       defaultLocale: I18n.default_locale
     }
   end
+
+  def authenticate_admin!
+    authenticate_or_request_with_http_basic("Whatever") do |username, password|
+			username == Secrets.sidekiq.username && password == Secrets.sidekiq.password
+    end
+  end
 end
