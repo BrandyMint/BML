@@ -27,8 +27,8 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin!
-    authenticate_or_request_with_http_basic("Whatever") do |username, password|
-			username == Secrets.sidekiq.username && password == Secrets.sidekiq.password
+    authenticate_or_request_with_http_basic('Whatever') do |username, password|
+      username == Secrets.sidekiq.username && password == Secrets.sidekiq.password
     end
   end
 end

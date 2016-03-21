@@ -48,7 +48,7 @@ module UserConfirmation
 
   def email_confirmation_url
     Rails.application.routes.url_helpers
-         .email_confirmation_url token: email_confirm_token
+         .email_confirmation_url token: email_confirm_token, host: AppSettings.host
   end
 
   def deliver_email_confirmation!

@@ -2,7 +2,7 @@ apps:
   -
     title: BML
     asset_host: <%= ENV['ASSET_HOST'] || 'http://bmland.dev' %>
-    from: 'from@<%= ENV['HOST'] %>'
+    from: 'from@<%= ENV['HOST'] || 'bmland.dev' %>'
     tld_length: <%= ENV['TLD'] %>
     domain_zones:
       - aydamaster.ru
