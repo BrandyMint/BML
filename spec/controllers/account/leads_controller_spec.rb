@@ -13,7 +13,7 @@ RSpec.describe Account::LeadsController, type: :controller do
   context 'без аккаунта не должно пускать' do
     it 'returns http success' do
       get :index, landing_id: landing.id
-      expect(response.status).to eq 302 # Редирект на авторизацию
+      expect(response.status).to eq 403
     end
   end
 

@@ -1,5 +1,5 @@
 class Account::EditorController < ApplicationController
-  # include AuthorizeUser
+  include AuthorizeUser
 
   layout 'editor'
 

@@ -132,11 +132,11 @@ ActiveRecord::Schema.define(version: 20160322085320) do
     t.integer  "landing_id"
     t.integer  "variant_id"
     t.string   "url",          limit: 4096, null: false
-    t.string   "utm_source"
-    t.string   "utm_campaign"
-    t.string   "utm_medium"
-    t.string   "utm_term"
-    t.string   "utm_content"
+    t.string   "utm_source",   limit: 4096
+    t.string   "utm_campaign", limit: 4096
+    t.string   "utm_medium",   limit: 4096
+    t.string   "utm_term",     limit: 4096
+    t.string   "utm_content",  limit: 4096
     t.string   "referer",      limit: 4096
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
@@ -327,7 +327,6 @@ ActiveRecord::Schema.define(version: 20160322085320) do
   add_index "utm_values", ["account_id"], name: "index_utm_values_on_account_id", using: :btree
   add_index "utm_values", ["key_type"], name: "index_utm_values_on_key_type", using: :btree
   add_index "utm_values", ["landing_id", "key_type", "value"], name: "index_utm_values_on_landing_id_and_key_type_and_value", unique: true, using: :btree
-  add_index "utm_values", ["landing_id"], name: "index_utm_values_on_landing_id", using: :btree
   add_index "utm_values", ["value"], name: "index_utm_values_on_value", using: :btree
 
   create_table "variants", force: :cascade do |t|

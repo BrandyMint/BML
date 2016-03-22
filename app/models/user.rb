@@ -23,10 +23,10 @@ class User < ActiveRecord::Base
   end
 
   def available_accounts
-    is_super_admin? ? Account.all : accounts
+    super_admin? ? Account.all : accounts
   end
 
-  def is_super_admin?
+  def super_admin?
     Settings.admin_ids.include? id
   end
 
