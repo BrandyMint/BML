@@ -22,6 +22,14 @@ class User < ActiveRecord::Base
     user
   end
 
+  def available_accounts
+    is_super_admin? ? Account.all : accounts
+  end
+
+  def is_super_admin?
+    Settings.admin_ids.include? id
+  end
+
   def default_account
     accounts.first || raise("User #{id} has no accounts")
   end

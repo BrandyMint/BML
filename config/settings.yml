@@ -17,3 +17,6 @@ reserved_subdomains:
   - root
   - assets
   - images
+
+admin_ids:
+  - 1 # danil
