@@ -30,6 +30,7 @@ class AccountsController < ApplicationController
 
   def permitted_params
     params.require(:account).permit(
+      :name,
       web_addresses_attributes: [
         :id, :subdomain, :suggested_domain, :_destroy
       ]

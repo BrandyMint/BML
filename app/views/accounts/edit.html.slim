@@ -1,6 +1,10 @@
 .row
   .col-lg-12
     = simple_form_for account, url: account_path do |f|
+      = f.input :name, label: false, placeholder: 'Название вашего аккаунта', hint: 'Пригодится в списке аккаунтов'
+      = f.submit 'Сохранить', class: 'btn btn-primary'
+    hr
+    = simple_form_for account, url: account_path do |f|
       = render 'form_domain', account: account, f: f
       = f.submit 'Сохранить', class: 'btn btn-primary'
 hr

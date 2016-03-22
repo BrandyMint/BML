@@ -28,7 +28,13 @@ class Account < ActiveRecord::Base
     landings.ordered.first
   end
 
-  delegate :to_s, to: :current_domain
+  def to_s
+    name.presence || title
+  end
+
+  def title
+    current_domain
+  end
 
   def api_key
     access_key
