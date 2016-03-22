@@ -1,18 +1,25 @@
-class Account::EditorController < Account::BaseController
+class Account::EditorController < ApplicationController
+  # include AuthorizeUser
+
   layout 'editor'
 
-  helper_method :current_variant
-
-  before_action do
-    raise NoCurrentVariant unless current_variant.present?
-  end
+  helper_method :current_variant, :current_account
 
   def show
+    variant = find_variant
+    account = variant.account
+
+    raise NotAuthorized unless current_user.available_accounts.include? account
+
+    @current_variant = variant
+    @current_account = account
   end
 
   private
 
-  def current_variant
-    @_variant ||= current_account.variants.find_by_uuid(params[:uuid])
+  attr_accessor :current_account, :current_variant
+
+  def find_variant
+    Variant.find_by_uuid(params[:uuid]) || raise(NoCurrentVariant)
   end
 end
