@@ -74,6 +74,7 @@ ru:
       already_registered: Уже зарегистрированы?
       auth: Авторизация
       no_account: Еще нет аккаунта?
+      no_current_variant: Вариант сайта не доступен
       already_has_account: Уже есть аккаунт?
       register_user: Зарегистрироваться без аккаунта
       register: Зарегистрироваться
