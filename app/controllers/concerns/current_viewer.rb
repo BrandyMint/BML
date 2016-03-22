@@ -3,6 +3,7 @@ module CurrentViewer
 
   included do
     before_action :save_viewer
+    helper_method :current_viewer
   end
 
   private
@@ -13,6 +14,10 @@ module CurrentViewer
 
   def current_viewer_uid
     params[:viewer_uid] || session[session_key] ||= UUID.generate
+  end
+
+  def current_viewer
+    { uid: current_viewer_uid }
   end
 
   def save_viewer

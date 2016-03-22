@@ -1,4 +1,9 @@
 module ViewerHelper
+  def bugsnag_viewer_data
+    bugsnag_user(current_viewer) +
+      bugsnag_metadata(variant: current_variant.as_json(only: [:uuid, :landing_id, :updated_at]))
+  end
+
   def views_link(viewer)
     count = viewer.views_count
 
