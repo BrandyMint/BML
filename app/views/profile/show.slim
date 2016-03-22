@@ -6,7 +6,7 @@
     /= link_to account_root_url do
       /= fa_icon 'chevron-left', text: 'В аккаунт'
 
-.page-header.text-center.m-t-lg
+.page-header
   h1
     | Привет, #{user.name}!
 
@@ -14,7 +14,7 @@
 
 br
 .row
-  .col-md-8.col-md-offset-2
+  .col-md-8
     = simple_form_for user, url: profile_url do |f|
       .form-group
         .row

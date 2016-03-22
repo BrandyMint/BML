@@ -18,6 +18,6 @@ class UserMailer < BaseMailer
 
     mail(to: @user.email,
          from: AppSettings.from,
-         subject: "#{AppSettings.title}: E-mail confirmation")
+         subject: I18n.t('mailers.user_mailer.email_confirmation.subject', title: AppSettings.title))
   end
 end

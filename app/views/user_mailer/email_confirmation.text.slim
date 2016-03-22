@@ -1,4 +1,1 @@
-|
-  Привет, #{@user.name}!
-  Для подтверждения e-mail на #{AppSettings.title}
-  пройдите по этой ссылке: #{@url}
+== I18n.t('mailers.user_mailer.email_confirmation.body_text', username: @user.name, title: AppSettings.title, url: @url)

@@ -13,16 +13,6 @@ module ProfileHelper
     buffer.html_safe
   end
 
-  def user_phone_confirmation_label(user)
-    return if user.phone_confirmed? || user.phone.blank?
-    content_tag :span, 'Не подтвержден', class: 'label label-default'
-  end
-
-  def user_email_confirmation_label(user)
-    return if user.email_confirmed? || user.email.blank?
-    content_tag :span, 'Не подтвержден', class: 'label label-default'
-  end
-
   def user_send_email_confirmation_link
     link_to('Отправить ссылку для подтверждения',
             send_email_confirmation_profile_url,

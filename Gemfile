@@ -77,6 +77,7 @@ gem 'omniauth'
 gem 'omniauth-yandex'
 # gem 'omniauth-yandex', github: 'TimothyKlim/omniauth-yandex'
 gem 'omniauth-twitter'
+gem 'sorcery'
 
 gem 'grape'
 gem 'grape-entity'
@@ -134,7 +135,6 @@ gem 'uuid'
 
 gem 'enumerize'
 gem 'validates'
-gem 'sorcery'
 gem 'smsc'
 gem 'i18n-js', github: 'fnando/i18n-js'
 gem 'gon'
@@ -148,6 +148,7 @@ gem 'unicorn'
 gem 'simpleidn'
 gem 'public_suffix'
 gem 'babosa'
+gem 'strip_attributes'
 
 group :development, :test do
   gem 'bond'
@@ -194,6 +195,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'email_spec'
   gem 'rack_session_access'
   gem 'test_after_commit'
   gem 'capybara-email'

@@ -3,12 +3,12 @@ apps:
     title: BML
     asset_host: <%= ENV['ASSET_HOST'] || 'http://bmland.dev' %>
     from: 'from@<%= ENV['HOST'] || 'bmland.dev' %>'
-    tld_length: <%= ENV['TLD'] %>
+    tld_length: <%= ENV['TLD'] || 1 %>
     domain_zones:
       - aydamaster.ru
       - bmland.ru
       - <%= ENV['HOST'] || 'bmland.dev' %>
 
-    default_url_options: 
+    default_url_options:
       host: <%= ENV['HOST'] || 'bmland.dev' %>
       port: <%= ENV['PORT'] || 3000 %>

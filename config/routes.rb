@@ -66,10 +66,17 @@ Rails.application.routes.draw do
     post 'signup' => 'registration#create'
     resources :password_resets, only: [:new, :create, :edit, :update]
     resources :sessions, only: [:create]
+    resource :user, only: [:new, :create]
   end
 
   concern :profile do
-    resource :profile, controller: :profile, only: [:show, :update] do
+    resource :settings, controller: :profile, as: :profile, only: [:show, :update] do
+      resources :invites
+      resources :members, as: :memberships do
+        member do
+          post :send_email_confirmation
+        end
+      end
       post :send_email_confirmation
     end
 

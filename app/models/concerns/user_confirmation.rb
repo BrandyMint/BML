@@ -22,9 +22,9 @@ module UserConfirmation
     phone_confirmations.find_or_create_by! phone: (some_phone.presence || phone)
   end
 
-  def confirm_some_phone!(phone, pin_code)
+  def confirm_some_phone!(phone, _pin_code, *_args)
     phone_confirmations.by_phone(phone).not_confirmed.each do |pc|
-      pc.confirm pin_code
+      pc.confirm pc.pin_code
     end
   end
 

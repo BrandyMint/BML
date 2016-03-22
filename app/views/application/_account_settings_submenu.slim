@@ -1,0 +1,6 @@
+ul.nav.nav-pills.nav-stacked
+  li.nav-item= active_link_to 'Профиль', profile_url, class: 'nav-link', active: [['profile'],[]]
+  li.nav-item
+    = active_link_to profile_memberships_url, class: 'nav-link', active: [['members', 'invites'],[]] do
+      ' Сотрудники
+      span.text-muted= "(#{account.memberships.count})"

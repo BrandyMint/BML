@@ -1,0 +1,8 @@
+- content_for :content do
+  .row
+    .col-md-3
+      = render 'account_settings_submenu', account: current_account
+    .col-md-9
+      = yield
+
+= render template: 'layouts/auth'
