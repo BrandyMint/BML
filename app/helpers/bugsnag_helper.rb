@@ -8,6 +8,8 @@ module BugsnagHelper
         releasestage: Rails.env
       }
     )
+
+    # Bugsnag.notifyReleaseStages = ["development", "production"];
   end
 
   def bugsnag_user(user)
