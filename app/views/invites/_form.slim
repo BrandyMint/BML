@@ -1,0 +1,10 @@
+= simple_form_for [:profile, invite] do |f|
+  = f.error_notification
+  .row
+    .col-md-4
+      = f.input :email, wrapper_html: {class: 'm-b-md'}
+    .col-md-4
+      = f.input :phone, wrapper_html: {class: 'm-b-md'}
+    .col-md-4
+      = f.input :role, collection: invitation_roles, include_blank: false
+  = f.submit t('invites.invite'), class: 'btn btn-primary'

@@ -1,29 +1,33 @@
-= simple_form_for [:user, form], url: phone_confirmation_path, method: :put do |f|
-  = f.input :backurl, as: :hidden
+.row
+  .col-sm-9.col-sm-offset-3
+    .page-header
+      h3.form-title Подтверждаем телефон #{form.phone}
+  .col-sm-5.col-sm-offset-3
+    = simple_form_for [:user, form], url: phone_confirmation_path, method: :put do |f|
+      = f.input :backurl, as: :hidden
 
-  h1.form-title Подтверждаем телефон #{form.phone}
-  p Вам отправлена SMS с кодом, введите его:
-  = f.input :phone, as: :hidden
+      p Вам отправлена SMS с кодом, введите его:
+      = f.input :phone, as: :hidden
 
-  .form-inputs
-    = f.input :pin_code, label: false, wrappper: :vertical_input_group do
-      .input-group
-        = f.input_field :pin_code,
-          as: :string,
-          class: 'form-control',
-          placeholder: 'Код из SMS, например: ac78',
-          label: false,
-          maxlength: PhoneConfirmation::PIN_CODE_LENGTH, size: PhoneConfirmation::PIN_CODE_LENGTH
-        span.input-group-btn
-          = f.submit 'Подтвердить', class: 'btn btn-success', data: { enable_when_present: true, disable_with: 'Проверяем..' }
+      .form-inputs
+        = f.input :pin_code, label: false, wrappper: :vertical_input_group do
+          .input-group
+            = f.input_field :pin_code,
+              as: :string,
+              class: 'form-control',
+              placeholder: 'Код из SMS, например: ac78',
+              label: false,
+              maxlength: PhoneConfirmation::PIN_CODE_LENGTH, size: PhoneConfirmation::PIN_CODE_LENGTH
+            span.input-group-btn
+              = f.submit 'Подтвердить', class: 'btn btn-success', data: { enable_when_present: true, disable_with: 'Проверяем..' }
 
 
-- unless timeout.nil?
-  == render 'pin', timeout: timeout, form: form
+    - unless timeout.nil?
+      == render 'pin', timeout: timeout, form: form
 
-- if Rails.env.development?
-  hr
-  p
-    DEV- pin-code:
-    b= current_user.phone_confirmations.by_phone(form.phone).first.try(:pin_code)
-  hr
+    - if Rails.env.development?
+      hr
+      p
+        DEV- pin-code:
+        b= current_user.phone_confirmations.by_phone(form.phone).first.try(:pin_code)
+      hr

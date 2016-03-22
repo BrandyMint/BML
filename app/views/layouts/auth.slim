@@ -16,4 +16,7 @@ html
     .vertical-center.auth-content
       .container.vertical-container
         == render 'layouts/messages'
-        == yield
+        - if content_for? :content
+          = yield :content
+        - else
+          = yield

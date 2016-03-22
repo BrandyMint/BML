@@ -24,26 +24,13 @@ ru:
         adding: Добавляем...
     labels:
       defaults:
-        package_category_id: Категория c упаковками
-        is_package_discounted: Делать скидку на упаковку
-        currency_iso_code: 'Основная валюта'
         role: Роль
         sms_notification: Принимать уведомления по SMS
         email_notification: Принимать уведомления по email
         analytics_js: 'Дополнительный JavaScript для аналитики'
-        vendor_delivery_id: 'Способ доставки'
-        vendor_payment_id: 'Способ оплаты'
-        enter_workflow_state_id: 'Когда заказ получает статус'
-        make_reserve_on_enter: 'Резервировать на складе?'
-        make_delivery_on_enter: 'Запускать доставку?'
-        finite_state: 'Конечное состояние заказа'
-        enter_finite_state: 'Когда заказ получает финальное состояние'
-        company_name: Официальное название торгующей компании (ООО, ИП, и тп)
         branch_category_id: Отрасль
         allow_sms: Уведомление по SMS
         allow_email: Уведомление по Email
-        ms_workflow_state_uuid: UUID (Workflow/States)
-        reserve_on_linked_stock: Резервировать на удаленном складе
         image: 'Загрузить изображение'
         remove_image: 'Удалить изображение'
         color_hex: Цвет
@@ -70,35 +57,11 @@ ru:
         remember_me: Запомнить меня
       reset_password:
         login: Номер телефона или email
-      vendor_walletone:
-        legal_form: Юридическая форма
-        merchant_id: Номер кошелька кассы
-        owner_user_id: Номер кошелька владельца
-        title: Название магазина
-        branch_category: Категория
-        first_name: Имя
-        middle_name: Отчество
-        last_name: Фамилия
-        phone: Телефон
-        phone_confirmed?: Телефон подтвержден?
-        email: E-mail
-        currency: Валюта
-      menu_item:
-        place: Размещается в
-        category_id: На категорию товаров
-        dictionary_id: На справочник
-        dictionary_entity_id: На элемент справочника
-        lookbook_id: На лукбук
-        content_page_id: На текстовую страницу
-        link_url: На прямую ссылку
 
       client:
         name: Имя и Фамилия
         phones_string: Телефоны
         emails_string: Email адреса
-      order_condition:
-        action: Совершать действие
-        event: При свершении события
       subscription_form:
         tariff_id: Тариф
         email: E-mail подписки
@@ -117,198 +80,15 @@ ru:
         title: Название
         content: Содержимое
         format:  Формат
-      vendor_order:
-        phone: Телефон
-        name: Полное имя
-        city_id: Город доставки
-        city_title: Город доставки
-        address: Адрес доставки
-        comment: Комментарий
-        coupon_code: Промокод
-        email: Email
-      operator_order:
-        phone: Телефон
-        name: Полное имя
-        city_id: Город доставки
-        city_title: Город доставки
-        address: Адрес доставки
-        comment: Комментарий
-        coupon_code: Промокод
-        email: Email
-        delivery_type_id: Тип доставки
-        payment_type_id: Способы оплаты
-      product:
-        reserve: Зарезервировано
-        price: Цена (%{currency})
-        sale_price: Цена распродажи (%{currency})
-        free_delivery_threshold: 'Бесплатная доставка при заказе на (%{currency})'
-        custom_title: 'Название товара'
-        custom_description: 'Короткое описание'
-        #custom_title: 'Переустановленное название товара'
-        #custom_description: 'Переустановленное короткое описание'
-        similar_products: 'Похожие товары'
-        union_items: Вложенные товары (варианты)
-        title: Название товара
-        quantity: Количество
-        total_quantity: Общее количество
-        is_manual_published: Опубликован
-        is_new: Новинка
-        is_sale: Распродажа
-        article: Артикул
-        ms_code: Код товара в moysklad
-        brand: Бренд
-        categories_ids: Категории
-        description: Краткое описание
-        ids: Товары
-        show_similar_products: Отображение подобных товаров
-        items:
-          size: Размер
-          count: Количество
-          article: Артикул
-          article_smart: Артикул
-          custom_title: Название
-          color: Цвет
-      vendor_theme:
-        show_similar_products: 'Показывать подобные товары'
-        theme_template_key: Стиль
-        turbolinks_enabled: Включить быструю перезагрузку (turbolinks)
-        custom_append_html: Дополнительный html-код <body>
-        custom_product_html: Дополнительный html-код на странице товара
-        custom_head_html: Дополнительный html-код <head>
-        theme:
-          custom_body_class: Кастомный css-класс в body
-          custom_style_format: 'Формат стилей'
-          custom_style: 'Дополнительные стили'
-      vendor:
-        moysklad_mirror_categories_tree: 'Зеркалировать дерево категорий из склада'
-        show_similar_products: 'Показывать подобные товары'
-        turbolinks_enabled: Включить быструю перезагрузку (turbolinks)
-        sitemap_url: Ссылка на sitemap
-        is_published: Магазин включен
-        not_published_text: Текст сообщения о прекращении работы магазина
-        logo: Логотип
-        favicons: Favicons
-        theme:
-          category_product_columns: Товаров в ряд в категории
-          category_product_rows: Строк товаров в категории
-          mainpage_product_columns: Товаров в ряд на главной
-          mainpage_product_rows: Строк товаров на главной
-          theme_template_key: Стиль
-          custom_body_class: Кастомный css-класс в body
-          custom_style_format: 'Формат стилей'
-          custom_style: 'Дополнительные стили'
-          category_filter_visible: 'Показывать фильтр товаров в категории'
-          mainpage_filter_visible: 'Показывать фильтр товаров на главной странице'
-          instagram_visible: Показывать ленту фотографий из Instagram в подвале
-          banner_visible: Показывать баннер
-          slider_visible: Показывать слайдер
-          show_similar_products: Показывать подобные товары
-          is_welcome_ordered: 'Товары на главной в порядке установки'
-          w1_widget_visible: Показывать виджет
-          w1_widget_ptenabled: ID способов оплат для виджета (не указывайте ничего, если хотите показать все возможные способы)
-        welcome_category_id: Категория для главной страницы
-        title: 'Краткий заголовок'
-        sellable_infinity: 'Товары без количества продаются как бесконечные'
-        moysklad_login: 'Логин в moysklad'
-        moysklad_password: 'Пароль в moysklad'
-        is_stock_linked: 'Синхронизировать товары и остатки со складом'
-        is_ordering_stock_linked_only: 'Заказываются только товары, доступные на привязанном складе'
-        stock_auto_syncing: 'Импортировать автоматически (каждый час)'
-        is_order_auto_accepted: Автоматически принимать заказы и резервировать товары
-        is_stock_do_sync_categories: 'Импортировать категории'
-        autopublicate_goods_from_stock: 'Автоматически публиковать товары из склада'
-        prefer_stock_category_when_syncing: 'Предпочитать категорию склада если она есть.'
-        default_import_category_id: 'Категория по-умолчанию'
-        filter_properties: 'Свойства, которые могут быть показаны в фильтре'
-      vendor_delivery:
-        delivery_agent_type: Служба доставки
-        login: Логин
-        password: Пароль
-        is_active: Активен?
-        vendor_payment_ids: Разрешённые способы оплаты
-      vendor_payment:
-        canceling_timeout_minutes: Отменять неоплаченный заказ по истечении (минут)
-        payment_agent_type: Платежная система
-        is_active: Активен
-        reserve_on_stock: Резервировать на складе
-        deliver_on_payment: Отправлять на доставку при поступлении оплаты
-        auto_delivery: Автоматически отправлять на доставку при оплате
-        vendor_delivery_ids: Разрешённые способы доставки
-        wmi_enabled_payment_methods_list: 'Разрешённые методы (WMI_PTENABLED)'
-        wmi_disabled_payment_methods_list: 'Запрещённые методы (WMI_PTENABLED)'
-
-      category:
-        parent_id: 'Корневая категория'
-        is_main: 'Товары этой категории отображаются на главной странице'
-      property:
-        type: Тип
-        dictionary_id: Справочник (только для словарей)
-        is_used_in_item: Используется в модификации
-        is_used_in_product: Используется в товаре
-        position_in_item: Позиция в варианте
-        position_in_product: Позиция в товаре
-        is_active: 'Активно'
-      slider_image:
-        image: 'Загрузить изображение'
-        link_url: 'Ссылка с изображения (не обязательно)'
-        is_active: 'Активен'
-      lookbook_image:
-        image: 'Загрузить изображение'
-        link_url: 'Ссылка'
-        is_active: 'Активен'
-      content_page:
-        is_active: 'Активна'
-        target_blank: 'Открывать в новом окне'
-        menutitle: 'Пункт меню'
-      blog_post:
-        title: Заголовок
-        url: Прямая ссылка с заголовка (не обязательно)
-        is_active: Активен
-        published_at: Дата публикации
-        content: Текст статьи
-        short_text: Краткое описание
-        image: Изображение для списка
-      coupon:
-        file: Файл в формате CSV
-        skip_headers: Пропустить 1-ю строку
-      operator:
+      user:
         name: Имя
         email: E-mail
         phone: Телефон
-      order_delivery:
-        date_from: Время доставки (от)
-        date_till: Время доставки (до)
       invite:
         phone: 'или телефон'
         role: Роль
-      top_banner:
-        content: Текст баннера (в одну строку)
-        link_url: Ссылка с баннера
-      coupon:
-        code: Код
-        use_count: Остаток использования
-        used_count: Кол-во использований
-        discount: Скидка на товары
-        discount_type: Тип скидки
-        expires_at: Действует до
-        free_delivery: Бесплатная доставка
       phone_confirmation_form:
         phone: Номер телефона
-      w1_registration_form:
-        legal_form: Правовой статус
-        branch_category_id: Категория услуг
-        title: Название магазина
-        legal_country: Страна резидента
-        legal_title: Наименование юр. лица
-        legal_tax_number: ИНН
-        legal_address: Юридический адрес
-        legal_reg_number: Государственный регистрационный номер
-        first_name: Имя
-        middle_name: Отчество
-        last_name: Фамилия
-        phone_number: Номер телефона
-        pin_code: Пин-код
-        email: E-mail
 
     placeholders:
       defaults:
@@ -316,18 +96,11 @@ ru:
       session_form:
         login: Телефон или e-mail
         password: Пароль
-      user_request:
-        email: E-mail
-        name: Ваше Имя
-        phone: Номер телефона
 
       text_blocks:
         format:  Формат
-      coupon:
-        discount: 10
-        code: PRIZE
 
-      operator_login_form:
+      user_login_form:
         login: Номер телефона или email
         password: Пин-код или пароль
       client_login_form:
@@ -337,89 +110,26 @@ ru:
         login: Номер телефона #или email
       reset_form:
         login: Номер телефона или email
-      operator:
+      user:
         name: Ваше Имя
         phone: Номер телефона
         email: E-mail
         password: Пароль
         password_confirmation: Подтверждение пароля
 
-      short_vendor_registration_form:
-        vendor_name: Название магазина
-
-      vendor_registration_form:
-        vendor_name: Название магазина
-        operator_name: Ваше Имя
-        phone: Номер телефона
-        email: E-mail
       invite_form:
         name: Имя
         email: E-mail
         password: Пароль
-      product:
-        video_url: 'http://youtube.com/...'
-        title: Например, велосипед городской
-        description: Описание
-        #price: 20 000
-        brand: Бренд
-        items:
-          size: Например, XL
-          count: "Например, 5"
-          article: "Например, M001-11-00"
-          article_smart:
-            # disabled?
-            'true': "Не установлен"
-            'false': "Например, M001-11-00"
-          custom_title: 'Например, Майка желтая XL'
-          color: Цвет
-      vendor_products_filter:
-        search: Найти название, номер, артикул
-      vendor_orders_filter:
-        search: Найти название, номер, артикул
-      order:
-        name: Имя
-        your_comment: 'Ваш комментарий'
-      order_delivery:
-        external_id: Трекинг-номер доставки
-      vendor_order:
-        city_title: Москва
-        phone: 'Например, +7 913 123 32 10'
-        name: Ф.И.О.
-        address: Например, Академика Вавилова 12-10
-        comment: О чем нам нужно знать
-        email: Email
-      content_page:
-        menutitle: Пункт меню
-        title: Заголовок
-        content: 'Начните писать текст. Можно перетаскивать или вставлять ссылки на картинки, вставлять ссылки на Яндекс или Гугл-карты, выделять и форматировать текст'
       subscription_form:
         name: IVAN IVANOV
         cardNumber: 4*** **** **** 1234
-      top_banner:
-        content: Текст
     hints:
       defaults:
-        run_out_message: В случае если товар закончится, в карточке товара будет выводиться эта информация
         meta_keywords: Слова через запятую
         analytics_js: 'Только JS-код, без HTML-тегов'
-        make_reserve_on_enter: 'При входе заказа в это состояние товар будет резервироваться на складе'
-        make_delivery_on_enter: 'При входе заказа в это состояние будет автоматически запускаться доставка'
-        is_stock_linked: 'Описания товаров, остатки, свойства и характеристики будут забираться со склада.<br>Вы не сможете изменять остатки товаров в Киоске'
-        reserve_on_linked_stock: 'В момент резервирования товаров в Киоске, будет также осуществляться резервирование товаров на привязанном складе, например в moysklad.ru'
-        ms_sale_price_name: 'Название цены для распродажи. Обычно "распродажа"'
-        stock_auto_syncing: 'Товары их остатки и характеристики будут регулярно обновляться со склада.<br>Это гарантирует актуальные остатки товаров в пределах часа.'
-        autopublicate_goods_from_stock: 'Товары, полученные со склада, будут автоматически опубликованы и доступны для заказа на сайте. В противном случае Вы должны будете просмотреть товары и опубликовать их самостоятельно.'
-
-        is_stock_do_sync_categories: 'Со склада забираются не только товары, но и список категорий.<br>В этом случае вы не сможете редактировать категории в Киоске и должны делать это через склад.<br>Таким образом гарантируется точное совпадение складских категорий с магазином.'
-        prefer_stock_category_when_syncing: 'Если в магазине уже есть категория, то кладем товар в нее. В противном случае используем категории по-умолчанию.'
-        default_import_category_id: 'В эту категорию кладутся все импортируемые товары, если отключен импорт категорий.'
-        #price: руб.
-        wmi_enabled_payment_methods_list: 'Например: CreditCardRUB, ContactRUB'
-        wmi_disabled_payment_methods_list: 'Например: WebMoneyRUB'
         yandex_metrika_tracking_id: 'Например: 27444066'
         google_analytics_tracking_id: 'Например: UA-56712769-1'
-        welcome_category_id: Товары из этой категории и ее подкатегорий отображаются на главной странице магазина.
-        package_category_id: Товары из этой категории предлагаются в качестве упаковки на странице заказа и исключаются из общей выдачи на главной странице.
         domain_zone: Зона для поддомена
         support_email: |
           Этот адрес указывается в почтовых уведомлениях о статусах заказов.
@@ -428,9 +138,6 @@ ru:
 
       text_blocks:
         title: 'Например: Технические характеристики'
-
-      blog_post:
-        content: 'В списке публикаций не будет ссылки на статью, если в ней нет текста.'
 
       mail_template:
         subject: 'Например: Поступил заказ с номером %{id}'
@@ -444,52 +151,3 @@ ru:
       slug_redirect:
         path: 'Путь без пробелов, начинающийся с /'
         redirect_path: 'Путь без пробелов, начинающийся с /'
-      menu_item:
-        link_url: 'Прямая ссылка на внешний ресурс. Например: http://yandex.ru/'
-        custom_title: 'Например: Статьи'
-
-      slider_image:
-        image: Рекомендуемый размер изображения - 940х400
-        link_url: 'Оставьте поле пустым, если с изображения нет перехода'
-        is_active: 'Отключите, если временно не хотите видеть этот баннер на странице'
-
-      theme:
-        w1_widget_ptenabled: 'Через запятую (например CreditCardRUB,MobileRetailsRUB)'
-      vendor:
-        moysklad_mirror_categories_tree: 'Даже если Вы вручную изменили порядок категорий и их наследование в Киоске при включеной опции, категории существующие на складе придут в состояние, идентичное со складом'
-        vk_export_period: 'Минимум 1 день. Оставьте пустым, чтобы не выгружать'
-        turbolinks_enabled: 'Внимание! При включении этой опции могут перестать работать некоторые скрипты (например, карты или виджеты) - необходимо перенести их в &lt;head&gt;'
-
-        is_published: 'Внимание! При отключении этой опции магазин станет <strong>полностью недоступен</strong> для посетителей'
-        contact_phones: 'Только телефоны, построчно'
-        order_notification_emails: 'E-mails построчно'
-        order_notification_phones: 'Телефоны построчно, например: +79033891228'
-        instagram_user_id: 'Это не имя пользователя, а его идентификатор. <a href="http://jelled.com/instagram/lookup-user-id" target="_blank">Как узнать свой user_id в Instagram? (вводите точное имя, строчные и прописные быквы имют разное значение).</a>'
-        logo: >
-          Можно загружать файлы с расширениями <strong>%{ext}</strong>
-        favicons: >
-          Можно загружать файлы с расширениями <strong>%{ext}</strong>
-          <br>
-          Автоматически сгенерировать файлы можно здесь: <a href="http://realfavicongenerator.net" target="_blank">http://realfavicongenerator.net</a>
-        robots: >
-          <a href="https://help.yandex.ru/webmaster/controlling-robot/robots-txt.xml" target="_blank">Документация по robots.txt</a>
-        sitemap_html: >
-          Sitemap обновляется раз в сутки
-          <br>
-          <a href="https://webmaster.yandex.ru/sitemaptest.xml" target="_blank">Проверка sitemap</a>
-          <br>
-          <a href="https://help.yandex.ru/webmaster/controlling-robot/sitemap.xml" target="_blank">Документация по sitemap</a>
-        public_offer_page_id: 'Если установлена, при оформлении заказа покупателю будет предложено принять условия оферты'
-      coupon:
-        skip_headers: Как правило первой строкой идет описание колонок, поэтому ее пропускаем.
-        code: Генерируется автоматически, если не заполнено
-        use_count: Многоразовый, если не заполнено
-      product:
-        reserve: 'Количество товара зарезервированное в заказах'
-        video_url: 'Ссылка на видео на youtube, vimeo или тп'
-        price: Цена указывается в рублях. Вы можете поменять валюту в настройках
-      vendor_payment:
-        auto_delivery: Эта опция отправляет в W1 данные о заказе (WMI_DELIVERY_REQUEST=1 и тп) для автоматической доставки
-        canceling_timeout_minutes: 0 - не отменять
-      vendor_delivery:
-        auto_cancel_period_days: 'Уведомлять покупателя об отмене заказа по истечении срока (дней). Оставьте пустым, чтобы не уведомлять'

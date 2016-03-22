@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include MessageVerifierConcern
   include HandleErrors
   include BugsnagSupport
+  include InvitesHelper
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -12,6 +13,11 @@ class ApplicationController < ActionController::Base
   before_action :setup_gon_locales
 
   private
+
+  def after_login!(user, credentials)
+    user.confirm_some_phone!(*credentials)
+    invite.accept! user if invite.present?
+  end
 
   def paginate(scope)
     scope

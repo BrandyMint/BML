@@ -1,0 +1,32 @@
+.page-header
+  h2= t('invites.edit')
+
+= simple_form_for [:profile, member] do |f|
+  .col-md-6
+    dl.dl-horizontal
+      dt.col-sm-3 Имя:
+      dd.col-sm-9
+        = member.name
+
+      - if member.email.present?
+        dt.col-sm-3 Email:
+        dd.col-sm-9
+          = link_to member.email, profile_url, title: t('shared.edit')
+          = user_email_confirmation_label member.user
+          /= member_user_send_email_confirmation_link member
+
+      - if member.phone.present?
+        dt.col-sm-3 Телефон:
+        dd.col-sm-9
+          = link_to member.phone, profile_url, title: t('shared.edit')
+          = user_phone_confirmation_label member.user
+
+  .col-md-6
+    - unless f.object.user == current_user
+      = f.input :role, collection: available_roles, include_blank: false
+
+    = f.input :sms_notification
+    = f.input :email_notification
+
+  .clearfix
+  = f.submit t('shared.save'), class: 'btn btn-primary'

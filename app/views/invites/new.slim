@@ -1,0 +1,8 @@
+.page-header
+  h3= t('invites.invite_member')
+
+= render 'invites/form', invite: invite
+
+- if controller_name == 'invites'
+  hr
+  = link_to "&larr; #{t('account.members')}".html_safe, profile_memberships_path
