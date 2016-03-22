@@ -9,6 +9,7 @@ ru:
   errors:
     format: ! '%{attribute} %{message}'
     humanized:
+      no_current_variant: Вариант сайта не доступен
       unknown_site: Нет такого сайта на нашей платформе
       not_authenticated: Представьтесь, чтобы получить доступ к ресурсу.
       not_authorized: У Вас нет доступа к этому ресурсу.
