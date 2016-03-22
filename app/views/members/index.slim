@@ -1,6 +1,6 @@
 = render 'members', members: members
 
-/ - if InviteAuthorizer.creatable_by? current_member
-= render template: 'invites/new', locals: { invite: invite }
+- if policy(invite).create?
+  = render template: 'invites/new', locals: { invite: invite }
 br/
 = render 'invites/index', invites: invites

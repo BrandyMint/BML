@@ -34,18 +34,18 @@ module ElementsNavigationHelper
     end.join('').html_safe
   end
 
-  def authorized_for_menu_item?(_element, _item)
-    true
-    # case item
-    # when :show
-    #   element.readable_by? current_member
-    # when :edit
-    #   element.updatable_by? current_member
-    # when :delete
-    #   element.deletable_by? current_member
-    # else
-    #   true
-    # end
+  def authorized_for_menu_item?(element, item)
+    return unless element_policy(element)
+    case item
+    when :show
+      element_policy(element).show?
+    when :edit
+      element_policy(element).update?
+    when :delete
+      element_policy(element).destroy?
+    else
+      true
+    end
   end
 
   def element_navigation_menu_item(element, item)
@@ -64,6 +64,10 @@ module ElementsNavigationHelper
     get_menu klass.superclass
   rescue NoMenu
     raise NoMenu, "Unknown MENU for #{klass}"
+  end
+
+  def element_policy(resource)
+    Pundit.policy(current_member, resource)
   end
 
   NoMenu = Class.new StandardError

@@ -6,6 +6,10 @@ RSpec.describe InvitesController, type: :controller do
   let(:invite) { create :invite, account: account, user_inviter: user }
 
   describe 'POST create' do
+    before do
+      allow_any_instance_of(InviteMailer).to receive(:added_to_account)
+    end
+
     context 'Invite existent user' do
       let!(:invited_user) { create :user }
       let(:invite_params) { { phone: invited_user.phone, role: :master } }

@@ -31,7 +31,7 @@ ru:
           %{data}
     invite_mailer:
       new_invite:
-        subject: "Приглашение в проект %{account}"
+        subject: 'Приглашение в проект %{account}'
         body: |
           %{inviter} приглашает Вас принять участие в проекте %{account} в роли %{role}<br>
           Для регистрации перейдите по ссылке: <a href="%{url}">%{url}</a>

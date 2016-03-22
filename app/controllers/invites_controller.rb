@@ -4,6 +4,8 @@ class InvitesController < ApplicationController
   before_action :require_login
 
   def create
+    authorize invite
+
     if invite.valid?
       users = invite.find_and_bind_users
       if users.any?
@@ -16,11 +18,13 @@ class InvitesController < ApplicationController
     redirect_to profile_memberships_path,
                 flash: { info: I18n.t('flashes.invites.created') }
 
-  rescue ActiveRecord::RecordInvalid => e
-    render :new, locals: { invite: e.record }
+  rescue ActiveRecord::RecordInvalid => err
+    render :new, locals: { invite: err.record }
   end
 
   def destroy
+    authorize invite
+
     invite.destroy!
     redirect_to profile_memberships_path,
                 flash: { error: I18n.t('flashes.invites.deleted') }

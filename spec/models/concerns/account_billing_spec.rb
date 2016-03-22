@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AccountBilling, type: :model do
-  let!(:account) { create :account }
+  let!(:account) { create :account, :with_billing }
 
   it do
     expect(account.billing_account).to be_a Openbill::Account

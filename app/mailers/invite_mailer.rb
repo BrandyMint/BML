@@ -21,6 +21,6 @@ class InviteMailer < BaseMailer
 
     mail(to: @user.email,
          from: AppSettings.from,
-         subject: I18n.t('mailers.invite_mailer.added_to_account.subject'))
+         subject: I18n.t('mailers.invite_mailer.added_to_account.subject', account: @account.to_s))
   end
 end
