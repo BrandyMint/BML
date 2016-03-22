@@ -4,6 +4,6 @@ module EditorHelper
       bugsnag_metadata(
         account: current_account.as_json(only: [:id], methods: [:title]),
         variant: current_variant.as_json(only: [:uuid, :landing_id, :updated_at])
-    )
+      )
   end
 end
