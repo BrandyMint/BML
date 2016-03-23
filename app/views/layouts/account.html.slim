@@ -10,7 +10,9 @@ html
   body
     = render 'layouts/account/header'
     .navbar-space
-    .narrow-container
+
+    .messages-centered
       == render 'layouts/messages'
+    .narrow-container
       == yield
     .bottom-space

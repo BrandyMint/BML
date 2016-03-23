@@ -1,6 +1,10 @@
 class CreateLead
   include Virtus.model(strict: true, nullify_blank: true)
 
+  Error = Class.new StandardError
+  UnknownError = Class.new Error
+  BlankLeadError = Class.new Error
+
   attribute :data,       Hash
   attribute :tracking,   String
   attribute :cookies,    Hash
@@ -8,18 +12,24 @@ class CreateLead
   attribute :viewer_uid, String
 
   def call
+    raise BlankLeadError if lead_data.empty?
+
     ActiveRecord::Base.transaction do
       lead = collection.leads.create! lead_attributes
       update_utm_values lead
 
       attach_client lead
       lead
-    end || raise("Заявка не создана #{data}")
+    end || raise(UnknownError, "Заявка не создана #{data}")
   end
 
   private
 
   delegate :landing, to: :variant
+
+  def lead_data
+    data.delete_if { |_k, v| v.empty? }
+  end
 
   def attach_client(lead)
     AttachClient
@@ -31,7 +41,7 @@ class CreateLead
 
   def lead_attributes
     utm.attributes.merge!(
-      data: data,
+      data: lead_data,
       variant: variant,
       viewer_uid: viewer_uid
     )

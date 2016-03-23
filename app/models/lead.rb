@@ -57,6 +57,10 @@ class Lead < ActiveRecord::Base
     @_viewer ||= Viewer.find_by(landing_id: landing_id, uid: viewer_uid)
   end
 
+  def description
+    [name, phone, email].compact.join ' '
+  end
+
   private
 
   def fill_current_utms

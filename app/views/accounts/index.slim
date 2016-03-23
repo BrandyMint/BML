@@ -1,8 +1,15 @@
 .row
-  .col-sm-4.col-sm-offset-3
+  .col-sm-4.col-sm-offset-4
     .page-header
-      h2 Доступные аккаунты:
+      h2 Доступные аккаунты
 
-    ul
+    table.table.table-condensed.table-hover.table-projects.table-centered.table-striped
       - accounts.each do |account|
-        li= link_to account, select_account_path(id: account.id)
+        tr
+          td.projects-list-td
+            = link_to select_account_path(id: account.id), class: 'projects-list-item'
+              .projects-list-item-title= account
+
+              small
+                .text-muted
+                  = I18n.t :sites_count, count: account.landings_count

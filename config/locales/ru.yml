@@ -46,11 +46,6 @@ ru:
     social: Соц.сети
     organic: Прямые заходы
     mails: Рассылки
-  notifications:
-    sms:
-      new_pin_code: 'Пин-код %{pin_code}'
-      lead_created: '%{site}: Заявка %{number} - %{lead_url}'
-      invite_created: 'Вас пригласили в %{account}, зарегистрироваться - %{url}'
 
   leads_count:
     zero: 'Без заявок'
@@ -58,12 +53,21 @@ ru:
     few: '%{count} заявки'
     many: '%{count} заявок'
     other: '%{count} заявок'
+
   views_count:
     zero: 'Без посещений'
     one: '%{count} посещение'
     few: '%{count} посещения'
     many: '%{count} посещений'
     other: '%{count} посещений'
+
+  sites_count:
+    zero: 'Нет сайтов'
+    one: '%{count} сайт'
+    few: '%{count} сайта'
+    many: '%{count} сайтов'
+    other: '%{count} сайтов'
+
   buttons:
     restore: 'Восстановить'
   user:

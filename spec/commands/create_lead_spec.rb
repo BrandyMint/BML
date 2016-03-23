@@ -19,7 +19,7 @@ RSpec.describe CreateLead do
     TouchOrCreateViewer.new(viewer_uid: viewer_uid, remote_ip: remote_ip, user_agent: user_agent, landing_id: landing_id).call
   end
 
-  describe '#call' do
+  describe 'нормальная заявка' do
     context 'valid params' do
       let(:data) { { name: 'John Doe' } }
       let(:utm_source) { '123' }
@@ -37,6 +37,23 @@ RSpec.describe CreateLead do
       it 'must create lead' do
         expect(variant.leads.last.first_utm_source).to eq utm_source
         expect(variant.leads.last.viewer).to be_a Viewer
+      end
+    end
+  end
+
+  describe 'пустая заявка' do
+    context 'valid params' do
+      let(:data) { { name: '', email: '' } }
+      let(:utm_source) { '123' }
+      let(:tracking) { '' }
+      let(:cookies) do
+        {
+          first_utm_source: utm_source,
+          last_utm_source: '111'
+        }
+      end
+      it 'не принимается' do
+        expect { subject.call }.to raise_error CreateLead::BlankLeadError
       end
     end
   end

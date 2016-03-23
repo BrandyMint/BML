@@ -4,6 +4,8 @@ class LeadsController < ApplicationController
   skip_before_action :verify_authenticity_token
   layout 'lead'
 
+  rescue_from CreateLead::Error, with: :rescue_lead_error
+
   def create
     send_notifications create_lead
 
@@ -17,11 +19,18 @@ class LeadsController < ApplicationController
     end
 
   rescue ActiveRecord::RecordInvalid => err
+    # TODO Раз это ошибка формы, ее надо как-то более
+    # информативно возвращать
+    rescue_lead_error err
+  end
+
+  private
+
+  DATA_EXCEPTIONS = [:subdomain, :cookie, :viewer_uid, :variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit].freeze
+
+  def rescue_lead_error(error)
     if request.xhr?
-      respond_to do |format|
-        format.html { render_html_error err }
-        format.json { render_json_error err }
-      end
+      render_xrh_lead_error error
     else
       # TODO: кидать назад не совсем удачно.
       # 1. На предыдущей странице не узнают какие были ошибки, не смогу выделить.
@@ -29,14 +38,10 @@ class LeadsController < ApplicationController
       #
 
       render 'error',
-             locals: { backurl: request.referer, message: err.message },
-             flash: { error: err.message }
+        locals: { backurl: request.referer, error: error },
+        flash: { error: error.message }
     end
   end
-
-  private
-
-  DATA_EXCEPTIONS = [:viewer_uid, :variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit].freeze
 
   def current_account
     current_landing.account
@@ -52,6 +57,13 @@ class LeadsController < ApplicationController
 
   def variant_uuid
     params[:variant_uuid]
+  end
+
+  def render_xhr_lead_error(err)
+    respond_to do |format|
+      format.html { render_html_error err }
+      format.json { render_json_error err }
+    end
   end
 
   def render_html_error(err)
