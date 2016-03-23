@@ -21,17 +21,12 @@ module AccountWebAddresses
     web_address.try :confirm
   end
 
-  def hostname
-    current_domain
-  end
-
   def url
-    a = Addressable::URI.new
-    a.host = hostname
-    a.port = AppSettings.default_url_options.port.presence
-    a.port = nil if a.port.to_s == '80'
-    a.scheme = 'http'
-    a.to_s
+    if Rails.env.production?
+      build_url
+    else
+      dev_build_url
+    end
   end
 
   def default_web_address
@@ -42,5 +37,20 @@ module AccountWebAddresses
 
   def create_web_address!
     web_addresses.create!
+  end
+
+  def dev_build_url
+    a = Addressable::URI.parse AppSettings.host
+    a.host = default_web_address.subdomain + '.' + a.host
+    a.to_s
+  end
+
+  def build_url
+    a = Addressable::URI.new
+    a.host = current_domain
+    a.port = AppSettings.default_url_options.port.presence
+    a.port = nil if a.port.to_s == '80'
+    a.scheme = 'http'
+    a.to_s
   end
 end

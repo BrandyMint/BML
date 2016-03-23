@@ -71,7 +71,6 @@ class LeadsController < ApplicationController
   end
 
   def create_lead
-    binding.pry
     @_lead ||= CreateLead.new(
       data:       lead_params,
       variant:    current_variant,
