@@ -41,9 +41,15 @@ class LeadsController < ApplicationController
       #
 
       render 'error',
-             locals: { backurl: request.referer, error: error },
+             locals: { backurl: backurl, error: error },
              flash: { error: error.message }
     end
+  end
+
+  def backurl
+    a = Addressable::URI.parse current_landing.url
+    a.fragment = Landing::FORM_FRAGMENT
+    a.to_s
   end
 
   def current_account

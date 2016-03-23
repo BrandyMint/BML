@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe VariantSelector do
-  let(:host) { account.hostname }
+  let(:host) { account.current_domain }
   let(:path) { 'lp1' }
   let(:session) { {} }
   let(:cookies) { double }

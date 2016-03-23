@@ -3,6 +3,10 @@ class Landing < ActiveRecord::Base
   include LandingPath
   include UrlHelper
 
+  # Якорь формы
+  #
+  FORM_FRAGMENT = 'form'.freeze
+
   belongs_to :account, counter_cache: true
 
   has_many :collections, dependent: :destroy
