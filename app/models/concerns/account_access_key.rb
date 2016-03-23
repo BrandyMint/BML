@@ -1,8 +1,8 @@
 module AccountAccessKey
   extend ActiveSupport::Concern
 
-  TEST_ACCESS_KEY = 'test';
-  TEST_ACCOUNT_ID = 2;
+  TEST_ACCESS_KEY = 'test'.freeze
+  TEST_ACCOUNT_ID = 2
 
   included do
     before_create :generate_access_key
@@ -15,7 +15,6 @@ module AccountAccessKey
       end
     end
   end
-
 
   private
 
