@@ -3,7 +3,7 @@ module CircleButtonsHelper
     args.reverse_merge! action: :edit
     case url
     when ActiveRecord::Base
-      resource = [:profile, url]
+      resource = [:account, url]
       polymorphic_path resource, args
     when String
       url

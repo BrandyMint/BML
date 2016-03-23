@@ -1,7 +1,5 @@
-class InvitesController < ApplicationController
+class Account::InvitesController < Account::BaseController
   layout 'account_settings'
-
-  before_action :require_login
 
   def create
     authorize invite
@@ -9,24 +7,27 @@ class InvitesController < ApplicationController
     if invite.valid?
       users = invite.find_and_bind_users
       if users.any?
-        return redirect_to profile_memberships_path,
+        return redirect_to account_memberships_path,
                            flash: { info: I18n.t('flashes.invites.members_added', users: users.join(', ')) }
       end
     end
 
     invite.save!
-    redirect_to profile_memberships_path,
+    redirect_to account_memberships_path,
                 flash: { info: I18n.t('flashes.invites.created') }
 
   rescue ActiveRecord::RecordInvalid => err
-    render :new, locals: { invite: err.record }
+    if err.record.errors[:user_id].present?
+      flash.now[:error] = err.record.errors[:user_id].join('; ')
+    end
+    render :new, locals: { invite: invite }
   end
 
   def destroy
     authorize invite
 
     invite.destroy!
-    redirect_to profile_memberships_path,
+    redirect_to account_memberships_path,
                 flash: { error: I18n.t('flashes.invites.deleted') }
   end
 

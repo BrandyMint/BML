@@ -1,7 +1,5 @@
-= simple_form_for [:profile, invite] do |f|
+= simple_form_for [:account, invite], url: account_invites_url do |f|
   = f.error_notification
-  - if f.object.errors[:user_id].present?
-    = f.error_notification message: f.object.errors[:user_id].join('; ')
   .row
     .col-md-4
       = f.input :email, wrapper_html: {class: 'm-b-md'}

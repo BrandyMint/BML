@@ -1,6 +1,0 @@
-= render 'members', members: members
-
-- if policy(invite).create?
-  = render template: 'invites/new', locals: { invite: invite }
-br/
-= render 'invites/index', invites: invites

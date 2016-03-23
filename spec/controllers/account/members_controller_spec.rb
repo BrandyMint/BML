@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MembersController, type: :controller do
+RSpec.describe Account::MembersController, type: :controller do
   include AccountControllerSupport
 
   let(:member) { create :membership, account: account }
@@ -20,7 +20,7 @@ RSpec.describe MembersController, type: :controller do
   end
 
   describe 'PATCH update' do
-    it 'returns http success' do
+    it 'redirects' do
       patch :update, id: member.id, membership: { sms_notification: true }
       expect(response.status).to eq 302
     end

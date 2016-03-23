@@ -1,0 +1,5 @@
+.row
+  .col-lg-12
+    = simple_form_for account, url: account_domains_path do |f|
+      = render 'form_domain', account: account, f: f
+      = f.submit t('shared.save'), class: 'btn btn-primary'
