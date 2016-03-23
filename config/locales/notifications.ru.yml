@@ -1,0 +1,7 @@
+ru:
+  notifications:
+    sms:
+      new_pin_code: 'Пин-код %{pin_code}'
+      lead_created: '%{site}: Заявка %{number} %{description} %{lead_url}'
+      invite_created: 'Вас пригласили в %{account}, зарегистрироваться - %{url}'
+
