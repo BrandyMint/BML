@@ -1,7 +1,10 @@
 class CreateLead
   include Virtus.model(strict: true, nullify_blank: true)
 
-  Error = Class.new StandardError
+  class Error < StandardError
+    include HumanizedError
+  end
+
   UnknownError = Class.new Error
   BlankLeadError = Class.new Error
 

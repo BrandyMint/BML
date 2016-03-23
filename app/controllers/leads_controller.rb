@@ -19,7 +19,7 @@ class LeadsController < ApplicationController
     end
 
   rescue ActiveRecord::RecordInvalid => err
-    # TODO Раз это ошибка формы, ее надо как-то более
+    # TODO: Раз это ошибка формы, ее надо как-то более
     # информативно возвращать
     rescue_lead_error err
   end
@@ -27,8 +27,11 @@ class LeadsController < ApplicationController
   private
 
   DATA_EXCEPTIONS = [:subdomain, :cookie, :viewer_uid, :variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :commit].freeze
+  EXCLUDE_ERRORS = [CreateLead::UnknownError].freeze
 
   def rescue_lead_error(error)
+    Bugsnag.notify error unless EXCLUDE_ERRORS.include? error.class
+
     if request.xhr?
       render_xrh_lead_error error
     else
@@ -38,9 +41,15 @@ class LeadsController < ApplicationController
       #
 
       render 'error',
-        locals: { backurl: request.referer, error: error },
-        flash: { error: error.message }
+             locals: { backurl: backurl, error: error },
+             flash: { error: error.message }
     end
+  end
+
+  def backurl
+    a = Addressable::URI.parse current_landing.url
+    a.fragment = Landing::FORM_FRAGMENT
+    a.to_s
   end
 
   def current_account
