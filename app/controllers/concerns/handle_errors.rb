@@ -18,6 +18,7 @@ module HandleErrors
     rescue_from UnknownSite,                  with: :rescue_site_error
     rescue_from NotAuthenticated,             with: :rescue_not_authenticated
     rescue_from NotAuthorized,                with: :rescue_not_authorized
+    rescue_from Pundit::NotAuthorizedError,   with: :rescue_not_authorized
   end
 
   private

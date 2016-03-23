@@ -20,7 +20,7 @@ module InviteActivation
     return [] unless users.any?
 
     users.to_a.map do |user|
-      account.memberships.create(user: user, role: role)
+      account.memberships.create!(user: user, role: role)
       InviteMailer.delay.added_to_account user_inviter_id, user.id, account_id, role
       user
     end

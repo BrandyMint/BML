@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include HandleErrors
   include BugsnagSupport
   include InvitesHelper
+  include Pundit
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

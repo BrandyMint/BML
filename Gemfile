@@ -78,6 +78,7 @@ gem 'omniauth-yandex'
 # gem 'omniauth-yandex', github: 'TimothyKlim/omniauth-yandex'
 gem 'omniauth-twitter'
 gem 'sorcery'
+gem 'pundit'
 
 gem 'grape'
 gem 'grape-entity'

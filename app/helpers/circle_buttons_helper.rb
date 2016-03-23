@@ -77,9 +77,9 @@ module CircleButtonsHelper
 
   def smart_archive_button_circle(resource)
     if resource.alive?
-      archive_button_circle resource # if resource.deletable_by? current_member
-    else
-      restore_button_circle resource # if resource.updatable_by? current_member
+      archive_button_circle resource if Pundit.policy(current_member, resource).destroy?
+    elsif Pundit.policy(current_member, resource).update?
+      restore_button_circle resource
     end
   end
 

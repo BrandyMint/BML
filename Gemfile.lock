@@ -427,6 +427,8 @@ GEM
       coderay (~> 1.1)
       json (~> 1.8)
     public_suffix (1.5.1)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (1.6.4)
     rack-accept (0.4.5)
       rack (>= 0.4)
@@ -516,7 +518,7 @@ GEM
       rspec-mocks (~> 3.4.0)
     rspec-collection_matchers (1.1.2)
       rspec-expectations (>= 2.99.0.beta1)
-    rspec-core (3.4.1)
+    rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -524,7 +526,7 @@ GEM
     rspec-mocks (3.4.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
-    rspec-rails (3.4.0)
+    rspec-rails (3.4.2)
       actionpack (>= 3.0, < 4.3)
       activesupport (>= 3.0, < 4.3)
       railties (>= 3.0, < 4.3)
@@ -727,6 +729,7 @@ DEPENDENCIES
   pry-stack_explorer
   pry-theme
   public_suffix
+  pundit
   rack-cors
   rack_session_access
   rails (= 4.2.5.1)

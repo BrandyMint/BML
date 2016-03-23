@@ -11,6 +11,7 @@ require 'capybara-screenshot/rspec'
 require 'rack_session_access/capybara'
 require 'sidekiq/testing'
 require 'email_spec'
+require 'pundit/rspec'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 Capybara::Screenshot.autosave_on_failure = true
