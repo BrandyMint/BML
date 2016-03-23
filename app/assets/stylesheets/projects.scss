@@ -1,0 +1,23 @@
+// Place all the styles related to the Landings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.projects-list-item {
+  padding: 1.5em;
+  display: block;
+  color: black;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.projects-list-item-title {
+  margin-bottom: 0.5em;
+}
+
+table.table {
+  td.projects-list-td {
+    padding: 0;
+  }
+}
+

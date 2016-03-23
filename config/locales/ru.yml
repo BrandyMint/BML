@@ -58,12 +58,21 @@ ru:
     few: '%{count} заявки'
     many: '%{count} заявок'
     other: '%{count} заявок'
+
   views_count:
     zero: 'Без посещений'
     one: '%{count} посещение'
     few: '%{count} посещения'
     many: '%{count} посещений'
     other: '%{count} посещений'
+
+  sites_count:
+    zero: 'Нет сайтов'
+    one: '%{count} сайт'
+    few: '%{count} сайта'
+    many: '%{count} сайтов'
+    other: '%{count} сайтов'
+
   buttons:
     restore: 'Восстановить'
   user:

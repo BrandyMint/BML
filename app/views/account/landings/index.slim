@@ -2,24 +2,22 @@
   = current_account.hostname
 .text-center.m-t-lg.m-b-lg
   = link_to 'Создать новый сайт', new_account_landing_path, class: 'btn btn-success-outline'
-table.table.table-condensed.table-hover.table-projects.table-centered
+table.table.table-condensed.table-hover.table-projects.table-centered.table-striped
   tbody
     - landings.each do |l|
       tr
         /td
           /.text-muted
             /= fa_icon :bullseye
-        td
-          div.m-b-sm
-            b
-              = link_to account_landing_leads_path(l), style: 'color: black' do
-                = l.title
+        td.projects-list-td
+          = link_to account_landing_leads_path(l), class: 'projects-list-item' do
+            .projects-list-item-title= l.title
 
-          .row
-            .col-md-6
-              small
-                .text-muted
-                  = url_without_protocol l.url
-            .col-md-6
-              small
-                .text-muted.pull-right= landing_leads_details(l)
+            .row
+              .col-md-6
+                small
+                  .text-muted
+                    = url_without_protocol l.url
+              .col-md-6
+                small
+                  .text-muted.pull-right= landing_leads_details(l)
