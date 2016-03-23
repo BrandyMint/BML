@@ -4,4 +4,6 @@
       .welcome-subheader 
        h2.m-b-md Форма не принята
        p= error.message
-       p= link_to 'Попробовать запонить форму еще раз', backurl
+
+      .m-t-lg
+         = link_to 'Запонить форму еще раз', backurl, class: 'btn btn-white'

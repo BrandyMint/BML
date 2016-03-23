@@ -30,13 +30,10 @@
 
 
 .welcome-nav-link-wrapper
-  
 
-.welcome-nav-link
+.welcome-link
   color: white
   opacity: 0.8
-  line-height: 50px
-  font-size: 80%
 
   &:visited,
   &:link,
@@ -44,6 +41,12 @@
   &:focus,
     color: white
 
+
+.welcome-nav-link
+  line-height: 50px
+  font-size: 80%
+
+  @extend .welcome-link
 
 .welcome-loginButton
   @extend .btn
