@@ -1,0 +1,5 @@
+.row
+  .col-lg-12
+    = simple_form_for account, url: account_name_path do |f|
+      = f.input :name, label: false, placeholder: 'Название вашего аккаунта', hint: 'Пригодится в списке аккаунтов'
+      = f.submit t('shared.save'), class: 'btn btn-primary'

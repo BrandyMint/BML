@@ -39,6 +39,18 @@ Rails.application.routes.draw do
           end
         end
       end
+
+      resource :name, controller: :name, only: [:show, :update]
+      resource :domains, controller: :domains, only: [:show, :update]
+      resource :billing, controller: :billing, only: [:show, :update]
+      resource :api, controller: :api, only: [:show, :update]
+
+      resources :invites
+      resources :members, as: :memberships do
+        member do
+          post :send_email_confirmation
+        end
+      end
     end
 
     scope module: :account, as: :account do
@@ -47,7 +59,7 @@ Rails.application.routes.draw do
       get '/editor/:uuid/*any', to: 'editor#show', as: :landing_editor_any
     end
 
-    resource :account, only: [:edit, :update]
+    resource :account, only: [:edit]
     resources :accounts, only: [:index] do
       member do
         get action: :select, as: :select
@@ -70,13 +82,7 @@ Rails.application.routes.draw do
   end
 
   concern :profile do
-    resource :settings, controller: :profile, as: :profile, only: [:show, :update] do
-      resources :invites
-      resources :members, as: :memberships do
-        member do
-          post :send_email_confirmation
-        end
-      end
+    resource :profile, controller: :profile, only: [:show, :update] do
       post :send_email_confirmation
     end
 

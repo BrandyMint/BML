@@ -1,6 +1,9 @@
 ul.nav.nav-pills.nav-stacked
-  li.nav-item= active_link_to 'Профиль', profile_url, class: 'nav-link', active: [['profile'],[]]
+  li.nav-item= active_link_to 'Название аккаунта', account_name_url, class: 'nav-link', active: [['account/name'],[]]
+  li.nav-item= active_link_to 'Адрес (домен)', account_domains_url, class: 'nav-link', active: [['account/domains'],[]]
   li.nav-item
-    = active_link_to profile_memberships_url, class: 'nav-link', active: [['members', 'invites'],[]] do
-      ' Сотрудники
-      span.text-muted= "(#{account.memberships.count})"
+    = active_link_to account_memberships_url, class: 'nav-link', active: [['account/members', 'account/invites'],[]] do
+      | Сотрудники
+      span.text-muted= " (#{account.memberships.count})"
+  li.nav-item= active_link_to 'Расчеты', account_billing_url, class: 'nav-link', active: [['account/billing'],[]]
+  li.nav-item= active_link_to 'API', account_api_url, class: 'nav-link', active: [['account/api'],[]]

@@ -45,7 +45,7 @@ module MembersHelper
     return if member.user.email_confirmed? || member.user.email.blank?
     buffer = ''
     buffer << '&nbsp;'
-    buffer << link_to('Подтвердить', send_email_confirmation_profile_membership_url(member), method: :post)
+    buffer << link_to('Подтвердить', send_email_confirmation_account_membership_url(member), method: :post)
     buffer.html_safe
   end
 

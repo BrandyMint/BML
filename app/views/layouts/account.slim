@@ -14,5 +14,8 @@ html
     .messages-centered
       == render 'layouts/messages'
     .narrow-container
-      == yield
+      - if content_for? :content
+        = yield :content
+      - else
+        = yield
     .bottom-space

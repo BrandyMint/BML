@@ -1,7 +1,5 @@
-class MembersController < ApplicationController
+class Account::MembersController < Account::BaseController
   layout 'account_settings'
-
-  before_action :require_login
 
   def index
     authorize Membership
@@ -45,7 +43,7 @@ class MembersController < ApplicationController
   private
 
   def success_redirect
-    redirect_to profile_memberships_path
+    redirect_to account_memberships_path
   end
 
   def member

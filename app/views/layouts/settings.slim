@@ -2,16 +2,20 @@ doctype html
 html
   head
     title= AppSettings.title
+    = bugsnag_script
     == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
     == csrf_meta_tags
     == include_gon
   body
-    == render 'layouts/account/topmenu', variant: nil
+    = render 'layouts/account/header'
+    .navbar-space
 
-    /.container.sub-top-menu
-      /== render 'layouts/settings/topmenu'
-
-    .page-content
-      .container
-        == yield
+    .messages-centered
+      == render 'layouts/messages'
+    .container
+      - if content_for? :content
+        = yield :content
+      - else
+        = yield
+    .bottom-space

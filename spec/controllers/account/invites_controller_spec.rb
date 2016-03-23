@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe InvitesController, type: :controller do
+RSpec.describe Account::InvitesController, type: :controller do
   include AccountControllerSupport
 
   let(:invite) { create :invite, account: account, user_inviter: user }

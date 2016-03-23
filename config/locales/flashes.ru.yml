@@ -21,3 +21,5 @@ ru:
     password_reset:
       created: 'Инструкции отправлены на ваш email'
       updated: 'Пароль изменён'
+    settings:
+      saved: Настройки сохранены
