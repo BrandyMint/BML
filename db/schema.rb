@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322085320) do
+ActiveRecord::Schema.define(version: 20160323145348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,10 +26,12 @@ ActiveRecord::Schema.define(version: 20160322085320) do
     t.string   "access_key",                 null: false
     t.integer  "clients_count",  default: 0, null: false
     t.string   "name"
+    t.integer  "tariff_id"
   end
 
   add_index "accounts", ["access_key"], name: "index_accounts_on_access_key", unique: true, using: :btree
   add_index "accounts", ["ident"], name: "index_accounts_on_ident", unique: true, using: :btree
+  add_index "accounts", ["tariff_id"], name: "index_accounts_on_tariff_id", using: :btree
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -119,6 +121,7 @@ ActiveRecord::Schema.define(version: 20160322085320) do
     t.string   "role",            default: "master", null: false
     t.string   "phone"
     t.string   "email"
+    t.datetime "deleted_at"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end
@@ -293,6 +296,23 @@ ActiveRecord::Schema.define(version: 20160322085320) do
 
   add_index "segments", ["landing_id"], name: "index_segments_on_landing_id", using: :btree
 
+  create_table "tariffs", force: :cascade do |t|
+    t.string   "title",                                    null: false
+    t.string   "description"
+    t.string   "slug",                                     null: false
+    t.integer  "price_per_month_cents",    default: 0,     null: false
+    t.string   "price_per_month_currency", default: "RUB", null: false
+    t.integer  "price_per_site_cents",     default: 0,     null: false
+    t.string   "price_per_site_currency",  default: "RUB", null: false
+    t.integer  "price_per_lead_cents",     default: 0,     null: false
+    t.string   "price_per_lead_currency",  default: "RUB", null: false
+    t.integer  "free_days_count",          default: 0,     null: false
+    t.integer  "free_leads_count",         default: 0,     null: false
+    t.boolean  "hidden",                   default: false, null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email",                           null: false
@@ -371,6 +391,7 @@ ActiveRecord::Schema.define(version: 20160322085320) do
   add_index "web_addresses", ["account_id"], name: "index_web_addresses_on_account_id", using: :btree
   add_index "web_addresses", ["zone", "subdomain"], name: "index_web_addresses_on_zone_and_subdomain", unique: true, using: :btree
 
+  add_foreign_key "accounts", "tariffs"
   add_foreign_key "asset_files", "accounts"
   add_foreign_key "asset_files", "landings"
   add_foreign_key "asset_files", "variants"

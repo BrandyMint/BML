@@ -68,6 +68,18 @@ ru:
     many: '%{count} сайтов'
     other: '%{count} сайтов'
 
+  days_count:
+    one: '%{count} день'
+    few: '%{count} дня'
+    many: '%{count} дней'
+    other: '%{count} дней'
+
+  leads_count:
+    one: '%{count} заявка'
+    few: '%{count} заявки'
+    many: '%{count} заявок'
+    other: '%{count} заявок'
+
   buttons:
     restore: 'Восстановить'
   user:
