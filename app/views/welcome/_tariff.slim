@@ -1,0 +1,25 @@
+.col-sm-6.welcome-tariff
+  .welcome-tariff-frame
+    h3.welcome-tariff-header= tariff.title
+    ul.welcome-tariff-list.welcome-tariff-list-bold
+      li
+        span.welcome-tariff-fixed-width-text
+          ' #{humanized_money_with_symbol(tariff.price_per_month)}
+        span.text-muted в месяц
+      li
+        span.welcome-tariff-fixed-width-text
+          ' #{humanized_money_with_symbol(tariff.price_per_site)}
+        span.text-muted за сайт
+      li
+        span.welcome-tariff-fixed-width-text
+          ' #{humanized_money_with_symbol(tariff.price_per_lead)}
+        span.text-muted за заявку
+
+    - if tariff.free_days_count > 0 || tariff.free_leads_count > 0
+      hr.welcome-tariff-hr
+      h2.welcome-tariff-free-header Бесплатно!
+      ul.welcome-tariff-list
+        - if tariff.free_days_count > 0
+          li Первые #{t('days_count', count: tariff.free_days_count)}
+        - if tariff.free_leads_count > 0
+          li Первые #{t('leads_count', count: tariff.free_leads_count)}
