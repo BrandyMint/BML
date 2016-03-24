@@ -3,8 +3,8 @@ class API < Grape::API
 
   default_format :json
 
-  # С этим не работает swagger
-  # format :json
+  # Бывало что с форматом не работает swagger
+  format :json
   version VERSION
 
   mount API::Landings

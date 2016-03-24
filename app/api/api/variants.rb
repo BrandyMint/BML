@@ -19,7 +19,6 @@ class API::Variants < Grape::API
         end
       end
 
-      # content-type: application/json
       desc 'Вносим изменения в существующий вариант'
       params do
         optional :blocks, type: Array[Hash], desc: 'JSON-строка с массивом данных секции (пример: https://github.com/BrandyMint/BML/blob/master/app/models/landing_examples.rb#L2)'
@@ -34,7 +33,7 @@ class API::Variants < Grape::API
 
       desc 'Получаем данные сайта'
       get do
-        present variant.reload, with: Entities::VariantEntity
+        present variant, with: Entities::VariantEntity
       end
     end
   end
