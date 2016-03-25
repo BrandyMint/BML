@@ -22,7 +22,7 @@ ru:
           пройдите по этой ссылке: %{url}
     lead_mailer:
       new_lead_email:
-        subject: 'Новая заявка %{public_number}'
+        subject: 'Новая заявка %{number}'
         body: |
           Создана новая заявка.<br>
           %{data}
