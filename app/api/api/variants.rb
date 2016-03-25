@@ -21,12 +21,18 @@ class API::Variants < Grape::API
 
       desc 'Вносим изменения в существующий вариант'
       params do
+        optional :title, type: String
+        optional :theme_name, type: String
+        optional :is_boxed, type: Boolean
         optional :blocks, type: Array[Hash], desc: 'JSON-строка с массивом данных секции (пример: https://github.com/BrandyMint/BML/blob/master/app/models/landing_examples.rb#L2)'
       end
       put do
         if params[:blocks].is_a? Array
           SectionsUpdater.new(variant).update blocks: params[:blocks]
         end
+
+        variant_attributes = params.slice(:is_boxed, :theme_name, :title)
+        variant.update_attributes! variant_attributes
 
         present variant.reload, with: Entities::VariantEntity
       end
