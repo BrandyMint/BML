@@ -1,6 +1,6 @@
 class Tariff < ActiveRecord::Base
   BASE_SLUG = 'base'.freeze
-  ROOT_SLUG = 'root'.freeze
+  FREE_SLUG = 'free'.freeze
   PROFI_SLUG = 'profi'.freeze
 
   scope :published, -> { where hidden: false }
@@ -23,7 +23,15 @@ class Tariff < ActiveRecord::Base
            allow_nil: false,
            numericality: { greater_than_or_equal: 0, less_than: Settings.maximal_money }
 
+  def self.default
+    base
+  end
+
   def self.base
     find_by_slug! BASE_SLUG
+  end
+
+  def self.free
+    find_by_slug! FREE_SLUG
   end
 end

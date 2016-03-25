@@ -1,15 +1,15 @@
 .col-sm-6.welcome-tariff
   .welcome-tariff-frame
-    h3.welcome-tariff-header= tariff.title
+    h3.welcome-tariff-header= "Тарифф #{tariff.title}"
     ul.welcome-tariff-list.welcome-tariff-list-bold
-      li
-        span.welcome-tariff-fixed-width-text
-          ' #{humanized_money_with_symbol(tariff.price_per_month)}
-        span.text-muted в месяц
+      /li
+        /span.welcome-tariff-fixed-width-text
+          /' #{humanized_money_with_symbol(tariff.price_per_month)}
+        /span.text-muted в месяц
       li
         span.welcome-tariff-fixed-width-text
           ' #{humanized_money_with_symbol(tariff.price_per_site)}
-        span.text-muted за сайт
+        span.text-muted за сайт в месяц
       li
         span.welcome-tariff-fixed-width-text
           ' #{humanized_money_with_symbol(tariff.price_per_lead)}
@@ -17,9 +17,9 @@
 
     - if tariff.free_days_count > 0 || tariff.free_leads_count > 0
       hr.welcome-tariff-hr
-      h2.welcome-tariff-free-header Бесплатно!
+      -# h2.welcome-tariff-free-header Бесплатно!
       ul.welcome-tariff-list
         - if tariff.free_days_count > 0
-          li Первые #{t('days_count', count: tariff.free_days_count)}
+          li Первые #{t('days_count', count: tariff.free_days_count)} бесплатно.
         - if tariff.free_leads_count > 0
-          li Первые #{t('leads_count', count: tariff.free_leads_count)}
+          li Первые #{t('leads_count', count: tariff.free_leads_count)} бесплатно.

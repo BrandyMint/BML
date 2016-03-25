@@ -21,6 +21,6 @@ class WelcomeController < ApplicationController
   end
 
   def tariffs
-    Tariff.published
+    [Tariff.base]
   end
 end

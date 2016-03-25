@@ -13,7 +13,7 @@ html
     .welcome-nav-header
       = link_to 'Вход для везунчиков', login_path, class: 'btn welcome-loginButton'
       - if current_user.present?
-        .welcome-nav-link-wrapper= link_to "Продолжить как #{current_user}", account_path, class: 'welcome-nav-link'
+        .welcome-nav-link-wrapper= link_to "Продолжить как #{current_user}", account_root_path, class: 'welcome-nav-link'
     .vertical-center
       .container.welcome-hero
         == render 'layouts/messages'
