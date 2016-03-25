@@ -21,6 +21,10 @@ class Variant < ActiveRecord::Base
     sections.any?
   end
 
+  def public_url
+    landing.url
+  end
+
   def usable_title
     title.presence || landing.head_title.presence || landing.title
   end

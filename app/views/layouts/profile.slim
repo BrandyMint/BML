@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title= AppSettings.title
+    == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    == javascript_include_tag 'application', 'data-turbolinks-track' => true
+    == csrf_meta_tags
+    == include_gon
+  body
+    header.auth-header
+      h1.auth-header-title.bml-logo
+        - if current_account.present?
+          = link_to AppSettings.title, account_root_url, class: 'auth-header-link'
+        - else
+          = link_to AppSettings.title, root_url, class: 'auth-header-link'
+    .navbar-space
+    .navbar-space
+
+    .messages-centered
+      == render 'layouts/messages'
+    .narrow-container
+      - if content_for? :content
+        = yield :content
+      - else
+        = yield
+    .bottom-space

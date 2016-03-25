@@ -3,7 +3,7 @@ class ProfileController < ApplicationController
   before_action :require_login
   skip_before_action :require_login, only: [:confirm_email]
 
-  layout 'account'
+  layout 'profile'
 
   def show
     render locals: { user: current_user }
