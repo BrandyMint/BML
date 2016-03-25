@@ -19,7 +19,7 @@ module AccountControllerSupport
       allow(controller).to receive(:current_member).and_return membership
       @request.env['HTTP_REFERER'] = 'http://new.example.com:3000/back'
 
-      current_account = account # rubocop:disable Lint/UselessAssignment
+      controller.send(:current_account=, account)
     end
   end
 end

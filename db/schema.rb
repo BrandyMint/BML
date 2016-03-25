@@ -121,7 +121,6 @@ ActiveRecord::Schema.define(version: 20160323145348) do
     t.string   "role",            default: "master", null: false
     t.string   "phone"
     t.string   "email"
-    t.datetime "deleted_at"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end

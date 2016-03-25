@@ -3,6 +3,10 @@ class AccountsController < ApplicationController
 
   layout 'account_settings'
 
+  def index
+    render locals: { accounts: current_user.accounts.ordered }, layout: 'account'
+  end
+
   def edit
     redirect_to account_name_url
   end
