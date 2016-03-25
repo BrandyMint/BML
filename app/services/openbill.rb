@@ -6,7 +6,6 @@ module Openbill
 
   class << self
     include Singleton
-    attr_writer :current
 
     delegate :create_account, :get_account_by_uri, :make_transaction, to: :current
 
@@ -15,7 +14,7 @@ module Openbill
     end
 
     def current
-      @current || raise('No current Openbill Service initialized')
+      @current ||= Openbill::Service.rails_initialize
     end
   end
 end
