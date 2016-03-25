@@ -8,4 +8,8 @@ module AccountTariff
   def current_tariff
     tariff || Tariff.default
   end
+
+  def features
+    AccountFeatures.new(account: self, tariff: current_tariff)
+  end
 end

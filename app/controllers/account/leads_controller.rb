@@ -28,7 +28,11 @@ class Account::LeadsController < Landing::BaseController
   end
 
   def leads
-    paginate LeadsQuery.new(filter: leads_filter).call
+    if current_account.features.leads_limit
+      TariffLimitedLeadsQuery.new(filter: leads_filter).call
+    else
+      paginate LeadsQuery.new(filter: leads_filter).call
+    end
   end
 
   def leads_filter
@@ -37,6 +41,7 @@ class Account::LeadsController < Landing::BaseController
 
   def filter_params
     params.merge(
+      account: current_account,
       collection: current_collection,
       variant: current_variant
     )
