@@ -6,7 +6,7 @@ RSpec.describe Account::InvitesController, type: :controller do
   let(:invite) { create :invite, account: account, user_inviter: user }
 
   describe 'POST create' do
-    before do
+    before :each do
       allow_any_instance_of(InviteMailer).to receive(:added_to_account)
     end
 
