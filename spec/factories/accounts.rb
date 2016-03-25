@@ -1,7 +1,5 @@
 FactoryGirl.define do
   factory :account do
-    tariff
-
     after :build do |account|
       account.class.skip_callback(:commit, :after, :attach_billing)
     end

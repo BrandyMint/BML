@@ -1,5 +1,13 @@
 class SeedTariffes
   def perform
+    create_base
+    create_profi
+    create_free
+  end
+
+  private
+
+  def create_base
     create_tariff(
       Tariff::BASE_SLUG,
       title: 'Базовый',
@@ -9,7 +17,9 @@ class SeedTariffes
       free_days_count: 7,
       free_leads_count: 5
     )
+  end
 
+  def create_profi
     create_tariff(
       Tariff::PROFI_SLUG,
       title: 'Профи',
@@ -17,7 +27,9 @@ class SeedTariffes
       price_per_site: Money.new(0, :rub),
       price_per_lead: Money.new(1000, :rub)
     )
+  end
 
+  def create_free
     create_tariff(
       Tariff::FREE_SLUG,
       title: 'Бесплатный',
@@ -27,8 +39,6 @@ class SeedTariffes
       hidden: true
     )
   end
-
-  private
 
   def create_tariff(slug, attributes)
     tariff = Tariff.find_by_slug(slug)
