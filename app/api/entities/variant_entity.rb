@@ -2,7 +2,7 @@ class Entities::VariantEntity < Grape::Entity
   expose :uuid
   expose :usable_title, as: :title
 
-  expose :public_url
+  expose :public_url, :theme_name, :is_boxed
 
   expose :created_at, :updated_at
 

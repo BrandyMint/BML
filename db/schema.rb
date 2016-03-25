@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325071615) do
+ActiveRecord::Schema.define(version: 20160325081200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -361,6 +361,8 @@ ActiveRecord::Schema.define(version: 20160325071615) do
     t.uuid     "uuid",           default: "uuid_generate_v4()", null: false
     t.integer  "leads_count",    default: 0,                    null: false
     t.integer  "account_id",                                    null: false
+    t.boolean  "is_boxed",       default: true,                 null: false
+    t.string   "theme_name"
   end
 
   add_index "variants", ["account_id"], name: "index_variants_on_account_id", using: :btree
