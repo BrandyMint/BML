@@ -1,0 +1,28 @@
+.welcome-nav-header
+  position: absolute
+  @media screen and (max-width: 660px)
+    position: relative
+  text-align: center
+  width: 100%
+  padding: 2em 3em
+  // Чтобы быть выше центральной области (vertical-container) чтобы
+  // не пропадала кнопка
+
+.welcome-nav-link
+  line-height: 50px
+  font-size: 80%
+
+  @extend .welcome-link
+
+.welcome-nav-loginButton
+  @extend .btn
+  @extend .btn-primary-outline
+  color: white
+  border-color: white
+  opacity: 0.8
+  &:hover
+    opacity: 1
+    background-color: white
+    color: black
+    border-color: white
+
