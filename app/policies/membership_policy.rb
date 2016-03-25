@@ -4,10 +4,14 @@ class MembershipPolicy < AccountPolicy
   end
 
   def destroy?
-    member.owner? || master?
+    member.admin? && !resource.owner? && not_self?
   end
 
   private
+
+  def not_self?
+    member != resource
+  end
 
   def master?
     !resource.owner? && member.master?
