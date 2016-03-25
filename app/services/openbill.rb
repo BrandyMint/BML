@@ -5,6 +5,7 @@ module Openbill
   TRANSACTIONS_TABLE_NAME = :openbill_transactions
 
   class << self
+    include Singleton
     attr_writer :current
 
     delegate :create_account, :get_account_by_uri, :make_transaction, to: :current
