@@ -7,7 +7,7 @@ class WelcomeController < ApplicationController
   layout 'welcome'
 
   def index
-    render locals: { variant_uuid: current_variant.uuid }
+    render locals: { variant_uuid: current_variant.uuid, tariffs: tariffs }
   end
 
   private
@@ -18,5 +18,9 @@ class WelcomeController < ApplicationController
 
   def current_variant
     current_landing.default_variant
+  end
+
+  def tariffs
+    Tariff.published
   end
 end
