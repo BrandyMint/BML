@@ -2,14 +2,14 @@
   .welcome-tariff-frame
     h3.welcome-tariff-header= "Тарифф #{tariff.title}"
     ul.welcome-tariff-list.welcome-tariff-list-bold
-      /li
-        /span.welcome-tariff-fixed-width-text
-          /' #{humanized_money_with_symbol(tariff.price_per_month)}
-        /span.text-muted в месяц
+      li
+        span.welcome-tariff-fixed-width-text
+          ' #{humanized_money_with_symbol(tariff.price_per_month)}
+        span.text-muted в месяц
       li
         span.welcome-tariff-fixed-width-text
           ' #{humanized_money_with_symbol(tariff.price_per_site)}
-        span.text-muted за сайт в месяц
+        span.text-muted за сайт
       li
         span.welcome-tariff-fixed-width-text
           ' #{humanized_money_with_symbol(tariff.price_per_lead)}
