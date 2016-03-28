@@ -1,3 +1,1 @@
-Openbill.initialize_current do
-  Openbill::Service.rails_initialize
-end
+Openbill.config.database = ActiveRecord::Base.connection.instance_variable_get('@config')

@@ -1,20 +1,25 @@
 module Billing
-  CLOUDPAYMENTS_ACCOUNT_URI = Openbill.generate_uri :system, :payments
-  SUBSCRIPTION_ACCOUNT_URI  = Openbill.generate_uri :system, :subscription
+  NS = :system
 
   class << self
     def cloudpayments_account
-      Openbill.get_account_by_uri(CLOUDPAYMENTS_ACCOUNT_URI) || Openbill.create_account(
-        CLOUDPAYMENTS_ACCOUNT_URI,
-        details: 'Счет с которого поступает оплата'
-      )
+      account :cloutpayments, 'Счет с которого поступает оплата'
     end
 
     def subscription_account
-      Openbill.get_account_by_uri(SUBSCRIPTION_ACCOUNT_URI) || Openbill.create_account(
-        SUBSCRIPTION_ACCOUNT_URI,
-        details: 'Счет абонентской платы'
-      )
+      account :subscriptions, 'Абонентская плата'
+    end
+
+    private
+
+    # Находит, или создает аккаунт с указанным именем
+    #
+    def account(path, details)
+      # Создаем uri аккаунта из его названия
+      uri = Openbill.generate_uri NS, path
+
+      Openbill.get_account_by_uri(uri) ||
+        Openbill.create_account(uri, details: details)
     end
   end
 end
