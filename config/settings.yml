@@ -1,6 +1,7 @@
 tld_length: <%= ENV['TLD'] || 1 %>
 fallback_image: /images/fallback/product-none.png
 maximal_money: 100_000_000
+maximal_per_page: 100
 exclusion_landing_paths:
   - /assets
   - /images

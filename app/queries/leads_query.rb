@@ -13,7 +13,9 @@ class LeadsQuery
 
     s = s.where(variant: filter.variant) if filter.variant.present?
 
-    s.order order
+    s = s.order order
+    s = limit s
+    s
   end
 
   private
@@ -25,6 +27,11 @@ class LeadsQuery
   def order
     return { id: :desc } unless sort_field_present?
     { filter.sort_field => sort_order }
+  end
+
+  def limit(s)
+    s = s.limit filter.limit if filter.limit.present?
+    s
   end
 
   def sort_order

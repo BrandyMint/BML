@@ -23,7 +23,15 @@ class ApplicationController < ActionController::Base
   def paginate(scope)
     scope
       .page(params[:page])
-      .per(params[:per])
+      .per(safe_per_page)
+  end
+
+  def safe_per_page
+    per_page.to_i <= Settings.maximal_per_page ? per_page : Settings.maximal_per_page
+  end
+
+  def per_page
+    params[:per]
   end
 
   def setup_gon_locales

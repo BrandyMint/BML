@@ -14,6 +14,7 @@
           th= field.title
     tbody
       == render partial: 'lead', collection: leads, locals: { fields: fields }
-  nav
-    = paginate leads
+  - if leads.respond_to? :total_pages
+    nav
+      = paginate leads
   -#= render 'export_links'
