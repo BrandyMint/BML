@@ -3,6 +3,8 @@ class Tariff < ActiveRecord::Base
   FREE_SLUG = 'free'.freeze
   PROFI_SLUG = 'profi'.freeze
 
+  BLOCKED_LEADS_COUNT = 5
+
   scope :published, -> { where hidden: false }
 
   monetize :price_per_month_cents,
@@ -33,5 +35,9 @@ class Tariff < ActiveRecord::Base
 
   def self.free
     find_by_slug! FREE_SLUG
+  end
+
+  def blocked_leads_count
+    BLOCKED_LEADS_COUNT
   end
 end

@@ -18,10 +18,10 @@ module AccountBilling
   end
 
   def find_billing
-    Openbill.get_account_by_uri account_uri
+    Openbill.current.get_account_by_uri account_uri
   end
 
   def attach_billing
-    Openbill.create_account account_uri
+    Openbill.current.create_account account_uri
   end
 end
