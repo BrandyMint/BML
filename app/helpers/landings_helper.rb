@@ -39,12 +39,6 @@ module LandingsHelper
   private
 
   def variant_store_state(variant)
-    data = Entities::VariantEntity.represent(variant).as_json
-    {
-      application: {
-        variantUuid: variant.uuid
-      },
-      blocks: data[:sections]
-    }
+    Entities::VariantEntity.represent(variant).as_json
   end
 end
