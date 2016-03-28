@@ -14,7 +14,11 @@ module Openbill
     end
 
     def current
-      @current ||= Openbill::Service.rails_initialize
+      @current ||= @_init_current_block.call
+    end
+
+    def initialize_current(&block)
+      @_init_current_block = block || raise('No current Openbill Service initialized')
     end
   end
 end
