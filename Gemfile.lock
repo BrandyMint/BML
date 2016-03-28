@@ -42,12 +42,6 @@ GIT
       activesupport (>= 2.3.2)
 
 GIT
-  remote: git://github.com/dapi/openbill-ruby.git
-  revision: 26262c8cfe8bc64561e850d87a167b5eba09eb33
-  specs:
-    openbill-ruby (0.1.4)
-
-GIT
   remote: git://github.com/fnando/i18n-js.git
   revision: 0de86694911b9d4eaa55c25ef689350e4bce215c
   specs:
@@ -394,6 +388,7 @@ GEM
     omniauth-yandex (0.0.2)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
+    openbill-ruby (0.1.5)
     parser (2.3.0.6)
       ast (~> 2.2)
     pg (0.18.4)
@@ -723,7 +718,7 @@ DEPENDENCIES
   omniauth
   omniauth-twitter
   omniauth-yandex
-  openbill-ruby!
+  openbill-ruby (= 0.1.5)
   pg (~> 0.15)
   phone!
   poltergeist

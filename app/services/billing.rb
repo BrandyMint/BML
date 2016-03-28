@@ -3,7 +3,7 @@ module Billing
 
   class << self
     def cloudpayments_account
-      account :cloutpayments, 'Счет с которого поступает оплата'
+      account :cloudpayments, 'Счет с которого поступает оплата'
     end
 
     def subscription_account
