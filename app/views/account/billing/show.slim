@@ -1,3 +1,17 @@
 .row
   .col-lg-12
     p Баланс #{humanized_money_with_symbol account.billing_account.amount}
+    p Текущий тариф: #{account.current_tariff}
+
+    - if Rails.env.development?
+      - if tariff_change.present?
+        p Тариф #{tariff_change.to_tariff} вступит в силу с #{l(tariff_change.activates_at, format: :long)}
+        = link_to t('tariff.cancel_change'), account_billing_path, method: :delete, class: 'btn btn-danger'
+      - else
+        = simple_form_for account, url: account_billing_path do |f|
+          - if tariffs_options.one?
+            = f.hidden_field :tariff_id, value: tariffs_options.first.id
+            = f.submit t('tariff.change_button', title: tariffs_options.first), class: 'btn btn-success'
+          - else
+            = f.input :tariff_id, collection: tariffs_options, selected: account.current_tariff, include_blank: false, label: t('tariff.next')
+            = f.submit t('shared.save'), class: 'btn btn-primary'

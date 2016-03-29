@@ -1,6 +1,6 @@
 require 'sidekiq'
 require 'sidekiq-status'
-# CONFIG_FILE = './config/crontab.yml'
+CONFIG_FILE = './config/crontab.yml'.freeze
 
 if Rails.env.production?
   Sidekiq.configure_server do |config|
@@ -16,7 +16,7 @@ if Rails.env.production?
       chain.add Sidekiq::Status::ClientMiddleware
     end
 
-    # Sidekiq::Cron::Job.load_from_hash YAML.load_file(CONFIG_FILE)
+    Sidekiq::Cron::Job.load_from_hash YAML.load_file(CONFIG_FILE)
   end
 
   Sidekiq.configure_client do |config|

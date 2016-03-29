@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325081200) do
+ActiveRecord::Schema.define(version: 20160329105920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -296,6 +296,19 @@ ActiveRecord::Schema.define(version: 20160325081200) do
 
   add_index "segments", ["landing_id"], name: "index_segments_on_landing_id", using: :btree
 
+  create_table "tariff_changes", force: :cascade do |t|
+    t.integer  "account_id",     null: false
+    t.integer  "from_tariff_id", null: false
+    t.integer  "to_tariff_id",   null: false
+    t.datetime "activates_at",   null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "tariff_changes", ["account_id"], name: "index_tariff_changes_on_account_id", using: :btree
+  add_index "tariff_changes", ["activates_at", "account_id"], name: "index_tariff_changes_on_activates_at_and_account_id", unique: true, using: :btree
+
   create_table "tariffs", force: :cascade do |t|
     t.string   "title",                                    null: false
     t.string   "description"
@@ -311,6 +324,7 @@ ActiveRecord::Schema.define(version: 20160325081200) do
     t.boolean  "hidden",                   default: false, null: false
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+    t.datetime "deleted_at"
   end
 
   add_index "tariffs", ["slug"], name: "index_tariffs_on_slug", unique: true, using: :btree
@@ -423,6 +437,9 @@ ActiveRecord::Schema.define(version: 20160325081200) do
   add_foreign_key "phone_confirmations", "users"
   add_foreign_key "sections", "asset_files", column: "background_image_id"
   add_foreign_key "segments", "landings"
+  add_foreign_key "tariff_changes", "accounts"
+  add_foreign_key "tariff_changes", "tariffs", column: "from_tariff_id"
+  add_foreign_key "tariff_changes", "tariffs", column: "to_tariff_id"
   add_foreign_key "utm_values", "accounts"
   add_foreign_key "utm_values", "landings"
   add_foreign_key "variants", "accounts"
