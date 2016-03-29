@@ -1,12 +1,9 @@
 .welcome-form
-  form accept-charset="UTF-8" action=post_lead_url method="post"
-    input name="utf8" type="hidden" value="✓" /
-    input#request_form_variant_uuid name="variant_uuid" type="hidden" value=variant_uuid /
-    .form-group.email.optional.request_form_email
-      -# label.email.optional.control-label for="request_form_email"  E-mail
-      input#request_form_email.string.email.optional.form-control name="name" type="text" required="required" autofocus="autofocus" placeholder="Ваше полное имя"/
-    .form-group.email.optional.request_form_email
-      -# label.email.optional.control-label for="request_form_email"  E-mail
-      input#request_form_email.string.email.optional.form-control name="email" type="email" required="required" placeholder="E-mail"/
-    div.welcome-form-footer
-      input.btn.btn-primary.welcome-form-submit name="commit" type="submit" value=("Подключиться") /
+  = simple_form_for registration_form, url: signup_url do |f|
+    .form-inputs
+      = f.input :name, required: true, autofocus: true, label: false, placeholder: 'Ваше имя'
+      = f.input :email, required: true, label: false, placeholder: 'e-mail'
+      = f.input :phone, label: false, placeholder: 'Телефон'
+      = f.input :password, required: true, label: false, placeholder: 'Пароль'
+    .welcome-form-footer
+      = f.submit 'Зарегистрироваться', class: 'btn btn-primary welcome-form-submit'

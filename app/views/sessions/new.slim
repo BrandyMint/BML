@@ -12,9 +12,8 @@
       = link_to 'Продолжить..', account_root_url
       hr
     - else
-      - unless Rails.env.production?
-        div Нет аккаунта?
-        = link_to 'Зарегистрироваться', signup_url
-        hr
+      div Нет аккаунта?
+      = link_to 'Зарегистрироваться', signup_url
+      hr
     div Забыли пароль?
     = link_to 'Восстановить', new_password_reset_url
