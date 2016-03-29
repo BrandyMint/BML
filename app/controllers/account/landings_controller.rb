@@ -1,12 +1,12 @@
 class Account::LandingsController < Account::BaseController
-  layout 'account'
+  layout 'account_settings'
 
   def index
     render locals: { landings: landings }
   end
 
   def new
-    render locals: { landing: build_landing }, layout: 'account_middle'
+    render locals: { landing: build_landing }
   end
 
   def edit

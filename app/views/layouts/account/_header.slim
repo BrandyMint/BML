@@ -1,10 +1,8 @@
 nav.navbar.navbar-light.navbar-top.navbar-fixed-top
-  .narrow-container
+  .container
     = link_to account_root_url, class: 'navbar-brand' do
       = fa_icon :bullseye
     ul.nav.navbar-nav.navbar-bml
       li.nav-item= active_link_to current_account.title, account_landings_path, class: 'nav-link', active: :exclusive 
-      li.nav-item= active_link_to 'Настройки', edit_account_url, class: 'nav-link', active: [['accounts'],['edit', 'update']]
-      -# li.nav-item= active_link_to 'Сотрудники', edit_account_url, class: 'nav-link'
     .pull-xs-right
       = render 'user_dropdown'

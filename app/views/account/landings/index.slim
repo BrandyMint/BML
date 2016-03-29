@@ -1,6 +1,8 @@
-.text-center.m-t-lg.m-b-lg
+.pull-right
   = link_to 'Создать новый сайт', new_account_landing_path, class: 'btn btn-success-outline'
-table.table.table-condensed.table-hover.table-projects.table-centered.table-striped
+
+.clearfix
+table.table.table-condensed.table-hover.table-projects.table-striped.m-t-md
   tbody
     - landings.each do |l|
       tr
