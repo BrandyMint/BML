@@ -144,6 +144,7 @@ gem 'enumerize'
 gem 'validates'
 gem 'smsc'
 gem 'i18n-js', github: 'fnando/i18n-js'
+gem 'russian'
 gem 'gon'
 
 # Use ActiveModel has_secure_password

@@ -1,5 +1,5 @@
 class FormBase
-  include Virtus::Model
+  include Virtus.model
   include ActiveModel::Validations
 
   def persisted?
