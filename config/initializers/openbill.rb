@@ -12,6 +12,5 @@ begin
 
   # Когда база еще не готова, не расстраиваемся
 rescue Sequel::DatabaseError => err
-  binding.pry if Rails.env.development?
-  puts err
+  Rails.logger.error err
 end
