@@ -7,7 +7,11 @@ class WelcomeController < ApplicationController
   layout 'welcome'
 
   def index
-    render locals: { variant_uuid: current_variant.uuid, tariffs: tariffs }
+    render locals: {
+      registration_form: RegistrationForm.new,
+      variant_uuid: current_variant.uuid,
+      tariffs: tariffs
+    }
   end
 
   private
