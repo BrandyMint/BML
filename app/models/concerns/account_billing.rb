@@ -2,7 +2,7 @@ module AccountBilling
   extend ActiveSupport::Concern
 
   included do
-    after_commit :attach_billing, on: :create
+    after_commit :billing_account, on: :create
   end
 
   delegate :amount, to: :billing_account
