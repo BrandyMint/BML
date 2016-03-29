@@ -26,7 +26,7 @@ gem 'activeadmin', github: 'activeadmin/activeadmin'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 
-gem 'openbill-ruby', '0.1.7'
+gem 'openbill-ruby', '0.1.9'
 
 # gem 'openbill-ruby', github: 'dapi/openbill-ruby'
 # gem 'openbill-ruby', path: '../openbill-ruby'
