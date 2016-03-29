@@ -1,8 +1,22 @@
-- content_for :content do
-  .row
-    .col-md-3
-      = render 'account_settings_submenu', account: current_account
-    .col-md-9
-      = yield
+doctype html
+html
+  head
+    title= AppSettings.title
+    = bugsnag_script
+    == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    == javascript_include_tag 'application', 'data-turbolinks-track' => true
+    == csrf_meta_tags
+    == include_gon
+  body
+    = render 'layouts/account/header'
+    .navbar-space
 
-= render template: 'layouts/settings'
+    .messages-centered
+      == render 'layouts/messages'
+    .container
+      .row
+        .col-md-3
+          = render 'account_settings_submenu', account: current_account
+        .col-md-9
+          = yield
+    .bottom-space

@@ -1,4 +1,9 @@
 ul.nav.nav-pills.nav-stacked
+  li.nav-item
+    = active_link_to account_landings_url, class: 'nav-link', active: [['account/landings'],[]] do
+      | Сайты
+      span.text-muted= " (#{account.landings.count})"
+
   li.nav-item= active_link_to 'Название аккаунта', account_name_url, class: 'nav-link', active: [['account/name'],[]]
   li.nav-item= active_link_to 'Адрес (домен)', account_domains_url, class: 'nav-link', active: [['account/domains'],[]]
   li.nav-item
