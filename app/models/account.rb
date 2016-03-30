@@ -34,6 +34,10 @@ class Account < ActiveRecord::Base
     name.presence || title
   end
 
+  def to_label
+    to_s
+  end
+
   def title
     current_domain
   end
