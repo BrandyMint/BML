@@ -24,8 +24,6 @@ class Landing < ActiveRecord::Base
   has_many :variants, dependent: :destroy
   validates :title, presence: true
 
-  after_create :create_default_variant
-
   scope :ordered, -> { order 'id desc' }
   scope :active, -> { all }
 
@@ -60,11 +58,5 @@ class Landing < ActiveRecord::Base
 
   def default_variant
     @_default_variant ||= variants.active.ordered.first || variants.ordered.first
-  end
-
-  private
-
-  def create_default_variant
-    variants.create!
   end
 end

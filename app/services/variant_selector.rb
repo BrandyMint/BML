@@ -50,8 +50,8 @@ class VariantSelector
   end
 
   def param_variant
-    return nil unless params[:variant_id].present?
-    active_variants.find params[:variant_id]
+    return nil unless params[:variant_uuid].present?
+    active_variants.find_by_uuid params[:variant_uuid]
   end
 
   def calculate_variant

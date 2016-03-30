@@ -52,9 +52,12 @@ class Account::LandingsController < Account::BaseController
   def create_landing!
     landing = build_landing
     landing.assign_attributes permitted_params
-    landing.save!
-    v = landing.variants.create!
-    SectionsUpdater.new(v, regenerate_uuid: true).update(LandingExamples::EXAMPLE1)
+
+    landing.transaction do
+      landing.save!
+      v = landing.variants.create!
+      SectionsUpdater.new(v, regenerate_uuid: true).update(LandingExamples::EXAMPLE1)
+    end
 
     landing
   end
