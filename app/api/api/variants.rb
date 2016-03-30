@@ -2,17 +2,18 @@ class API::Variants < Grape::API
   include StrongParams
   include Authorization
 
-  DEFAULT_TITLE = 'Без названия'
-  BLANK_UUID = 'blank'
+  DEFAULT_TITLE = 'Без названия'.freeze
+  BLANK_UUID = 'blank'.freeze
 
   before do
     header 'Access-Control-Allow-Origin', '*'
   end
 
   helpers do
-    def update_variant(variant = nil, params)
-
-      unless variant.present?
+    def update_variant(params, uuid = nil)
+      if uuid.present?
+        variant = current_account.variants.find_by_uuid! uuid unless uuid == BLANK_UUID
+      else
         landing = current_account.landings.create! title: params[:title] || DEFAULT_TITLE
         variant = landing.variants.create!
       end
@@ -42,7 +43,7 @@ class API::Variants < Grape::API
       optional :blocks,     type: Array[Hash], desc: 'JSON-строка с массивом данных секции (пример: https://github.com/BrandyMint/BML/blob/master/app/models/landing_examples.rb#L2)'
     end
     post do
-      update_variant nil, params
+      update_variant params
     end
 
     namespace ':uuid' do
@@ -54,12 +55,7 @@ class API::Variants < Grape::API
         optional :blocks,     type: Array[Hash], desc: 'JSON-строка с массивом данных секции (пример: https://github.com/BrandyMint/BML/blob/master/app/models/landing_examples.rb#L2)'
       end
       put do
-        uuid = params[:uuid]
-        if uuid = BLANK_UUID
-        else
-          variant = current_account.variants.find_by_uuid! uuid
-        end
-        update_variant variant, params
+        update_variant params, params[:uuid]
       end
 
       desc 'Получаем данные сайта'

@@ -11,6 +11,10 @@ class Landing < ActiveRecord::Base
 
   has_many :collections, dependent: :destroy
 
+  # TODO: перенести на belongs_to
+  #
+  has_one :collection, class_name: 'Collection'
+
   has_many :segments, dependent: :delete_all
   has_many :clients, dependent: :delete_all
   has_many :utm_values, dependent: :delete_all
@@ -51,8 +55,7 @@ class Landing < ActiveRecord::Base
   end
 
   def default_collection
-    collections
-      .first_or_create!
+    collection || create_collection
   end
 
   def default_variant
