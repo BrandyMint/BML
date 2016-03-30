@@ -109,3 +109,7 @@ ru:
     no_invite: Это приглашение уже активировано или не существует
   account:
     members: Сотрудники
+  tariff:
+    next: Тариф на следующий месяц
+    cancel_change: 'Отменить переход'
+    change_button: 'Перейти на %{title} тариф'

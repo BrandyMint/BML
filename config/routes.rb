@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
       resource :name, controller: :name, only: [:show, :update]
       resource :domains, controller: :domains, only: [:show, :update]
-      resource :billing, controller: :billing, only: [:show, :update]
+      resource :billing, controller: :billing, only: [:show, :update, :destroy]
       resource :api, controller: :api, only: [:show, :update]
 
       resources :invites

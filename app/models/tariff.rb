@@ -1,11 +1,13 @@
 class Tariff < ActiveRecord::Base
+  include Archivable
+
   BASE_SLUG = 'base'.freeze
   FREE_SLUG = 'free'.freeze
   PROFI_SLUG = 'profi'.freeze
 
   BLOCKED_LEADS_COUNT = 5
 
-  scope :published, -> { where hidden: false }
+  scope :published, -> { alive.where hidden: false }
 
   monetize :price_per_month_cents,
            with_model_currency: :price_per_month_currency,
@@ -39,5 +41,9 @@ class Tariff < ActiveRecord::Base
 
   def blocked_leads_count
     BLOCKED_LEADS_COUNT
+  end
+
+  def to_s
+    title
   end
 end
