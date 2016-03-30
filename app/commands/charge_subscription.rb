@@ -14,7 +14,11 @@ class ChargeSubscription
       key: "subscription-#{account.id}-#{month}",
       amount: fee.total,
       details: fee.description,
-      meta: { gateway: :cloudpayments }
+      meta: { 
+        gateway: :cloudpayments,
+        month: month,
+        tariff_id: tariff.id
+        }
     )
   rescue => err
     Bugsnag.notify err, metaData: { fee: fee, account: account, tariff: tariff, month: month }
