@@ -74,6 +74,12 @@ ru:
     many: '%{count} дней'
     other: '%{count} дней'
 
+  days_count_genitive:
+    one: '%{count} дня'
+    few: '%{count} дней'
+    many: '%{count} дней'
+    other: '%{count} дней'
+
   leads_count:
     one: '%{count} заявка'
     few: '%{count} заявки'
@@ -109,3 +115,6 @@ ru:
     no_invite: Это приглашение уже активировано или не существует
   account:
     members: Сотрудники
+  services:
+    landing_period_fee:
+      description: '%{landing} - %{used_days}/%{period_days} - %{total}'
