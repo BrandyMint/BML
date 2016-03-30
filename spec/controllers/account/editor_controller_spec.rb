@@ -13,7 +13,7 @@ RSpec.describe Account::EditorController, type: :controller do
     controller.send 'current_account=', account
   end
 
-  let!(:landing) { create :landing, account: account }
+  let!(:landing) { create :landing, :with_variant, account: account }
 
   describe 'GET #show' do
     it 'returns http success' do

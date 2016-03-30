@@ -13,7 +13,8 @@ FactoryGirl.define do
     trait :root do
       ident { Account::ROOT_IDENT }
       after :create do |account|
-        create :landing, account: account, path: '/'
+        landing = create :landing, account: account, path: '/'
+        landing.variants.create!
       end
     end
   end

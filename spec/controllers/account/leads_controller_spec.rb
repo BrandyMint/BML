@@ -8,7 +8,7 @@ RSpec.describe Account::LeadsController, type: :controller do
   let!(:user) { create :user, :with_account }
   let(:account) { user.accounts.first }
 
-  let!(:landing) { create :landing, account: account }
+  let!(:landing) { create :landing, :with_variant, account: account }
 
   context 'без аккаунта не должно пускать' do
     it 'returns http success' do

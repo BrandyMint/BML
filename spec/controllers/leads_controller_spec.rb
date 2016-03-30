@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe LeadsController, type: :controller do
   let!(:account)     { create :account }
-  let!(:landing)     { create :landing, account: account }
+  let!(:landing)     { create :landing, :with_variant, account: account }
   let(:email)        { 'some@email.ru' }
   let(:name)         { 'somename' }
   let(:phone)        { '+79033891228' }

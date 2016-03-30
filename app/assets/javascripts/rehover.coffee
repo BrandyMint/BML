@@ -5,10 +5,15 @@ $(document).on 'ready page:load', ->
     unless $el.data 'saved'
       $el.data 'saved', class: $el.attr('class'), content: $el.html()
 
-    data = $el.data('rehover').hover
+    $rehover = $el.data('rehover')
 
-    $el.attr 'class', data.class
-    $el.html "<i class=\"fa fa-#{data.icon}\"/> #{data.title}"
+    if $rehover
+      data = $rehover.hover
+
+      $el.attr 'class', data.class
+      $el.html "<i class=\"fa fa-#{data.icon}\"/> #{data.title}"
+    else
+      console.warn?("No rehover data for", $el)
 
   onLeave = (button) ->
     $el = $ event.target

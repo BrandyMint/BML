@@ -9,6 +9,8 @@ RSpec.describe VariantSelector do
 
   let!(:account) { create :account }
 
+  let!(:landing) { create :landing, :with_variant, account: account }
+
   subject { described_class.new(host: host, path: path, session: session, cookies: cookies, params: params) }
 
   describe '#account' do
@@ -16,28 +18,24 @@ RSpec.describe VariantSelector do
   end
 
   describe '#landing' do
-    let!(:landing) { create :landing, account: account }
     let(:path) { landing.path }
 
     it { expect(subject.landing).to eq landing }
   end
 
   describe '#variant' do
-    let!(:landing) { create :landing, account: account }
     let(:path) { landing.path }
 
     it { expect(subject.variant).to eq landing.default_variant }
   end
 
   describe '#variant (default)' do
-    let!(:landing) { create :landing, account: account }
     let(:path) { '/' }
 
     it { expect(subject.variant).to eq landing.default_variant }
   end
 
   describe '#variant (unknown)' do
-    let!(:landing) { create :landing, account: account }
     let(:path) { 'unknown' }
 
     it { expect(subject.variant).to eq nil }

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ViewerController, type: :controller do
   include CurrentVariant
-  let!(:landing) { create :landing }
+  let!(:landing) { create :landing, :with_variant }
   let!(:variant) { landing.default_variant }
   let!(:viewer)  { create :viewer, landing: landing }
 

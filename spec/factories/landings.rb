@@ -7,5 +7,11 @@ FactoryGirl.define do
     account
     path { generate :path }
     title 'some'
+
+    trait :with_variant do
+      after :create do |landing|
+        landing.variants.create!
+      end
+    end
   end
 end
