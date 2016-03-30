@@ -3,3 +3,9 @@
     .welcome-page
       h2.welcome-page-title Ваша заявка принята!
       p= "Номер заявки #{lead.public_number}"
+
+      hr.welcome-divider
+      p 
+        b Данные заявки:
+      - lead.fields.reject(&:empty?).each do |f|
+        p= f

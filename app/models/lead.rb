@@ -37,6 +37,12 @@ class Lead < ActiveRecord::Base
     end
   end
 
+  def fields
+    data.map do |k, v|
+      LeadField.new key: k, value: v
+    end
+  end
+
   def name
     data['name']
   end
