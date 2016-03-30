@@ -8,6 +8,6 @@ module AccountBilling
   delegate :amount, to: :billing_account
 
   def billing_account
-    Openbill.current.account([:accounts, id])
+    Openbill.current.account(['accounts', id])
   end
 end
