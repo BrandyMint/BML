@@ -20,8 +20,9 @@ RSpec.describe ChargeSubscription, type: :model do
     context 'total > 0' do
       let(:month) { Date.new 2016, 4 }
       let(:description) { 'description' }
-      let(:total) { Money.new(10000, :rub) }
+      let(:total) { Money.new(10_000, :rub) }
       let(:fee) { FeeResult.new total: total, description: description }
+      let(:amount) { Money.new(0, :rub) - total }
       before do
         allow(subject).to receive(:fee).and_return(fee)
         subject.call
@@ -30,14 +31,14 @@ RSpec.describe ChargeSubscription, type: :model do
         expect(Openbill::Transaction.count).to eq 1
         expect(Openbill::Transaction.last.key).to eq "subscription-#{account.id}-#{month}"
         expect(SystemRegistry[:subscriptions].reload.amount).to eq total
-        expect(account.billing_account.amount).to eq (Money.new(0, :rub) - total)
+        expect(account.billing_account.amount).to eq amount
       end
     end
 
     context 'total <= 0' do
       let(:month) { Date.new 2016, 4 }
       let(:description) { 'description' }
-      let(:total) { Money.new(-10000, :rub) }
+      let(:total) { Money.new(-10_000, :rub) }
       let(:fee) { FeeResult.new total: total, description: description }
       before do
         allow(subject).to receive(:fee).and_return(fee)
