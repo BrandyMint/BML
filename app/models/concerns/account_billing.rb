@@ -1,5 +1,6 @@
 module AccountBilling
   extend ActiveSupport::Concern
+  BILLING_CATEGORY = :accounts
 
   included do
     after_commit :billing_account, on: :create
@@ -8,6 +9,6 @@ module AccountBilling
   delegate :amount, to: :billing_account
 
   def billing_account
-    Openbill.current.account(['accounts', id])
+    Openbill.current.account [BILLING_CATEGORY, id]
   end
 end
