@@ -9,6 +9,7 @@ Rails.application.config.assets.version = AppVersion.to_s
 # Bower
 Rails.application.config.assets.paths << 'vendor/components'
 Rails.application.config.assets.paths << 'vendor/assets/components'
+Rails.application.config.assets.paths << 'vendor/assets'
 
 # Для картинок, чтобы их можно было брать через assets/images/themes/t1/dog.pn
 Rails.application.config.assets.paths << 'vendor/dist/dist'
@@ -16,7 +17,7 @@ Rails.application.config.assets.paths << 'vendor/dist/dist'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w(
-  *.gif *.png *.jpg *.svg *.ttf *.woff *.woff2 *.map
+  *.gif *.png *.jpg *.svg *.ttf *.woff *.woff2 *.map *.mp4 *.ogv *.webm
   fonts.css
   welcome.js
   vendor.js
