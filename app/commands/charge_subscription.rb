@@ -6,8 +6,6 @@ class ChargeSubscription
   attribute :month, Date
 
   def call
-    return if negative_fee?
-
     Openbill.current.make_transaction(
       from: account.billing_account,
       to: SystemRegistry[:subscriptions],
@@ -22,13 +20,10 @@ class ChargeSubscription
     )
   rescue => err
     Bugsnag.notify err, metaData: { fee: fee, account: account, tariff: tariff, month: month }
+    raise err
   end
 
   private
-
-  def negative_fee?
-    fee.total <= Money.new(0, :rub)
-  end
 
   def fee
     @_fee ||= fee_strategy.new(account: account, tariff: tariff, month: month).call
