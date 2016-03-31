@@ -27,11 +27,13 @@ RSpec.describe ChargeSubscription, type: :model do
         allow(subject).to receive(:fee).and_return(fee)
         subject.call
       end
-      it 'makes transaction' do
+      it 'makes transaction once' do
         expect(Openbill::Transaction.count).to eq 1
         expect(Openbill::Transaction.last.key).to eq "subscription-#{account.id}-#{month}"
         expect(SystemRegistry[:subscriptions].reload.amount).to eq total
         expect(account.billing_account.amount).to eq amount
+
+        expect { subject.call }.to raise_error Sequel::UniqueConstraintViolation
       end
     end
 
@@ -43,12 +45,8 @@ RSpec.describe ChargeSubscription, type: :model do
       before do
         allow(subject).to receive(:fee).and_return(fee)
       end
-      it 'does nothing' do
-        expect_any_instance_of(Openbill::Service).not_to receive(:make_transaction)
-        subject.call
-        expect(Openbill::Transaction.count).to eq 0
-        expect(SystemRegistry[:subscriptions].reload.amount).to eq Money.new(0, :rub)
-        expect(account.billing_account.amount).to eq Money.new(0, :rub)
+      it 'raises error' do
+        expect { subject.call }.to raise_error Sequel::CheckConstraintViolation
       end
     end
   end

@@ -7,16 +7,16 @@ class PerLandingFeeStrategy
 
   def call
     total = Money.new(0, :rub)
-    description = ''
+    descriptions = []
 
     account.landings.find_each do |landing|
       landing_fee = landing_fee(landing)
 
       total += landing_fee.total
-      description += "#{landing_fee.description}\n"
+      descriptions << landing_fee.description
     end
 
-    FeeResult.new total: total, description: description
+    FeeResult.new total: total, description: descriptions.join("\n")
   end
 
   def landing_fee(landing)
