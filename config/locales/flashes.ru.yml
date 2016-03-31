@@ -1,6 +1,8 @@
 ru:
   flashes:
     loaded: Загружено
+    activeadmin:
+      balance_topped_up: Баланс пополнен
     invites:
       members_added: 'В команду включены сотрудники: %{users}'
       created: Приглашение отправлено

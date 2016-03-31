@@ -11,4 +11,34 @@ ActiveAdmin.register Account do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  index do
+    selectable_column
+    column :id
+    column :created_at
+    column :updated_at
+    column :ident
+    column :access_key
+    column :name
+    column :balance do |resource|
+      humanized_money_with_symbol(resource.billing_account.amount)
+    end
+    actions do |resource|
+      link_to 'Пополнить баланс', top_up_balance_admin_account_url(resource), class: 'member_link'
+    end
+  end
+
+  member_action :top_up_balance, method: [:get, :post] do
+    if request.post?
+      begin
+        amount = Money.new((params[:account][:balance].to_f * 100).to_i, :rub)
+        GiftTopUpBalance.new(account: resource, amount: amount).call
+        redirect_to admin_accounts_url, flash: { success: I18n.t('flashes.activeadmin.balance_topped_up') }
+      rescue => err
+        redirect_to :back, flash: { error: err.message }
+      end
+    else
+      render :top_up_balance
+    end
+  end
 end
