@@ -67,6 +67,7 @@ Style/ClassAndModuleChildren:
     - 'app/helpers/account/settings_helper.rb'
     - 'app/helpers/account/variants_helper.rb'
     - 'app/helpers/account/welcome_helper.rb'
+    - 'app/helpers/account/payments_helper.rb'
 
 
 # Offense count: 226

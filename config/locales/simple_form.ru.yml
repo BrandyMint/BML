@@ -62,15 +62,14 @@ ru:
         name: Имя и Фамилия
         phones_string: Телефоны
         emails_string: Email адреса
-      subscription_form:
-        tariff_id: Тариф
-        email: E-mail подписки
+      balance_payment_form:
+        amount: Сумма
         name: Имя держателя
-        max_periods: Период подписки
         cardNumber: Номер карты
         expDateMonth: Месяц срока действия
         expDateYear: Год срока действия
         cvv: CVV
+        recurrent: Автоматически пополнять баланс этой картой
       mail_template:
         subject: Заголовок письма
         content_html: Шаблон в HTML-формате
@@ -121,7 +120,8 @@ ru:
         name: Имя
         email: E-mail
         password: Пароль
-      subscription_form:
+      balance_payment_form:
+        amount: '500'
         name: IVAN IVANOV
         cardNumber: 4*** **** **** 1234
     hints:

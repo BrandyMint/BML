@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resource :sms, controller: :sms, only: [:show, :update]
       resource :domains, controller: :domains, only: [:show, :update]
       resource :billing, controller: :billing, only: [:show, :update]
+      resources :payments
       resource :api, controller: :api, only: [:show, :update]
 
       resources :invites

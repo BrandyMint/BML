@@ -4,7 +4,8 @@ class Account::BillingController < Account::BaseController
   def show
     render locals: {
       account: current_account,
-      transactions: transactions
+      transactions: transactions,
+      payment_accounts: current_account.payment_accounts
     }
   end
 

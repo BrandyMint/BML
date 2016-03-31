@@ -1,4 +1,4 @@
-= simple_form_for session_form, url: sessions_path do |f|
+= simple_form_for session_form, url: sessions_path, wrapper_mappings: { boolean: :vertical_boolean } do |f|
   = f.error_notification
   .form-group
     = f.input :login, required: true, autofocus: true, label: false
@@ -6,9 +6,7 @@
     = f.input :password, required: true, label: false
   .form-group
     .pull-left
-      = f.input :remember_me, as: :boolean, label: false
-    .pull-left
-      = f.label :remember_me, class: 'checkbox inline'
+      = f.input :remember_me, as: :boolean
     .clearfix
     hr.small
     = f.button :submit, 'Войти', class: 'btn btn-primary btn-lg btn-block'

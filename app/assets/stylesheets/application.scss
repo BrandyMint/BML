@@ -64,3 +64,13 @@ body {
   }
 }
 
+.radio label,
+.checkbox label {
+  font-weight: inherit;
+}
+
+.radio label input,
+.checkbox label input {
+  position: absolute !important;
+  top: 1px !important;
+}
