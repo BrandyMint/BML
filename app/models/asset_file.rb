@@ -1,3 +1,5 @@
+require 'uuid'
+
 class AssetFile < ActiveRecord::Base
   include AssetFileDigest
 
@@ -11,4 +13,12 @@ class AssetFile < ActiveRecord::Base
   scope :shared,  -> { where account_id: nil }
 
   delegate :url, to: :file
+
+  before_create :generate_uuid
+
+  private
+
+  def generate_uuid
+    self.uuid ||= UUID.generate
+  end
 end
