@@ -50,7 +50,7 @@ config/application.local.yml
 solr/data
 solr/pids
 sunspot-solr.pid
-vendor/assets/components/
+vendor/components/
 ansible/librarian_roles/*
 ansible/tmp/*
 /db/*.sql

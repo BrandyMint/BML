@@ -21,7 +21,6 @@
 #= require react_ujs
 #= require i18n
 #= require i18n/translations
-#= require jquery.easy-pie-chart/dist/jquery.easypiechart.js
 #= require better-form
 #= require enableWhenChanged
 #= require selectize/dist/js/standalone/selectize.min.js
