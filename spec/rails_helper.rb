@@ -78,4 +78,13 @@ RSpec.configure do |config|
 
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
+
+  config.around :each, openbill: true do |example|
+    connection = Openbill.current.send(:database).instance_variable_get('@db')
+    connection.transaction do
+      example.run
+      # force rollback
+      raise Sequel::Error::Rollback
+    end
+  end
 end
