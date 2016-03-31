@@ -388,7 +388,7 @@ GEM
     omniauth-yandex (0.0.2)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
-    openbill-ruby (0.1.9)
+    openbill-ruby (0.1.10)
     parser (2.3.0.6)
       ast (~> 2.2)
     pg (0.18.4)
@@ -720,7 +720,7 @@ DEPENDENCIES
   omniauth
   omniauth-twitter
   omniauth-yandex
-  openbill-ruby (= 0.1.9)
+  openbill-ruby (= 0.1.10)
   pg (~> 0.15)
   phone!
   poltergeist

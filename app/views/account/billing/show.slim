@@ -1,3 +1,7 @@
 .row
   .col-lg-12
-    p Баланс #{humanized_money_with_symbol account.billing_account.amount}
+    h2 Текущий баланс #{humanized_amount account.billing_account.amount}
+
+    p Текущий тариф "#{current_account.current_tariff}"
+
+    = render 'transactions', transactions: transactions

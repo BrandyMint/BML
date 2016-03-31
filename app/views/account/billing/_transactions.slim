@@ -1,0 +1,20 @@
+table.table.table-striped.m-t-lg
+  thead
+    tr
+      th Дата списания
+      th Сумма
+      th Период
+      th Расшифровка
+  tbody
+  - transactions.each do |t|
+    tr
+      td
+        .text-nowrap= l t.created_at, format: :short
+        small.text-muted= t.key
+
+      td.text-nowrap= humanized_amount t.amount
+      td.text-nowrap= t.period
+      td
+        p.m-b-sm Тариф: #{t.tariff}
+        small= t.details
+

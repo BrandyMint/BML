@@ -29,7 +29,7 @@ RSpec.describe ChargeSubscription, type: :model do
       end
       it 'makes transaction' do
         expect(Openbill::Transaction.count).to eq 1
-        expect(Openbill::Transaction.last.key).to eq "subscription-#{account.id}-#{month}"
+        expect(Openbill::Transaction.last.key).to eq "subscription:#{account.ident}:#{month}"
         expect(SystemRegistry[:subscriptions].reload.amount).to eq total
         expect(account.billing_account.amount).to eq amount
       end
