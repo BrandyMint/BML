@@ -44,3 +44,14 @@ ru:
           %{inviter} приглашает Вас принять участие в проекте <a href="%{url}">%{account}</a> в роли %{role}
         body_text: |
           %{inviter} приглашает Вас принять участие в проекте %{account} (%{url}) в роли %{role}
+    balance_mailer:
+      charge_error_email:
+        subject: "Ошибка списания средств"
+        body: |
+          Не удалось списать средства за %{date} c аккаунта %{account}. Проверьте данные вашей карты.
+          <a href="%{billing_url}">Управление подпиской</a>
+          <a href="%{payments_url}">Пополнить баланс</a>
+        body_text: |
+          Не удалось списать средства за %{date} c аккаунта %{account}. Проверьте данные вашей карты.
+          Управление подпиской - %{billing_url}
+          Пополнить баланс - %{payments_url}

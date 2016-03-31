@@ -6,10 +6,10 @@ class Account::PaymentsController < Account::BaseController
   end
 
   def create
-    pay_balance
-    redirect_to account_billing_path, flash: { success: I18n.t('flashes.balance.topped_up') }
+    charge_balance
+    redirect_to account_billing_path, flash: { success: I18n.t('flashes.balance.charged') }
 
-  rescue CloudPaymentsPayBalance::InvalidForm
+  rescue CloudPayments::OneTimeChargeBalance::InvalidForm
     render :new, locals: { balance_payment_form: balance_payment_form }
 
   rescue CloudPaymentsError, ActiveRecord::RecordInvalid => err
@@ -23,8 +23,8 @@ class Account::PaymentsController < Account::BaseController
     @_balance_payment_form ||= BalancePaymentForm.new permitted_params
   end
 
-  def pay_balance
-    CloudPaymentsPayBalance.new(
+  def charge_balance
+    CloudPayments::OneTimeChargeBalance.new(
       account: current_account,
       form: balance_payment_form,
       ip: request.remote_ip

@@ -45,13 +45,6 @@ RSpec.configure do |config|
     c.ignore_hosts 'codeclimate.com'
   end
 
-  CloudPayments.configure do |c|
-    c.public_key = Secrets.cloudpayments.public_key
-    c.secret_key = Secrets.cloudpayments.secret_key
-    c.logger = Logger.new('/dev/null')
-    c.raise_banking_errors = true
-  end
-
   config.include FeatureHelpers, type: :feature
 
   config.before :all do

@@ -1,5 +1,4 @@
 class Membership < ActiveRecord::Base
-  extend Enumerize
   include MemberRoles
 
   belongs_to :account

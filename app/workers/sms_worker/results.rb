@@ -1,11 +1,13 @@
 class SmsWorker
   # Базовый класс
   #
-  Result = Class.new StandardError
+  class Result < StandardError
+  end
 
   # Все отлично!
   #
-  AllRight = Class.new Result
+  class AllRight < Result
+  end
 
   # Примеры ответов из Smsc:
   #
