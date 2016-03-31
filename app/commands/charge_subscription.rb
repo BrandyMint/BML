@@ -1,6 +1,8 @@
 class ChargeSubscription
   include Virtus.model(strict: true, nullify_blank: true)
 
+  NS = :subscription
+
   attribute :account, Account
   attribute :tariff, Tariff
   attribute :month, Date
@@ -9,7 +11,7 @@ class ChargeSubscription
     Openbill.current.make_transaction(
       from: account.billing_account,
       to: SystemRegistry[:subscriptions],
-      key: "subscription-#{account.id}-#{month}",
+      key: [NS, account.ident, month].join(':'),
       amount: fee.total,
       details: fee.description,
       meta: {

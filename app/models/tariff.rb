@@ -37,6 +37,10 @@ class Tariff < ActiveRecord::Base
     find_by_slug! FREE_SLUG
   end
 
+  def to_s
+    title
+  end
+
   def blocked_leads_count
     BLOCKED_LEADS_COUNT
   end

@@ -9,6 +9,16 @@ module AccountBilling
   delegate :amount, to: :billing_account
 
   def billing_account
-    Openbill.current.account [BILLING_CATEGORY, id]
+    Openbill.current.account billing_account_ident
+  end
+
+  def billing_transactions
+    Openbill.current.account_transactions billing_account
+  end
+
+  private
+
+  def billing_account_ident
+    [BILLING_CATEGORY, id]
   end
 end
