@@ -10,6 +10,7 @@ class FileUploader < BaseUploader
   end
 
   def digest
+    return unless file.present?
     AssetFileDigest.digest_of_file file.file
   end
 end
