@@ -16,15 +16,27 @@ class Account::LeadsController < Landing::BaseController
   end
 
   def show
-    lead = current_landing.leads.find params[:id]
-
     render locals: { lead: lead }, layout: 'lead_show'
+  end
+
+  def accept
+    lead.accept
+    redirect_to :back
+  end
+
+  def decline
+    lead.decline
+    redirect_to :back
   end
 
   private
 
   def fields
     current_collection.fields.ordered
+  end
+
+  def lead
+    current_landing.leads.find params[:id]
   end
 
   def leads

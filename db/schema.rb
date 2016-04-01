@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325081200) do
+ActiveRecord::Schema.define(version: 20160401065557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20160325081200) do
     t.string   "resource_type", null: false
     t.integer  "author_id"
     t.string   "author_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
@@ -175,8 +175,8 @@ ActiveRecord::Schema.define(version: 20160325081200) do
   create_table "leads", force: :cascade do |t|
     t.integer  "collection_id"
     t.hstore   "data"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "variant_id"
     t.string   "first_utm_source"
     t.string   "first_utm_campaign"
@@ -190,9 +190,9 @@ ActiveRecord::Schema.define(version: 20160325081200) do
     t.string   "last_utm_term"
     t.string   "last_utm_content"
     t.string   "last_referer"
-    t.integer  "number",             null: false
-    t.string   "public_number",      null: false
-    t.integer  "landing_id",         null: false
+    t.integer  "number",                             null: false
+    t.string   "public_number",                      null: false
+    t.integer  "landing_id",                         null: false
     t.string   "utm_source"
     t.string   "utm_campaign"
     t.string   "utm_medium"
@@ -201,6 +201,7 @@ ActiveRecord::Schema.define(version: 20160325081200) do
     t.string   "referer"
     t.string   "viewer_uid"
     t.integer  "client_id"
+    t.string   "state",              default: "new", null: false
   end
 
   add_index "leads", ["client_id"], name: "index_leads_on_client_id", using: :btree

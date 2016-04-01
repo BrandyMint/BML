@@ -42,3 +42,14 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 200;
 }
+
+.table {
+  .list-inline {
+    margin-bottom: 0;
+  }
+  .label {
+    line-height: 16px;
+    font-size: 100%;
+    font-weight: normal;
+  }
+}

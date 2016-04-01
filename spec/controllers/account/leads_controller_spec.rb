@@ -34,5 +34,15 @@ RSpec.describe Account::LeadsController, type: :controller do
       get :show, landing_id: landing.id, id: lead.id
       expect(response.status).to eq 200
     end
+
+    it 'returns http success' do
+      post :accept, landing_id: landing.id, id: lead.id
+      expect(response.status).to eq 302
+    end
+
+    it 'returns http success' do
+      delete :decline, landing_id: landing.id, id: lead.id
+      expect(response.status).to eq 302
+    end
   end
 end

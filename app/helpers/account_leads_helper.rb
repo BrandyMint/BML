@@ -11,4 +11,27 @@ module AccountLeadsHelper
     end
     options
   end
+
+  def filtered_state(state)
+    case state
+    when LeadsFilter::STATE_NOT_DECLINED,
+         LeadStates::STATE_NEW,
+         LeadStates::STATE_ACCEPTED,
+         LeadStates::STATE_DECLINED
+      t("leads_filter.state.#{state}")
+    else
+      t('leads_filter.state.any')
+    end
+  end
+
+  def row_color(state)
+    case state
+    when LeadStates::STATE_ACCEPTED
+      'table-success'
+    when LeadStates::STATE_DECLINED
+      'table-warning'
+    else
+      ''
+    end
+  end
 end

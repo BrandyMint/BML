@@ -31,5 +31,6 @@
       select type="text" filter-term='' name=f.key data-placeholder=f.title
         - if filter.send(f.key)
           option value=filter.send(f.key) data-data={value: filter.send(f.key)}.to_json selected="selected" = filter.send(f.key)
+        option value=''
         - filter.popular_utm_options[f.key].each do |option|
           option value=option[:value] data-data=option.to_json = option[:value]

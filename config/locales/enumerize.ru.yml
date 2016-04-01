@@ -12,3 +12,8 @@ ru:
         master: Мастер
         analyst: Аналитик
         guest: Гость
+    lead:
+      state:
+        new: Новая
+        accepted: Принята
+        declined: Отклонена

@@ -1,6 +1,6 @@
 var initFilter = function(){
-  $('[filter-variant]').on('click', function (e) {
-    $(this).parents('.dropdown').find('[name=variant_id]').val($(this).attr('value'));
+  $('[filter-dropdown]').on('click', function (e) {
+    $(this).parents('.dropdown').find('[name=' + $(this).data('target') + ']').val($(this).attr('value'));
     $(this).closest('form').submit();
   });
 

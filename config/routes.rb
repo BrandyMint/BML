@@ -20,7 +20,12 @@ Rails.application.routes.draw do
             get :direct
           end
         end
-        resources :leads
+        resources :leads do
+          member do
+            post :accept
+            delete :decline
+          end
+        end
         resources :viewers
         resources :views
         resources :collections
