@@ -1,7 +1,8 @@
 semver inc patch
 version=`semver`
-message="Bump ${version}"
+message="Bump ${version} $*"
 echo $message
+exit
 git add .
 git commit -m "$message"
 git push
