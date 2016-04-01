@@ -24,14 +24,16 @@ module AccountLeadsHelper
     end
   end
 
-  def row_color(state)
-    case state
+  def lead_state(state)
+    css = case state
     when LeadStates::STATE_ACCEPTED
-      'table-success'
+      'label-success';
     when LeadStates::STATE_DECLINED
-      'table-warning'
+      'label-default'
     else
-      ''
+      'label-warning'
     end
+
+    content_tag :span, state.text, class: 'label label-md ' + css
   end
 end

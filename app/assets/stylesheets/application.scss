@@ -33,6 +33,11 @@
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,800);
 
+.label-md {
+  height: 30px;
+  line-height: 24px !important;
+  padding: 2px 8px;
+}
 .text-muted {
   color: inherit;
   opacity: 0.6;

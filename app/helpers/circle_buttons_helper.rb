@@ -13,8 +13,8 @@ module CircleButtonsHelper
   end
 
   # Circle Buttons
-  def show_button_circle(url, icon: :desktop, title: I18n.t('shared.show'), method: :get)
-    link_to smart_polymorphic_url(url), class: 'btn btn-secondary btn-circle', tooltip: true, title: title, method: method do
+  def show_button_circle(url, icon: :desktop, css_class: nil, title: I18n.t('shared.show'), method: :get)
+    link_to smart_polymorphic_url(url), class: "btn btn-secondary btn-circle #{css_class}", tooltip: true, title: title, method: method do
       fa_icon icon
     end
   end

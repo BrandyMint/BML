@@ -13,7 +13,8 @@
         - Lead.utm_fields.each do |field|
           th= field.title
         th Статус
-        th Действия
+        th
+          .pull-right Действия
     tbody
       == render partial: 'lead', collection: leads, locals: { fields: fields }
   - if leads.respond_to? :total_pages
