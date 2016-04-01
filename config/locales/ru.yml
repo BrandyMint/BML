@@ -118,3 +118,10 @@ ru:
   services:
     landing_period_fee:
       description: '%{landing} - %{used_days}/%{period_days} - %{total}'
+  leads_filter:
+    state:
+      any: Любые
+      not_declined: Новые и принятые
+      new: Новые
+      accepted: Принятые
+      declined: Отклоненные

@@ -12,6 +12,7 @@ class LeadsQuery
     end
 
     s = s.where(variant: filter.variant) if filter.variant.present?
+    s = s.with_state(*state) if filter.state.present? && state.present?
 
     s = s.order order
     s = limit s
@@ -41,5 +42,16 @@ class LeadsQuery
   def sort_field_present?
     filter.sort_field.present? &&
       Lead::UTM_FIELDS.include?(filter.sort_field)
+  end
+
+  def state
+    case filter.state
+    when LeadsFilter::STATE_ANY
+      nil
+    when LeadsFilter::STATE_NOT_DECLINED
+      [Lead::STATE_NEW, Lead::STATE_ACCEPTED]
+    else
+      filter.state
+    end
   end
 end

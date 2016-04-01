@@ -1,4 +1,7 @@
 class Lead < ActiveRecord::Base
+  extend Enumerize
+  include LeadStates
+
   UTM_FIELDS = [
     :utm_source,
     :utm_campaign,

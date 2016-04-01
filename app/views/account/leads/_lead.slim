@@ -1,4 +1,4 @@
-tr
+tr[class="#{row_color(lead.state)}"]
   td.text-muted.text-nowrap
     = link_to lead.number, account_landing_lead_url(current_landing, lead)
   td.text-muted.text-nowrap
@@ -11,3 +11,11 @@ tr
     td= lead.send(field.item_key) || empty_value_html
 
   td= truncate_url(lead.referer).presence || empty_value_html
+  td
+    span.label.label-default= lead.state.text
+  td
+    ul.list-inline
+      li
+        = show_button_circle accept_account_landing_lead_path(current_landing, lead), icon: :check, title: 'Принять', method: :post
+      li
+        = show_button_circle decline_account_landing_lead_path(current_landing, lead), icon: :times, title: 'Отклонить', method: :delete
