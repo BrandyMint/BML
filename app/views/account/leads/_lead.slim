@@ -13,7 +13,7 @@ tr
   td= truncate_url(lead.referer).presence || empty_value_html
   td
     = lead_state lead.state
-  td style="width: 110px"
+  td style="min-width: 110px"
     ul.list-inline.pull-right
       - unless lead.state_accepted?
         li
