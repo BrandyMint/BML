@@ -3,10 +3,10 @@ html
   head
     title= landing_head_title current_landing
     = bugsnag_script
-    == stylesheet_link_tag 'viewer', media: 'all'
-    == stylesheet_link_tag 'fonts', media: 'all'
-    /== stylesheet_link_tag "/dist/viewer?v=#{AppVersion}", media: 'all'
-    /== stylesheet_link_tag "/dist/fonts?v=#{AppVersion}", media: 'all'
+    /== stylesheet_link_tag 'viewer', media: 'all'
+    /== stylesheet_link_tag 'fonts', media: 'all'
+    == stylesheet_link_tag "/dist/viewer?v=#{AppVersion}", media: 'all'
+    == stylesheet_link_tag "/dist/fonts?v=#{AppVersion}", media: 'all'
     == csrf_meta_tags
   body
     == yield
