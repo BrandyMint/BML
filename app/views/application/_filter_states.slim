@@ -4,5 +4,5 @@
     button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' ="Статус: #{filtered_state(filter.state)}"
     .dropdown-menu
       - LeadsFilter::STATES_OPTIONS.each do |state|
-        button.btn-sm.dropdown-item filter-dropdown=true data-target='state' value=state type='button'= I18n.t("leads_filter.state.#{state}")
+        button.btn-sm.dropdown-item filter-dropdown=true data-target='state' value=state class=(filter.state == state ? 'active' : '') type='button'= I18n.t("leads_filter.state.#{state}")
 .clearfix

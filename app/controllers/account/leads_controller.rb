@@ -4,6 +4,8 @@ class Account::LeadsController < Landing::BaseController
 
   layout 'leads'
 
+  before_action :save_session_state
+
   def index
     leads_filter.popular_utm_options = popular_utm_options(current_landing.id)
     render locals: {
@@ -52,11 +54,30 @@ class Account::LeadsController < Landing::BaseController
   end
 
   def filter_params
-    params.merge(
+    params.slice(
+      :sort_order,
+      :sort_field,
+      :limit,
+      :state
+    ).merge(
       account: current_account,
       collection: current_collection,
       variant: current_variant
+    ).reverse_merge(
+      state: session_state
     )
+  end
+
+  def session_state
+    session[session_state_key]
+  end
+
+  def session_state_key
+    "#{current_landing.id}:lead_state"
+  end
+
+  def save_session_state
+    session[session_state_key] = params[:state] if LeadsFilter::STATES_OPTIONS.include? params[:state]
   end
 
   def current_collection

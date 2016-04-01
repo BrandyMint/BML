@@ -2,14 +2,17 @@ class LeadsFilter
   include Virtus.model
 
   STATE_ANY = 'any'.freeze
+
   STATE_NOT_DECLINED = 'not_declined'.freeze
+
   STATES_OPTIONS = [
-    STATE_ANY,
     STATE_NOT_DECLINED,
     LeadStates::STATE_NEW,
     LeadStates::STATE_ACCEPTED,
-    LeadStates::STATE_DECLINED
+    LeadStates::STATE_DECLINED,
+    STATE_ANY
   ].freeze
+
   PRESENCE_FIELDS = Lead::UTM_FIELDS + [:state]
 
   Lead::UTM_FIELDS.each do |f|
@@ -22,7 +25,7 @@ class LeadsFilter
   attribute :sort_field, Symbol, default: :id
   attribute :sort_order, Symbol, default: :asc
   attribute :limit, Integer
-  attribute :state, String
+  attribute :state, String, default: STATE_NOT_DECLINED
 
   attr_accessor :popular_utm_options
 
