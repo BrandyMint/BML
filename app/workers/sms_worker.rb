@@ -1,29 +1,53 @@
 class SmsWorker
+  autoload :Result,      'sms_worker/results'
+  autoload :AllRight,    'sms_worker/results'
+  autoload :Error,       'sms_worker/results'
+  autoload :Credentials, 'sms_worker/credentials'
+
+  LOG_ENTITY_MODEL = AccountSmsLogEntity
+  SystemSender = Credentials.new(Secrets.smsc).to_hash
+
   include Sidekiq::Worker
   sidekiq_options queue: :critical, retry: true
 
-  def perform(phones, message)
-    phones = phones.to_s.split(/,\s/) unless phones.is_a? Array
-    phones.map! { |phone| phone.sub '+', '' }
+  def perform(credentials, phones, message)
+    @credentials = Credentials.new credentials
+    @phones = prepare_phones phones
+    @message = message.strip.chomp
 
-    Rails.logger.debug "SEND SMS: #{phones.join(', ')}: #{message}"
+    rails_log_start
 
     if Rails.env.production?
-      sms = Smsc::Sms.new Secrets.smsc.login, Secrets.smsc.password
-      res = sms.message message.strip.chomp, phones, sender: Secrets.smsc.sender
+      production_send
+    else
+      develop_send
+    end
+  rescue Result => result
+    log_sms result
+  rescue => err
+    Bugsnag.notify err, metaData: { credentials: @credentials, phones: phones, message: message }
+    log_sms err
+  else
+    raise "Всегда должно завершаться ошибкой"
+  end
 
-      raise Error, 'raise message' if message == 'raise'
+  private
 
-      if res.body.start_with? 'OK'
-        Rails.logger.debug "SMS #{res.body}"
-      else
-        Rails.logger.error "SMS #{res.body}"
-        error = Error.new res.body.to_s
-        # SupportMailer.sos_mail('На SMSC кончились деньги: https://smsc.ru/pay/') if error.code == 3 || error.message == 'no money'
-        raise error if error.fatal?
-      end
-    elsif !Rails.env.test?
+  attr_reader :phones, :message, :credentials
 
+  def log_sms(result)
+    LOG_ENTITY_MODEL.create!(
+      account_id: credentials.account_id,
+      smsc_login: credentials.login,
+      smsc_sender: credentials.sender,
+      message: message,
+      phones: phones,
+      result: result.to_s
+    )
+  end
+
+  def develop_send
+    if Rails.env.development?
       # rubocop:disable Rails/Output
       puts
       puts '---------------------------------'
@@ -31,46 +55,23 @@ class SmsWorker
       puts '---------------------------------'
       puts
     end
+    raise AllRight, 'dev-ok'
   end
 
-  # Примеры ответов из Smsc:
-  #
-  # "OK - 1 SMS, ID - 279"
-  # ERROR = 3 (no money), ID - 275
-  # ERROR = 6 (message is denied), ID - 542
-  # ERROR = 7 (invalid number), ID - 541
-  # ERROR = 8 (can't to deliver), ID - 639)
-  # ERROR = 9 (duplicate request, wait a minute)
-  #
-  class Error < StandardError
-    REGEXP = /ERROR = (\d+) \((.+)\)/
+  def production_send
+    sms = Smsc::Sms.new credentials.login, credentials.password
+    res = sms.message message, phones, sender: credentials.sender
 
-    attr_reader :code, :body
+    raise AllRight, res.body.to_s if res.body.start_with? 'OK'
+    raise Error, res.body.to_s
+  end
 
-    def initialize(message)
-      @code, @body = parse message
+  def rails_log_start
+    Rails.logger.debug "SEND SMS (#{credentials}: #{phones.join(', ')}: #{message}"
+  end
 
-      super message
-    end
-
-    def fatal?
-      !soft?
-    end
-
-    def soft?
-      code == 6 || code == 7 || code == 8 || code == 9
-    end
-
-    private
-
-    def parse(message)
-      m = REGEXP.match message
-
-      raise "Unknown body format #{message}" unless m
-
-      [m[1].to_i, m[2]]
-    end
-
-    alias message body
+  def prepare_phones(phones)
+    (phones.is_a?(Array) ? phones : phones.to_s.split(/,\s/))
+      .map! { |phone| phone.sub '+', '' }
   end
 end

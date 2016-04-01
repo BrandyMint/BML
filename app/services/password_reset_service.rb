@@ -15,7 +15,7 @@ class PasswordResetService
 
   def send_sms
     user_by_phone.change_password! pin_code
-    SmsWorker.perform_async user_by_phone.phone, I18n.t('notifications.sms.new_pin_code', pin_code: pin_code)
+    SmsWorker.perform_async SmsWorker::SystemSender, user_by_phone.phone, I18n.t('notifications.sms.new_pin_code', pin_code: pin_code)
   end
 
   def send_email

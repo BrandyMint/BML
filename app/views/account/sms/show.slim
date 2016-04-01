@@ -1,0 +1,19 @@
+h2.m-b-lg Авторизация в цетре SMSC.RU
+= simple_form_for account, url: account_sms_path, html: { class: 'form-inline' } do |f|
+  .row
+    .col-md-12
+      = f.input :smsc_login, label: false, placeholder: 'login', wrapper: :inline_form, input_html: { class: 'm-r-md' }
+      = f.input :smsc_password, label: false, placeholder: 'password', input_html: { class: 'm-r-md' }
+      = f.input :smsc_sender, label: false, placeholder: 'Отправитель'
+  .row.m-t-md
+    .col-md-8
+      = f.submit t('shared.save'), class: 'btn btn-primary'
+    .col-md-4
+      p Активация: #{human_boolean account.smsc_active}
+
+
+.row
+  .col-lg-12
+    hr.m-t-lg.m-b-lg
+
+    = render 'log_entities', log_entities: log_entities

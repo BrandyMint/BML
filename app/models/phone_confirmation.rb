@@ -18,7 +18,12 @@ class PhoneConfirmation < ActiveRecord::Base
   validates :phone, presence: true, phone: true, uniqueness: true
 
   before_create :generate_pin_code!
-  after_commit :deliver_pin_code!, on: [:create]
+
+  after_commit on: [:create] do
+    # Например в тестах создают сразу подтвержденных
+    #
+    deliver_pin_code! unless is_confirmed?
+  end
 
   def self.confirm_phone(user, phone, pin_code)
     phone = PhoneUtils.clean_phone phone
@@ -44,7 +49,7 @@ class PhoneConfirmation < ActiveRecord::Base
   def deliver_pin_code!
     test_persisted!
     generate_pin_code!
-    SmsWorker.perform_async phone, I18n.t('notifications.sms.new_pin_code', pin_code: pin_code)
+    SmsWorker.perform_async SmsWorker::SystemSender, phone, I18n.t('notifications.sms.new_pin_code', pin_code: pin_code)
     @request_timeout = nil
     update_column :pin_requested_at, Time.zone.now
   end
