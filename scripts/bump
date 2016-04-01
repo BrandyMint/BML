@@ -2,7 +2,7 @@ semver inc patch
 version=`semver`
 message="Bump ${version} $*"
 echo $message
-./sctipt/update_static.sh
+./script/update_static.sh
 git add .
 git commit -m "$message"
 git push
