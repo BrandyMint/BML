@@ -36,7 +36,8 @@ class Landing < ActiveRecord::Base
   end
 
   def short_name
-    url_without_protocol url
+    # TODO: если в домене bmland, aydamaster то показывать только поддомен
+    title.presence || url_without_protocol(url)
   end
 
   def viewers

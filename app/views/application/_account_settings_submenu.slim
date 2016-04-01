@@ -11,4 +11,5 @@ ul.nav.nav-pills.nav-stacked
       | Сотрудники
       span.text-muted= " (#{account.memberships.count})"
   li.nav-item= active_link_to account_billing_title, account_billing_url, class: 'nav-link', active: [['account/billing'],[]]
+  li.nav-item= active_link_to 'SMS-уведомления', account_sms_url, class: 'nav-link', active: [['account/sms'],[]]
   li.nav-item= active_link_to 'API', account_api_url, class: 'nav-link', active: [['account/api'],[]]

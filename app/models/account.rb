@@ -4,6 +4,7 @@ class Account < ActiveRecord::Base
   include AccountWebAddresses
   include AccountBilling
   include AccountTariff
+  include AccountSmsc
 
   ROOT_IDENT = 'root'.freeze
 
@@ -24,6 +25,7 @@ class Account < ActiveRecord::Base
   has_many :users, through: :memberships
   has_many :invites, dependent: :destroy
 
+  has_many :sms_log_entities, dependent: :delete_all, class_name: 'AccountSmsLogEntity'
   has_many :utm_values, dependent: :delete_all
 
   def default_landing

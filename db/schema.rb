@@ -11,22 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401065557) do
+ActiveRecord::Schema.define(version: 20160401161652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
   enable_extension "uuid-ossp"
 
+  create_table "account_sms_log_entities", force: :cascade do |t|
+    t.integer  "account_id"
+    t.string   "smsc_login"
+    t.string   "smsc_sender"
+    t.string   "message"
+    t.string   "phones",                   array: true
+    t.string   "result",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "account_sms_log_entities", ["account_id"], name: "index_account_sms_log_entities_on_account_id", using: :btree
+
   create_table "accounts", force: :cascade do |t|
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "landings_count", default: 0, null: false
-    t.string   "ident",                      null: false
-    t.string   "access_key",                 null: false
-    t.integer  "clients_count",  default: 0, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "landings_count",         default: 0,     null: false
+    t.string   "ident",                                  null: false
+    t.string   "access_key",                             null: false
+    t.integer  "clients_count",          default: 0,     null: false
     t.string   "name"
     t.integer  "tariff_id"
+    t.string   "smsc_login"
+    t.string   "smsc_password"
+    t.string   "smsc_sender"
+    t.boolean  "smsc_active",            default: false
+    t.integer  "sms_log_entities_count", default: 0,     null: false
   end
 
   add_index "accounts", ["access_key"], name: "index_accounts_on_access_key", unique: true, using: :btree
@@ -397,6 +415,7 @@ ActiveRecord::Schema.define(version: 20160401065557) do
   add_index "web_addresses", ["account_id"], name: "index_web_addresses_on_account_id", using: :btree
   add_index "web_addresses", ["zone", "subdomain"], name: "index_web_addresses_on_zone_and_subdomain", unique: true, using: :btree
 
+  add_foreign_key "account_sms_log_entities", "accounts"
   add_foreign_key "accounts", "tariffs"
   add_foreign_key "asset_files", "accounts"
   add_foreign_key "asset_files", "landings"

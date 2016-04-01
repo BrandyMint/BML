@@ -13,7 +13,7 @@ module InviteSends
   end
 
   def send_sms
-    SmsWorker.perform_async phone, sms_text
+    SmsWorker.perform_async SmsWorker::SystemSender, sms_text
   end
 
   def send_email

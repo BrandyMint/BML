@@ -1,19 +1,28 @@
 class LeadCreatedNotifier
   include Virtus.model strict: true
-  include NotifierHelpers
   include LeadUrlHelper
 
   attribute :lead, Lead
   attribute :account, Account
 
+  Notify = NotifierHelpers.new
+
   def call
     safe do
-      send_sms notification_phones, :lead_created, sms_payload
+      if sender.sms.present?
+        Notify.send_sms sender, notification_phones, :lead_created, sms_payload
+      else
+        Rails.logger.warn "SMS is not active for #{account}"
+      end
       send_emails
     end
   end
 
   private
+
+  def sender
+    NotifierHelpers::Sender.new sms: account.sms_credentials
+  end
 
   def notification_phones
     NotificationPhonesQuery.new(account_id: account.id).call
@@ -25,7 +34,7 @@ class LeadCreatedNotifier
 
   def send_emails
     notification_memberships.each do |member|
-      send_email member.user.email, LeadMailer, :new_lead_email, email_payload(member)
+      Notify.send_email sender, member.user.email, LeadMailer, :new_lead_email, email_payload(member)
     end
   end
 
@@ -43,5 +52,13 @@ class LeadCreatedNotifier
       number:      lead.number,
       description: lead.description
     }
+  end
+
+  def safe
+    yield
+  rescue => error
+    Notify.log_error "error #{error}"
+    raise error if Rails.env.test? || Rails.env.development?
+    Bugsnag.notify error
   end
 end

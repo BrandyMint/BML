@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       end
 
       resource :name, controller: :name, only: [:show, :update]
+      resource :sms, controller: :sms, only: [:show, :update]
       resource :domains, controller: :domains, only: [:show, :update]
       resource :billing, controller: :billing, only: [:show, :update]
       resource :api, controller: :api, only: [:show, :update]

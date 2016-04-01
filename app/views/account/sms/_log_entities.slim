@@ -1,0 +1,26 @@
+- if log_entities.any?
+  h2.m-b-md Журнал отправки SMS
+  table.table.table-condensed.table-striped.table-small-text
+    thead
+      th Дата
+      th Отправитель
+      th Адресат
+      th Текст
+      th Результат
+    tbody
+      - log_entities.each do |l| 
+        tr
+          td
+            .text-nowrap= I18n.l l.created_at, format: :short
+            .text-muted
+              = l.smsc_login
+          td
+            = l.smsc_sender || empty_value_html
+          td
+            = l.phones.join(', ')
+          td
+            = l.message
+          td
+            = l.result
+- else
+  p.text-center.text-muted Журнал пуст. Еще не отправлено ни одной SMS.
