@@ -4,6 +4,7 @@
     p.lead Коллекции данных появляются, когда пользователи заполняют формы.
 - else
   h2.m-b-md Заявки (#{leads.total_count})
+
   table.table.table-small-text.table-striped
     thead.thead-default
       tr
@@ -11,13 +12,12 @@
         th Когда
         - columns.each do |column|
           th= column
-        - TrackingSupport::UTM_FIELD_DEFINITIONS.each do |column|
-          th= column.title
         th Статус
         th
           .pull-right Действия
     tbody
       == render partial: 'lead', collection: leads, locals: { columns: columns }
+
   - if leads.respond_to? :total_pages
     nav
       = paginate leads

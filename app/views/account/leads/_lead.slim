@@ -6,11 +6,6 @@ tr
       = I18n.l lead.created_at, format: :short
   - columns.each do |column|
     td= lead_field_content lead, column
-
-  - utm_fields_only.each do |column|
-    td= lead.send(column.item_key) || empty_value_html
-
-  td= truncate_url(lead.referer).presence || empty_value_html
   td
     = lead_state lead.state
   td style="min-width: 110px"

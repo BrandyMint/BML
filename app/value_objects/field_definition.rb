@@ -6,4 +6,8 @@ class FieldDefinition
     attribute :item_key, String
     attribute :title, String
   end
+
+  def to_s
+    title
+  end
 end

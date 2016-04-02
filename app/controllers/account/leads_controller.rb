@@ -34,7 +34,13 @@ class Account::LeadsController < Landing::BaseController
   private
 
   def columns
-    current_collection.columns.ordered
+    current_collection.columns.ordered.to_a + usable_tracking_columns
+  end
+
+  def usable_tracking_columns
+    TrackingSupport::UTM_FIELD_DEFINITIONS.select do |fd|
+      current_collection.leads.where.not(fd.key => nil).any?
+    end
   end
 
   def lead

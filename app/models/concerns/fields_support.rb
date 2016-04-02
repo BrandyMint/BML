@@ -13,7 +13,7 @@ module FieldsSupport
 
   def create_collection_fields
     data.keys.reject { |k| k == 'cookie' }.each do |key|
-      fields_holder.fields.upsert key: key, title: key
+      fields_holder.columns.upsert key: key, title: key
     end
   end
 end
