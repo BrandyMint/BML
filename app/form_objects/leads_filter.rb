@@ -13,9 +13,9 @@ class LeadsFilter
     STATE_ANY
   ].freeze
 
-  PRESENCE_FIELDS = Lead::UTM_FIELDS + [:state]
+  PRESENCE_FIELDS = TrackingSupport::UTM_FIELDS + [:state]
 
-  Lead::UTM_FIELDS.each do |f|
+  TrackingSupport::UTM_FIELDS.each do |f|
     attribute f, String
   end
 

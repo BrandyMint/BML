@@ -1,6 +1,6 @@
 module ApplicationHelper
   def utm_fields_only
-    Lead.utm_fields.reject { |i| i.key == :referer }
+    TrackingSupport::UTM_FIELD_DEFINITIONS.reject { |i| i.key == :referer }
   end
 
   def truncate_url(url, length: 30)

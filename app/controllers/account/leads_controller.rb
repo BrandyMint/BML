@@ -11,7 +11,7 @@ class Account::LeadsController < Landing::BaseController
     render locals: {
       collections:        current_landing.collections,
       current_collection: current_collection,
-      fields:             fields,
+      columns:             columns,
       leads:              leads,
       filter:             leads_filter
     }
@@ -33,8 +33,14 @@ class Account::LeadsController < Landing::BaseController
 
   private
 
-  def fields
-    current_collection.fields.ordered
+  def columns
+    current_collection.columns.ordered.to_a + usable_tracking_columns
+  end
+
+  def usable_tracking_columns
+    TrackingSupport::UTM_FIELD_DEFINITIONS.select do |fd|
+      current_collection.leads.where.not(fd.key => nil).any?
+    end
   end
 
   def lead
