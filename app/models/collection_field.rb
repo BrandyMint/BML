@@ -1,3 +1,6 @@
+# Альтернативное название Column
+#
+
 class CollectionField < ActiveRecord::Base
   belongs_to :collection
 

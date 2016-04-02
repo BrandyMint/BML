@@ -1,0 +1,6 @@
+.row
+  .col-lg-12
+    h2.m-b-lg Редактирование коллекции N#{collection.id}
+    = simple_form_for [:account, current_landing, collection] do |f|
+      = f.input :title, label: false, placeholder: 'Название коллекции'
+      = f.submit t('shared.save'), class: 'btn btn-primary'

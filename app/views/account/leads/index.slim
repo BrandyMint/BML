@@ -9,15 +9,15 @@
       tr
         th N
         th Когда
-        - fields.each do |field|
-          th= field
-        - TrackingSupport::UTM_FIELD_DEFINITIONS.each do |field|
-          th= field.title
+        - columns.each do |column|
+          th= column
+        - TrackingSupport::UTM_FIELD_DEFINITIONS.each do |column|
+          th= column.title
         th Статус
         th
           .pull-right Действия
     tbody
-      == render partial: 'lead', collection: leads, locals: { fields: fields }
+      == render partial: 'lead', collection: leads, locals: { columns: columns }
   - if leads.respond_to? :total_pages
     nav
       = paginate leads

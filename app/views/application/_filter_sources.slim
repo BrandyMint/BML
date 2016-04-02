@@ -1,0 +1,12 @@
+- TrackingSupport::UTM_FIELD_DEFINITIONS.each do |f|
+  - options = filter.popular_utm_options[f.key]
+  - if options.any?
+    .filter-group.col-xs-12.col-sm-6.col-md-4.col-lg-2
+      .input-group-sm
+        - value = filter.send(f.key)
+        select type="text" filter-term='' name=f.key data-placeholder=f.title
+          - if value
+            option value=value data-data={value: value}.to_json selected="selected" = value
+          option value=''
+          - filter.popular_utm_options[f.key].each do |option|
+            option value=option[:value] data-data=option.to_json = option[:value]

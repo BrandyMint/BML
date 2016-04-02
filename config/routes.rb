@@ -29,7 +29,9 @@ Rails.application.routes.draw do
         resources :clients
         resources :viewers
         resources :views
-        resources :collections
+        resources :collections do
+          resources :columns
+        end
         resources :variants do
           member do
             patch :activate

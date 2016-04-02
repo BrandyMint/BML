@@ -1,7 +1,11 @@
 class Collection < ActiveRecord::Base
   belongs_to :landing
+
+  # TODO: belongs_to :account
+
   has_many :leads, dependent: :delete_all
-  has_many :fields, dependent: :delete_all, class_name: 'CollectionField'
+
+  has_many :columns, dependent: :delete_all, class_name: 'CollectionField'
 
   scope :ordered, -> { order :id }
 
