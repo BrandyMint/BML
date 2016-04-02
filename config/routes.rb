@@ -136,6 +136,8 @@ Rails.application.routes.draw do
     #
     scope constraints: { subdomain: '' } do
       root 'welcome#index'
+
+      get 's/:id', controller: :short, action: :show, as: :short
       scope :api do
         mount API => '/', as: :api2
         root controller: :swagger, action: :index, as: :api_doc2
