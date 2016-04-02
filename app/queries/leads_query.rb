@@ -6,7 +6,7 @@ class LeadsQuery
   def call
     s = basic_scope
 
-    Lead.utm_fields.each do |f|
+    TrackingSupport::UTM_FIELD_DEFINITIONS.each do |f|
       filter_value = filter.send(f.key)
       s = s.where(f.item_key => filter_value) if filter_value.present?
     end
@@ -41,7 +41,7 @@ class LeadsQuery
 
   def sort_field_present?
     filter.sort_field.present? &&
-      Lead::UTM_FIELDS.include?(filter.sort_field)
+      TrackingSupport::UTM_FIELDS.include?(filter.sort_field)
   end
 
   def state

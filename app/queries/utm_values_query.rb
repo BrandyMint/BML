@@ -45,7 +45,7 @@ class UtmValuesQuery
   private
 
   def no_column?(key)
-    !Lead::UTM_FIELDS.include? key.to_sym
+    !TrackingSupport::UTM_FIELDS.include? key.to_sym
   end
 
   def exec_query(query)

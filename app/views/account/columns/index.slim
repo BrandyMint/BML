@@ -1,0 +1,14 @@
+h2.m-b-md Поля коллекции "#{collection.title}"
+
+= link_to "Назад в коллекцию", account_landing_collection_path(current_landing, collection)
+
+table.table.table-condensed.m-t-lg
+  thead
+    tr
+      th Ключ
+      th Название
+  tbody
+    - columns.each do |column|
+      tr
+        td= column.key
+        td= column.title

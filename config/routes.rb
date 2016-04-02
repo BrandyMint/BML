@@ -26,9 +26,12 @@ Rails.application.routes.draw do
             delete :decline
           end
         end
+        resources :clients
         resources :viewers
         resources :views
-        resources :collections
+        resources :collections do
+          resources :columns
+        end
         resources :variants do
           member do
             patch :activate
@@ -135,6 +138,8 @@ Rails.application.routes.draw do
     #
     scope constraints: { subdomain: '' } do
       root 'welcome#index'
+
+      get 's/:id', controller: :short, action: :show, as: :short
       scope :api do
         mount API => '/', as: :api2
         root controller: :swagger, action: :index, as: :api_doc2

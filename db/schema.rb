@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401161652) do
+ActiveRecord::Schema.define(version: 20160402142140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 20160401161652) do
     t.string   "resource_type", null: false
     t.integer  "author_id"
     t.string   "author_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 20160401161652) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "leads_count", default: 0, null: false
+    t.string   "title"
   end
 
   add_index "collections", ["landing_id"], name: "index_collections_on_landing_id", using: :btree
@@ -314,6 +315,15 @@ ActiveRecord::Schema.define(version: 20160401161652) do
   end
 
   add_index "segments", ["landing_id"], name: "index_segments_on_landing_id", using: :btree
+
+  create_table "short_urls", force: :cascade do |t|
+    t.string   "url",                          null: false
+    t.string   "secret_key",                   null: false
+    t.datetime "created_at", default: "now()", null: false
+    t.datetime "updated_at", default: "now()", null: false
+  end
+
+  add_index "short_urls", ["url"], name: "index_short_urls_on_url", unique: true, using: :btree
 
   create_table "tariffs", force: :cascade do |t|
     t.string   "title",                                    null: false

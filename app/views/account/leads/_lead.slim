@@ -4,13 +4,8 @@ tr
   td.text-muted.text-nowrap
     = link_to account_landing_lead_url(current_landing, lead) do
       = I18n.l lead.created_at, format: :short
-  - fields.each do |field|
-    td= lead_field_content lead, field
-
-  - utm_fields_only.each do |field|
-    td= lead.send(field.item_key) || empty_value_html
-
-  td= truncate_url(lead.referer).presence || empty_value_html
+  - columns.each do |column|
+    td= lead_field_content lead, column
   td
     = lead_state lead.state
   td style="min-width: 110px"

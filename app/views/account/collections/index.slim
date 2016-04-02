@@ -11,7 +11,7 @@ table.table.table-condensed
           = c
           .text-muted
             small
-              = c.fields.join(', ')
+              = c.columns.join(', ')
         td
           - if c.last_lead_at.present?
             = I18n.l c.last_lead_at, format: :short
@@ -19,6 +19,12 @@ table.table.table-condensed
             = empty_value_html
         td
           = link_to I18n.t(:leads_count, count: c.leads_count), account_landing_leads_url(current_landing, collection_id: c.id)
+        td
+          = link_to account_landing_collection_columns_path(current_landing, c) do
+            = fa_icon 'th-list'
+        td
+          = link_to edit_account_landing_collection_url(current_landing, c) do
+            = fa_icon :pencil
             /- if current_landing.default_variant == v
               /small.text-muted== "&nbsp;(по-умолчанию)"
           /small.text-muted= v.uuid
