@@ -1,5 +1,8 @@
+# Поле со значением, ключем и в будущем с типом
+
 class LeadField
   include Virtus.value_object
+
   values do
     attribute :key
     attribute :value

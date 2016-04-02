@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402112423) do
+ActiveRecord::Schema.define(version: 20160402142140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 20160402112423) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "leads_count", default: 0, null: false
+    t.string   "title"
   end
 
   add_index "collections", ["landing_id"], name: "index_collections_on_landing_id", using: :btree
@@ -240,6 +241,41 @@ ActiveRecord::Schema.define(version: 20160402112423) do
   add_index "memberships", ["account_id"], name: "index_memberships_on_account_id", using: :btree
   add_index "memberships", ["user_id", "account_id"], name: "index_memberships_on_user_id_and_account_id", unique: true, using: :btree
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
+
+  create_table "openbill_accounts", id: :bigserial, force: :cascade do |t|
+    t.string   "category",            limit: 256, default: "common", null: false
+    t.string   "key",                 limit: 256,                    null: false
+    t.decimal  "amount_cents",                    default: 0.0,      null: false
+    t.string   "amount_currency",     limit: 3,   default: "USD",    null: false
+    t.text     "details"
+    t.integer  "transactions_count",              default: 0,        null: false
+    t.integer  "last_transaction_id"
+    t.datetime "last_transaction_at"
+    t.hstore   "meta",                            default: {},       null: false
+    t.datetime "created_at",                      default: "now()"
+    t.datetime "updated_at",                      default: "now()"
+  end
+
+  add_index "openbill_accounts", ["category", "key"], name: "index_accounts_on_key", unique: true, using: :btree
+  add_index "openbill_accounts", ["created_at"], name: "index_accounts_on_created_at", using: :btree
+  add_index "openbill_accounts", ["id"], name: "index_accounts_on_id", unique: true, using: :btree
+  add_index "openbill_accounts", ["meta"], name: "index_accounts_on_meta", using: :gin
+
+  create_table "openbill_transactions", id: :bigserial, force: :cascade do |t|
+    t.string   "username",        limit: 255,                   null: false
+    t.datetime "created_at",                  default: "now()"
+    t.integer  "from_account_id",                               null: false
+    t.integer  "to_account_id",                                 null: false
+    t.decimal  "amount_cents",                                  null: false
+    t.string   "amount_currency", limit: 3,                     null: false
+    t.string   "key",             limit: 256,                   null: false
+    t.text     "details",                                       null: false
+    t.hstore   "meta",                        default: {},      null: false
+  end
+
+  add_index "openbill_transactions", ["created_at"], name: "index_transactions_on_created_at", using: :btree
+  add_index "openbill_transactions", ["key"], name: "index_transactions_on_key", unique: true, using: :btree
+  add_index "openbill_transactions", ["meta"], name: "index_transactions_on_meta", using: :gin
 
   create_table "phone_confirmations", force: :cascade do |t|
     t.string   "phone",                            null: false
@@ -411,6 +447,9 @@ ActiveRecord::Schema.define(version: 20160402112423) do
   add_foreign_key "leads", "variants"
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
+  add_foreign_key "openbill_accounts", "openbill_transactions", column: "last_transaction_id", name: "openbill_accounts_last_transaction_id_fkey", on_update: :restrict, on_delete: :restrict
+  add_foreign_key "openbill_transactions", "openbill_accounts", column: "from_account_id", name: "openbill_transactions_from_account_id_fkey", on_update: :restrict, on_delete: :restrict
+  add_foreign_key "openbill_transactions", "openbill_accounts", column: "to_account_id", name: "openbill_transactions_to_account_id_fkey"
   add_foreign_key "phone_confirmations", "users"
   add_foreign_key "sections", "asset_files", column: "background_image_id"
   add_foreign_key "segments", "landings"

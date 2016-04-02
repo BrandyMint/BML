@@ -6,7 +6,7 @@ class Collection < ActiveRecord::Base
   scope :ordered, -> { order :id }
 
   def to_s
-    "Коллекция #{created_at}"
+    title.presence || "Коллекция #{created_at}"
   end
 
   def last_lead_at

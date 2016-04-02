@@ -25,7 +25,7 @@
 
 / ul.list-inline.form-inline
 /   li.list-inline-item
-- Lead.utm_fields.each do |f|
+- TrackingSupport::UTM_FIELD_DEFINITIONS.each do |f|
   .filter-group.col-xs-12.col-sm-6.col-md-4.col-lg-2
     .input-group-sm
       select type="text" filter-term='' name=f.key data-placeholder=f.title

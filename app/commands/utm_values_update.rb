@@ -46,6 +46,6 @@ class UtmValuesUpdate
   end
 
   def utm_fields
-    Lead.utm_fields.select { |f| lead.send(f.item_key).present? }
+    TrackingSupport::UTM_FIELD_DEFINITIONS.select { |f| lead.send(f.item_key).present? }
   end
 end

@@ -11,7 +11,7 @@
         th Когда
         - fields.each do |field|
           th= field
-        - Lead.utm_fields.each do |field|
+        - TrackingSupport::UTM_FIELD_DEFINITIONS.each do |field|
           th= field.title
         th Статус
         th

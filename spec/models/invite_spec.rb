@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Invite, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { create :invite }
+
+  it { expect(subject).to be_a described_class }
 end
