@@ -13,15 +13,10 @@
         small= lead.viewer_uid
 
 hr
-
 h3 Данные формы:
 
 .content.m-t-lg
-  dl.dl-horizontal
-   - lead.data.keys.sort.each do |key|
-    dt.col-sm-3= key
-    dd.col-sm-9= lead.data[ key ].presence || empty_value_html
-
+  = render 'lead_data', lead: lead
 
 h3 Источники
 .content.m-t-lg

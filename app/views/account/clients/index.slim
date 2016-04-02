@@ -1,7 +1,4 @@
-.jumbotron
-  h1 У вас пока нет клиентов.
-  hr
-  p.lead Есть два способа их получить:
-  ol.lead
-    li Запустить посадочную страницу и направить на нее трафик;
-    li Импортировать базу уже существующих клиентов из CRM или Excel-таблицы;
+- if clients.empty?
+  = render 'empty'
+- else
+  = render 'clients', clients: clients
