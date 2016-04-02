@@ -26,6 +26,7 @@ Rails.application.routes.draw do
             delete :decline
           end
         end
+        resources :clients
         resources :viewers
         resources :views
         resources :collections
