@@ -48,7 +48,7 @@ class LeadCreatedNotifier
   def sms_payload
     {
       site:        lead.landing.short_name,
-      lead_url:    admin_lead_url,
+      lead_url:    ShortUrl.short_url(admin_lead_url),
       number:      lead.number,
       description: lead.description
     }
