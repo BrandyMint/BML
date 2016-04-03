@@ -15,7 +15,7 @@ Rails.application.configure do
     config.action_controller.perform_caching = false
     config.cache_store = :null_store
     # Show full error reports and disable caching.
-    config.consider_all_requests_local       = true
+    config.consider_all_requests_local = true
   end
 
   # Do not eager load code on boot.
