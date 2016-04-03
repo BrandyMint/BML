@@ -1,3 +1,6 @@
+// Пока не используется
+//
+
 (function(){
   var FIRST_PREFIX = 'first';
   var LAST_PREFIX = 'last';

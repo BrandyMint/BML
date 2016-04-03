@@ -15,3 +15,5 @@ html
   body
     == yield
     == bugsnag_editor_data
+    == javascript_include_tag "/assets/vendor.js?v=#{AppVersion}"
+    == javascript_include_tag "/assets/editor.js?v=#{AppVersion}"
