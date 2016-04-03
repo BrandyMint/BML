@@ -1,36 +1,51 @@
 class Account::ColumnsController < Landing::BaseController
-  layout 'account_settings'
+  layout 'landing_settings'
 
   def index
     render locals: {
       collection: collection,
-      columns: collection.columns
+      columns: collection.columns.ordered
     }
   end
 
   def edit
-    render locals: { column: column }
+    render locals: { column: column, collection: collection }
+  end
+
+  def new
+    render locals: { column: collection.columns.build, collection: collection }
+  end
+
+  def create
+    collection.columns.create! permitted_params
+    success_redirect
+  rescue ActiveRecord::RecordInvalid => err
+    render 'new', locals: { column: err.record }, flash: { error: err.message }
   end
 
   def update
-    current_account.update! permitted_params
-    redirect_to :back, flash: { success: I18n.t('flashes.column.saved') }
-
+    column.update! permitted_params
+    success_redirect
   rescue ActiveRecord::RecordInvalid => err
-    redirect_to :back, flash: { error: err.message }
+    render 'edit', locals: { column: err.record }, flash: { error: err.message }
   end
 
   private
+
+  def success_redirect
+    redirect_to account_landing_collection_columns_path(current_landing, collection),
+                flash: { success: I18n.t('flashes.columns.saved') }
+  end
 
   def collection
     current_account.collections.find params[:collection_id]
   end
 
   def column
-    collection.fields
+    collection.columns.find params[:id]
   end
 
   def permitted_params
-    params.require(:account).permit(:name)
+    params.require(:column).permit(:title, :key)
   end
 end

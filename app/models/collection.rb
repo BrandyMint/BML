@@ -5,7 +5,7 @@ class Collection < ActiveRecord::Base
 
   has_many :leads, dependent: :delete_all
 
-  has_many :columns, dependent: :delete_all, class_name: 'CollectionField'
+  has_many :columns, dependent: :delete_all
 
   scope :ordered, -> { order :id }
 

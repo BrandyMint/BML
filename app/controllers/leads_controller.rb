@@ -57,7 +57,7 @@ class LeadsController < ApplicationController
   end
 
   def current_variant
-    @_current_variant ||= Variant.where(uuid: variant_uuid).first! || raise("No such variant #{variant_uuid}")
+    @_current_variant ||= Variant.find_by_uuid(variant_uuid) || raise("No such variant #{variant_uuid}")
   end
 
   def current_landing

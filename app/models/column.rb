@@ -1,7 +1,7 @@
 # Альтернативное название Column
 #
 
-class CollectionField < ActiveRecord::Base
+class Column < ActiveRecord::Base
   belongs_to :collection
 
   before_save :set_title
