@@ -1,45 +1,6 @@
-table.table.table-condensed
-  thead
-    tr
-      th Коллекция
-      th Последняя заявка
-      th Заявки
-  tbody
-    - collections.find_each do |c|
-      tr
-        td
-          = c
-          .text-muted
-            small
-              = c.columns.join(', ')
-        td
-          - if c.last_lead_at.present?
-            = I18n.l c.last_lead_at, format: :short
-          - else
-            = empty_value_html
-        td
-          = link_to I18n.t(:leads_count, count: c.leads_count), account_landing_leads_url(current_landing, collection_id: c.id)
-        td
-          = link_to account_landing_collection_columns_path(current_landing, c) do
-            = fa_icon 'th-list'
-        td
-          = link_to edit_account_landing_collection_url(current_landing, c) do
-            = fa_icon :pencil
-            /- if current_landing.default_variant == v
-              /small.text-muted== "&nbsp;(по-умолчанию)"
-          /small.text-muted= v.uuid
-        /td style="width: 400px"
-          /ul.list-inline.pull-right
-            
-            //= link_to site_variant_url(v), target: '_blank' do
-              //= fa_icon 'external-link', text: 'Публичная ссылка'
-            /li.list-inline-item
-              /= link_to account_landing_editor_path(current_landing, v), class: 'btn btn-sm btn-secondary' do
-                /= fa_icon 'pencil-square-o', text: 'Конструктор'
-            /li.list-inline-item
-              /= link_to edit_account_landing_variant_path(id: v.id, landing: current_landing), class: 'btn btn-sm btn-secondary' do
-                /= fa_icon :pencil, text: 'Настройка'
-            /li.list-inline-item
-              /= variant_activation_button v
+= link_to 'Создать новую коллекцию', 
+  new_account_landing_collection_path(current_landing),
+  class: 'btn btn-success'
 
-
+.m-t-lg
+= render 'collections', collections: collections

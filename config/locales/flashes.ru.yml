@@ -7,6 +7,9 @@ ru:
       members_added: 'В команду включены сотрудники: %{users}'
       created: Приглашение отправлено
       deleted: Приглашение удалено
+    collections:
+      created: Создали коллекцию
+      saved: Настройки коллекции сохранены
     sessions:
       created: Вы успешно авторизовались
       unknown_error: Неизвестная ошибка
