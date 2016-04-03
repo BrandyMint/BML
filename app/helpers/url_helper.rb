@@ -7,7 +7,7 @@ module UrlHelper
                tel
              end
     link = "tel:#{number}"
-    opts = opts.reverse_merge class: 'tel-link', href: link
+    opts = opts.reverse_merge class: 'tel-link text-nowrap', href: link
     content_tag :a, tel, opts
   end
 

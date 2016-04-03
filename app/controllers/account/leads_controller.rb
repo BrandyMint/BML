@@ -19,11 +19,14 @@ class Account::LeadsController < Landing::BaseController
 
   # Предполагается что сюда будет параметром передаваться
   # формат для экспорта
+  #
   def export
     content = LeadsSpreadsheet.new(current_collection, leads).to_csv
+    filename = "#{current_collection}_#{I18n.l(Time.zone.now, format: :short)}"
+    filename = filename.parameterize + '.csv'
     send_data(
       content,
-      disposition: "attachment; filename=#{current_collection}_items.csv",
+      disposition: "attachment; filename=#{filename}",
       type: 'text/csv'
     )
   end

@@ -1,8 +1,7 @@
-.filter-group.col-xs-12.col-sm-6.col-md-4.col-lg-3
+.filter-group
   .dropdown
     input type="hidden" name="state" value=filter.state
     button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown' ="Статус: #{filtered_state(filter.state)}"
     .dropdown-menu
       - LeadsFilter::STATES_OPTIONS.each do |state|
         button.btn-sm.dropdown-item filter-dropdown=true data-target='state' value=state class=(filter.state == state ? 'active' : '') type='button'= I18n.t("leads_filter.state.#{state}")
-.clearfix
