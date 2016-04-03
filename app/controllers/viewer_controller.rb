@@ -9,11 +9,13 @@ class ViewerController < ApplicationController
   helper_method :current_variant
 
   def show
-    render locals: {
-      current_landing: current_landing,
-      variant:         current_variant,
-      viewer_uid:      current_viewer_uid
-    }
+    cache [AppVersion.to_s, :viewer, current_variant] do
+      render locals: {
+        current_landing: current_landing,
+        variant:         current_variant,
+        viewer_uid:      current_viewer_uid
+      }
+    end
   end
 
   private
