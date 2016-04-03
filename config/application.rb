@@ -49,7 +49,8 @@ module Bml
     config.react.server_renderer = React::ServerRendering::SprocketsRenderer
     config.react.server_renderer_options = {
       files: ['react-server.js', 'viewer-prerender.js'],
-      replay_console: true
+      # Если поставить true то падает JS ошибка про SyntaxError: Invalid escape in identifier: '\'
+      replay_console: false
     }
   end
 end

@@ -20,7 +20,6 @@ Rails.application.config.assets.precompile += %w(
   fonts.css
   welcome.js
   vendor.js
-  components.js
   viewer_application.js
   viewer-prerender.js
   react-server.js
