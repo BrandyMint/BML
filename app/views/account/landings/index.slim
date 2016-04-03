@@ -1,7 +1,10 @@
-.pull-right
-  = link_to 'Создать новый сайт', new_account_landing_path, class: 'btn btn-success-outline'
+.row
+  .col-md-6
+    h2 Ваши сайты
+  .col-md-6
+    .pull-right
+      = link_to 'Создать новый сайт', new_account_landing_path, class: 'btn btn-success-outline'
 
-.clearfix
 table.table.table-condensed.table-hover.table-projects.table-striped.m-t-md
   tbody
     - landings.each do |l|
@@ -11,13 +14,13 @@ table.table.table-condensed.table-hover.table-projects.table-striped.m-t-md
             /= fa_icon :bullseye
         td.projects-list-td
           = link_to account_landing_leads_path(l), class: 'projects-list-item' do
-            .projects-list-item-title= l.title
-
             .row
               .col-md-6
+                .projects-list-item-title= l.title
                 small
                   .text-muted
                     = url_without_protocol l.url
               .col-md-6
                 small
-                  .text-muted.pull-right= landing_leads_details(l)
+                  .text-muted.pull-right
+                    .btn.btn-primary-outline= landing_leads_details(l)

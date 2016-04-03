@@ -1,57 +1,22 @@
-nav.navbar.navbar-dark.bg-inverse.navbar-top.navbar-fixed-top
+nav.navbar.navbar-top.navbar-fixed-top.navbar-light.bg-faded
   .container
-
     .row
       .col-lg-9
         ul.nav.navbar-nav.navbar-bml
-
-          li.nav-item.dropdown
-            = link_to account_landing_url(current_landing), 
-              class: 'nav-link dropdown-toggle', 
-              title: current_landing.title,
-              data: { toggle: 'dropdown' }, 
-              role: 'button' do
-              = fa_icon 'bullseye', class: 'm-r-sm', text: landing_short_title(current_landing)
-
-            .dropdown-menu
-              = link_to 'Новый сайт', 
-                new_account_landing_url,
-                class: 'dropdown-item'
-              - if current_account.landings_count > 1
-                = link_to account_landings_url, class: 'dropdown-item' do
-                  span= "Список сайтов "
-                  small.text-muted="(#{current_account.landings_count})"
-              .dropdown-divider
-              - current_account.landings.active.ordered.find_each do |l|
-                = link_to landing_short_title(l), account_landing_url(l), 
-                  class: 'dropdown-item dropdown-secondary-item' + (l==current_landing ? ' active' : '')
-          /li.nav-item= active_link_to 'Аналитика', account_landing_analytics_path(current_landing), active: [['account/analytics'], ['index']], class: 'nav-link'
-          li.nav-item
-            = active_link_to account_landing_leads_url(current_landing), 
-              active: controller_name == 'leads',
-              class: 'nav-link' do
-              = fa_icon 'gift', text: landing_leads_title(current_landing), class: 'menu-hor-icon'
+          = render 'layouts/landing/topmenu/home'
+          = render 'layouts/landing/topmenu/collections'
           /li.nav-item= active_link_to 'Клиенты', account_landing_clients_path(current_landing), class: 'nav-link'
           /li.nav-item= active_link_to 'Мультилендинг', account_variants_path(current_landing), class: 'nav-link'
           li.nav-item
-            = active_link_to account_landing_editor_path(current_landing.default_variant.uuid, backurl: request.url), 
+            = active_link_to account_landing_editor_path(current_landing.default_variant.uuid, backurl: request.url),
               class: 'nav-link' do
-              = fa_icon 'pencil-square-o', text: 'Конструктор', class: 'menu-hor-icon'
-
-          /li.nav-item
-            /= active_link_to 'Аналитика', account_landing_analytics_path(current_landing), 
-              /class: 'nav-link',
-              /active: [['account/collections', 'account/analytics', 'account/variants', 'account/segments']]
-            /= fa_icon 'line-chart'
+              = fa_icon 'object-ungroup', text: 'Конструктор', class: 'menu-hor-icon'
           li.nav-item
             = active_link_to current_landing.url, class: 'nav-link', target: '_blank' do
-              = fa_icon 'newspaper-o', text: 'Сайт', class: 'menu-hor-icon'
-          li.nav-item
-            = active_link_to edit_account_landing_path(current_landing), class: 'nav-link', active: controller_name == 'landing_settings' do
-              = fa_icon 'gears', text: 'Настройки', class: 'menu-hor-icon'
+              = fa_icon 'tv', text: 'Сайт', class: 'menu-hor-icon'
 
       .col-lg-3
         .pull-xs-right
-          = render 'user_dropdown'
+          = render 'site_user_dropdown'
 
 .navbar-space

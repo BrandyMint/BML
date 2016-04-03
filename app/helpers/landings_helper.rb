@@ -28,9 +28,11 @@ module LandingsHelper
     I18n.t :leads_count, count: landing.total_leads_count
   end
 
-  def landing_leads_title(landing)
-    count = landing.total_leads_count
-    title = 'Заявки'
+  def landing_leads_title(landing, current_collection = nil)
+    collection = current_collection || landing.default_collection
+    title = collection.to_s
+    count = collection.leads.count
+
     return title if count == 0
 
     (title + "&nbsp;<span class=\"text-muted\">(#{count})</span>").html_safe

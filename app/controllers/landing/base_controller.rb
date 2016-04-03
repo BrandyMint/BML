@@ -1,7 +1,7 @@
 class Landing::BaseController < Account::BaseController
   layout 'landing'
 
-  helper_method :current_landing, :current_variant
+  helper_method :current_landing, :current_variant, :current_collection
 
   before_action :setup_gon_access
 
@@ -18,6 +18,10 @@ class Landing::BaseController < Account::BaseController
   end
 
   def current_variant
+    nil
+  end
+
+  def current_collection
     nil
   end
 end

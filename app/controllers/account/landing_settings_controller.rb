@@ -1,4 +1,4 @@
-class Account::LandingSettingsController < Account::BaseController
+class Account::LandingSettingsController < Landing::BaseController
   layout 'landing_settings'
 
   helper_method :current_landing

@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
   layout 'account_settings'
 
   def index
-    render locals: { accounts: current_user.accounts.ordered }, layout: 'account'
+    render locals: { accounts: current_user.accounts.ordered }
   end
 
   def edit

@@ -8,6 +8,7 @@ class Collection < ActiveRecord::Base
   has_many :columns, dependent: :delete_all
 
   scope :ordered, -> { order :id }
+  scope :active, -> { all }
 
   def to_s
     title.presence || "Коллекция #{I18n.l created_at, format: :short}"
