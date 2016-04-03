@@ -15,6 +15,11 @@ class Account::EditorController < ApplicationController
     @current_account = account
   end
 
+  def redirect
+    # TODO find account by url
+    redirect_to account_root_url host: AppSettings.host
+  end
+
   private
 
   attr_accessor :current_account, :current_variant

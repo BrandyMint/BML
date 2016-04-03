@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       # Editor
       get '/editor/:uuid', to: 'editor#show', as: :landing_editor
       get '/editor/:uuid/*any', to: 'editor#show', as: :landing_editor_any
+      get '/editor', to: 'editor#redirect'
     end
 
     resource :account, only: [:edit]
