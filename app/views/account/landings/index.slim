@@ -9,18 +9,18 @@ table.table.table-condensed.table-hover.table-projects.table-striped.m-t-md
   tbody
     - landings.each do |l|
       tr
-        /td
-          /.text-muted
-            /= fa_icon :bullseye
-        td.projects-list-td
+        td
           = link_to landing_leads_path(l), class: 'projects-list-item' do
             .row
-              .col-md-6
-                .projects-list-item-title= l.title
+              .col-md-2 style="text-align: center"
+                span.text-muted
+                  = fa_icon :desktop, class: 'fa-4x'
+              .col-md-7
+                .projects-list-item-title style="font-size: 24px"= l.title
                 small
                   .text-muted
                     = url_without_protocol l.url
-              .col-md-6
+              .col-md-3
                 small
                   .text-muted.pull-right
                     .btn.btn-primary-outline= landing_leads_details(l)

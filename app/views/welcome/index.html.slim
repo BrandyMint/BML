@@ -1,7 +1,9 @@
 .row
   .col-lg-4.col-md-6.col-lg-offset-4.col-md-offset-3
     .welcome-welcome
-      h2.welcome-header.bml-logo= AppSettings.title
+      h2.welcome-header.bml-logo
+        = fa_icon :cube
+        = AppSettings.title
       div.welcome-subheader Система управления процессом приземления
     = render 'basic_tariff'
     = render 'lead_form', variant_uuid: variant_uuid, registration_form: registration_form

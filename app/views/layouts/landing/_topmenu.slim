@@ -1,22 +1,19 @@
 nav.navbar.navbar-top.navbar-fixed-top.navbar-light.bg-faded
   .container
-    .row
-      .col-lg-9
-        ul.nav.navbar-nav.navbar-bml
-          = render 'layouts/landing/topmenu/home'
-          = render 'layouts/landing/topmenu/collections'
-          /li.nav-item= active_link_to 'Клиенты', landing_clients_path(current_landing), class: 'nav-link'
-          /li.nav-item= active_link_to 'Мультилендинг', account_variants_path(current_landing), class: 'nav-link'
-          li.nav-item
-            = active_link_to landing_editor_path(current_landing.default_variant.uuid, backurl: request.url),
-              class: 'nav-link' do
-              = fa_icon 'object-ungroup', text: 'Конструктор', class: 'menu-hor-icon'
-          li.nav-item
-            = active_link_to current_landing.url, class: 'nav-link', target: '_blank' do
-              = fa_icon 'tv', text: 'Сайт', class: 'menu-hor-icon'
+    ul.nav.navbar-nav.navbar-bml
+      = render 'layouts/landing/topmenu/home'
+      = render 'layouts/landing/topmenu/collections'
+      /li.nav-item= active_link_to 'Клиенты', landing_clients_path(current_landing), class: 'nav-link'
+      /li.nav-item= active_link_to 'Мультилендинг', account_variants_path(current_landing), class: 'nav-link'
+      li.nav-item
+        = active_link_to landing_editor_path(current_landing.default_variant.uuid, backurl: request.url),
+          class: 'nav-link' do
+          = fa_icon 'object-ungroup', text: 'Конструктор', class: 'menu-hor-icon'
+      li.nav-item
+        = active_link_to current_landing.url, class: 'nav-link', target: '_blank' do
+          = fa_icon 'external-link', text: 'Сайт', class: 'menu-hor-icon'
 
-      .col-lg-3
-        .pull-xs-right
-          = render 'site_user_dropdown'
+    .pull-xs-right
+      = render 'site_user_dropdown'
 
 .navbar-space

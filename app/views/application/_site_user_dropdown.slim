@@ -9,7 +9,7 @@ ul.nav.navbar-nav.navbar-right
       = active_link_to 'Личный профиль', profile_path(backurl: request.url), class: 'dropdown-item'
       .dropdown-divider
       = active_link_to 'Настройка сайта',
-        edit_landing_path(current_landing),
+        landing_collections_path(current_landing),
         class: 'dropdown-item',
         active: %w(landing_settings variants collections).include?(controller_name)
       .dropdown-divider

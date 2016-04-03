@@ -1,7 +1,7 @@
 nav.navbar.navbar-dark.bg-primary.navbar-top.navbar-fixed-top
   .container
     = link_to account_root_url, class: 'navbar-brand' do
-      = fa_icon 'pause-circle-o'
+      = fa_icon :cube, class: 'm-r-sm', text: AppSettings.title
     ul.nav.navbar-nav.navbar-bml
       li.nav-item= active_link_to current_account.title, landings_path, class: 'nav-link', active: :exclusive
     .pull-xs-right

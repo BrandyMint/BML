@@ -1,6 +1,6 @@
 apps:
   -
-    title: BML
+    title: Ай да Мастер!
     asset_host: <%= ENV['ASSET_HOST'] || 'http://bmland.dev' %>
     from: 'from@<%= ENV['HOST'] || 'bmland.dev' %>'
     tld_length: <%= ENV['TLD'] || 1 %>

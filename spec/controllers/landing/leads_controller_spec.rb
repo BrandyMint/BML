@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Account::LeadsController, type: :controller do
+RSpec.describe Landing::LeadsController, type: :controller do
   include SystemControllerSupport
   include Sorcery::TestHelpers::Rails::Integration
   include Sorcery::TestHelpers::Rails::Controller
