@@ -1,6 +1,6 @@
 class API::Images < Grape::API
   include StrongParams
-  include Authorization
+  include CurrentAccountSupport
 
   before do
     header 'Access-Control-Allow-Origin', '*'

@@ -1,6 +1,6 @@
 class API::UtmValues < Grape::API
   include StrongParams
-  include Authorization
+  include CurrentAccountSupport
 
   desc 'Значения utm'
   resources :utm_values do

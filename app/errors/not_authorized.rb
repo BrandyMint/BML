@@ -1,1 +1,3 @@
-NotAuthorized = Class.new SiteError
+class NotAuthorized < SiteError
+  HTTP_STATE = 403
+end

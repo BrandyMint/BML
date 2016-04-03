@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402142140) do
+ActiveRecord::Schema.define(version: 20160403150921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,19 +32,20 @@ ActiveRecord::Schema.define(version: 20160402142140) do
   add_index "account_sms_log_entities", ["account_id"], name: "index_account_sms_log_entities_on_account_id", using: :btree
 
   create_table "accounts", force: :cascade do |t|
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.integer  "landings_count",         default: 0,     null: false
-    t.string   "ident",                                  null: false
-    t.string   "access_key",                             null: false
-    t.integer  "clients_count",          default: 0,     null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.integer  "landings_count",         default: 0,                    null: false
+    t.string   "ident",                                                 null: false
+    t.string   "access_key",                                            null: false
+    t.integer  "clients_count",          default: 0,                    null: false
     t.string   "name"
     t.integer  "tariff_id"
     t.string   "smsc_login"
     t.string   "smsc_password"
     t.string   "smsc_sender"
     t.boolean  "smsc_active",            default: false
-    t.integer  "sms_log_entities_count", default: 0,     null: false
+    t.integer  "sms_log_entities_count", default: 0,                    null: false
+    t.uuid     "uuid",                   default: "uuid_generate_v4()", null: false
   end
 
   add_index "accounts", ["access_key"], name: "index_accounts_on_access_key", unique: true, using: :btree
@@ -114,21 +115,23 @@ ActiveRecord::Schema.define(version: 20160402142140) do
   add_index "clients", ["landing_id"], name: "index_clients_on_landing_id", using: :btree
 
   create_table "collection_fields", force: :cascade do |t|
-    t.integer  "collection_id", null: false
-    t.string   "key",           null: false
+    t.integer  "collection_id",                                null: false
+    t.string   "key",                                          null: false
     t.string   "title"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.uuid     "uuid",          default: "uuid_generate_v4()", null: false
   end
 
   add_index "collection_fields", ["collection_id", "key"], name: "index_collection_fields_on_collection_id_and_key", unique: true, using: :btree
 
   create_table "collections", force: :cascade do |t|
-    t.integer  "landing_id",              null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "leads_count", default: 0, null: false
+    t.integer  "landing_id",                                 null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.integer  "leads_count", default: 0,                    null: false
     t.string   "title"
+    t.uuid     "uuid",        default: "uuid_generate_v4()", null: false
   end
 
   add_index "collections", ["landing_id"], name: "index_collections_on_landing_id", using: :btree
@@ -194,8 +197,8 @@ ActiveRecord::Schema.define(version: 20160402142140) do
   create_table "leads", force: :cascade do |t|
     t.integer  "collection_id"
     t.hstore   "data"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.integer  "variant_id"
     t.string   "first_utm_source"
     t.string   "first_utm_campaign"
@@ -209,9 +212,9 @@ ActiveRecord::Schema.define(version: 20160402142140) do
     t.string   "last_utm_term"
     t.string   "last_utm_content"
     t.string   "last_referer"
-    t.integer  "number",                             null: false
-    t.string   "public_number",                      null: false
-    t.integer  "landing_id",                         null: false
+    t.integer  "number",                                            null: false
+    t.string   "public_number",                                     null: false
+    t.integer  "landing_id",                                        null: false
     t.string   "utm_source"
     t.string   "utm_campaign"
     t.string   "utm_medium"
@@ -220,7 +223,8 @@ ActiveRecord::Schema.define(version: 20160402142140) do
     t.string   "referer"
     t.string   "viewer_uid"
     t.integer  "client_id"
-    t.string   "state",              default: "new", null: false
+    t.string   "state",              default: "new",                null: false
+    t.uuid     "uuid",               default: "uuid_generate_v4()", null: false
   end
 
   add_index "leads", ["client_id"], name: "index_leads_on_client_id", using: :btree

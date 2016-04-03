@@ -1,0 +1,2 @@
+class LandingPolicy < ApplicationPolicy
+end

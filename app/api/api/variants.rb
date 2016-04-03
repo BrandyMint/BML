@@ -1,6 +1,7 @@
 class API::Variants < Grape::API
   include StrongParams
-  include Authorization
+  include CurrentAccountSupport
+  include AvailableLandingSupport
 
   DEFAULT_TITLE = 'Без названия'.freeze
   BLANK_UUID = 'blank'.freeze
@@ -29,14 +30,24 @@ class API::Variants < Grape::API
     end
   end
 
-  desc 'Варианты посадочных страниц'
   resources :variants do
+    desc 'Список вариантов'
     params do
-      requires :uuid, type: String, desc: 'UUID Варианта'
+      requires :landing_uuid, type: String, desc: 'UUID Сайта'
+      optional :full, type: Boolean, desc: 'Презентировать весь сайт', default: false
+    end
+    get do
+      variants = available_landing.variants.active.ordered
+      if params[:full]
+        present variants, with: Entities::VariantEntity
+      else
+        present variants, with: Entities::VariantInfoEntity
+      end
     end
 
     desc 'Создаем новый вариант'
     params do
+      optional :uuid, type: String, desc: 'UUID Варианта'
       optional :title,      type: String
       optional :theme_name, type: String
       optional :is_boxed,   type: Boolean
