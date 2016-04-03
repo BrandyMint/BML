@@ -1,0 +1,7 @@
+ul.nav.nav-pills.nav-stacked
+  - collections.ordered.each do |collection|
+    li.nav-item.active
+      = active_link_to collection, 
+        landing_leads_path(current_landing, collection_id: collection), 
+        class: 'nav-link', 
+        active: current_collection == collection

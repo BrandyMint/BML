@@ -1,6 +1,6 @@
 ul.nav.nav-pills.nav-stacked
   li.nav-item
-    = active_link_to account_landings_url, class: 'nav-link', active: [['account/landings'],[]] do
+    = active_link_to landings_url, class: 'nav-link', active: [['account/landings'],[]] do
       | Сайты
       span.text-muted= " (#{account.landings.count})"
 

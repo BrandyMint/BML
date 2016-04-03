@@ -9,7 +9,8 @@ ul.nav.navbar-nav.navbar-right
       = active_link_to 'Личный профиль', profile_path(backurl: request.url), class: 'dropdown-item'
 
       .dropdown-divider
-      = active_link_to account_root_path, class: 'dropdown-item', active: controller_name == 'landings' do
+      = active_link_to account_root_path, class: 'dropdown-item',
+        active: controller.is_a?(Account::BaseController) do
         | Аккаунт
         div
           small.text-muted= current_account

@@ -1,6 +1,6 @@
 - if current_landing.collections.active.many?
   li.nav-item.dropdown
-    = active_link_to account_landing_leads_url(current_landing),
+    = active_link_to landing_leads_url(current_landing),
       active: controller_name == 'leads',
       class: 'nav-link dropdown-toggle',
       data: { toggle: 'dropdown' },
@@ -10,11 +10,11 @@
     .dropdown-menu
       - current_account.collections.ordered.active.each do |c|
         = link_to truncate_middle(c.to_s),
-          account_landing_leads_url(current_landing, collection_id: c.id),
+          landing_leads_url(current_landing, collection_id: c.id),
           class: 'dropdown-item' + (c==current_collection ? ' active' : '')
 - else
   li.nav-item
-    = active_link_to account_landing_leads_url(current_landing),
+    = active_link_to landing_leads_url(current_landing),
       active: controller_name == 'leads',
       class: 'nav-link' do
       = fa_icon 'list-alt', text: landing_leads_title(current_landing, current_collection), class: 'menu-hor-icon'

@@ -6,13 +6,40 @@ require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
   concern :account do
-    ### Account
-    # можно было бы объеденить все это в один AccountConstraint но предпочли сделать
-    # через Account::BaseController
-    #
     scope :account, as: :account, module: :account do
       root to: redirect('/account/landings')
-      resources :landings do
+      resources :landings
+      resource :name, controller: :name, only: [:show, :update]
+      resource :sms, controller: :sms, only: [:show, :update]
+      resource :domains, controller: :domains, only: [:show, :update]
+      resource :billing, controller: :billing, only: [:show, :update]
+      resource :api, controller: :api, only: [:show, :update]
+
+      resources :invites
+      resources :members, as: :memberships do
+        member do
+          post :send_email_confirmation
+        end
+      end
+    end
+
+    scope module: :account do
+      # Editor
+      get '/editor/:uuid', to: 'editor#show', as: :landing_editor
+      get '/editor/:uuid/*any', to: 'editor#show', as: :landing_editor_any
+    end
+
+    resource :account, only: [:edit]
+    resources :accounts, only: [:index] do
+      member do
+        get action: :select, as: :select
+      end
+    end
+  end
+
+  concern :landing do
+    resources :landings, controller: 'account/landings' do
+      scope module: :landing do
         resource :settings, only: [:update], controller: 'landing_settings' do
           member do
             get :address
@@ -49,32 +76,6 @@ Rails.application.routes.draw do
             get :users
           end
         end
-      end
-
-      resource :name, controller: :name, only: [:show, :update]
-      resource :sms, controller: :sms, only: [:show, :update]
-      resource :domains, controller: :domains, only: [:show, :update]
-      resource :billing, controller: :billing, only: [:show, :update]
-      resource :api, controller: :api, only: [:show, :update]
-
-      resources :invites
-      resources :members, as: :memberships do
-        member do
-          post :send_email_confirmation
-        end
-      end
-    end
-
-    scope module: :account, as: :account do
-      # Editor
-      get '/editor/:uuid', to: 'editor#show', as: :landing_editor
-      get '/editor/:uuid/*any', to: 'editor#show', as: :landing_editor_any
-    end
-
-    resource :account, only: [:edit]
-    resources :accounts, only: [:index] do
-      member do
-        get action: :select, as: :select
       end
     end
   end
@@ -153,6 +154,7 @@ Rails.application.routes.draw do
       concerns :authorization
       concerns :profile
       concerns :account
+      concerns :landing
     end
   end
 

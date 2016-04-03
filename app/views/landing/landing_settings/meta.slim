@@ -1,0 +1,12 @@
+= simple_form_for [landing], url: landing_settings_url(landing) do |f|
+  = hidden_field_tag :subaction, :meta
+  .row
+    .col-md-6
+      = f.input :title
+      = f.input :head_title
+      = f.input :meta_keywords
+      = f.input :meta_description
+  .row
+    .col-md-6
+      .form-group
+        = f.button :submit, 'Сохранить', class: 'btn-primary'

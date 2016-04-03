@@ -5,10 +5,10 @@ nav.navbar.navbar-top.navbar-fixed-top.navbar-light.bg-faded
         ul.nav.navbar-nav.navbar-bml
           = render 'layouts/landing/topmenu/home'
           = render 'layouts/landing/topmenu/collections'
-          /li.nav-item= active_link_to 'Клиенты', account_landing_clients_path(current_landing), class: 'nav-link'
+          /li.nav-item= active_link_to 'Клиенты', landing_clients_path(current_landing), class: 'nav-link'
           /li.nav-item= active_link_to 'Мультилендинг', account_variants_path(current_landing), class: 'nav-link'
           li.nav-item
-            = active_link_to account_landing_editor_path(current_landing.default_variant.uuid, backurl: request.url),
+            = active_link_to landing_editor_path(current_landing.default_variant.uuid, backurl: request.url),
               class: 'nav-link' do
               = fa_icon 'object-ungroup', text: 'Конструктор', class: 'menu-hor-icon'
           li.nav-item

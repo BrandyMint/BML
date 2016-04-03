@@ -31,7 +31,7 @@ module ApplicationHelper
   end
 
   def editor_exit_url
-    params[:backurl] || account_landing_leads_url(current_variant.landing_id)
+    params[:backurl] || landing_leads_url(current_variant.landing_id)
   end
 
   def api_v1_url

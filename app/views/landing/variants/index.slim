@@ -1,0 +1,51 @@
+.row
+  .col-md-9
+    h1 
+      | Посадочные варианты
+      span.text-muted= " (#{variants.count})"
+  .col-md-3
+    .pull-right
+      - if $rollout.active?(:variants, current_account)
+        = link_to new_landing_variant_path(current_landing), class: 'btn btn-success' do
+          = fa_icon 'plus', class: 'fa-in-button', text: 'Добавить вариант'
+
+table.table.table-condensed.m-t-lg
+  - variants.find_each do |v|
+    tr
+      td
+        -# small.text-muted= link_to site_variant_url(v), site_variant_url(v), target: '_blank', class: 'text-muted'
+        h3= v
+        - if current_landing.default_variant == v
+          span.text-nowrap.label.label-default по-умолчанию
+        .text-muted.m-t-sm
+          = "Блоков: #{v.sections.count} шт."
+      td style="width: 500px"
+        ul.list-inline.pull-right
+          
+          /= link_to site_variant_url(v), target: '_blank' do
+            /= fa_icon 'external-link', text: 'Публичная ссылка'
+          li.list-inline-item
+            = variant_activation_button v
+          li.list-inline-item
+            = link_to landing_editor_path(current_landing, uuid: v.uuid), class: 'btn btn-sm btn-secondary' do
+              = fa_icon 'pencil-square-o', text: 'Конструктор'
+          li.list-inline-item
+            = link_to edit_landing_variant_path(id: v.id, landing: current_landing), class: 'btn btn-sm btn-secondary' do
+              = fa_icon :gear, text: 'Настройка'
+
+hr.m-t-lg.m-b-lg
+.row
+  .col-md-6
+    .bd-callout.bd-callout-danger
+      h4 AB-Тестирование
+      p Тестирование проводится через создание различных вариантов посадочной страницы.
+  .col-md-6
+    .bd-callout.bd-callout-danger
+      h4 Мультилендинг
+      p Мультилендинг позволяет показывать посетителю тот вариант посадочной страницы, который лучше всего подходит его поисковой фразе.
+.row
+  .col-md-12
+    .bd-callout.bd-callout-warning
+      h4 Что сделать?
+      p Создайте новый вариант, налейте трафик и увидите чем отличается конверсия одного варианта от другого, оставьте лучший.
+

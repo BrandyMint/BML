@@ -3,6 +3,6 @@ nav.navbar.navbar-dark.bg-primary.navbar-top.navbar-fixed-top
     = link_to account_root_url, class: 'navbar-brand' do
       = fa_icon 'pause-circle-o'
     ul.nav.navbar-nav.navbar-bml
-      li.nav-item= active_link_to current_account.title, account_landings_path, class: 'nav-link', active: :exclusive
+      li.nav-item= active_link_to current_account.title, landings_path, class: 'nav-link', active: :exclusive
     .pull-xs-right
       = render 'account_user_dropdown'

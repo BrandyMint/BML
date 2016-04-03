@@ -10,16 +10,16 @@ class Account::LandingsController < Account::BaseController
   end
 
   def edit
-    redirect_to address_account_landing_settings_url(params[:id])
+    redirect_to address_landing_settings_url(params[:id])
   end
 
   def show
-    redirect_to account_landing_leads_path(params[:id])
+    redirect_to landing_leads_path(params[:id])
   end
 
   def create
     landing = create_landing!
-    redirect_to account_landing_editor_path landing.default_variant.uuid
+    redirect_to landing_editor_path landing.default_variant.uuid
   rescue ActiveRecord::RecordInvalid => err
     Rails.logger.error err
     render 'new', locals: { landing: err.record }

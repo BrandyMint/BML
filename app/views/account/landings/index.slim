@@ -3,7 +3,7 @@
     h2 Ваши сайты
   .col-md-6
     .pull-right
-      = link_to 'Создать новый сайт', new_account_landing_path, class: 'btn btn-success-outline'
+      = link_to 'Создать новый сайт', new_landing_path, class: 'btn btn-success-outline'
 
 table.table.table-condensed.table-hover.table-projects.table-striped.m-t-md
   tbody
@@ -13,7 +13,7 @@ table.table.table-condensed.table-hover.table-projects.table-striped.m-t-md
           /.text-muted
             /= fa_icon :bullseye
         td.projects-list-td
-          = link_to account_landing_leads_path(l), class: 'projects-list-item' do
+          = link_to landing_leads_path(l), class: 'projects-list-item' do
             .row
               .col-md-6
                 .projects-list-item-title= l.title

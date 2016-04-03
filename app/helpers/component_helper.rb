@@ -16,7 +16,7 @@ module ComponentHelper
   def initial_state(variant, edit_mode)
     {
       application: {
-        exitUrl:              account_landing_analytics_path(variant.landing),
+        exitUrl:              landing_analytics_path(variant.landing),
         isEditMode:           edit_mode,
         isSaving:             false,
         variant_uuid: variant.uuid,

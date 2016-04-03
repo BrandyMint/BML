@@ -1,6 +1,0 @@
-ul.list-inline
-  li.list-inline-item.text-muted Экспорт
-  li.list-inline-item
-    = link_to export_account_landing_leads_path(current_landing, filter.params.merge(format: :csv)) do
-      = fa_icon :download, text: 'CSV'
-  -# li.list-inline-item= link_to 'Excel', export_account_landing_collection_path(current_landing, collection, format: :xsl)

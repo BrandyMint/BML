@@ -1,12 +1,12 @@
 ul.nav.nav-pills.nav-stacked
-  li.nav-item= active_link_to 'Адрес сайта', address_account_landing_settings_url(landing), class: 'nav-link', active: [[],['address']]
-  li.nav-item= active_link_to 'Meta-теги', meta_account_landing_settings_url(landing), class: 'nav-link', active: [[],['meta']]
-  li.nav-item= active_link_to 'Yandex.Direct', direct_account_landing_settings_url(landing), class: 'nav-link', active: [[],['direct']]
   li.nav-item
-    = active_link_to account_landing_variants_url(landing), class: 'nav-link', active: [['account/variants'],[]] do
-      | Варианты 
-      span.text-muted= "(#{landing.variants.count})"
+    = active_link_to landing_collections_url(landing), class: 'nav-link', active: [['landing/collections'],[]] do
+      | Коллекции
+      span.text-muted== "&nbsp;(#{landing.collections.count})"
   li.nav-item
-    = active_link_to account_landing_collections_url(landing), class: 'nav-link', active: [['account/collections'],[]] do
-      | Коллекции 
-      span.text-muted= "(#{landing.collections.count})"
+    = active_link_to landing_variants_url(landing), class: 'nav-link', active: [['landing/variants'],[]] do
+      | Варианты
+      span.text-muted== "&nbsp;(#{landing.variants.count})"
+  li.nav-item= active_link_to 'Адрес сайта', address_landing_settings_url(landing), class: 'nav-link', active: [[],['address']]
+  li.nav-item= active_link_to 'Meta-теги', meta_landing_settings_url(landing), class: 'nav-link', active: [[],['meta']]
+  li.nav-item= active_link_to 'Yandex.Direct', direct_landing_settings_url(landing), class: 'nav-link', active: [[],['direct']]

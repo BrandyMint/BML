@@ -9,9 +9,9 @@ ul.nav.navbar-nav.navbar-right
       = active_link_to 'Личный профиль', profile_path(backurl: request.url), class: 'dropdown-item'
       .dropdown-divider
       = active_link_to 'Настройка сайта',
-        edit_account_landing_path(current_landing),
+        edit_landing_path(current_landing),
         class: 'dropdown-item',
-        active: controller_name == 'landing_settings'
+        active: %w(landing_settings variants collections).include?(controller_name)
       .dropdown-divider
 
       = active_link_to account_root_path, class: 'dropdown-item', active: controller_name == 'landings' do
