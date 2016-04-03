@@ -1,4 +1,4 @@
-dl.dl-horizontal
- - lead.data.keys.sort.each do |key|
-  dt.col-sm-3= key
-  dd.col-sm-9= lead.data[ key ].presence || empty_value_html
+dl.dl-horizontal.m-l-sm
+ - lead.data_fields.each do |field|
+  dt.col-sm-3= field.title
+  dd.col-sm-9= field_value field

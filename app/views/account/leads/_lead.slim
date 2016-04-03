@@ -5,7 +5,7 @@ tr
     = link_to account_landing_lead_url(current_landing, lead) do
       = I18n.l lead.created_at, format: :short
   - columns.each do |column|
-    td= lead_field_content lead, column
+    td= field_value lead.fields[column.key]
   td
     = lead_state lead.state
   td style="min-width: 110px"

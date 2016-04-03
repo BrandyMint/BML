@@ -3,6 +3,8 @@
 #
 
 class RowFields < Set
+  NotFound = Class.new StandardError
+
   def initialize(data)
     @data = data
     super data.map do |k, v|
@@ -11,9 +13,14 @@ class RowFields < Set
   end
 
   def [](key)
+    key = key.key if key.is_a? CollectionField
     find do |field|
       field.key == key
     end
+  end
+
+  def get(key)
+    self[key] || raise(NotFound, key)
   end
 
   private

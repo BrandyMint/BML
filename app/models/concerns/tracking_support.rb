@@ -10,12 +10,6 @@ module TrackingSupport
     :referer
   ].freeze
 
-  Lead::ATTRIBUTES = UTM_FIELDS + UTM_FIELDS.map { |a| "last_#{a}" } + UTM_FIELDS.map { |a| "first_#{a}" }
-
-  included do
-    before_create :fill_current_utms
-  end
-
   UTM_FIELD_DEFINITIONS = UTM_FIELDS.map do |f|
     FieldDefinition.new(
       key: f,
@@ -24,10 +18,13 @@ module TrackingSupport
     )
   end
 
+  included do
+    before_create :fill_current_utms
+  end
+
   private
 
   def fill_current_utms
-    # TODO: думать какие устанвить first/last
     self.utm_source = last_utm_source
     self.utm_campaign = last_utm_campaign
     self.utm_medium = last_utm_medium
