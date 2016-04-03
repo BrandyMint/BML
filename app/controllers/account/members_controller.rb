@@ -1,5 +1,5 @@
 class Account::MembersController < Account::BaseController
-  layout 'account_settings'
+  layout 'account'
 
   def index
     authorize Membership

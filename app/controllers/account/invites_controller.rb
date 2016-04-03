@@ -1,5 +1,5 @@
 class Account::InvitesController < Account::BaseController
-  layout 'account_settings'
+  layout 'account'
 
   def create
     authorize invite

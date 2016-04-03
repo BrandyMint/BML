@@ -1,5 +1,5 @@
 class Account::BillingController < Account::BaseController
-  layout 'account_settings'
+  layout 'account'
 
   def show
     render locals: {

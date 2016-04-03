@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
   include AuthorizeUser
 
-  layout 'account_settings'
+  layout 'accounts'
 
   def index
     render locals: { accounts: current_user.accounts.ordered }

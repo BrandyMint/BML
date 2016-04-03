@@ -1,5 +1,5 @@
 class Account::ApiController < Account::BaseController
-  layout 'account_settings'
+  layout 'account'
 
   def show
     render locals: { account: current_account }
