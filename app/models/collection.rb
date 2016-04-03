@@ -10,7 +10,7 @@ class Collection < ActiveRecord::Base
   scope :ordered, -> { order :id }
 
   def to_s
-    title.presence || "Коллекция #{created_at}"
+    title.presence || "Коллекция #{I18n.l created_at, format: :short}"
   end
 
   def last_lead_at

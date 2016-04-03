@@ -1,0 +1,3 @@
+= simple_form_for [:account, current_landing, collection] do |f|
+  = f.input :title, label: false, placeholder: 'Название коллекции'
+  = f.submit t('shared.save'), class: 'btn btn-primary'

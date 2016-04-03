@@ -13,12 +13,24 @@ class Account::CollectionsController < Landing::BaseController
     redirect_to account_landing_collections_path(current_landing)
   end
 
+  def new
+    render locals: { collection: current_account.collections.build }
+  end
+
+  def create
+    current_landing.collections.create! permitted_params
+    redirect_to account_landing_collections_path(current_landing),
+                flash: { success: I18n.t('flashes.collection.saved') }
+  rescue ActiveRecord::RecordInvalid => err
+    render 'new', locals: { collection: err.record }, flash: { error: err.message }
+  end
+
   def update
     collection.update! permitted_params
     redirect_to account_landing_collections_path(current_landing),
                 flash: { success: I18n.t('flashes.collection.saved') }
   rescue ActiveRecord::RecordInvalid => err
-    redirect_to :back, flash: { error: err.message }
+    render 'edit', locals: { collection: err.record }, flash: { error: err.message }
   end
 
   private
