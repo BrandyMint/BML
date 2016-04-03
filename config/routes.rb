@@ -21,6 +21,9 @@ Rails.application.routes.draw do
           end
         end
         resources :leads do
+          collection do
+            get :export
+          end
           member do
             post :accept
             delete :decline

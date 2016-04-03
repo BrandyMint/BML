@@ -17,6 +17,17 @@ class Account::LeadsController < Landing::BaseController
     }
   end
 
+  # Предполагается что сюда будет параметром передаваться
+  # формат для экспорта
+  def export
+    content = LeadsSpreadsheet.new(current_collection, leads).to_csv
+    send_data(
+      content,
+      disposition: "attachment; filename=#{current_collection}_items.csv",
+      type: 'text/csv'
+    )
+  end
+
   def show
     render locals: { lead: lead }, layout: 'lead_show'
   end

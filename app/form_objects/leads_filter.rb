@@ -29,6 +29,14 @@ class LeadsFilter
 
   attr_accessor :popular_utm_options
 
+  delegate :to_param, to: :params
+
+  def params
+    attributes
+      .except(:limit, :variant, :collection, :account)
+      .compact
+  end
+
   def present?
     PRESENCE_FIELDS.any? { |f| send(f).present? }
   end

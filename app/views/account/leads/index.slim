@@ -3,7 +3,12 @@
     h1 Нет данных.
     p.lead Коллекции данных появляются, когда пользователи заполняют формы.
 - else
-  h2.m-b-md Заявки (#{leads.total_count})
+
+  .row
+    .col-md-6
+      h2.m-b-md Заявки (#{leads.total_count})
+    .col-md-6
+      .pull-right= render 'pagination', scope: leads
 
   table.table.table-small-text.table-striped
     thead.thead-default
@@ -18,7 +23,9 @@
     tbody
       == render partial: 'lead', collection: leads, locals: { columns: columns }
 
-  - if leads.respond_to? :total_pages
-    nav
-      = paginate leads
-  -#= render 'export_links'
+  .row
+    .col-md-6
+      .m-t-md
+        = render 'export_links', collection: current_collection, filter: filter
+    .col-md-6
+      .pull-right= render 'pagination', scope: leads
