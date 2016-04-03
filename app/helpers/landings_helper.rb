@@ -21,6 +21,11 @@ module LandingsHelper
 
   def render_variant(variant)
     props = variant_store_state(variant)
+    react_component 'Viewer', props, prerender: true
+  rescue ExecJS::ProgramError => err
+    raise err unless Rails.env.production?
+    Bugsnag.notify err, metaData: { variant: variant.uuid }
+
     react_component 'Viewer', props, prerender: false
   end
 

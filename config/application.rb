@@ -48,7 +48,7 @@ module Bml
     config.react.server_renderer_time ||= 10
     config.react.server_renderer = React::ServerRendering::SprocketsRenderer
     config.react.server_renderer_options = {
-      files: ['components.js'],
+      files: ['react-server.js', 'viewer-prerender.js'],
       replay_console: true
     }
   end

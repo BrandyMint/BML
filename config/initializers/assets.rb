@@ -22,6 +22,8 @@ Rails.application.config.assets.precompile += %w(
   vendor.js
   components.js
   viewer_application.js
+  viewer-prerender.js
+  react-server.js
   viewer.js viewer.css
   editor.js editor.css
   swagger_ui.js swagger_ui.css
