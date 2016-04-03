@@ -1,1 +1,3 @@
-NotAuthenticated = Class.new SiteError
+class NotAuthenticated < SiteError
+  HTTP_STATE = 401
+end

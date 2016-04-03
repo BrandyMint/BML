@@ -39,7 +39,7 @@ module HandleErrors
       locals: { session_form: SessionForm.new(remember_me: true) },
       formats: 'html',
       layout: 'auth',
-      status: 403
+      status: NotAuthorized::HTTP_STATE
     )
   end
 
@@ -50,7 +50,7 @@ module HandleErrors
       locals: { session_form: SessionForm.new(remember_me: true) },
       formats: 'html',
       layout: 'auth',
-      status: 401
+      status: NotAuthenticated::HTTP_STATE
     )
   end
 

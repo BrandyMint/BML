@@ -14,6 +14,10 @@ class ApplicationPolicy
     true
   end
 
+  def read?
+    show?
+  end
+
   def create?
     member.admin?
   end

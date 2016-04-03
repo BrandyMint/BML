@@ -1,5 +1,6 @@
-module Authorization
+module CurrentAccountSupport
   extend ActiveSupport::Concern
+  include ApiSession
 
   TEST_ACCESS_KEY = 'test'.freeze
   TEST_ACCOUNT_ID = 2
@@ -11,13 +12,20 @@ module Authorization
       end
 
       def find_test_account
-        Variant.find_by_uuid(params[:uuid]).try(:account) ||
-          Account.find(TEST_ACCOUNT_ID)
+        Account.find(TEST_ACCOUNT_ID)
       end
 
       def current_account
-        return find_test_account if test?
-        @_current_account ||= Account.find_by_access_key api_key
+        @_current_account ||= find_account
+      end
+
+      def find_account
+        if api_key.present?
+          return find_test_account if test?
+          Account.find_by_access_key api_key
+        elsif session[:account_id].present?
+          Account.find session[:account_id]
+        end
       end
 
       def api_key
