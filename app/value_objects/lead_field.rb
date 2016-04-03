@@ -40,7 +40,7 @@ class LeadField
   end
 
   def title
-    # TODO: CollectionField.title
+    # TODO: Column.title
     I18n.t key, scope: [:lead, :attributes], default: key
   end
 

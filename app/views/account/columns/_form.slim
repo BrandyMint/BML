@@ -1,0 +1,6 @@
+= simple_form_for [:account, current_landing, collection, column] do |f|
+  = f.input :title, label: 'Человеческое название колонки'
+  = f.input :key, label: 'Ключ (название поля из html формф)', disabled: f.object.persisted?
+  - if f.object.persisted?
+    = f.input :uuid, disabled: true
+  = f.submit t('shared.save'), class: 'btn btn-primary'

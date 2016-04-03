@@ -1,8 +1,17 @@
 h2.m-b-md Поля коллекции "#{collection}"
 
-= link_to "Назад в список коллекций", account_landing_collection_path(current_landing, collection)
+.row
+  .col-md-6
+    = link_to "Назад в список коллекций", account_landing_collection_path(current_landing, collection)
+  .col-md-6
+    .pull-right
+      = link_to 'Добавить новую колонку',
+        new_account_landing_collection_column_path(current_landing, collection),
+        class: 'btn btn-success-outline'
 
-table.table.table-condensed.m-t-lg
+.m-t-lg
+
+table.table.table-condensed
   thead
     tr
       th Ключ
@@ -12,3 +21,7 @@ table.table.table-condensed.m-t-lg
       tr
         td= column.key
         td= column.title
+        td
+          .pull-right
+            = link_to edit_account_landing_collection_column_path(current_landing, collection, column), title: 'Изменить', tooltip: true do
+              = fa_icon :pencil

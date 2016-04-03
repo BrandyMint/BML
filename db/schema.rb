@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403150921) do
+ActiveRecord::Schema.define(version: 20160403172549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,17 +114,6 @@ ActiveRecord::Schema.define(version: 20160403150921) do
   add_index "clients", ["landing_id", "phone"], name: "index_clients_on_landing_id_and_phone", unique: true, using: :btree
   add_index "clients", ["landing_id"], name: "index_clients_on_landing_id", using: :btree
 
-  create_table "collection_fields", force: :cascade do |t|
-    t.integer  "collection_id",                                null: false
-    t.string   "key",                                          null: false
-    t.string   "title"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
-    t.uuid     "uuid",          default: "uuid_generate_v4()", null: false
-  end
-
-  add_index "collection_fields", ["collection_id", "key"], name: "index_collection_fields_on_collection_id_and_key", unique: true, using: :btree
-
   create_table "collections", force: :cascade do |t|
     t.integer  "landing_id",                                 null: false
     t.datetime "created_at",                                 null: false
@@ -135,6 +124,17 @@ ActiveRecord::Schema.define(version: 20160403150921) do
   end
 
   add_index "collections", ["landing_id"], name: "index_collections_on_landing_id", using: :btree
+
+  create_table "columns", force: :cascade do |t|
+    t.integer  "collection_id",                                null: false
+    t.string   "key",                                          null: false
+    t.string   "title"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.uuid     "uuid",          default: "uuid_generate_v4()", null: false
+  end
+
+  add_index "columns", ["collection_id", "key"], name: "index_columns_on_collection_id_and_key", unique: true, using: :btree
 
   create_table "invites", force: :cascade do |t|
     t.integer  "user_inviter_id",                    null: false
@@ -437,8 +437,8 @@ ActiveRecord::Schema.define(version: 20160403150921) do
   add_foreign_key "authentications", "accounts"
   add_foreign_key "clients", "accounts"
   add_foreign_key "clients", "landings"
-  add_foreign_key "collection_fields", "collections"
   add_foreign_key "collections", "landings"
+  add_foreign_key "columns", "collections"
   add_foreign_key "invites", "accounts"
   add_foreign_key "invites", "users", column: "user_inviter_id"
   add_foreign_key "landing_views", "accounts"

@@ -13,7 +13,7 @@ class RowFields < Set
   end
 
   def [](key)
-    key = key.key if key.is_a? CollectionField
+    key = key.key if key.is_a? Column
     find do |field|
       field.key == key
     end
