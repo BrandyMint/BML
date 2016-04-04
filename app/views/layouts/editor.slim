@@ -8,12 +8,12 @@ html
     /== stylesheet_link_tag 'viewer', media: 'all'
     /== stylesheet_link_tag 'fonts', media: 'all'
     /== stylesheet_link_tag 'editor', media: 'all'
-    == stylesheet_link_tag "/dist/viewer?v=#{AppVersion}", media: 'all'
-    == stylesheet_link_tag "/dist/fonts?v=#{AppVersion}", media: 'all'
-    == stylesheet_link_tag "/dist/editor?v=#{AppVersion}", media: 'all'
+    == stylesheet_link_tag "/dist/viewer?#{AppVersion}", media: 'all'
+    == stylesheet_link_tag "/dist/fonts?#{AppVersion}", media: 'all'
+    == stylesheet_link_tag "/dist/editor?#{AppVersion}", media: 'all'
     == csrf_meta_tags
   body
     == yield
     == bugsnag_editor_data
-    == javascript_include_tag "/assets/vendor.js?v=#{AppVersion}"
-    == javascript_include_tag "/assets/editor.js?v=#{AppVersion}"
+    == javascript_include_tag "/assets/vendor.js?#{AppVersion}"
+    == javascript_include_tag "/assets/editor.js?#{AppVersion}"
