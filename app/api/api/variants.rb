@@ -6,6 +6,9 @@ class API::Variants < Grape::API
   DEFAULT_TITLE = 'Без названия'.freeze
   BLANK_UUID = 'blank'.freeze
 
+  EXAMPLE_UUID = '5fe7acad-e5bf-4cc5-8dab-7e2e21a7cc6b'.freeze
+  EXAMPLE_UUID_NAME = 'example'.freeze
+
   before do
     header 'Access-Control-Allow-Origin', '*'
   end
@@ -58,6 +61,16 @@ class API::Variants < Grape::API
     end
 
     namespace ':uuid' do
+      helpers do
+        def uuid
+          if params[:uuid] == EXAMPLE_UUID_NAME
+            current_account.variants.first.uuid
+          else
+            params[:uuid]
+          end
+        end
+      end
+
       desc 'Вносим изменения в существующий вариант'
       params do
         optional :title,      type: String
@@ -66,12 +79,12 @@ class API::Variants < Grape::API
         optional :blocks,     type: Array[Hash], desc: 'JSON-строка с массивом данных секции (пример: https://github.com/BrandyMint/BML/blob/master/app/models/landing_examples.rb#L2)'
       end
       put do
-        update_variant params, params[:uuid]
+        update_variant params, uuid
       end
 
       desc 'Получаем данные сайта'
       get do
-        variant = current_account.variants.find_by_uuid! params[:uuid]
+        variant = current_account.variants.find_by_uuid! uuid
         present variant, with: Entities::VariantEntity
       end
     end
