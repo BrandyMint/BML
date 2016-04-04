@@ -2,13 +2,13 @@ doctype html
 html
   head
     title= AppSettings.title
+    = bugsnag_script
     == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
     == csrf_meta_tags
     == include_gon
   body
-    == render 'layouts/account/topmenu', variant: nil
-
+    == render 'layouts/landing/topmenu'
     .page-content
       .container.sub-top-menu
         == render 'layouts/analytics/topmenu'

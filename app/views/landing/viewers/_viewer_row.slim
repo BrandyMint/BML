@@ -1,13 +1,14 @@
 tr
-  td= viewer_row.uid
+  td.text-nowrap
+    = I18n.l viewer_row.created_at, format: :short
+    - unless viewer_row.updated_at == viewer_row.created_at
+      .text-nowrap
+        = ' - '
+        = I18n.l viewer_row.updated_at, format: :short
   td
     = viewer_row.remote_ip
     .text-muted
       small= viewer_row.user_agent
-  td.text-nowrap
-    = I18n.l viewer_row.created_at, format: :short
-  td.text-nowrap
-    = I18n.l viewer_row.updated_at, format: :short
   td.text-nowrap
     .pull-right
       = views_link viewer_row

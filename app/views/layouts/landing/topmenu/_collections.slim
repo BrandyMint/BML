@@ -3,7 +3,7 @@
     = active_link_to landing_leads_url(current_landing),
       active: controller_name == 'leads',
       class: 'nav-link dropdown-toggle',
-      data: { toggle: 'dropdown' },
+      data: { toggle: 'dropdown', placement: :bottom },
       role: 'button' do
       = fa_icon 'list-alt', text: landing_leads_title(current_landing, current_collection), class: 'menu-hor-icon'
 

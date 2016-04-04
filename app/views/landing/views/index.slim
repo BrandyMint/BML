@@ -4,7 +4,7 @@
     p.lead На этом сайте еще небыло ни одного посетителя.
 - else
   .page-title.m-b-lg
-    h2 Посещения
+    h2 Посетители (#{views.total_count})
     - if viewer.present?
       .page-subhead
         = "Посетитель #{viewer}"

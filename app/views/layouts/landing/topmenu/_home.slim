@@ -1,7 +1,13 @@
-= link_to account_landings_url,
-  title: current_landing.title,
+= link_to current_landing.url,
+  title: "Перейти на #{url_without_protocol(current_landing.url)}",
+  tooltip: true,
+  data: { placement: :bottom, html: true },
+  target: '_blank',
   class: 'navbar-brand m-r-lg' do
   = fa_icon :desktop, class: 'm-r-sm', text: landing_short_title(current_landing)
+/li.nav-item
+  /= active_link_to current_landing.url, class: 'nav-link', target: '_blank' do
+    /= fa_icon 'external-link', text: 'Сайт', class: 'menu-hor-icon'
 /li.nav-item.dropdown
   /= link_to landing_url(current_landing),
     /title: current_landing.title,
