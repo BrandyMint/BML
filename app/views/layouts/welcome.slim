@@ -14,10 +14,9 @@ html
       = link_to 'Вход для везунчиков', login_path, class: 'btn welcome-nav-loginButton'
       - if current_user.present?
         .welcome-nav-link-wrapper= link_to "Продолжить как #{current_user}", account_root_path, class: 'welcome-nav-link'
-    .vertical-center
-      .container.welcome-hero
-        == render 'layouts/messages'
-        == yield
+    .container.welcome-hero
+      == render 'layouts/messages'
+      == yield
 
     .welcome-footer
       == AppVersion
