@@ -16,7 +16,7 @@ class Account::EditorController < ApplicationController
   end
 
   def redirect
-    # TODO find account by url
+    # TODO: find account by account/landing url
     redirect_to account_root_url host: AppSettings.host
   end
 

@@ -4,7 +4,7 @@ class ViewerController < ApplicationController
   include CurrentViewer
   include ViewerLogger
 
-  around_filter :cache_action
+  around_action :cache_action
 
   layout 'viewer'
 

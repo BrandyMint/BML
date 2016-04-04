@@ -10,6 +10,7 @@ Rails.application.configure do
     config.cache_store = :file_store, './tmp/dev_cache'
     # config.cache_store = :mem_cache_store, '127.0.0.1:11211', { :namespace => 'tastydev' }
     config.action_controller.perform_caching = true
+    # rubocop:disable Rails/Output
     puts 'PERFORM CACHING'
   else
     config.action_controller.perform_caching = false
