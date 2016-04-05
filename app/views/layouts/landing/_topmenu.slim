@@ -12,10 +12,9 @@ nav.navbar.navbar-top.navbar-fixed-top.navbar-light.bg-faded
           class: 'nav-link' do
           = fa_icon 'object-ungroup', text: 'Конструктор', class: 'menu-hor-icon'
 
-      - if Rails.env.development?
-        li.nav-item
-          = active_link_to landing_analytics_path(current_landing), class: 'nav-link' do
-            = fa_icon 'area-chart', text: 'Аналитика', class: 'menu-hor-icon'
+      li.nav-item
+        = active_link_to landing_analytics_path(current_landing), class: 'nav-link' do
+          = fa_icon 'area-chart', text: 'Аналитика', class: 'menu-hor-icon'
 
     .pull-xs-right
       = render 'site_user_dropdown'
