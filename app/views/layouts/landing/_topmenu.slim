@@ -13,7 +13,9 @@ nav.navbar.navbar-top.navbar-fixed-top.navbar-light.bg-faded
           = fa_icon 'object-ungroup', text: 'Конструктор', class: 'menu-hor-icon'
 
       li.nav-item
-        = active_link_to landing_analytics_path(current_landing), class: 'nav-link' do
+        = active_link_to landing_analytics_path(current_landing),
+          active: %w(analytics viewers views).include?(controller_name),
+          class: 'nav-link' do
           = fa_icon 'area-chart', text: 'Аналитика', class: 'menu-hor-icon'
 
     .pull-xs-right

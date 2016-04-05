@@ -15,4 +15,17 @@ module FunnelHelper
 
     buffer
   end
+
+  def total_funnel_conversion
+    find_funnel_conversion
+  end
+
+  private
+
+  def find_funnel_conversion
+    percent = current_landing.default_collection.leads_count.to_f / current_landing.viewers_count.to_f
+    "#{(percent * 100).to_i}%"
+  rescue FloatDomainError
+    '0%'
+  end
 end

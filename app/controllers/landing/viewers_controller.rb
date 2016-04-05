@@ -1,6 +1,6 @@
 class Landing::ViewersController < Landing::BaseController
   include VariantInParameter
-  layout 'viewers'
+  layout 'analytics'
 
   def index
     render locals: { viewers: viewers }
