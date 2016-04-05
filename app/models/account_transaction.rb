@@ -23,6 +23,7 @@ class AccountTransaction
   end
 
   def tariff
+    return unless tariff_id.present?
     @tariff ||= Tariff.find tariff_id
   end
 

@@ -281,6 +281,21 @@ ActiveRecord::Schema.define(version: 20160403172549) do
   add_index "openbill_transactions", ["key"], name: "index_transactions_on_key", unique: true, using: :btree
   add_index "openbill_transactions", ["meta"], name: "index_transactions_on_meta", using: :gin
 
+  create_table "payment_accounts", force: :cascade do |t|
+    t.integer  "account_id",          null: false
+    t.string   "card_first_six",      null: false
+    t.string   "card_last_four",      null: false
+    t.string   "card_type",           null: false
+    t.string   "issuer_bank_country"
+    t.text     "token",               null: false
+    t.string   "card_exp_date",       null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "payment_accounts", ["account_id"], name: "index_payment_accounts_on_account_id", using: :btree
+  add_index "payment_accounts", ["token"], name: "index_payment_accounts_on_token", unique: true, using: :btree
+
   create_table "phone_confirmations", force: :cascade do |t|
     t.string   "phone",                            null: false
     t.integer  "user_id",                          null: false
@@ -454,6 +469,7 @@ ActiveRecord::Schema.define(version: 20160403172549) do
   add_foreign_key "openbill_accounts", "openbill_transactions", column: "last_transaction_id", name: "openbill_accounts_last_transaction_id_fkey", on_update: :restrict, on_delete: :restrict
   add_foreign_key "openbill_transactions", "openbill_accounts", column: "from_account_id", name: "openbill_transactions_from_account_id_fkey", on_update: :restrict, on_delete: :restrict
   add_foreign_key "openbill_transactions", "openbill_accounts", column: "to_account_id", name: "openbill_transactions_to_account_id_fkey"
+  add_foreign_key "payment_accounts", "accounts"
   add_foreign_key "phone_confirmations", "users"
   add_foreign_key "sections", "asset_files", column: "background_image_id"
   add_foreign_key "segments", "landings"

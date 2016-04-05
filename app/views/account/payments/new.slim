@@ -1,0 +1,23 @@
+h2 Пополнение баланса
+= cloudpayments_widget
+
+= simple_form_for balance_payment_form, url: account_payments_path, html: { data: { balance_payment_form: true }, autocomplete: :off }, wrapper_mappings: { boolean: :vertical_boolean } do |f|
+  .row
+    .col-xs-12.col-lg-7
+      .p-m
+        = f.error_notification
+        = f.input :amount, autofocus: true
+        = f.input :cardNumber, input_html: {name: nil, data: {cp: :cardNumber}}
+        = f.input :name
+        .row
+          .col-md-4
+            = f.input :expDateMonth, input_html: {name: nil, data: {cp: :expDateMonth}}, collection: expire_months_as_options, include_blank: '--'
+          .col-md-4
+            = f.input :expDateYear, input_html: {name: nil, data: {cp: :expDateYear}}, collection: expire_years_as_options, include_blank: '----'
+          .col-md-4
+            = f.input :cvv, input_html: {name: nil, data: {cp: :cvv}}
+        = f.input :cryptogram_packet, as: :hidden, input_html: { data: { cryptogram_packet: true } }
+
+        = f.input :recurrent, as: :boolean
+
+      = f.submit t('shared.save'), class: 'btn btn-primary'

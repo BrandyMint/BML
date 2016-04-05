@@ -30,3 +30,5 @@ ru:
       updated: 'Пароль изменён'
     settings:
       saved: Настройки сохранены
+    balance:
+      topped_up: Баланс пополнен
