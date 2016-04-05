@@ -31,6 +31,7 @@
 @import 'lead_filter';
 @import 'alerts';
 @import 'lead';
+@import 'sidebar';
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,800);
 
@@ -64,3 +65,13 @@ body {
   }
 }
 
+.radio label,
+.checkbox label {
+  font-weight: inherit;
+}
+
+.radio label input,
+.checkbox label input {
+  position: absolute !important;
+  top: 1px !important;
+}

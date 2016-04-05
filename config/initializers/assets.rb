@@ -12,6 +12,7 @@ Rails.application.config.assets.paths << 'vendor/assets'
 
 # Для картинок, чтобы их можно было брать через assets/images/themes/t1/dog.pn
 Rails.application.config.assets.paths << 'vendor/dist/dist'
+Rails.application.config.assets.paths << 'vendor/dist/dist-prerender'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
@@ -19,10 +20,10 @@ Rails.application.config.assets.precompile += %w(
   *.gif *.png *.jpg *.svg *.ttf *.woff *.woff2 *.map *.mp4 *.ogv *.webm
   fonts.css
   welcome.js
-  vendor.js
   viewer_application.js
   viewer-prerender.js
   react-server.js
+  funnel.js funnel.css
   viewer.js viewer.css
   editor.js editor.css
   swagger_ui.js swagger_ui.css

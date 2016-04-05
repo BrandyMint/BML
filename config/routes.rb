@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resource :sms, controller: :sms, only: [:show, :update]
       resource :domains, controller: :domains, only: [:show, :update]
       resource :billing, controller: :billing, only: [:show, :update]
+      resources :payments
       resource :api, controller: :api, only: [:show, :update]
 
       resources :invites
@@ -72,7 +73,6 @@ Rails.application.routes.draw do
         resources :analytics do
           collection do
             get :sources
-            get :funnel
             get :abc
             get :users
           end

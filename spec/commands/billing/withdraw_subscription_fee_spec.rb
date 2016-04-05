@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ChargeSubscription, openbill: true do
+RSpec.describe Billing::WithdrawSubscriptionFee, openbill: true do
   let(:account) { create :account, :with_billing }
   let(:landing) { create :landing, account: account }
   let(:tariff) { build :tariff }
@@ -20,7 +20,7 @@ RSpec.describe ChargeSubscription, openbill: true do
       end
       it 'makes transaction once' do
         expect(Openbill::Transaction.count).to eq 1
-        expect(Openbill::Transaction.last.key).to eq "subscription:#{account.ident}:#{month}"
+        expect(Openbill::Transaction.last.key).to eq "#{described_class::NS}:#{account.ident}:#{month}"
         expect(account.billing_account.amount).to eq from_amount
         expect(SystemRegistry[:subscriptions].reload.amount).to eq to_amount
 

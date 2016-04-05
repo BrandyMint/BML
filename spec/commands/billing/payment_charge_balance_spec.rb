@@ -1,9 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe GiftTopUpBalance, openbill: true do
+RSpec.describe Billing::PaymentChargeBalance, openbill: true do
   let(:account) { create :account, :with_billing }
+  let(:gateway) { :cloudpayments }
+  let(:transaction_id) { '123' }
 
-  subject { described_class.new(account: account, amount: to_amount) }
+  subject { described_class.new(account: account, amount: to_amount, gateway: gateway, transaction_id: transaction_id) }
 
   describe '#call' do
     context 'amount > 0' do
@@ -14,8 +16,8 @@ RSpec.describe GiftTopUpBalance, openbill: true do
       end
       it 'makes transaction' do
         expect(Openbill::Transaction.count).to eq 1
-        expect(Openbill::Transaction.last.key).to eq "gift-#{account.id}-#{Time.current.beginning_of_hour.to_i}"
-        expect(SystemRegistry[:gift].reload.amount).to eq from_amount
+        expect(Openbill::Transaction.last.key).to eq "#{described_class::NS}:#{gateway}:#{account.ident}:#{transaction_id}"
+        expect(SystemRegistry[:payments].reload.amount).to eq from_amount
         expect(account.billing_account.amount).to eq to_amount
       end
     end

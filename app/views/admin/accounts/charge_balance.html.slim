@@ -1,4 +1,4 @@
-= semantic_form_for :account, url: { action: :top_up_balance } do |f|
+= semantic_form_for :account, url: { action: :charge_balance } do |f|
   = f.inputs do
     = f.input :balance, input_html: { placeholder: '500' }
   = f.actions

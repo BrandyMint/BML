@@ -15,6 +15,7 @@ table.table.table-striped.m-t-lg
       td.text-nowrap= humanized_amount t.amount
       td.text-nowrap= t.period
       td
-        p.m-b-sm Тариф: #{t.tariff}
+        - if t.tariff
+          p.m-b-sm Тариф: #{t.tariff}
         small= t.details
 

@@ -1,4 +1,4 @@
-ul.nav.nav-pills.nav-stacked
+ul.nav.nav-pills.nav-stacked.sidebar-left
   li.nav-item
     = active_link_to landings_url, class: 'nav-link', active: [['account/landings'],[]] do
       | Сайты
@@ -10,7 +10,7 @@ ul.nav.nav-pills.nav-stacked
     = active_link_to account_memberships_url, class: 'nav-link', active: [['account/members', 'account/invites'],[]] do
       | Сотрудники
       span.text-muted= " (#{account.memberships.count})"
-  li.nav-item= active_link_to account_billing_title, account_billing_url, class: 'nav-link', active: [['account/billing'],[]]
+  li.nav-item= active_link_to account_billing_title, account_billing_url, class: 'nav-link', active: [['account/billing', 'account/payments'],[]]
   li.nav-item= active_link_to 'SMS-уведомления', account_sms_url, class: 'nav-link', active: [['account/sms'],[]]
   li.nav-item= active_link_to 'API', account_api_url, class: 'nav-link', active: [['account/api'],[]]
   - if current_user.memberships.many?

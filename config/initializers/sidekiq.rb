@@ -1,10 +1,11 @@
 require 'sidekiq'
 require 'sidekiq-status'
-# CONFIG_FILE = './config/crontab.yml'
+CONFIG_FILE = './config/crontab.yml'.freeze
 
 if Rails.env.production?
   Sidekiq.configure_server do |config|
-    # Sidekiq::Logging.logger = LoggerCreator.build :sidekiq
+    Sidekiq::Logging.logger = Rails.logger # LoggerCreator.build :sidekiq
+
     config.redis = Secrets.sidekiq.redis.symbolize_keys if Secrets.sidekiq.try(:redis).is_a?(Hash)
     config.error_handlers << proc { |ex, context| Bugsnag.notify(ex, context) }
     config.failures_max_count = 50_000
@@ -16,7 +17,7 @@ if Rails.env.production?
       chain.add Sidekiq::Status::ClientMiddleware
     end
 
-    # Sidekiq::Cron::Job.load_from_hash YAML.load_file(CONFIG_FILE)
+    Sidekiq::Cron::Job.load_from_hash YAML.load_file(CONFIG_FILE)
   end
 
   Sidekiq.configure_client do |config|

@@ -1,7 +1,8 @@
 {
   "name": "bml",
   "dependencies": {
-    "selectize": "^0.12.1"
+    "selectize": "^0.12.1",
+    "funnel-chart": "^1.1.2"
   },
   "ignore": [
     "**/.*",

@@ -19,6 +19,9 @@ gem 'sequel'
 gem 'money'
 gem 'money-rails', github: 'RubyMoney/money-rails'
 
+gem 'sprockets', '>=3.0.0.beta'
+gem 'sprockets-es6'
+
 gem 'redis-session-store'
 
 gem 'activeadmin', github: 'activeadmin/activeadmin'
@@ -158,6 +161,9 @@ gem 'public_suffix'
 gem 'babosa'
 gem 'strip_attributes'
 
+gem 'cloud_payments', github: 'undr/cloud_payments'
+gem 'http_logger'
+
 group :development, :test do
   gem 'bond'
   gem 'jist'
@@ -208,6 +214,8 @@ group :test do
   gem 'test_after_commit'
   gem 'capybara-email'
   gem 'capybara-screenshot'
+  gem 'webmock'
+  gem 'vcr', require: false
 end
 
 group :development do

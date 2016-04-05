@@ -1,0 +1,36 @@
+hr
+.row
+  .col-md-12
+    ul.list-inline
+      li.list-inline-item
+        b= active_link_to 'Все источники', '#'
+      li.list-inline-item= active_link_to 'Рассылки (1%)', '#'
+      li.list-inline-item= active_link_to 'Реклама (4%)', '#'
+      li.list-inline-item= active_link_to 'Прямые заходы (12%)', '#'
+      li.list-inline-item= active_link_to 'Поиск (45%)', '#'
+      li.list-inline-item= active_link_to 'Соцсети (42%)', '#'
+
+.row
+  .col-md-6
+    - funnels = [80, 20, 10, 5]
+
+    table.table.table-responsive
+      thead.thead-default
+        tr
+          th Посетителей
+          th Конверсия
+          th
+      tbody
+        - funnels.each do |p|
+          tr
+            td.p-r-2
+              == "#{p*10}&nbsp;чел."
+            td style="width: 100%"
+              progress.progress.m-b-0 value=p max=100
+                = "#{p}%"
+            td
+              span= "#{p}%"
+  .col-md-6
+    .bd-callout.bd-callout-danger.m-t-0
+      h4 Прямые переходы лучший источник
+      p text

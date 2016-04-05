@@ -12,6 +12,7 @@ require 'rack_session_access/capybara'
 require 'sidekiq/testing'
 require 'email_spec'
 require 'pundit/rspec'
+require 'vcr'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 Capybara::Screenshot.autosave_on_failure = true
@@ -36,6 +37,14 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  VCR.configure do |c|
+    c.configure_rspec_metadata!
+    c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+    c.hook_into :webmock
+    c.allow_http_connections_when_no_cassette = true
+    c.ignore_hosts 'codeclimate.com'
+  end
+
   config.include FeatureHelpers, type: :feature
 
   config.before :all do
