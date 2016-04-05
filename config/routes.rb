@@ -73,7 +73,6 @@ Rails.application.routes.draw do
         resources :analytics do
           collection do
             get :sources
-            get :funnel
             get :abc
             get :users
           end

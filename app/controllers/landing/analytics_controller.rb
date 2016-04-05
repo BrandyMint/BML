@@ -6,7 +6,8 @@ class Landing::AnalyticsController < Landing::BaseController
   def index
     render locals: {
       insights: ExampleInsights.build,
-      funnel_data: funnel_data
+      funnel_data: funnel_data,
+      total_funnel_conversion: total_funnel_conversion
     }
   end
 
@@ -14,14 +15,16 @@ class Landing::AnalyticsController < Landing::BaseController
     render locals: { sources_data: ExampleSourcesData.build }
   end
 
-  def funnel
-  end
-
   def users
     render locals: { visits: ExampleVisits.build }
   end
 
   private
+
+  def total_funnel_conversion
+    percent = current_landing.default_collection.leads_count.to_f / current_landing.viewers_count.to_f
+    "#{(percent * 100).to_i}}%"
+  end
 
   def funnel_data
     {

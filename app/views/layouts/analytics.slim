@@ -14,7 +14,7 @@ html
     == render 'layouts/landing/topmenu'
     .page-content
       .container.sub-top-menu
-        == render 'layouts/analytics/topmenu'
+        == render 'layouts/analytics/topmenu', total_funnel_conversion: total_funnel_conversion
 
       .container
         == yield

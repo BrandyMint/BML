@@ -1,6 +1,6 @@
 ul.nav.nav.nav-tabs
-  -# li.nav-item= active_link_to 'Воронка (7%)', landing_analytics_path, active: [['account/analytics'], ['index']], class: 'nav-link'
-  li.nav-item= active_link_to "Посетители (#{current_landing.viewers.count})", landing_viewers_path, class: 'nav-link'
-  li.nav-item= active_link_to "Посещения (#{current_landing.landing_views.count})", landing_views_path, class: 'nav-link'
+  li.nav-item= active_link_to title_with_count('Воронка', total_funnel_conversion), landing_analytics_path, active: [['landing/analytics'], ['index']], class: 'nav-link'
+  li.nav-item= active_link_to title_with_count('Посетители', current_landing.viewers.count), landing_viewers_path, class: 'nav-link'
+  li.nav-item= active_link_to title_with_count('Посещения', current_landing.landing_views.count), landing_views_path, class: 'nav-link'
   -# li.nav-item= active_link_to 'Источники', sources_landing_analytics_path, class: 'nav-link'
   -# li.nav-item= active_link_to 'Сегменты',  landing_segments_path, class: 'nav-link'
