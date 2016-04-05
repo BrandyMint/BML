@@ -27,6 +27,8 @@ class Landing < ActiveRecord::Base
   scope :ordered, -> { order 'id desc' }
   scope :active, -> { all }
 
+  delegate :count, to: :viewers, prefix: true
+
   def used?
     leads.any? && variants.select(&:used?).any?
   end

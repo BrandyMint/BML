@@ -4,7 +4,10 @@ class Landing::AnalyticsController < Landing::BaseController
   layout 'analytics'
 
   def index
-    render locals: { insights: ExampleInsights.build }
+    render locals: {
+      insights: ExampleInsights.build,
+      funnel_data: funnel_data
+    }
   end
 
   def sources
@@ -16,5 +19,19 @@ class Landing::AnalyticsController < Landing::BaseController
 
   def users
     render locals: { visits: ExampleVisits.build }
+  end
+
+  private
+
+  def funnel_data
+    {
+      values: [
+        current_landing.viewers_count,
+        current_landing.default_collection.leads_count
+      ],
+      labels: %w(
+        Посетители
+        Заявки)
+    }
   end
 end

@@ -19,6 +19,9 @@ gem 'sequel'
 gem 'money'
 gem 'money-rails', github: 'RubyMoney/money-rails'
 
+gem 'sprockets', '>=3.0.0.beta'
+gem 'sprockets-es6'
+
 gem 'redis-session-store'
 
 gem 'activeadmin', github: 'activeadmin/activeadmin'

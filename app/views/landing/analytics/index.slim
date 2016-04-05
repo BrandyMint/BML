@@ -1,7 +1,7 @@
 .row
   .col-md-9
     div style='text-align: center'
-      = image_tag image_path('funnel.png')
+      = funnel funnel_data
   .col-md-3
     div style='margin-top: 25px'
       - insights.each_with_index do |i, idx|
