@@ -1,5 +1,11 @@
-.text-center
-  = funnel funnel_data
+- if funnel_data[:values].first > 0
+  .text-center.m-t-lg
+    = funnel funnel_data
+- else
+  .jumbotron
+    h1 Нет данных
+    p.lead На этом сайте еще небыло ни одного посетителя.
+
 /.row
   /.col-md-9
     /div style='text-align: center'
