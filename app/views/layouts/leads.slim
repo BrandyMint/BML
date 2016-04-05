@@ -18,17 +18,3 @@ html
       .wide-container
         = render 'filter', filter: filter
         = yield
-
-/- content_for :content do
-
-  /- if collections.many?
-    /.row
-      /.col-md-3
-        /= render 'collections_menu', collections: collections, current_collection: current_collection
-      /.col-md-9
-        /= yield
-  /- else
-    /.narrow-container
-      /= yield
-
-/= render template: 'layouts/landing'

@@ -1,7 +1,7 @@
 - content_for :content do
   .row
     .col-md-3
-      = render 'landing_settings_submenu', landing: current_landing
+      = render 'layouts/landing_settings/sidebar', landing: current_landing
     .col-md-9
       = yield
 
