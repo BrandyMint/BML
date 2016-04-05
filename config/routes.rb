@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   concern :landing do
     resources :landings, controller: 'account/landings' do
       scope module: :landing do
-        resource :settings, only: [:update], controller: 'landing_settings' do
+        resource :settings, only: [:update] do
           member do
             get :address
             get :meta

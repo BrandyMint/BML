@@ -68,11 +68,28 @@ Style/ClassAndModuleChildren:
     - 'app/helpers/account/variants_helper.rb'
     - 'app/helpers/account/welcome_helper.rb'
     - 'app/helpers/account/payments_helper.rb'
+    - 'app/helpers/landing/clients_helper.rb'
+    - 'app/helpers/landing/leads_helper.rb'
+    - 'app/helpers/landing/segments_helper.rb'
+    - 'app/helpers/landing/settings_helper.rb'
 
 
 # Offense count: 226
 Style/Documentation:
-  Enabled: false
+  Enabled: true
+  Include:
+    - 'app/**/*'
+  Exclude:
+    - 'app/api/**/*'
+    - 'app/controllers/**/*'
+    - 'app/helpers/**/*'
+    - 'app/presenters/**/*'
+    - 'app/policies/**/*'
+    - 'app/validators/**/*'
+    - 'app/uploaders/**/*'
+    - 'app/errors/**/*'
+    - 'app/mailers/**/*'
+    - 'app/models/**/*'
 
 # Offense count: 2
 # Configuration parameters: AllowedVariables.

@@ -1,3 +1,4 @@
+# Регистрация аккаунта и создание владельца
 class RegistrationService
   include Virtus.model
 

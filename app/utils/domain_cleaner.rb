@@ -1,5 +1,5 @@
 # rubocop:disable Style/ModuleFunction
-
+# Функции для нормализации доменов и субдоменов
 module DomainCleaner
   extend self
 

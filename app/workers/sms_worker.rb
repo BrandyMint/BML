@@ -1,3 +1,4 @@
+# Отправляет sms
 class SmsWorker
   autoload :Result,      'sms_worker/results'
   autoload :AllRight,    'sms_worker/results'

@@ -1,3 +1,4 @@
+# Сохраняет или обновляет пользователя, просмотревшего лендинг
 class TouchOrCreateViewer
   include Virtus.model(strict: true)
 

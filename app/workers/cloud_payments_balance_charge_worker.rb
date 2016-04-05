@@ -1,3 +1,6 @@
+# Рекуррентное пополнение баланса с сохраненной карты
+# Запускается 1-го числа каждого месяца после списания абонплаты и ухода баланса в минус из SubscriptionFeeWithdrawalWorker
+# В будущем: пытается 3 раза, потом отправляет письмо о неудаче владельцу аккаунта
 class CloudPaymentsBalanceChargeWorker
   include Sidekiq::Worker
   # sidekiq_options retry: 3, queue: :critical
@@ -12,6 +15,7 @@ class CloudPaymentsBalanceChargeWorker
   #   Sidekiq.logger.info "#{msg['class']}: retries exhausted, mail sent to account #{msg['args']}: #{msg['error_message']}"
   # end
 
+  # month и year периода нужны для отправки письма владельцу в случае неудачи
   def perform(account_id, _year, _month)
     account = Account.find account_id
     return unless account.needs_recurrent_charge?

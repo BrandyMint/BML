@@ -1,3 +1,5 @@
+# Virtus-атрибут для нормализации денег из параметра
+# Например: '50,53' -> #<Money fractional:5053 currency:RUB>
 class VirtusMoney < Virtus::Attribute
   def coerce(value)
     return unless value.present?

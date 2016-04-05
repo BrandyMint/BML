@@ -1,4 +1,6 @@
 module CloudPayments
+  # Единоразовый платеж для пополнения баланса аккаунта через CloudPayments
+  # Опционально сохраняет токен карты для рекуррентных платежей
   class OneTimeChargeBalance
     include Virtus.model(strict: true, nullify_blank: true)
 

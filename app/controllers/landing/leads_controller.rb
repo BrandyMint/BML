@@ -1,5 +1,5 @@
 class Landing::LeadsController < Landing::BaseController
-  include AccountLeadsHelper
+  include Landing::LeadsHelper
   include VariantInParameter
 
   layout 'leads'
@@ -11,7 +11,7 @@ class Landing::LeadsController < Landing::BaseController
     render locals: {
       collections:        current_landing.collections,
       current_collection: current_collection,
-      columns:             columns,
+      columns:            columns,
       leads:              leads,
       filter:             leads_filter
     }

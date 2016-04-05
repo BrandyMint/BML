@@ -1,3 +1,4 @@
+# Фильтр заявок
 class LeadsFilter
   include Virtus.model
 

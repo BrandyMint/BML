@@ -1,5 +1,5 @@
 # rubocop:disable Style/ModuleFunction
-
+# Функции для извлечения доменов и субдоменов из строки
 module DomainExtractor
   extend self
 

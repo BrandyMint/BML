@@ -1,4 +1,4 @@
-module AccountLeadsHelper
+module Landing::LeadsHelper
   def filtered_variant(variant)
     return 'Все' unless variant.present?
     variant.to_s

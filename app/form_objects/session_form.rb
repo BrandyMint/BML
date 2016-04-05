@@ -1,3 +1,4 @@
+# Форма логина в аккаунт
 class SessionForm < FormBase
   attribute :login,     String
   attribute :password,  String

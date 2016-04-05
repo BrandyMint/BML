@@ -1,3 +1,4 @@
+# Сущность для получения предустановленных utm-меток из cookies
 class CookiesUtmEntity
   include Virtus.value_object
 

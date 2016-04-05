@@ -1,3 +1,4 @@
+# Сохраняет просмотр лендинга
 class CreateLandingView
   include Virtus.model
 

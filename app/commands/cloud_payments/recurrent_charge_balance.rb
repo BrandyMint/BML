@@ -1,4 +1,6 @@
 module CloudPayments
+  # Рекуррентный платеж с сохраненной карты для пополнения баланса аккаунта через CloudPayments
+  # Вызывается из воркеров
   class RecurrentChargeBalance
     include Virtus.model(strict: true, nullify_blank: true)
 

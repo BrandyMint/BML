@@ -1,3 +1,4 @@
+# Находит телефоны сотрудников аккаунта для отправки уведомлений
 class NotificationPhonesQuery
   include Virtus.model
 

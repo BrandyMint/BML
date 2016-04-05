@@ -1,3 +1,4 @@
+# Используется для создания тарифов в db/seeds.rb
 class SeedTariffes
   def perform
     create_base

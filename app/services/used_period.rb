@@ -1,3 +1,4 @@
+# Расчет коэффициента пользования услугами за период (месяц)
 class UsedPeriod
   include Virtus.model(strict: true, nullify_blank: true)
 

@@ -1,3 +1,4 @@
+# Находит или создает клиента, создавшего заявку, и привязывает его к этой заявке
 class AttachClient
   include Virtus.model(strict: true, nullify_blank: true)
   UNKNOWN_NAME = 'Неизвестное имя'.freeze

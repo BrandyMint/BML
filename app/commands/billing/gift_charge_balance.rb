@@ -1,4 +1,5 @@
 module Billing
+  # Ручное зачисление (админом) средств на баланс аккаунта
   class GiftChargeBalance
     include Virtus.model(strict: true, nullify_blank: true)
 

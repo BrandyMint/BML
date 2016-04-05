@@ -1,4 +1,5 @@
 module Billing
+  # Зачисление средств на баланс аккаунта с помощью платежа
   class PaymentChargeBalance
     include Virtus.model(strict: true, nullify_blank: true)
 

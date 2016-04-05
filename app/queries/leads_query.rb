@@ -1,3 +1,4 @@
+# Запрос заявок по фильтру
 class LeadsQuery
   include Virtus.model
 
