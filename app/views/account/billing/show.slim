@@ -1,12 +1,16 @@
 .row
   .col-lg-12
     h2
-      | Текущий баланс #{humanized_amount account.billing_account.amount}
+      | Текущий баланс: #{humanized_amount account.billing_account.amount}
       .pull-right
         = link_to 'Пополнить', new_account_payment_path, class: 'btn btn-sm btn-success'
 
-    p Текущий тариф "#{current_account.current_tariff}"
+    p.text-muted Текущий тариф "#{current_account.current_tariff}"
+    p = tariff_details current_account.current_tariff
 
+
+.row.m-t-md
+  .col-lg-12
     - if transactions.any?
       = render 'transactions', transactions: transactions
     - else
