@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CloudPaymentsPayBalance, vcr: true, openbill: true do
+describe CloudPayments::OneTimeChargeBalance, vcr: true, openbill: true do
   let!(:account)            { create :account }
   let!(:amount)             { '50,53' }
   let!(:recurrent)          { false }
@@ -53,7 +53,7 @@ describe CloudPaymentsPayBalance, vcr: true, openbill: true do
 
       context 'balance' do
         before { subject.call }
-        it 'must top up' do
+        it 'must charge' do
           expect(Openbill::Transaction.count).to eq 1
           expect(account.billing_account.amount).to eq Money.new(5053, :rub)
         end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ChargeSubscription, openbill: true do
+RSpec.describe Billing::WithdrawSubscriptionFee, openbill: true do
   let(:account) { create :account, :with_billing }
   let(:landing) { create :landing, account: account }
   let(:tariff) { build :tariff }

@@ -8,7 +8,7 @@ module MemberRoles
     extend Enumerize
 
     validates :role, presence: true
-    enumerize :role, in: ROLES, default: DEFAULT_ROLE, predicates: true
+    enumerize :role, in: ROLES, default: DEFAULT_ROLE, predicates: true, scope: true
   end
 
   def admin?

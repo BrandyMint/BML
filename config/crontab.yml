@@ -1,0 +1,4 @@
+SubscriptionFeeWithdrawalBatchWorker:
+  cron: '1 0 1 * *'
+  class: SubscriptionFeeWithdrawalBatchWorker
+  queue: critical

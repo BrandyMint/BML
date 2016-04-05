@@ -5,7 +5,7 @@ RSpec.describe Account::PaymentsController, type: :controller do
 
   describe 'POST create' do
     it 'returns http success' do
-      expect(controller).to receive(:pay_balance)
+      expect(controller).to receive(:charge_balance)
       post :create, balance_payment_form: { name: 'asdf' }
       expect(response.status).to eq 302
     end

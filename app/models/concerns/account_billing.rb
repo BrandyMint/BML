@@ -16,6 +16,10 @@ module AccountBilling
     Openbill.current.account_transactions billing_account
   end
 
+  def needs_recurrent_charge?
+    amount.to_i < 0 && payment_accounts.any?
+  end
+
   private
 
   def billing_account_ident

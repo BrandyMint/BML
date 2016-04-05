@@ -24,21 +24,21 @@ ActiveAdmin.register Account do
       humanized_money_with_symbol(resource.billing_account.amount)
     end
     actions do |resource|
-      link_to 'Пополнить баланс', top_up_balance_admin_account_url(resource), class: 'member_link'
+      link_to 'Пополнить баланс', charge_balance_admin_account_url(resource), class: 'member_link'
     end
   end
 
-  member_action :top_up_balance, method: [:get, :post] do
+  member_action :charge_balance, method: [:get, :post] do
     if request.post?
       begin
         amount = Money.new((params[:account][:balance].to_f * 100).to_i, :rub)
-        GiftTopUpBalance.new(account: resource, amount: amount).call
-        redirect_to admin_accounts_url, flash: { success: I18n.t('flashes.activeadmin.balance_topped_up') }
+        Billing::GiftChargeBalance.new(account: resource, amount: amount).call
+        redirect_to admin_accounts_url, flash: { success: I18n.t('flashes.activeadmin.balance_charged') }
       rescue => err
         redirect_to :back, flash: { error: err.message }
       end
     else
-      render :top_up_balance
+      render :charge_balance
     end
   end
 end
