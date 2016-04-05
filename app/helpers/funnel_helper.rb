@@ -5,7 +5,7 @@ module FunnelHelper
   #
   DEFUALT_OPTIONS = {
     maxFontSize: 18
-  }
+  }.freeze
 
   def funnel(data)
     id = UUID.generate
