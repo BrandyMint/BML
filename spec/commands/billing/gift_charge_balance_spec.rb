@@ -7,8 +7,8 @@ RSpec.describe Billing::GiftChargeBalance, openbill: true do
 
   describe '#call' do
     context 'amount > 0' do
-      let(:to_amount) { Money.new(10_000, :rub) }
-      let(:from_amount) { Money.new(0, :rub) - to_amount }
+      let(:to_amount) { Money.new(10_000, account.billing_account.amount_currency) }
+      let(:from_amount) { -to_amount }
       before do
         subject.call
       end
@@ -21,7 +21,7 @@ RSpec.describe Billing::GiftChargeBalance, openbill: true do
     end
 
     context 'amount <= 0' do
-      let(:to_amount) { Money.new(-10_000, :rub) }
+      let(:to_amount) { Money.new(-10_000, account.billing_account.amount_currency) }
       it 'raises error' do
         expect { subject.call }.to raise_error Sequel::CheckConstraintViolation
       end

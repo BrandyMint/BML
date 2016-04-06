@@ -12,9 +12,9 @@ class SeedTariffes
     create_tariff(
       Tariff::BASE_SLUG,
       title: 'Базовый',
-      price_per_month: Money.new(0, :rub),
-      price_per_site: Money.new(30_000, :rub),
-      price_per_lead: Money.new(1000, :rub),
+      price_per_month: Money.new(0),
+      price_per_site: Money.new(30_000),
+      price_per_lead: Money.new(1000),
       free_days_count: 7,
       free_leads_count: 5
     )
@@ -24,9 +24,9 @@ class SeedTariffes
     create_tariff(
       Tariff::PROFI_SLUG,
       title: 'Профи',
-      price_per_month: Money.new(1_500_000, :rub),
-      price_per_site: Money.new(0, :rub),
-      price_per_lead: Money.new(1000, :rub)
+      price_per_month: Money.new(1_500_000),
+      price_per_site: Money.new(0),
+      price_per_lead: Money.new(1000)
     )
   end
 
@@ -34,9 +34,9 @@ class SeedTariffes
     create_tariff(
       Tariff::FREE_SLUG,
       title: 'Бесплатный',
-      price_per_month: Money.new(0, :rub),
-      price_per_site: Money.new(0, :rub),
-      price_per_lead: Money.new(0, :rub),
+      price_per_month: Money.new(0),
+      price_per_site: Money.new(0),
+      price_per_lead: Money.new(0),
       hidden: true
     )
   end

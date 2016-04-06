@@ -31,7 +31,7 @@ ActiveAdmin.register Account do
   member_action :charge_balance, method: [:get, :post] do
     if request.post?
       begin
-        amount = Money.new((params[:account][:balance].to_f * 100).to_i, :rub)
+        amount = params[:account][:balance_amount].to_money params[:account][:balance_currency]
         Billing::GiftChargeBalance.new(account: resource, amount: amount).call
         redirect_to admin_accounts_url, flash: { success: I18n.t('flashes.activeadmin.balance_charged') }
       rescue => err

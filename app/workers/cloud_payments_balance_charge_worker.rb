@@ -20,7 +20,7 @@ class CloudPaymentsBalanceChargeWorker
     account = Account.find account_id
     return unless account.needs_recurrent_charge?
 
-    amount = Money.new(0, :rub) - account.billing_account.amount
+    amount = -account.billing_account.amount
 
     CloudPayments::RecurrentChargeBalance.new(
       account: account,

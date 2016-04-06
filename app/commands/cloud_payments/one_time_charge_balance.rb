@@ -32,8 +32,8 @@ module CloudPayments
 
     def make_transaction
       CloudPayments.client.payments.cards.charge(
-        amount: form.amount.to_i,
-        currency: form.amount.currency.iso_code.upcase,
+        amount: form.amount_money.to_f,
+        currency: form.amount_money.currency.iso_code,
         account_id: account.ident,
         ip_address: ip,
         name: form.name,
@@ -44,7 +44,7 @@ module CloudPayments
     def charge_balance(resp)
       Billing::PaymentChargeBalance.new(
         account: account,
-        amount: form.amount,
+        amount: form.amount_money,
         gateway: :cloudpayments,
         transaction_id: resp.id
       ).call

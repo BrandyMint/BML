@@ -32,7 +32,7 @@ class Account::PaymentsController < Account::BaseController
   end
 
   def permitted_params
-    params.require(:balance_payment_form).permit(:name, :email, :recurrent, :amount, :cryptogram_packet)
+    params.require(:balance_payment_form).permit(:name, :email, :recurrent, :amount_cents, :amount_currency, :cryptogram_packet)
   rescue
     {}
   end

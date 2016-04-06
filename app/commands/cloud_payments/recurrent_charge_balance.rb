@@ -26,7 +26,7 @@ module CloudPayments
 
     def make_transaction
       CloudPayments.client.payments.tokens.charge(
-        amount: amount.to_i,
+        amount: amount.to_f,
         currency: amount.currency.iso_code.upcase,
         account_id: account.ident,
         token: token

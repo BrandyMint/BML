@@ -10,7 +10,7 @@ RSpec.describe CloudPaymentsBalanceChargeWorker, openbill: true do
     let(:date) { Date.current.prev_month }
     let(:year) { date.year }
     let(:month) { date.month }
-    let(:amount) { Money.new(10_000, :rub) }
+    let(:amount) { Money.new(10_000, account.billing_account.amount_currency) }
     context 'balance < 0' do
       before do
         Openbill.current.make_transaction(
