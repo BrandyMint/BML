@@ -4,7 +4,7 @@ describe BalanceMailer do
   describe '#charge_error_email' do
     let(:user) { create :user, :with_account }
     let(:account) { user.accounts.last }
-    let(:date) { Date.new 2016, 4 }
+    let(:date) { Date.current }
     subject { described_class.charge_error_email account.id, date.year, date.month }
 
     before do

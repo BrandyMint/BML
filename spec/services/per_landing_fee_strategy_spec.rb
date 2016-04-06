@@ -8,7 +8,7 @@ RSpec.describe PerLandingFeeStrategy do
   describe '#call' do
     let!(:landing1) { create :landing, account: account }
     let!(:landing2) { create :landing, account: account }
-    let(:month) { Date.new 2016, 4 }
+    let(:month) { Date.current }
 
     let(:price_per_site) { Money.new(30_000, :rub) }
     let(:description) { 'description' }
