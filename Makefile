@@ -1,4 +1,7 @@
-install: ruby node git config
+RAKE=rbenv exec bundle exec rake
+install: ruby npm bower git config
+
+all: install database
 
 ruby:
 				# cd ~/.rbenv/plugins/ruby-build && git pull && popd
@@ -6,11 +9,19 @@ ruby:
 				rbenv exec gem install bundler
 				rbenv exec bundle install
 
-node:
-				. ~/.nvm/nvm.sh && nvm install
-				# export NVM_DIR=~/.nvm
-				# . $(brew --prefix nvm)/nvm.sh
+# Mac?
+ifeq ($(which brew),)
+npm:
+				export NVM_DIR=~/.nvm
+				. $(brew --prefix nvm)/nvm.sh
 				npm install
+else
+npm:
+				. ~/.nvm/nvm.sh && nvm install
+				npm install
+endif
+
+bower:
 				./node_modules/.bin/bower install
 
 git:
@@ -26,5 +37,5 @@ config:
 
 database:
 				# rbenv exec bundle exec rake db:drop db:create db:schema:load
-				rbenv exec bundle exec rake db:drop db:create
-				rbenv exec bundle exec rake db:migrate
+				$(RAKE) db:drop db:create
+				$(RAKE) rake db:migrate
