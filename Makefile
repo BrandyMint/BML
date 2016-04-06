@@ -20,20 +20,22 @@ npm:
 				export NVM_DIR=~/.nvm
 				. $(shell brew --prefix nvm)/nvm.sh
 				npm install
+				node -v
 else
 npm:
 				. ~/.nvm/nvm.sh && nvm install
 				npm install
+				node -v
 endif
 
 bower:
+				node -v
 				./node_modules/.bin/bower install
 
 git_modules:
 				git submodule init
 				git submodule update
 				grep '"version"' ./vendor/dist/package.json
-
 
 configure:
 				ln -fsv ./database.yml.example ./config/database.yml
