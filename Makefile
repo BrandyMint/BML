@@ -1,9 +1,9 @@
 OS := $(shell uname)
 RAKE = rbenv exec bundle exec rake
 
-install: ruby npm bower git_modules configure
-
 all: install database
+
+install: ruby npm bower git_modules configure
 
 ruby:
 				# cd ~/.rbenv/plugins/ruby-build && git pull && popd
