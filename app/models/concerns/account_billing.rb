@@ -9,10 +9,12 @@ module AccountBilling
   delegate :amount, to: :billing_account
 
   def billing_account
+    binding.pry
     Openbill.current.account billing_account_ident
   end
 
   def billing_transactions
+    binding.pry
     Openbill.current.account_transactions billing_account
   end
 

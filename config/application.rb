@@ -10,7 +10,7 @@ require './lib/sequel_connector'
 
 module Bml
   class Application < Rails::Application
-    SequelConnector.new.connect_database
+    $DB = SequelConnector.new.connect_database
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
