@@ -7,8 +7,7 @@ ruby:
 				rbenv exec bundle install
 
 node:
-				. ~/.nvm/nvm.sh
-				nvm install
+				. ~/.nvm/nvm.sh && nvm install
 				npm install
 				./node_modules/bower/bin/bower install
 
