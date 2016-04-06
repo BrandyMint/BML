@@ -1,8 +1,8 @@
 install: ruby node git config
 
 ruby:
-				cd $HOME/.rbenv/plugins/ruby-build && git pull
-				rbenv install
+				# cd ~/.rbenv/plugins/ruby-build && git pull && popd
+				rbenv install -s
 				rbenv gem install bundler
 				rbenv bundle install
 
