@@ -22,7 +22,7 @@ config:
 				ln -sv ./config/secrets.yml.example ./config/secrets.yml
 				ln -sv ./config/chewy.yml.example ./config/chewy.yml
 
-db:
+database:
 				rbenv exec bundle exec rake db:drop db:create db:schema:load
 				#rbenv exec bundle exec rake db:drop db:create
 				#rbenv exec bundle exec rake db:migrate
