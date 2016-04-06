@@ -1,0 +1,6 @@
+//= require 'jquery_ujs'
+//= require 'react_ujs'
+//=-require 'nprogress-turbolinks'
+//= require 'turbolinks'
+//= require 'i18n'
+//= require './i18n/translations'

@@ -157,6 +157,7 @@ gem 'cloud_payments', github: 'undr/cloud_payments'
 gem 'http_logger'
 
 group :development, :test do
+  gem 'foreman'
   gem 'bond'
   gem 'jist'
   gem 'pry-rails'

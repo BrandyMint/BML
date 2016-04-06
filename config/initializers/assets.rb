@@ -1,5 +1,10 @@
 # Be sure to restart your server when you modify this file.
 
+#Rails.application.config.assets.configure do |env|
+  ## Отключаем удаление source map
+  #env.unregister_postprocessor 'application/javascript', Sprockets::SafetyColons
+#end
+
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = AppVersion.to_s
 
@@ -16,6 +21,8 @@ Rails.application.config.assets.paths << 'vendor/dist/dist-prerender'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
+
+
 Rails.application.config.assets.precompile += %w(
   *.gif *.png *.jpg *.svg *.ttf *.woff *.woff2 *.map *.mp4 *.ogv *.webm
   fonts.css

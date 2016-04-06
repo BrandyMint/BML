@@ -52,5 +52,11 @@ module Bml
       # Если поставить true то падает JS ошибка про SyntaxError: Invalid escape in identifier: '\'
       replay_console: false
     }
+
+    config.webpack = {
+      :use_manifest => false,
+      :asset_manifest => {},
+      :common_manifest => {},
+    }
   end
 end
