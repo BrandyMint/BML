@@ -9,7 +9,9 @@
   "dependencies": {
     "phantomjs": "^1.9.19"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "bower": "^1.7.9"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
