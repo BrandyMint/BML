@@ -36,9 +36,9 @@ git_modules:
 
 
 configure:
-				ln -sv ./database.yml.example ./config/database.yml
-				ln -sv ./secrets.yml.example ./config/secrets.yml
-				ln -sv ./chewy.yml.example ./config/chewy.yml
+				ln -fsv ./database.yml.example ./config/database.yml
+				ln -fsv ./secrets.yml.example ./config/secrets.yml
+				ln -fsv ./chewy.yml.example ./config/chewy.yml
 
 database:
 				# rbenv exec bundle exec rake db:drop db:create db:schema:load
