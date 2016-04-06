@@ -1,7 +1,7 @@
 OS := $(shell uname)
 RAKE = rbenv exec bundle exec rake
 
-install: ruby npm bower git_module prepare_config
+install: ruby npm bower git_modules configure
 
 all: install database
 
@@ -28,13 +28,13 @@ endif
 bower:
 				./node_modules/.bin/bower install
 
-git_module:
+git_modules:
 				git submodule init
 				git submodule update
 				grep '"version"' ./vendor/dist/package.json
 
 
-preapre_config:
+configure:
 				ln -sv ./config/database.yml.example ./config/database.yml
 				ln -sv ./config/secrets.yml.example ./config/secrets.yml
 				ln -sv ./config/chewy.yml.example ./config/chewy.yml
