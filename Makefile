@@ -27,3 +27,4 @@ db:
 				rbenv exec bundle exec rake db:drop db:create db:schema:load
 				#rbenv exec bundle exec rake db:drop db:create
 				#rbenv exec bundle exec rake db:migrate
+
