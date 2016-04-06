@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 20160403172549) do
     t.string   "resource_type", null: false
     t.integer  "author_id"
     t.string   "author_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
