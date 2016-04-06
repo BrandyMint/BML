@@ -8,8 +8,10 @@ ruby:
 
 node:
 				. ~/.nvm/nvm.sh && nvm install
+				# export NVM_DIR=~/.nvm
+				# . $(brew --prefix nvm)/nvm.sh
 				npm install
-				./node_modules/bower/bin/bower install
+				./node_modules/.bin/bower install
 
 git:
 				git submodule init
