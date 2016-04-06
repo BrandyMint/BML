@@ -43,4 +43,4 @@ configure:
 database:
 				# rbenv exec bundle exec rake db:drop db:create db:schema:load
 				$(RAKE) db:drop db:create
-				$(RAKE) rake db:migrate
+				$(RAKE) db:migrate
