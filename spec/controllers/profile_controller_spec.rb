@@ -6,6 +6,15 @@ RSpec.describe ProfileController, type: :controller do
   include Sorcery::TestHelpers::Rails::Controller
 
   let!(:user) { create :user, :with_account }
+  let(:user_params) do
+    {
+      name: 123,
+      memberships_attributes: {
+        id: user.memberships.first.id,
+        sms_notification: false
+      }
+    }
+  end
 
   before(:each) do
     login_user user, login_url
@@ -20,7 +29,7 @@ RSpec.describe ProfileController, type: :controller do
 
   describe 'PATCH #update' do
     it 'must redirect' do
-      patch :update, user: { name: 123 }
+      patch :update, user: user_params
       expect(response.status).to eq 302
     end
   end
