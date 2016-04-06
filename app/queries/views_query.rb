@@ -1,3 +1,4 @@
+# Запрос просмотров лендинга
 class ViewsQuery
   include Virtus.model
 

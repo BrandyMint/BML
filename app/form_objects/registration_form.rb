@@ -1,3 +1,4 @@
+# Форма регистрации нового аккаунта
 class RegistrationForm < FormBase
   attr_accessor :errors
 

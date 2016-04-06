@@ -1,3 +1,4 @@
+# Общий воркер для отправки писем
 class MailerWorker
   include Sidekiq::Worker
   # extend LoggerConcern

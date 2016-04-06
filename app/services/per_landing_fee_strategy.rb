@@ -1,3 +1,4 @@
+# Стратегия списания абонплаты - за каждый лендинг в месяц
 class PerLandingFeeStrategy
   include Virtus.model(strict: true, nullify_blank: true)
 

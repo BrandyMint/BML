@@ -1,5 +1,5 @@
 # rubocop:disable Style/ModuleFunction
-
+# Функции для нормализации телефона
 module PhoneUtils
   extend self
 

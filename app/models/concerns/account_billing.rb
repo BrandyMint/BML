@@ -17,7 +17,12 @@ module AccountBilling
   end
 
   def needs_recurrent_charge?
-    amount.to_i < 0 && payment_accounts.any?
+    has_debt? && payment_accounts.any?
+  end
+
+  # rubocop:disable Style/PredicateName
+  def has_debt?
+    amount.to_i < 0
   end
 
   private

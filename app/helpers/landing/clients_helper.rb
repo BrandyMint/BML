@@ -1,0 +1,2 @@
+module Landing::ClientsHelper
+end

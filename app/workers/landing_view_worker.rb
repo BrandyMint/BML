@@ -1,3 +1,4 @@
+# Фиксирует просмотр лендинга
 class LandingViewWorker
   include Sidekiq::Worker
 

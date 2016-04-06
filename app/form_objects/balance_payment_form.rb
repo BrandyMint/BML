@@ -1,3 +1,4 @@
+# Форма единоразового пополнения баланса аккаунта
 class BalancePaymentForm < FormBase
   attribute :amount, VirtusMoney
   attribute :name, String

@@ -1,3 +1,4 @@
+# Сущность для получения utm-меток из параметров
 class ParamsUtmEntity
   include Virtus.value_object
 

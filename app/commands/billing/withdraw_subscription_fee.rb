@@ -1,4 +1,5 @@
 module Billing
+  # Списание абонентской платы с баланса аккаунта по тарифу за указанный месяц
   class WithdrawSubscriptionFee
     include Virtus.model(strict: true, nullify_blank: true)
 

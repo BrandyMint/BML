@@ -1,3 +1,4 @@
+# Функции для выполнения сырого sql-запроса
 module PlainSQLQuery
   module_function
 

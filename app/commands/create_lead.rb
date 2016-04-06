@@ -1,6 +1,8 @@
+# Создает новую заявку
 class CreateLead
   include Virtus.model(strict: true, nullify_blank: true)
 
+  # Ошибка создания заявки
   class Error < StandardError
     include HumanizedError
   end

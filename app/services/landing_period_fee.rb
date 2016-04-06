@@ -1,3 +1,5 @@
+# Расчет суммы абонплаты в месяц для одного лендинга
+# Используется в стратегии PerLandingFeeStrategy
 class LandingPeriodFee
   include Virtus.model(strict: true, nullify_blank: true)
   include MoneyRails::ActionViewExtension

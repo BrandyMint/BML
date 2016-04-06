@@ -1,3 +1,4 @@
+# Результат расчета платы за период пользования аккаунтом с описанием
 class FeeResult
   include Virtus.value_object
 

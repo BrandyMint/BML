@@ -1,3 +1,4 @@
+# Определяет возможности аккаунта согласно тарифу
 class AccountFeatures
   include Virtus.model
 

@@ -1,3 +1,4 @@
+# Namespace для платежных дел
 module Billing
   NS = :system
 

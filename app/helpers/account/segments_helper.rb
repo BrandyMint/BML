@@ -1,2 +1,0 @@
-module Account::SegmentsHelper
-end

@@ -1,3 +1,4 @@
+# Функции для нормализации e-mail
 module EmailUtils
   def clean_email(email)
     email.to_s.downcase.strip.chomp
