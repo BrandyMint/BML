@@ -3,8 +3,8 @@ install: ruby node git config
 ruby:
 				# cd ~/.rbenv/plugins/ruby-build && git pull && popd
 				rbenv install -s
-				rbenv gem install bundler
-				rbenv bundle install
+				rbenv exec gem install bundler
+				rbenv exec bundle install
 
 node:
 				. ~/.nvm/nvm.sh
