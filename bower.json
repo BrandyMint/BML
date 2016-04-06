@@ -2,7 +2,13 @@
   "name": "bml",
   "dependencies": {
     "selectize": "^0.12.1",
-    "funnel-chart": "^1.1.2"
+    "funnel-chart": "^1.1.2",
+    "lodash": "^4.8.2",
+    "tether": "^1.2.0",
+    "better-i18n-plugin": "^1.0.4",
+    "better-popover-plugin": "^0.5.2",
+    "better-form-validation": "^1.4.1",
+    "nprogress": "^0.2.0"
   },
   "ignore": [
     "**/.*",
