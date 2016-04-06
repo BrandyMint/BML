@@ -35,9 +35,9 @@ git_modules:
 
 
 configure:
-				ln -sv ./config/database.yml.example ./config/database.yml
-				ln -sv ./config/secrets.yml.example ./config/secrets.yml
-				ln -sv ./config/chewy.yml.example ./config/chewy.yml
+				ln -sv ./database.yml.example ./config/database.yml
+				ln -sv ./secrets.yml.example ./config/secrets.yml
+				ln -sv ./chewy.yml.example ./config/chewy.yml
 				ls -la ./config/
 
 database:
