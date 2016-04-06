@@ -38,7 +38,6 @@ configure:
 				ln -sv ./database.yml.example ./config/database.yml
 				ln -sv ./secrets.yml.example ./config/secrets.yml
 				ln -sv ./chewy.yml.example ./config/chewy.yml
-				ls -la ./config/
 
 database:
 				# rbenv exec bundle exec rake db:drop db:create db:schema:load
