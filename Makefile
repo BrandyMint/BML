@@ -1,5 +1,6 @@
 OS := $(shell uname)
-RAKE = rbenv exec bundle exec rake
+RAKE := rbenv exec bundle exec rake
+NPM := $(shell brew --prefix nvm)
 
 all: install database
 
@@ -10,14 +11,14 @@ ruby:
 				cat .ruby-version
 				rbenv install -s
 				rbenv version
-				rbenv exec gem install bundler
+				rbenv exec bundler || rbenv exec gem install bundler
 				rbenv exec bundle install
 
 ifeq ($(OS),Darwin)
 npm:
 				@echo "Darwin"
 				export NVM_DIR=~/.nvm
-				. $(brew --prefix nvm)/nvm.sh
+				. $(shell brew --prefix nvm)/nvm.sh
 				npm install
 else
 npm:
@@ -42,4 +43,6 @@ configure:
 database:
 				# rbenv exec bundle exec rake db:drop db:create db:schema:load
 				$(RAKE) db:drop db:create
+
+				# Миграции приходится делать отдельно, потому что только так срабатывают миграции из openbill
 				$(RAKE) db:migrate
