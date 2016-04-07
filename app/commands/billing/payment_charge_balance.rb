@@ -14,7 +14,7 @@ module Billing
       Openbill.current.make_transaction(
         from: SystemRegistry[:payments],
         to: account.billing_account,
-        key: [NS, gateway, account.ident, transaction_id].join(':'),
+        key: [NS, gateway, transaction_id].join(':'),
         amount: amount,
         details: 'Пополнение баланса',
         meta: {

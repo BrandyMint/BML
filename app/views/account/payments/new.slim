@@ -6,8 +6,14 @@ h2 Пополнение баланса
     .col-xs-12.col-lg-7
       .p-m
         = f.error_notification
-        = f.input :amount_cents, autofocus: true
-        = f.input :amount_currency, as: :hidden, input_html: { value: current_account.billing_account.amount_currency }
+
+        .form-group
+          = f.label :amount_cents, class: 'form-control-label'
+          .input-group
+            .input-group-addon= money_symbol_from_string current_account.billing_account.amount_currency
+            = f.input_field :amount_cents, class: 'form-control', autofocus: true
+          = f.input :amount_currency, as: :hidden, input_html: { value: current_account.billing_account.amount_currency }
+
         = f.input :cardNumber, input_html: {name: nil, data: {cp: :cardNumber}}
         = f.input :name
         .row
