@@ -1,4 +1,5 @@
 module YandexDirect
+  # Ресурс Ad_groups
   class AdGroups < BaseResource
     FIELD_NAMES       = %w(Id CampaignId Status Name RegionIds NegativeKeywords TrackingParams Type).freeze
     TYPES             = %w(TEXT_AD_GROUP MOBILE_APP_AD_GROUP DYNAMIC_TEXT_AD_GROUP).freeze

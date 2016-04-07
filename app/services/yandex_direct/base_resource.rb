@@ -1,6 +1,8 @@
 module YandexDirect
   MAX_CAMPAIGNS = 10
 
+  # Базовый ресурс в YandexDirect
+  # используется для создания именовынных ресурсов через наследование
   class BaseResource
     API_URL = 'https://api.direct.yandex.com/json/v5/'.freeze
 

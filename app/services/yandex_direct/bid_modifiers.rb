@@ -1,4 +1,5 @@
 module YandexDirect
+  # Ресурс bid_modifier
   class BidModifiers < BaseResource
     FIELD_NAMES = %w(Id CampaignId AdGroupId Level Type).freeze
     LEVELS = %w(CAMPAIGN AD_GROUP).freeze

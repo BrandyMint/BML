@@ -1,4 +1,5 @@
 module YandexDirect
+  # Ресурс Sitelinks
   class Sitelinks < BaseResource
     FIELD_NAMES = %w(Id Sitelinks).freeze
 

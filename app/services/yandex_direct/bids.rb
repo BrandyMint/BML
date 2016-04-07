@@ -1,4 +1,5 @@
 module YandexDirect
+  # Ресурс Bids
   class Bids < BaseResource
     FIELD_NAMES = %w(KeywordId AdGroupId CampaignId Bid ContextBid StrategyPriority
                      CompetitorsBids SearchPrices ContextCoverage MinSearchPrice CurrentSearchPrice AuctionBids).freeze
