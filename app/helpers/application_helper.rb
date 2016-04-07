@@ -1,4 +1,13 @@
 module ApplicationHelper
+
+  def format_uuid(uuid)
+    content_tag :div, class: 'text-muted text-nowrap' do
+      content_tag :small do
+        "UUID: #{uuid}"
+      end
+    end
+  end
+
   def utm_fields_only
     TrackingSupport::UTM_FIELD_DEFINITIONS.reject { |i| i.key == :referer }
   end
