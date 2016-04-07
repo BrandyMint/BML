@@ -10,11 +10,12 @@ class CreateLead
   UnknownError = Class.new Error
   BlankLeadError = Class.new Error
 
-  attribute :data,       Hash
-  attribute :tracking,   String
-  attribute :cookies,    Hash
-  attribute :variant,    Variant
-  attribute :viewer_uid, String
+  attribute :data,            Hash
+  attribute :tracking,        String
+  attribute :cookies,         Hash
+  attribute :variant,         Variant
+  attribute :viewer_uid,      String
+  attribute :collection_uuid, String
 
   def call
     raise BlankLeadError if lead_data.empty?
@@ -102,6 +103,10 @@ class CreateLead
   end
 
   def find_collection
-    # TODO: в будущем коллекция может указываться в параметрах
+    return unless collection_uuid.present?
+    landing.collections.find_by_uuid! collection_uuid
+  rescue => err
+    Bugsnag.notify err, metaData: { collection_uuid: collection_uuid }
+    nil
   end
 end
