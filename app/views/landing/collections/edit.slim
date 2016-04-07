@@ -3,3 +3,6 @@
     h2.m-b-lg Редактирование коллекции N#{collection.id}
 
     = render 'form', collection: collection
+
+    hr
+    = format_uuid collection.uuid

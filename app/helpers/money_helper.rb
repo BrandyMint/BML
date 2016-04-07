@@ -5,4 +5,8 @@ module MoneyHelper
                 humanized_money_with_symbol(amount),
                 class: "text-nowrap #{c}"
   end
+
+  def money_symbol_from_string(value)
+    Money::Currency.find(value).symbol
+  end
 end

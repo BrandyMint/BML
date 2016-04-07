@@ -16,7 +16,7 @@ RSpec.describe Billing::PaymentChargeBalance, openbill: true do
       end
       it 'makes transaction' do
         expect(Openbill::Transaction.count).to eq 1
-        expect(Openbill::Transaction.last.key).to eq "#{described_class::NS}:#{gateway}:#{account.ident}:#{transaction_id}"
+        expect(Openbill::Transaction.last.key).to eq "#{described_class::NS}:#{gateway}:#{transaction_id}"
         expect(SystemRegistry[:payments].reload.amount).to eq from_amount
         expect(account.billing_account.amount).to eq to_amount
       end

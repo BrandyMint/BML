@@ -14,9 +14,9 @@ class BalancePaymentForm < FormBase
   attribute :cvv, String
 
   validates :amount_cents, :amount_currency, :name, :cryptogram_packet, presence: true
-  validates :amount_money, numericality: { greater_than: 0 }
+  validates :amount, numericality: { greater_than: 0 }
 
-  def amount_money
-    @_amount_money ||= amount_cents.to_money(amount_currency)
+  def amount
+    @_amount ||= amount_cents.to_money(amount_currency)
   end
 end

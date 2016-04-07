@@ -4,7 +4,7 @@ module CloudPayments
   class OneTimeChargeBalance
     include Virtus.model(strict: true, nullify_blank: true)
 
-    CLOUDPAYMENTS_ERRORS_NAMESPACE = 'CloudPayments::Client::GatewayErrors::'.freeze
+    CLOUDPAYMENTS_ERRORS_NAMESPACE = 'CloudPayments::Client::GatewayErrors'.freeze
 
     InvalidForm = Class.new StandardError
     NS = :cloudpayments
@@ -21,8 +21,8 @@ module CloudPayments
       store_card_if_needed resp
 
     rescue => err
-      if err.class.name.start_with? CLOUDPAYMENTS_ERRORS_NAMESPACE
-        key = err.class.name.gsub(CLOUDPAYMENTS_ERRORS_NAMESPACE, '').to_sym
+      if err.class.name.deconstantize == CLOUDPAYMENTS_ERRORS_NAMESPACE
+        key = err.class.name.demodulize.to_sym
         raise CloudPaymentsError, key
       end
       raise err
@@ -32,8 +32,8 @@ module CloudPayments
 
     def make_transaction
       CloudPayments.client.payments.cards.charge(
-        amount: form.amount_money.to_f,
-        currency: form.amount_money.currency.iso_code,
+        amount: form.amount.to_f,
+        currency: form.amount.currency.iso_code,
         account_id: account.ident,
         ip_address: ip,
         name: form.name,
@@ -44,7 +44,7 @@ module CloudPayments
     def charge_balance(resp)
       Billing::PaymentChargeBalance.new(
         account: account,
-        amount: form.amount_money,
+        amount: form.amount,
         gateway: :cloudpayments,
         transaction_id: resp.id
       ).call
