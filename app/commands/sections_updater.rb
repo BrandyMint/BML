@@ -1,3 +1,4 @@
+# Обновляет вариант в базе на основе данных принятых из API
 class SectionsUpdater
   def initialize(variant, regenerate_uuid: false)
     @variant = variant

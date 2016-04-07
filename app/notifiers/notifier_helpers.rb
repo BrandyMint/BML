@@ -1,6 +1,10 @@
+# Хелперы для отправки писем и SMS
+# TODO: Перевести на сервис
 class NotifierHelpers
+  # Верительные грамоты отправителя
   class Sender
     include Virtus.model
+    # TODO: email
     attribute :sms, SmsWorker::Credentials
   end
 

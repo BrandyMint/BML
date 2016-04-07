@@ -1,5 +1,9 @@
 require 'securerandom'
 
+# Находит аутентификцию (запись в authentications) для указанного аккаунта соответвующую
+# записи из Oauth ответа (auth_hash). Если запись найдена - она обновляется, если нет - к аккаунту
+# добавляются новая аутентификация
+#
 class OmniauthAuthenticator
   include Virtus.model
 

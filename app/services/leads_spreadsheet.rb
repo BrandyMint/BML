@@ -1,3 +1,4 @@
+# Экспорт данных коллекции в CSV
 class LeadsSpreadsheet < AbstractBaseSpreadsheet
   def initialize(source, items)
     raise unless source.is_a? Collection

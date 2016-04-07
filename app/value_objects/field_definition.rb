@@ -1,9 +1,13 @@
+# Определение колонки в коллекции.
+# TODO: Добавить тип колонки
 class FieldDefinition
   include Virtus.value_object
 
   values do
+    # TODO: Не понятно чем отличается key и item_key?
     attribute :key, Symbol
     attribute :item_key, String
+
     attribute :title, String
   end
 

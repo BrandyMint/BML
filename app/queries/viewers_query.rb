@@ -1,3 +1,4 @@
+# query-object для получения посетителей сайта
 class ViewersQuery
   include Virtus.model
 

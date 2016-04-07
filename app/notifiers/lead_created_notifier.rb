@@ -1,3 +1,4 @@
+# Уведомитель сотрудников аккаунта о получении нового лида (записи в коллекции)
 class LeadCreatedNotifier
   include Virtus.model strict: true
   include LeadUrlHelper

@@ -1,3 +1,4 @@
+# Обновлятель блока (section) на основе данных переданных из API
 class SectionUpdater
   BACKGROUND_KEYS = %i(color position attachment repeat).freeze
 

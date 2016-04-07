@@ -1,6 +1,4 @@
 # Поле со значением, ключем и в будущем с типом
-#
-
 class LeadField
   include Virtus.value_object
   include ActionView::Helpers::UrlHelper
