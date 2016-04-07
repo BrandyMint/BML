@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def format_uuid(uuid)
     content_tag :div, class: 'text-muted text-nowrap' do
       content_tag :small do
