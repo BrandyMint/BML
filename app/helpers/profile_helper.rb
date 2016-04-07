@@ -26,4 +26,30 @@ module ProfileHelper
             class: 'btn btn-sm btn-warning-outline'
            )
   end
+
+  def user_sms_notification_checkbox(f)
+    if f.object.user.phone_confirmed?
+      f.input :sms_notification, label: false
+    else
+      checkbox_with_tooltip 'Необходимо подтвердить телефон' do
+        f.input :sms_notification, label: false, disabled: true
+      end
+    end
+  end
+
+  def user_email_notification_checkbox(f)
+    if f.object.user.email_confirmed?
+      f.input :email_notification, label: false
+    else
+      checkbox_with_tooltip 'Необходимо подтвердить e-mail' do
+        f.input :email_notification, label: false, disabled: true
+      end
+    end
+  end
+
+  def checkbox_with_tooltip(title)
+    content_tag :div, class: 'checkbox-tooltip', title: title, tooltip: true do
+      yield
+    end
+  end
 end
