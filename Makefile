@@ -37,7 +37,7 @@ configure:
 
 database:
 				# rbenv exec bundle exec rake db:drop db:create db:schema:load
-				$(RAKE) db:drop db:create
+				$(NVM) && $(RAKE) db:drop db:create
 
 				# Миграции приходится делать отдельно, потому что только так срабатывают миграции из openbill
-				$(RAKE) db:migrate
+				$(NVM) && $(RAKE) db:migrate
