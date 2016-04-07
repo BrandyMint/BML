@@ -14,8 +14,8 @@ describe CloudPayments::OneTimeChargeBalance, vcr: true, openbill: true do
       amount_currency: amount_currency,
       name: 'CARDHOLDER NAME',
       recurrent: recurrent,
-      cryptogram_packet: cryptogram_packet,
-      currency_iso_code: account.currency_iso_code }
+      cryptogram_packet: cryptogram_packet
+    }
   end
   let(:form) { BalancePaymentForm.new params }
 
