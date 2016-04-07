@@ -1,6 +1,11 @@
 OS := $(shell uname)
 RAKE := rbenv exec bundle exec rake
-NPM := $(shell brew --prefix nvm)
+
+ifeq ($(OS),Darwin)
+  NVM := . $(shell brew --prefix nvm)/nvm.sh
+else
+  NVM := . ~/.nvm/nvm.sh
+endif
 
 all: install database
 
@@ -14,23 +19,11 @@ ruby:
 				rbenv exec bundler || rbenv exec gem install bundler
 				rbenv exec bundle install
 
-ifeq ($(OS),Darwin)
 npm:
-				@echo "Darwin"
-				export NVM_DIR=~/.nvm
-				. $(shell brew --prefix nvm)/nvm.sh
-				npm install
-				node -v
-else
-npm:
-				. ~/.nvm/nvm.sh && nvm install
-				npm install
-				node -v
-endif
+				${NVM} && nvm install && npm install
 
 bower:
-				node -v
-				./node_modules/.bin/bower install
+				${NVM} && ./node_modules/.bin/bower install
 
 git_modules:
 				git submodule init
