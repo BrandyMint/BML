@@ -4,7 +4,10 @@ class User < ActiveRecord::Base
   include UserPasswordReset
   include UserInvitable
   include PhoneAndEmail
+
   has_many :memberships, dependent: :destroy
+  accepts_nested_attributes_for :memberships, reject_if: :all_blank
+
   has_many :accounts, through: :memberships
   has_many :phone_confirmations, autosave: true, dependent: :delete_all
   has_many :invites, dependent: :destroy, foreign_key: :user_inviter_id

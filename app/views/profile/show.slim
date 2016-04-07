@@ -14,7 +14,7 @@
 
 br
 .row
-  .col-md-8
+  .col-md-12
     = simple_form_for user, url: profile_url do |f|
       .form-group
         .row
@@ -35,6 +35,9 @@ br
             - unless user.phone_confirmed?
               div.text-danger= user_phone_confirmation_hint(user)
               .m-t= user_send_phone_confirmation_link(user.phone)
+
+      = render 'notifications', user: user, f: f
+
       .form-group
         hr
         .row

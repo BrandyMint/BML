@@ -36,10 +36,15 @@ class ProfileController < ApplicationController
   private
 
   def permitted_params
-    params.require(:user).permit(:name,
-                                 :email,
-                                 :phone,
-                                 :password,
-                                 :password_confirmation)
+    params.require(:user).permit(
+      :name,
+      :email,
+      :phone,
+      :password,
+      :password_confirmation,
+      memberships_attributes: [
+        :id, :sms_notification, :email_notification
+      ]
+    )
   end
 end

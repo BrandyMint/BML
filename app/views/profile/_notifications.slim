@@ -1,0 +1,14 @@
+label Уведомления
+.nested-fields
+  table.table
+    thead
+      tr
+        th Аккаунт
+        th Sms
+        th E-mail
+    tbody
+      = f.simple_fields_for :memberships do |ff|
+        tr
+          td= ff.object.account
+          td= ff.input :sms_notification, label: false
+          td= ff.input :email_notification, label: false
