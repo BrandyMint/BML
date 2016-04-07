@@ -16,7 +16,7 @@ module Billing
         to: account.billing_account,
         key: [NS, account.ident, Time.current.beginning_of_hour.to_i].join(':'),
         amount: amount,
-        details: "Ручное зачисление: #{description}",
+        details: description,
         meta: {
           user_id: user.try(:id)
         }
