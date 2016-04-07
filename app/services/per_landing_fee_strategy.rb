@@ -7,7 +7,7 @@ class PerLandingFeeStrategy
   attribute :month, Date
 
   def call
-    total = Money.new(0, :rub)
+    total = Money.new(0)
     descriptions = []
 
     account.landings.find_each do |landing|

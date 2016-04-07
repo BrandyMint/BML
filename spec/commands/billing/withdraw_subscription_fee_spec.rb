@@ -9,10 +9,10 @@ RSpec.describe Billing::WithdrawSubscriptionFee, openbill: true do
 
   describe '#call' do
     context 'total > 0' do
-      let(:month) { Date.new 2016, 4 }
+      let(:month) { Date.current }
       let(:description) { 'description' }
-      let(:to_amount) { Money.new(10_000, :rub) }
-      let(:from_amount) { Money.new(0, :rub) - to_amount }
+      let(:to_amount) { Money.new(10_000, account.billing_account.amount_currency) }
+      let(:from_amount) { -to_amount }
       let(:fee) { FeeResult.new total: to_amount, description: description }
       before do
         allow(subject).to receive(:fee).and_return(fee)
@@ -29,9 +29,9 @@ RSpec.describe Billing::WithdrawSubscriptionFee, openbill: true do
     end
 
     context 'total <= 0' do
-      let(:month) { Date.new 2016, 4 }
+      let(:month) { Date.current }
       let(:description) { 'description' }
-      let(:to_amount) { Money.new(-10_000, :rub) }
+      let(:to_amount) { Money.new(-10_000, account.billing_account.amount_currency) }
       let(:fee) { FeeResult.new total: to_amount, description: description }
       before do
         allow(subject).to receive(:fee).and_return(fee)

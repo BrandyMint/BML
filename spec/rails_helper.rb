@@ -54,6 +54,13 @@ RSpec.configure do |config|
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
 
+  # Отключение google_currency для конверсии валют, чтобы не стабать везде запросы
+  # MoneyRails.configure do |c|
+  #   c.default_bank = Money::Bank::VariableExchange.new(Money::RatesStore::Memory.new)
+  #   c.default_bank.add_rate('USD', 'RUB', 68.7143544)
+  #   c.default_bank.add_rate('RUB', 'USD', 0.014553)
+  # end
+
   # sql logging
   # ActiveRecord::Base.logger = Logger.new(STDOUT) if defined?(ActiveRecord::Base)
 

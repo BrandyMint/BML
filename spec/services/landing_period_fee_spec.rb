@@ -7,7 +7,7 @@ RSpec.describe LandingPeriodFee do
   subject { described_class.new(landing: landing, price: price, month: month) }
 
   describe '#call' do
-    let(:month) { Date.new 2016, 4 }
+    let(:month) { Date.current }
     let(:used_period) { UsedPeriodResult.new(ratio: 0.33, used_days: 10, period_days: 30) }
     let(:total) { price * used_period.ratio }
     let(:result) { subject.call }
