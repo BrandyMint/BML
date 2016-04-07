@@ -97,7 +97,8 @@ class LeadsController < ApplicationController
       variant:    current_variant,
       tracking:   params[:tracking] || '',
       cookies:    cookies,
-      viewer_uid: current_viewer_uid
+      viewer_uid: current_viewer_uid,
+      collection_uuid: params[:collection_uuid] || ''
     ).call
   end
 
