@@ -1,3 +1,5 @@
+include MoneyHelper
+
 ActiveAdmin.register Account do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -32,7 +34,14 @@ ActiveAdmin.register Account do
     if request.post?
       begin
         amount = params[:account][:balance_amount].to_money params[:account][:balance_currency]
-        Billing::GiftChargeBalance.new(account: resource, amount: amount).call
+
+        Billing::GiftChargeBalance.new(
+          account: resource,
+          amount: amount,
+          description: params[:account][:description],
+          user: current_active_admin_user
+        ).call
+
         redirect_to admin_accounts_url, flash: { success: I18n.t('flashes.activeadmin.balance_charged') }
       rescue => err
         redirect_to :back, flash: { error: err.message }

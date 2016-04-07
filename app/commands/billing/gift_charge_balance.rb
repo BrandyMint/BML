@@ -7,6 +7,8 @@ module Billing
 
     attribute :account, Account
     attribute :amount, Money
+    attribute :description, String
+    attribute :user, User
 
     def call
       Openbill.current.make_transaction(
@@ -14,8 +16,10 @@ module Billing
         to: account.billing_account,
         key: [NS, account.ident, Time.current.beginning_of_hour.to_i].join(':'),
         amount: amount,
-        details: 'Ручное зачисление',
-        meta: {}
+        details: "Ручное зачисление: #{description}",
+        meta: {
+          user_id: user.try(:id)
+        }
       )
     rescue => err
       Bugsnag.notify err, metaData: { account: account, amount: amount }
