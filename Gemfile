@@ -161,7 +161,7 @@ gem 'public_suffix'
 gem 'babosa'
 gem 'strip_attributes'
 
-gem 'cloud_payments', github: 'undr/cloud_payments'
+gem 'cloud_payments', github: 'heretge/cloud_payments'
 gem 'http_logger'
 
 group :development, :test do

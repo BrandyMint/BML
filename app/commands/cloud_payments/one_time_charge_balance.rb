@@ -4,8 +4,6 @@ module CloudPayments
   class OneTimeChargeBalance
     include Virtus.model(strict: true, nullify_blank: true)
 
-    CLOUDPAYMENTS_ERRORS_NAMESPACE = 'CloudPayments::Client::GatewayErrors'.freeze
-
     InvalidForm = Class.new StandardError
     NS = :cloudpayments
 
@@ -20,12 +18,9 @@ module CloudPayments
       charge_balance resp
       store_card_if_needed resp
 
-    rescue => err
-      if err.class.name.deconstantize == CLOUDPAYMENTS_ERRORS_NAMESPACE
-        key = err.class.name.demodulize.to_sym
-        raise CloudPaymentsError, key
-      end
-      raise err
+    rescue CloudPayments::Client::ReasonedGatewayError => err
+      key = err.class.name.demodulize.to_sym
+      raise CloudPaymentsError, key
     end
 
     private
