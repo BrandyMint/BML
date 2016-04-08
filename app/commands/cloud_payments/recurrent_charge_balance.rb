@@ -4,7 +4,6 @@ module CloudPayments
   class RecurrentChargeBalance
     include Virtus.model(strict: true, nullify_blank: true)
 
-    CLOUDPAYMENTS_ERRORS_NAMESPACE = 'CloudPayments::Client::GatewayErrors'.freeze
     NS = :cloudpayments
 
     attribute :account, Account
@@ -14,12 +13,9 @@ module CloudPayments
       resp = make_transaction
       charge_balance resp
 
-    rescue => err
-      if err.class.name.deconstantize == CLOUDPAYMENTS_ERRORS_NAMESPACE
-        key = err.class.name.demodulize.to_sym
-        raise CloudPaymentsError, key
-      end
-      raise err
+    rescue CloudPayments::Client::ReasonedGatewayError => err
+      key = err.class.name.demodulize.to_sym
+      raise CloudPaymentsError, key
     end
 
     private

@@ -8,16 +8,15 @@
     p.text-muted Текущий тариф "#{current_account.current_tariff}"
     p = tariff_details current_account.current_tariff
 
+    .m-t-md
+      - if transactions.any?
+        = render 'transactions', transactions: transactions
+      - else
+        .alert.alert-info
+          .text-center Здесь будет отображаться история платежей
 
-.row.m-t-md
-  .col-lg-12
-    - if transactions.any?
-      = render 'transactions', transactions: transactions
-    - else
-      .alert.alert-info
-        .text-center Здесь будет отображаться история платежей
-
-    - if payment_accounts.any?
-      .m-t-md
-        p Карты для автопополнения
-        = render 'payment_accounts', payment_accounts: payment_accounts
+    .m-t-md
+      - if payment_accounts.any?
+        .m-t-md
+          p Карты для автопополнения
+          = render 'payment_accounts', payment_accounts: payment_accounts
