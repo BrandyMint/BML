@@ -43,6 +43,10 @@ module LandingsHelper
     (title + "&nbsp;<span class=\"text-muted\">(#{count})</span>").html_safe
   end
 
+  def collection_truncated_title(collection)
+    "#{truncate_middle(collection.to_s)} (#{collection.leads.count})"
+  end
+
   private
 
   def variant_store_state(variant)
