@@ -9,7 +9,7 @@
 
     .dropdown-menu
       - current_landing.collections.ordered.active.each do |c|
-        = link_to truncate_middle(c.to_s),
+        = link_to collection_truncated_title(c),
           landing_leads_url(current_landing, collection_id: c.id),
           class: 'dropdown-item' + (c==current_collection ? ' active' : '')
 - else
