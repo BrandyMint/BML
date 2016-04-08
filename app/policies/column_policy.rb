@@ -1,0 +1,2 @@
+class ColumnPolicy < AccountPolicy
+end
