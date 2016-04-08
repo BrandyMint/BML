@@ -12,7 +12,7 @@ class Account < ActiveRecord::Base
 
   has_many :landings,    dependent: :destroy, class_name: '::Landing'
   has_many :leads, through: :landings
-  has_many :collections, through: :landings, dependent: :destroy
+  has_many :collections, through: :landings, dependent: :destroy, source: :collection
   has_many :clients, dependent: :destroy
 
   has_many :variants, through: :landings

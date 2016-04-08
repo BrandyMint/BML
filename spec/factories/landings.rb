@@ -13,5 +13,11 @@ FactoryGirl.define do
         landing.variants.create!
       end
     end
+
+    trait :with_collection do
+      after :create do |landing|
+        landing.collections << build_list(:collection, 1, :with_columns)
+      end
+    end
   end
 end

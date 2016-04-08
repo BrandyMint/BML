@@ -23,5 +23,8 @@ table.table.table-condensed
         td= column.title
         td
           .pull-right
-            = link_to edit_landing_collection_column_path(current_landing, collection, column), title: 'Изменить', tooltip: true do
-              = fa_icon :pencil
+            ul.list-inline
+              li
+                = edit_button_circle edit_landing_collection_column_path(current_landing, collection, column)
+              li
+                = delete_button_circle landing_collection_column_path(current_landing, collection, column)
