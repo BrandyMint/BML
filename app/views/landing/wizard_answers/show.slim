@@ -1,0 +1,11 @@
+= simple_form_for [current_landing, current_answer] do |f|
+  = hidden_field_tag :id, current_question.key
+  = f.input :text
+  - if current_question.images_count > 0
+    - action = landing_wizard_answer_images_path(current_landing, current_answer)
+    #answer-images-dropzone.dropzone.m-b-md[action=action]
+      .dropzone-previews
+  = f.submit t('shared.next'), class: 'btn btn-primary'
+
+div
+  = render 'landing/wizard_answers/images', answer: current_answer

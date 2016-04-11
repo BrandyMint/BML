@@ -24,6 +24,8 @@
 #= require better-form
 #= require enableWhenChanged
 #= require selectize/dist/js/standalone/selectize.min.js
+#= require dropzone/dist/min/dropzone.min.js
+#= require dropzones
 #= require leadsFilter.js
 #= require sortablejs/Sortable.js
 #= require sortable.js

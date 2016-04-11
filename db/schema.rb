@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 20160414152612) do
     t.string   "resource_type", null: false
     t.integer  "author_id"
     t.string   "author_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
@@ -71,21 +71,23 @@ ActiveRecord::Schema.define(version: 20160414152612) do
     t.integer  "account_id"
     t.integer  "landing_id"
     t.integer  "variant_id"
-    t.string   "file",                                                null: false
+    t.string   "file",                                                      null: false
     t.integer  "width"
     t.integer  "height"
-    t.integer  "file_size",  limit: 8,                                null: false
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
-    t.string   "type",                                                null: false
-    t.uuid     "uuid",                 default: "uuid_generate_v4()", null: false
-    t.string   "digest",                                              null: false
+    t.integer  "file_size",        limit: 8,                                null: false
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
+    t.string   "type",                                                      null: false
+    t.uuid     "uuid",                       default: "uuid_generate_v4()", null: false
+    t.string   "digest",                                                    null: false
+    t.integer  "wizard_answer_id"
   end
 
   add_index "asset_files", ["account_id", "digest"], name: "index_asset_files_on_account_id_and_digest", unique: true, using: :btree
   add_index "asset_files", ["account_id"], name: "index_asset_files_on_account_id", using: :btree
   add_index "asset_files", ["landing_id"], name: "index_asset_files_on_landing_id", using: :btree
   add_index "asset_files", ["variant_id"], name: "index_asset_files_on_variant_id", using: :btree
+  add_index "asset_files", ["wizard_answer_id"], name: "index_asset_files_on_wizard_answer_id", using: :btree
 
   create_table "authentications", force: :cascade do |t|
     t.integer  "account_id"
@@ -451,11 +453,25 @@ ActiveRecord::Schema.define(version: 20160414152612) do
   add_index "web_addresses", ["account_id"], name: "index_web_addresses_on_account_id", using: :btree
   add_index "web_addresses", ["zone", "subdomain"], name: "index_web_addresses_on_zone_and_subdomain", unique: true, using: :btree
 
+  create_table "wizard_answers", force: :cascade do |t|
+    t.integer  "landing_id",                   null: false
+    t.string   "wizard_key",                   null: false
+    t.string   "question_key",                 null: false
+    t.text     "text"
+    t.boolean  "completed",    default: false, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "wizard_answers", ["landing_id"], name: "index_wizard_answers_on_landing_id", using: :btree
+  add_index "wizard_answers", ["question_key", "wizard_key"], name: "index_wizard_answers_on_question_key_and_wizard_key", unique: true, using: :btree
+
   add_foreign_key "account_sms_log_entities", "accounts"
   add_foreign_key "accounts", "tariffs"
   add_foreign_key "asset_files", "accounts"
   add_foreign_key "asset_files", "landings"
   add_foreign_key "asset_files", "variants"
+  add_foreign_key "asset_files", "wizard_answers"
   add_foreign_key "authentications", "accounts"
   add_foreign_key "clients", "accounts"
   add_foreign_key "clients", "landings"
@@ -485,4 +501,5 @@ ActiveRecord::Schema.define(version: 20160414152612) do
   add_foreign_key "variants", "accounts"
   add_foreign_key "variants", "landings"
   add_foreign_key "web_addresses", "accounts"
+  add_foreign_key "wizard_answers", "landings"
 end

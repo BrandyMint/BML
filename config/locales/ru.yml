@@ -18,6 +18,8 @@ ru:
         suggested_domain: Домен (предполагаемый)
         subdomain: Поддомен
         zone: Зона
+      wizard_answer:
+        text: Текст
   activemodel:
     errors:
       models:
@@ -118,6 +120,8 @@ ru:
   services:
     landing_period_fee:
       description: '%{landing} - %{used_days}/%{period_days} - %{total}'
+    wizard:
+      completed: Ответы сохранены
   leads_filter:
     state:
       any: 'Любые'

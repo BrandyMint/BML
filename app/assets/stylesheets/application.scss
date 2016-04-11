@@ -14,6 +14,7 @@
  *= require nprogress-bootstrap
  *= require selectize/dist/css/selectize.css
  *= require selectize/dist/css/selectize.bootstrap3.css
+ *= require dropzone/dist/min/dropzone.min.css
  *= require font-awesome
  *= require projects
  *= require better_form_overrides
@@ -40,6 +41,7 @@ $brand-primary: $colorWelcome2;
 @import 'sidebar';
 @import 'hoverable';
 // @import 'checkboxes';
+@import 'dropzone';
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,800);
 
