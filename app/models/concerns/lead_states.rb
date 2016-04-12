@@ -6,6 +6,7 @@ module LeadStates
   STATE_DECLINED = 'declined'.freeze
 
   included do
+    scope :accepted, -> { with_state STATE_ACCEPTED }
     enumerize :state,
               in: [STATE_NEW, STATE_ACCEPTED, STATE_DECLINED],
               default: STATE_NEW,

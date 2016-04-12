@@ -35,6 +35,7 @@ class Landing::ColumnsController < Landing::BaseController
     authorize column
 
     column.update! permitted_params
+
     success_redirect
   rescue ActiveRecord::RecordInvalid => err
     render 'edit', locals: { column: err.record }, flash: { error: err.message }
