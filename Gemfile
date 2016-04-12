@@ -190,9 +190,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'rspec-collection_matchers'
-  gem 'spring'
-  gem 'spring-commands-rspec'
 
   gem 'listen', '~> 3.0'
   gem 'guard', '> 2.12'
@@ -205,11 +202,14 @@ group :development, :test do
   gem 'guard-ctags-bundler'
   gem 'guard-rubocop'
   gem 'rubocop-rspec'
-  gem 'letter_opener'
+
+  # Открывает письма прямо в браузере
+  # gem 'letter_opener'
 end
 
 group :test do
   gem 'email_spec'
+  gem 'rspec-collection_matchers'
   gem 'rack_session_access'
   gem 'test_after_commit'
   gem 'capybara-email'
@@ -221,6 +221,9 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'spring-commands-rubocop'
 end
 
 group :deploy do
