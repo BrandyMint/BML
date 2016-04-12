@@ -343,8 +343,6 @@ GEM
     kramdown (1.4.1)
     launchy (2.4.3)
       addressable (~> 2.3)
-    letter_opener (1.3.0)
-      launchy (~> 2.2)
     listen (3.0.6)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9.7)
@@ -620,6 +618,8 @@ GEM
     spring (1.6.2)
     spring-commands-rspec (1.0.2)
       spring (>= 0.9.1)
+    spring-commands-rubocop (0.1.0)
+      spring (~> 1.0)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -737,7 +737,6 @@ DEPENDENCIES
   jquery-rails
   kaminari
   kramdown
-  letter_opener
   listen (~> 3.0)
   mini_magick
   money
@@ -802,6 +801,7 @@ DEPENDENCIES
   sorcery
   spring
   spring-commands-rspec
+  spring-commands-rubocop
   sprockets (>= 3.0.0.beta)
   sprockets-es6
   strip_attributes
