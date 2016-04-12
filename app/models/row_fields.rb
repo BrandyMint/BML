@@ -5,10 +5,10 @@
 class RowFields < Set
   NotFound = Class.new StandardError
 
-  def initialize(data)
+  def initialize(columns, data)
     @data = data
     super data.map do |k, v|
-      LeadField.new key: k, value: v
+      LeadField.new key: k, value: v, column: columns.find_by_key(k)
     end
   end
 

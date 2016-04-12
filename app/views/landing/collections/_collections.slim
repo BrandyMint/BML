@@ -9,7 +9,7 @@ table.table.table-condensed
       tr
         td
           = link_to c, landing_leads_path(collection_id: c.id)
-          - if current_landing.default_collection == c
+          - if current_landing.default_leads_collection == c
             .label== "(по-умолчанию)"
           .text-muted
             small

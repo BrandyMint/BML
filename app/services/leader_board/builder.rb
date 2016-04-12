@@ -52,7 +52,7 @@ module LeaderBoard
         note = lead.data[NOTE_COLUMN]
         title = lead.data[TITLE_COLUMN]
         score = lead.data[SCORE_COLUMN].to_i
-        score = nil if score == 0;
+        score = nil if score == 0
 
         ranks_table = find_ranks_table(division, event, is_male)
         add_rank ranks_table[:records], title, score, note

@@ -8,7 +8,8 @@ class LeadField
   include UrlHelper
 
   values do
-    attribute :key
+    attribute :column, Column
+    attribute :key, Symbol
     attribute :value
   end
 
@@ -31,14 +32,7 @@ class LeadField
       return nil unless value.present?
       tel_to value
     else
-      if value.start_with? 'http://'
-        return nil unless value.present?
-        truncate_url value
-      elsif key.to_s.starts_with?('is_')
-        human_boolean value.to_i == 1
-      else
-        value
-      end
+      other_value_html
     end
   end
 
@@ -49,5 +43,18 @@ class LeadField
 
   def to_s
     "#{key}: #{value}"
+  end
+
+  private
+
+  def other_value_html
+    if value.start_with? 'http://'
+      return nil unless value.present?
+      truncate_url value
+    elsif key.to_s.starts_with?('is_')
+      human_boolean value.to_i == 1
+    else
+      value
+    end
   end
 end

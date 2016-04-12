@@ -17,7 +17,7 @@ class Landing::LeadsController < Landing::BaseController
     }
   end
 
-  # TODO move to collection/leads controller
+  # TODO: move to collection/leads controller
   def edit
     lead = available_leads.find params[:id]
     render locals: { lead: lead, lead_data: lead.data, collection: lead.collection }, layout: 'lead_show'
@@ -90,10 +90,7 @@ class Landing::LeadsController < Landing::BaseController
 
   def filter_params
     params.slice(
-      :sort_order,
-      :sort_field,
-      :limit,
-      :state
+      :sort_order, :sort_field, :limit, :state
     ).merge(
       account: current_account,
       collection: current_collection,
@@ -116,7 +113,7 @@ class Landing::LeadsController < Landing::BaseController
   end
 
   def current_collection
-    find_collection || current_landing.default_collection
+    find_collection || current_landing.default_leads_collection
   end
 
   def available_leads

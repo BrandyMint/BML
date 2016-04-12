@@ -11,15 +11,15 @@ module FieldsSupport
   end
 
   def fields
-    @_fields ||= RowFields.new fields_data
+    @_fields ||= RowFields.new collection.columns, fields_data
   end
 
   def data_fields
-    @_data_fields ||= RowFields.new data
+    @_data_fields ||= RowFields.new collection.columns, data
   end
 
   def tracking_fields
-    @_tracking_fields ||= RowFields.new tracking_attributes
+    @_tracking_fields ||= RowFields.new collection.columns, tracking_attributes
   end
 
   private

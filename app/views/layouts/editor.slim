@@ -2,7 +2,7 @@ doctype html
 html
   head
     title= AppSettings.title
-    meta name="version" content=AppVersion
+    meta name="version" content=AppVersion.to_s
     = setup_editor_bml
     = bugsnag_script
     /== stylesheet_link_tag 'viewer', media: 'all'

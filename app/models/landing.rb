@@ -13,7 +13,8 @@ class Landing < ActiveRecord::Base
 
   # TODO: перенести на belongs_to
   #
-  has_one :collection, class_name: 'Collection'
+  has_one :leads_collection, class_name: 'LeadsCollection'
+  has_one :records_collection, class_name: 'RecordsCollection'
 
   has_many :segments, dependent: :delete_all
   has_many :clients, dependent: :delete_all
@@ -55,15 +56,13 @@ class Landing < ActiveRecord::Base
       .sum(:leads_count)
   end
 
-  # TODO: rename to default_leads_collection
-  def default_collection
-    collection || create_collection
+  def default_leads_collection
+    leads_collection || create_leads_collection
   end
 
   # Collections for LeaderBoard
   def default_records_collection
-    # TODO через has_one
-    collections.where(type: RecordsCollection.name).first
+    records_collection | create_records_collection
   end
 
   def default_variant

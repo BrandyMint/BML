@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :collection do
+  factory :collection, class: LeadsCollection do
     landing
     uuid { SecureRandom.uuid }
   end

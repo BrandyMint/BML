@@ -9,7 +9,6 @@ module SectionDataBuilder
     builder_class = BUILDERS[block_view.to_sym]
     return unless builder_class.present?
 
-
     builder_class.new(collection: source_collection).build
   end
 
