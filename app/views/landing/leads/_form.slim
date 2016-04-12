@@ -1,0 +1,17 @@
+= simple_form_for lead_data, url: [current_landing, lead], as: :lead_data, method: :put do |f|
+  = f.error_notification
+  - current_collection.columns.ordered.in_groups_of 2 do |group|
+    .row
+      .col-md-6
+        - c = group.first
+        = f.input c.key, value: lead.data[c.key], label: c.title, required: c.is_required?, hint: column_field_hint(c), as: :string
+      .col-md-6
+        - c = group.last
+        - if c.present?
+          = f.input c.key, value: lead.data[c.key], label: c.title, required: c.is_required?, hint: column_field_hint(c), as: :string
+
+  .row
+    .col-md-12
+      .pull-right
+        = f.submit t('shared.save'), class: 'btn btn-primary'
+

@@ -17,6 +17,20 @@ class Landing::LeadsController < Landing::BaseController
     }
   end
 
+  def edit
+    lead = current_collection.leads.find params[:id]
+    render locals: { lead: lead, lead_data: lead.data }, layout: 'lead_show'
+  end
+
+  def update
+    lead = current_collection.leads.find params[:id]
+    lead.update! data: params[:lead_data]
+    redirect_to landing_leads_path(current_landing, collection_id: current_collection.id),
+                flash: { success: I18n.t('flashes.lead.saved') }
+  rescue ActiveRecord::RecordInvalid => err
+    render 'edit', locals: { lead: err.record, lead_data: lead.data }, flash: { error: err.message }, layout: 'lead_show'
+  end
+
   # Предполагается что сюда будет параметром передаваться
   # формат для экспорта
   #
@@ -85,7 +99,7 @@ class Landing::LeadsController < Landing::BaseController
       variant: current_variant
     ).reverse_merge(
       state: session_state
-    )
+    ).compact
   end
 
   def session_state
