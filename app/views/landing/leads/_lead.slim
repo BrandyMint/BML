@@ -8,11 +8,15 @@ tr
     td= field_value lead.fields[column.key]
   td
     = lead_state lead.state
-  td style="min-width: 110px"
+  td style="min-width: 170px"
     ul.list-inline.pull-right
       - unless lead.state_accepted?
         li
           = show_button_circle accept_landing_lead_path(current_landing, lead), icon: :check, css_class: 'btn-success', title: 'Принять', method: :post
       - unless lead.state_declined?
         li
-          = show_button_circle decline_landing_lead_path(current_landing, lead), icon: :times, title: 'Отклонить', method: :delete
+          = show_button_circle decline_landing_lead_path(current_landing, lead), icon: :times, css_class: 'btn-danger', title: 'Отклонить', method: :delete
+
+      li
+        = show_button_circle edit_landing_lead_path(current_landing, lead), icon: :pencil, title: 'Редактировать', method: :get
+

@@ -20,6 +20,10 @@ class Lead < ActiveRecord::Base
     data['name']
   end
 
+  def data
+    Hashie::Mash.new super || {}
+  end
+
   def phone
     data['phone']
   end

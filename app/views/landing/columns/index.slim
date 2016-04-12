@@ -16,11 +16,14 @@ table.table.table-condensed
     tr
       th Ключ
       th Название
+      th Обязательный
+      th
   tbody
     - columns.each do |column|
       tr
         td= column.key
         td= column.title
+        td= human_boolean column.is_required?
         td
           .pull-right
             ul.list-inline
