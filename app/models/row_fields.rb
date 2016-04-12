@@ -15,7 +15,7 @@ class RowFields < Set
   def [](key)
     key = key.key if key.is_a? Column
     find do |field|
-      field.key == key
+      field.key == key.to_sym
     end
   end
 
