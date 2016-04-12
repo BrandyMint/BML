@@ -1,0 +1,19 @@
+= javascript_include_tag 'https://widget.cloudpayments.ru/bundles/checkout'
+javascript:
+  $(function() {
+    var $balancePaymentForm = $('[data-cp-payment-form]').first()
+
+    checkout = new cp.Checkout(
+      '#{Secrets.cloudpayments.public_key}',
+      $balancePaymentForm[0]
+    );
+
+    $balancePaymentForm.on('submit', function(){
+      var result = checkout.createCryptogramPacket();
+      if (result.success) {
+        $(this).find('[data-cryptogram-packet]').val(result.packet);
+        return true;
+      }
+      return false;
+    });
+  });

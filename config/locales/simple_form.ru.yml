@@ -62,7 +62,7 @@ ru:
         name: Имя и Фамилия
         phones_string: Телефоны
         emails_string: Email адреса
-      balance_payment_form:
+      cloud_payments_form:
         amount_cents: Сумма
         name: Имя держателя
         cardNumber: Номер карты
@@ -120,7 +120,7 @@ ru:
         name: Имя
         email: E-mail
         password: Пароль
-      balance_payment_form:
+      cloud_payments_form:
         amount_cents: '500'
         name: IVAN IVANOV
         cardNumber: 4*** **** **** 1234

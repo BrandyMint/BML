@@ -1,9 +1,5 @@
 # encoding: utf-8
 module Account::PaymentsHelper
-  def cloudpayments_widget
-    render 'cloudpayments/widget'
-  end
-
   def expire_months_as_options
     (1..12).map { |m| (m > 9 ? m : "0#{m}").to_s }
   end

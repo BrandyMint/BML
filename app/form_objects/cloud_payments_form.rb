@@ -1,5 +1,5 @@
-# Форма единоразового пополнения баланса аккаунта
-class BalancePaymentForm < FormBase
+# Форма единоразового пополнения баланса аккаунта через CloudPayments
+class CloudPaymentsForm < FormBase
   attribute :amount_cents, String
   attribute :amount_currency, String
   attribute :name, String

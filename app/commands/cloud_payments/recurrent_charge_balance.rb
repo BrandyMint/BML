@@ -4,8 +4,6 @@ module CloudPayments
   class RecurrentChargeBalance
     include Virtus.model(strict: true, nullify_blank: true)
 
-    NS = :cloudpayments
-
     attribute :account, Account
     attribute :amount, Money
 
@@ -33,13 +31,17 @@ module CloudPayments
       Billing::PaymentChargeBalance.new(
         account: account,
         amount: amount,
-        gateway: :cloudpayments,
+        gateway: gateway,
         transaction_id: resp.id
       ).call
     end
 
     def token
-      account.payment_accounts.first.token
+      account.payment_accounts.where(gateway: gateway).first.token
+    end
+
+    def gateway
+      Payments::CLOUDPAYMENTS_GATEWAY_KEY
     end
   end
 end

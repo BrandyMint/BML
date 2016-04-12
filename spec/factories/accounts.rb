@@ -19,7 +19,8 @@ FactoryGirl.define do
                                          card_first_six: '123456',
                                          card_last_four: '9999',
                                          card_type: 'visa',
-                                         card_exp_date: '01/30'
+                                         card_exp_date: '01/30',
+                                         gateway: :cloudpayments
       end
     end
 
