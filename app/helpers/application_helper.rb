@@ -23,10 +23,6 @@ module ApplicationHelper
     content_tag :span, empty_value, class: 'text-muted'
   end
 
-  def human_boolean(value)
-    value ? 'Да' : 'Нет'
-  end
-
   def setup_editor_bml
     config = {
       postLeadUrl: post_lead_url,

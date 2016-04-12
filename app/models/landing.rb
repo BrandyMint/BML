@@ -55,8 +55,15 @@ class Landing < ActiveRecord::Base
       .sum(:leads_count)
   end
 
+  # TODO: rename to default_leads_collection
   def default_collection
     collection || create_collection
+  end
+
+  # Collections for LeaderBoard
+  def default_records_collection
+    # TODO через has_one
+    collections.where(type: RecordsCollection.name).first
   end
 
   def default_variant

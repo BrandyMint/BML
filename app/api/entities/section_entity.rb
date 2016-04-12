@@ -9,4 +9,7 @@ class Entities::SectionEntity < Grape::Entity
   expose :node_attributes, as: :nodeAttributes, if: -> (s, o) { s.node_attributes.present? || o[:clear].blank? }
   expose :meta, if: -> (s, o) { s.meta.present? || o[:clear].blank? }
   expose :block_view, as: :viewName
+
+  # Данные в разном формате для разных блоков
+  expose :data
 end

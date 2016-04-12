@@ -17,13 +17,13 @@ RSpec.describe LeaderBoard::Builder, type: :model do
     {
       divisions: [division],
       events: [event],
-      results:
+      tables:
         [
           {
             division: division,
             event: event,
             is_male: false,
-            ranks: [
+            records: [
               { title: name1, note: nil, score: result1, rank: 1 },
               { title: name2, note: nil, score: result2, rank: 2 }
             ]

@@ -14,15 +14,15 @@ module LeaderBoard
       {
         divisions: @divisions.uniq.sort,
         events: @events.uniq.compact.sort,
-        results: Ranker.new(results: @results.values).rank!
+        tables: Ranker.new(results: @results.values).rank!
       }
     end
 
     private
 
     EVENT_COLUMN      = :event
-    SCORE_COLUMN      = :result
-    DIVISION_COLUMN   = :category
+    SCORE_COLUMN      = :score
+    DIVISION_COLUMN   = :division
     MALE_COLUMN       = :is_male
     NOTE_COLUMN       = :city
     TITLE_COLUMN      = :name
@@ -51,10 +51,11 @@ module LeaderBoard
 
         note = lead.data[NOTE_COLUMN]
         title = lead.data[TITLE_COLUMN]
-        score = lead.data[SCORE_COLUMN]
+        score = lead.data[SCORE_COLUMN].to_i
+        score = nil if score == 0;
 
         ranks_table = find_ranks_table(division, event, is_male)
-        add_rank ranks_table[:ranks], title, score, note
+        add_rank ranks_table[:records], title, score, note
       end
     end
 
@@ -78,7 +79,7 @@ module LeaderBoard
         division: division,
         event: event,
         is_male: is_male,
-        ranks: []
+        records: []
       }
       @results[key] = ranks_table
     end
