@@ -19,10 +19,10 @@ module LinksHelper
 
   def settings_collection_button(collection)
     link_to landing_collection_columns_path(current_landing, collection),
-      class: 'btn btn-secondary btn-sm',
-      data: { placement: :left },
-      title: 'Настройка таблицы',
-      tooltip: true do
+            class: 'btn btn-secondary btn-sm',
+            data: { placement: :left },
+            title: 'Настройка таблицы',
+            tooltip: true do
       fa_icon :gear
     end
   end
