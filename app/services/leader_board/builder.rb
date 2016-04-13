@@ -2,9 +2,11 @@ module LeaderBoard
   # Строит данные для отображения в LeaderBoard
   # на основе коллекции
   class Builder
-    include Virtus.model strict: true
+    include Virtus.model
 
-    attribute :collection, Collection
+    # Collection не получается установить, не проходит assets:precompile
+    # http://teamcity.brandymint.ru/viewLog.html?buildId=6391&buildTypeId=Bml_Master&tab=buildLog#_focus=1562
+    attribute :collection # ,Collection
 
     def build
       @divisions = []
