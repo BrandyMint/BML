@@ -22,12 +22,15 @@ module LeaderBoard
 
     private
 
+    # TODO Перенести в свойства коллекции
+    #
     EVENT_COLUMN      = :event
     SCORE_COLUMN      = :score
     DIVISION_COLUMN   = :division
     SEX_COLUMN        = :sex
     NOTE_COLUMN       = :city
-    TITLE_COLUMN      = :name
+    TITLE_COLUMNS     = %w(name surname firstname lastname).freeze
+    UNKNOWN_TITLE     = 'Аноним'
 
     DEFAULT_EVENT     = 'DefaultEvent'.freeze
     DEFAULT_division = 'DefaultDivision'.freeze
@@ -53,7 +56,7 @@ module LeaderBoard
         sex = 'male' unless Column::SEX.include? sex
 
         note = lead.data[NOTE_COLUMN]
-        title = lead.data[TITLE_COLUMN]
+        title = lead.data.slice(*TITLE_COLUMNS).values.join(' ') || UNKNOWN_TITLE
         score = lead.data[SCORE_COLUMN].to_i
         score = nil if score == 0
 
