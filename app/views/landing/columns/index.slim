@@ -25,8 +25,8 @@ table.table.table-condensed
   tbody
     - columns.each do |column|
       tr
-        td= column.key
         td= column.title
+        td= column.key
         td= human_boolean column.is_required?
         td= column.input_type
         td= column_visibility_button column
