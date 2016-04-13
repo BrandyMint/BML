@@ -47,7 +47,7 @@ module LeaderBoard
 
       comparator = proc do |x, y|
         if x[:score].present? && y[:score].present?
-          x[:score] <=> y[:score]
+          y[:score] <=> x[:score]
         elsif x[:score].nil?
           y[:score].nil? ? 0 : 1
         else
