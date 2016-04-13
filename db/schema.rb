@@ -294,6 +294,7 @@ ActiveRecord::Schema.define(version: 20160413133743) do
     t.string   "card_exp_date",       null: false
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "gateway",             null: false
   end
 
   add_index "payment_accounts", ["account_id"], name: "index_payment_accounts_on_account_id", using: :btree

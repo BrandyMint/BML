@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test_api_00000000000000000000001:test_api_00000000000000000000001@api.cloudpayments.ru/payments/post3ds
+    body:
+      encoding: UTF-8
+      string: '{"TransactionId":"2923713","PaRes":"AQ=="}'
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/json; charset=utf-8
+      Server:
+      - Microsoft-IIS/8.5
+      X-Aspnetmvc-Version:
+      - '5.2'
+      X-Aspnet-Version:
+      - 4.0.30319
+      Date:
+      - Wed, 13 Apr 2016 08:09:17 GMT
+      Content-Length:
+      - '1233'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJNb2RlbCI6eyJQdWJsaWNJZCI6InBrXzYyMGZkYTYzZGYwODhiYTBhMjM4
+        MDQwODdlZTljIiwiVHJhbnNhY3Rpb25JZCI6MjkyMzcxMywiQW1vdW50Ijox
+        LjAwMDAwLCJDdXJyZW5jeSI6IlJVQiIsIkN1cnJlbmN5Q29kZSI6MCwiUGF5
+        bWVudEFtb3VudCI6MS4wMDAwMCwiUGF5bWVudEN1cnJlbmN5IjoiUlVCIiwi
+        UGF5bWVudEN1cnJlbmN5Q29kZSI6MCwiSW52b2ljZUlkIjpudWxsLCJBY2Nv
+        dW50SWQiOiJyb290IiwiRW1haWwiOm51bGwsIkRlc2NyaXB0aW9uIjpudWxs
+        LCJKc29uRGF0YSI6bnVsbCwiQ3JlYXRlZERhdGUiOiJcL0RhdGUoMTQ2MDUy
+        Mzg4OTAwMClcLyIsIlBheW91dERhdGUiOm51bGwsIlBheW91dERhdGVJc28i
+        Om51bGwsIlBheW91dEFtb3VudCI6bnVsbCwiQ3JlYXRlZERhdGVJc28iOiIy
+        MDE2LTA0LTEzVDA4OjA0OjQ5IiwiQXV0aERhdGUiOm51bGwsIkF1dGhEYXRl
+        SXNvIjpudWxsLCJDb25maXJtRGF0ZSI6bnVsbCwiQ29uZmlybURhdGVJc28i
+        Om51bGwsIkF1dGhDb2RlIjpudWxsLCJUZXN0TW9kZSI6dHJ1ZSwiUnJuIjoi
+        ZTE1ZTNmMGYtNDQ3Yi00ZTYxLWJmNDgtOWJjZmZmNGNiMzI2IiwiSXBBZGRy
+        ZXNzIjoiMTI3LjAuMC4xIiwiSXBDb3VudHJ5IjpudWxsLCJJcENpdHkiOm51
+        bGwsIklwUmVnaW9uIjpudWxsLCJJcERpc3RyaWN0IjpudWxsLCJJcExhdGl0
+        dWRlIjpudWxsLCJJcExvbmdpdHVkZSI6bnVsbCwiQ2FyZEZpcnN0U2l4Ijoi
+        NDAxMjg4IiwiQ2FyZExhc3RGb3VyIjoiMTg4MSIsIkNhcmRFeHBEYXRlIjoi
+        MDEvMzAiLCJDYXJkVHlwZSI6IlZpc2EiLCJDYXJkUHJvZHVjdCI6bnVsbCwi
+        Q2FyZENhdGVnb3J5IjpudWxsLCJJc3N1ZXJCYW5rQ291bnRyeSI6bnVsbCwi
+        SXNzdWVyIjpudWxsLCJDYXJkVHlwZUNvZGUiOjAsIlN0YXR1cyI6IkRlY2xp
+        bmVkIiwiU3RhdHVzQ29kZSI6NSwiUmVhc29uIjoiSW5zdWZmaWNpZW50RnVu
+        ZHMiLCJSZWFzb25Db2RlIjo1MDUxLCJDYXJkSG9sZGVyTWVzc2FnZSI6ItCd
+        0LXQtNC+0YHRgtCw0YLQvtGH0L3QviDRgdGA0LXQtNGB0YLQsiDQvdCwINC6
+        0LDRgNGC0LUiLCJUeXBlIjowLCJSZWZ1bmRlZCI6ZmFsc2UsIk5hbWUiOiJJ
+        VkFOIElWQU5PViIsIlRva2VuIjpudWxsLCJEYXRhIjpudWxsLCJTdWJzY3Jp
+        cHRpb25JZCI6bnVsbCwiSXNMb2NhbE9yZGVyIjpmYWxzZSwiSGlkZUludm9p
+        Y2VJZCI6ZmFsc2V9LCJJbm5lclJlc3VsdCI6bnVsbCwiU3VjY2VzcyI6ZmFs
+        c2UsIk1lc3NhZ2UiOm51bGx9
+    http_version:
+  recorded_at: Wed, 13 Apr 2016 08:11:23 GMT
+recorded_with: VCR 3.0.1

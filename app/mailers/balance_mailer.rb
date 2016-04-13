@@ -2,7 +2,7 @@ class BalanceMailer < BaseMailer
   def charge_error_email(account_id, year, month)
     @account = Account.find account_id
     @user = @account.memberships.with_role(:owner).first
-    @payments_url = account_payments_url
+    @payments_url = new_account_payment_url
     @billing_url = account_billing_url
     @date = Date.new year.to_i, month.to_i
 
