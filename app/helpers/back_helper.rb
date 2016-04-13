@@ -15,7 +15,7 @@ module BackHelper
     end
   end
 
-  def hidden_backurl_field(f)
+  def hidden_backurl_field(_f)
     hidden_field_tag :backurl, backurl
   end
 end

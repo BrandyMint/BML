@@ -22,7 +22,7 @@ module LeaderBoard
 
     private
 
-    # TODO Перенести в свойства коллекции
+    # TODO: Перенести в свойства коллекции
     #
     EVENT_COLUMN      = :event
     SCORE_COLUMN      = :score
@@ -30,7 +30,7 @@ module LeaderBoard
     SEX_COLUMN        = :sex
     NOTE_COLUMN       = :city
     TITLE_COLUMNS     = %w(name surname firstname lastname).freeze
-    UNKNOWN_TITLE     = 'Аноним'
+    UNKNOWN_TITLE     = 'Аноним'.freeze
 
     DEFAULT_EVENT     = 'DefaultEvent'.freeze
     DEFAULT_division = 'DefaultDivision'.freeze
