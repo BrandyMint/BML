@@ -6,6 +6,9 @@ class Landing::VariantsController < Landing::BaseController
     redirect_to landing_variants_path(current_landing)
   rescue ActiveRecord::RecordInvalid => err
     render 'edit', locals: { variant: err.record }
+  rescue JSON::ParserError => err
+    variant.errors[:data] = err.message.force_encoding('utf-8')
+    render 'edit', locals: { variant: variant }
   end
 
   def edit
