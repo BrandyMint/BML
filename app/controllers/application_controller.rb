@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def backurl
+    params[:backurl]
+  end
+
   def after_login!(user, credentials)
     user.confirm_some_phone!(*credentials)
     invite.accept! user if invite.present?

@@ -1,12 +1,15 @@
 module CircleButtonsHelper
   def smart_polymorphic_url(url, args = {})
-    args.reverse_merge! action: :edit
+    # Непонятно зачем это
+    # args.reverse_merge! action: :edit
     case url
     when ActiveRecord::Base
       resource = [:account, url]
       polymorphic_path resource, args
     when String
-      url
+      a = Addressable::URI.parse url
+      a.query_values = (a.query_values || {}).merge args
+      a.to_s
     else
       raise "Unknown url type: #{url}"
     end
@@ -14,7 +17,10 @@ module CircleButtonsHelper
 
   # Circle Buttons
   def show_button_circle(url, icon: :desktop, css_class: nil, title: I18n.t('shared.show'), method: :get)
-    link_to smart_polymorphic_url(url), class: "btn btn-secondary btn-circle #{css_class}", tooltip: true, title: title, method: method do
+    options = { class: "btn btn-secondary btn-circle #{css_class}", tooltip: true, title: title }
+    options[:method] = method unless method == :get
+
+    link_to smart_polymorphic_url(url, backurl: request.url), options do
       fa_icon icon
     end
   end

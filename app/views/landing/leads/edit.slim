@@ -1,3 +1,9 @@
-.page-header
-  h2 Редактируем заявку #{lead.number}
+
+.row.page-header
+  .col-md-8
+    h2 Редактируем заявку #{lead.number}
+  .col-md-4
+    .pull-right
+      = collection_link lead.collection
+
 = render 'form', lead_data: lead_data, lead: lead, collection: collection

@@ -26,7 +26,7 @@ class Landing::LeadsController < Landing::BaseController
   def update
     lead = available_leads.find params[:id]
     lead.update! data: params[:lead_data]
-    redirect_to landing_leads_path(current_landing, collection_id: lead.collection),
+    redirect_to backurl || landing_leads_path(current_landing, collection_id: lead.collection),
                 flash: { success: I18n.t('flashes.lead.saved') }
   rescue ActiveRecord::RecordInvalid => err
     render 'edit', locals: { lead: err.record, lead_data: lead.data, collection: lead.collection }, flash: { error: err.message }, layout: 'lead_show'
