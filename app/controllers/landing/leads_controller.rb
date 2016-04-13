@@ -89,15 +89,15 @@ class Landing::LeadsController < Landing::BaseController
   end
 
   def filter_params
-    params.slice(
-      :sort_order, :sort_field, :limit, :state
-    ).merge(
+    {
+      state: session_state,
+      **params.slice(
+        :sort_order, :sort_field, :limit, :state
+      ).symbolize_keys,
       account: current_account,
       collection: current_collection,
       variant: current_variant
-    ).reverse_merge(
-      state: session_state
-    ).compact
+    }.compact
   end
 
   def session_state
