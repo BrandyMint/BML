@@ -27,7 +27,7 @@ class LeadsController < ApplicationController
   private
 
   DATA_EXCEPTIONS = [:subdomain, :cookie, :viewer_uid, :variant_uuid, :tracking, :controller, :action, :utf8, :authenticity_token, :collection_uuid, :commit].freeze
-  EXCLUDE_ERRORS = [CreateLead::UnknownError].freeze
+  EXCLUDE_ERRORS = [CreateLead::UnknownError, CreateLead::BlankLeadError].freeze
 
   def rescue_lead_error(error)
     Bugsnag.notify error unless EXCLUDE_ERRORS.include? error.class
