@@ -1,6 +1,8 @@
 # Альтернативное название Column
 #
 class Column < ActiveRecord::Base
+  SEX = %w(female male).freeze
+
   belongs_to :collection
 
   before_save :set_title

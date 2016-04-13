@@ -88,7 +88,14 @@ class LeadsController < ApplicationController
   end
 
   def lead_params
-    Hash[params.except(*DATA_EXCEPTIONS).map { |k, v| [k.downcase, v] }]
+    data = Hash[params.except(*DATA_EXCEPTIONS).map { |k, v| [k.downcase, v] }]
+
+    # TODO
+    if data.include? 'sex'
+      data['sex'] = data['sex'] =~ /жен/i ? 'female' : 'male'
+    end
+
+    data
   end
 
   def create_lead

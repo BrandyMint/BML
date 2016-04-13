@@ -22,7 +22,7 @@ RSpec.describe LeaderBoard::Builder, type: :model do
           {
             division: division,
             event: event,
-            is_male: false,
+            sex: 'male',
             records: [
               { title: name1, note: nil, score: result1.to_i, rank: 1 },
               { title: name2, note: nil, score: result2.to_i, rank: 2 }

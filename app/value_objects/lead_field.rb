@@ -46,8 +46,8 @@ class LeadField
   private
 
   def other_value_html
+    return nil unless value.present?
     if value.start_with? 'http://'
-      return nil unless value.present?
       truncate_url value
     elsif key.to_s.starts_with?('is_')
       human_boolean value.to_i == 1
