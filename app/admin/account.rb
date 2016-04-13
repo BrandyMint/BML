@@ -20,8 +20,8 @@ ActiveAdmin.register Account do
     column :created_at
     column :updated_at
     column :ident
-    column :access_key
     column :name
+    column :url
     column :balance do |resource|
       humanized_money_with_symbol(resource.billing_account.amount)
     end
