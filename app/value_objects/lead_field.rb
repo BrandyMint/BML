@@ -19,7 +19,6 @@ class LeadField
     blank?
   end
 
-  # TODO: Использовать презентатор типа
   def value_html
     case key.to_sym
     when :referer
@@ -32,13 +31,12 @@ class LeadField
       return nil unless value.present?
       tel_to value
     else
-      other_value_html
+      return other_value_html
     end
   end
 
   def title
-    # TODO: Column.title
-    I18n.t key, scope: [:lead, :attributes], default: key
+    column.try(:title) || I18n.t(key, scope: [:lead, :attributes], default: key.to_s)
   end
 
   def to_s
@@ -48,8 +46,8 @@ class LeadField
   private
 
   def other_value_html
+    return nil unless value.present?
     if value.start_with? 'http://'
-      return nil unless value.present?
       truncate_url value
     elsif key.to_s.starts_with?('is_')
       human_boolean value.to_i == 1

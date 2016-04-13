@@ -26,6 +26,8 @@ module LeaderBoard
   # ]
   #
   class Ranker
+    RANK_WITHOUT_SCORE = 0
+
     include Virtus.model
     attribute :results, Array
 
@@ -57,8 +59,9 @@ module LeaderBoard
         if record[:score].present?
           record[:rank] = prev_record.present? && prev_record[:score] == record[:score] ? prev_record[:rank] : rank += 1
         else
-          record[:rank] = 0
+          record[:rank] = RANK_WITHOUT_SCORE
         end
+        prev_record = record
       end
 
       records

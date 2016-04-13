@@ -23,7 +23,7 @@ module LeaderBoard
     EVENT_COLUMN      = :event
     SCORE_COLUMN      = :score
     DIVISION_COLUMN   = :division
-    MALE_COLUMN       = :is_male
+    SEX_COLUMN        = :sex
     NOTE_COLUMN       = :city
     TITLE_COLUMN      = :name
 
@@ -47,14 +47,15 @@ module LeaderBoard
         event = lead.data[EVENT_COLUMN] || DEFAULT_EVENT
         add_event event
 
-        is_male = lead.data[MALE_COLUMN] || false
+        sex = lead.data[SEX_COLUMN]
+        sex = 'male' unless Column::SEX.include? sex
 
         note = lead.data[NOTE_COLUMN]
         title = lead.data[TITLE_COLUMN]
         score = lead.data[SCORE_COLUMN].to_i
         score = nil if score == 0
 
-        ranks_table = find_ranks_table(division, event, is_male)
+        ranks_table = find_ranks_table(division, event, sex)
         add_rank ranks_table[:records], title, score, note
       end
     end
@@ -63,22 +64,22 @@ module LeaderBoard
       categories.join(':')
     end
 
-    def find_ranks_table(division, event, is_male)
-      get_ranks_table(division, event, is_male) || create_ranks_table(division, event, is_male)
+    def find_ranks_table(division, event, sex)
+      get_ranks_table(division, event, sex) || create_ranks_table(division, event, sex)
     end
 
-    def get_ranks_table(division, event, is_male)
-      key = result_key division, event, is_male
+    def get_ranks_table(division, event, sex)
+      key = result_key division, event, sex
       @results[key]
     end
 
-    def create_ranks_table(division, event, is_male)
-      key = result_key division, event, is_male
+    def create_ranks_table(division, event, sex)
+      key = result_key division, event, sex
 
       ranks_table = {
         division: division,
         event: event,
-        is_male: is_male,
+        sex: sex,
         records: []
       }
       @results[key] = ranks_table

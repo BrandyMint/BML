@@ -62,7 +62,7 @@ class Landing < ActiveRecord::Base
 
   # Collections for LeaderBoard
   def default_records_collection
-    records_collection | create_records_collection
+    records_collection || create_records_collection
   end
 
   def default_variant

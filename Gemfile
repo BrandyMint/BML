@@ -13,6 +13,8 @@ gem 'settingslogic'
 
 gem 'rollout'
 
+gem 'petrovich'
+
 # Openbill
 #
 gem 'sequel'

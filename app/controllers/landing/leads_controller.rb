@@ -122,7 +122,6 @@ class Landing::LeadsController < Landing::BaseController
 
   def find_collection
     return nil unless params[:collection_id]
-
     current_landing.collections.find params[:collection_id]
   end
 end
