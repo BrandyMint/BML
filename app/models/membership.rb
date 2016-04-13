@@ -13,5 +13,5 @@ class Membership < ActiveRecord::Base
 
   scope :by_user, ->(user) { where user_id: user.id }
 
-  delegate :name, :phone, :email, to: :user
+  delegate :to_s, :name, :phone, :email, to: :user
 end
