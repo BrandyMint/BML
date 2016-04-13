@@ -21,6 +21,14 @@ class Column < ActiveRecord::Base
     title
   end
 
+  def input_type
+    if key.to_s.starts_with? 'is_'
+      :boolean
+    else
+      :string
+    end
+  end
+
   private
 
   def set_title

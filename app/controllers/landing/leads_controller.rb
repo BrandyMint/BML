@@ -17,18 +17,19 @@ class Landing::LeadsController < Landing::BaseController
     }
   end
 
+  # TODO: move to collection/leads controller
   def edit
-    lead = current_collection.leads.find params[:id]
-    render locals: { lead: lead, lead_data: lead.data }, layout: 'lead_show'
+    lead = available_leads.find params[:id]
+    render locals: { lead: lead, lead_data: lead.data, collection: lead.collection }, layout: 'lead_show'
   end
 
   def update
-    lead = current_collection.leads.find params[:id]
+    lead = available_leads.find params[:id]
     lead.update! data: params[:lead_data]
-    redirect_to landing_leads_path(current_landing, collection_id: current_collection.id),
+    redirect_to landing_leads_path(current_landing, collection_id: lead.collection),
                 flash: { success: I18n.t('flashes.lead.saved') }
   rescue ActiveRecord::RecordInvalid => err
-    render 'edit', locals: { lead: err.record, lead_data: lead.data }, flash: { error: err.message }, layout: 'lead_show'
+    render 'edit', locals: { lead: err.record, lead_data: lead.data, collection: lead.collection }, flash: { error: err.message }, layout: 'lead_show'
   end
 
   # Предполагается что сюда будет параметром передаваться
@@ -89,10 +90,7 @@ class Landing::LeadsController < Landing::BaseController
 
   def filter_params
     params.slice(
-      :sort_order,
-      :sort_field,
-      :limit,
-      :state
+      :sort_order, :sort_field, :limit, :state
     ).merge(
       account: current_account,
       collection: current_collection,
@@ -115,7 +113,11 @@ class Landing::LeadsController < Landing::BaseController
   end
 
   def current_collection
-    find_collection || current_landing.default_collection
+    find_collection || current_landing.default_leads_collection
+  end
+
+  def available_leads
+    Lead.where(collection_id: current_landing.collections)
   end
 
   def find_collection

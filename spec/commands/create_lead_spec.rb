@@ -62,7 +62,7 @@ RSpec.describe CreateLead do
         end
         it 'ставит дефолтную коллекцию в лид' do
           expect(variant.leads.last.collection).not_to eq collection
-          expect(variant.leads.last.collection).to eq variant.landing.default_collection
+          expect(variant.leads.last.collection).to eq variant.landing.default_leads_collection
         end
       end
     end

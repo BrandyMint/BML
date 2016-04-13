@@ -24,7 +24,7 @@ class Landing::AnalyticsController < Landing::BaseController
     {
       values: [
         current_landing.viewers_count,
-        current_landing.default_collection.leads_count
+        current_landing.default_leads_collection.leads_count
       ],
       labels: %w(
         Посетители
