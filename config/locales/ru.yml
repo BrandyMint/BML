@@ -120,8 +120,8 @@ ru:
       description: '%{landing} - %{used_days}/%{period_days} - %{total}'
   leads_filter:
     state:
-      any: Любые
-      not_declined: Новые и принятые
-      new: Новые
-      accepted: Принятые
-      declined: Отклоненные
+      any: 'Любые'
+      not_declined: 'Новые и принятые (%{count})'
+      new: 'Новые (%{count})'
+      accepted: 'Принятые (%{count})'
+      declined: 'Отклоненные (%{count})'

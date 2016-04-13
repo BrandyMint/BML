@@ -28,7 +28,7 @@ class LeadsFilter
   attribute :limit, Integer
   attribute :state, String, default: STATE_NOT_DECLINED
 
-  attr_accessor :popular_utm_options
+  attr_accessor :popular_utm_options, :states_counts
 
   delegate :to_param, to: :params
 
@@ -40,5 +40,20 @@ class LeadsFilter
 
   def present?
     PRESENCE_FIELDS.any? { |f| send(f).present? }
+  end
+
+  def state_for_query
+    self.class.state_for_query state
+  end
+
+  def self.state_for_query(state)
+    case state
+    when STATE_ANY
+      nil
+    when STATE_NOT_DECLINED
+      [LeadStates::STATE_NEW, LeadStates::STATE_ACCEPTED]
+    else
+      state
+    end
   end
 end

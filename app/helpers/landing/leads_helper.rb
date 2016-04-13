@@ -12,6 +12,17 @@ module Landing::LeadsHelper
     options
   end
 
+  def states_counts(collection)
+    (LeadsFilter::STATES_OPTIONS - [LeadsFilter::STATE_ANY])
+      .reduce({}) do |acc, state|
+      acc.merge! state => leads_state_count(collection, state)
+    end
+  end
+
+  def leads_state_count(collection, state)
+    collection.leads.with_state(*LeadsFilter.state_for_query(state)).count
+  end
+
   def filtered_state(state)
     case state
     when LeadsFilter::STATE_NOT_DECLINED,
