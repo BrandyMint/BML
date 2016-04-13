@@ -1,4 +1,4 @@
-# Определение колонки в коллекции.
+# Определение колонки в таблицы.
 # TODO: Добавить тип колонки
 class FieldDefinition
   include Virtus.value_object

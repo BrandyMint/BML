@@ -8,6 +8,7 @@ class Column < ActiveRecord::Base
   before_save :set_title
 
   scope :ordered, -> { order :id }
+  scope :active, -> { where is_hidden: false }
 
   before_update :rename_column_in_data
 
@@ -29,6 +30,14 @@ class Column < ActiveRecord::Base
     else
       :string
     end
+  end
+
+  def unhide!
+    update_column :is_hidden, false
+  end
+
+  def hide!
+    update_column :is_hidden, true
   end
 
   private

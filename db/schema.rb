@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413050305) do
+ActiveRecord::Schema.define(version: 20160413133743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 20160413050305) do
     t.datetime "updated_at",                                   null: false
     t.uuid     "uuid",          default: "uuid_generate_v4()", null: false
     t.boolean  "is_required",   default: false,                null: false
+    t.boolean  "is_hidden",     default: false,                null: false
   end
 
   add_index "columns", ["collection_id", "key"], name: "index_columns_on_collection_id_and_key", unique: true, using: :btree

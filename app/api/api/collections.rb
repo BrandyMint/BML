@@ -11,7 +11,7 @@ class API::Collections < Grape::API
     requires :landing_uuid, type: String
   end
   resources :collections do
-    desc 'Все коллекции'
+    desc 'Все таблицы'
     get do
       present available_landing.collections, with: Entities::CollectionEntity
     end

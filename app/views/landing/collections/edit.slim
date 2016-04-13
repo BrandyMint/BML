@@ -1,6 +1,11 @@
 .row
-  .col-lg-12
-    h2.m-b-lg Редактирование коллекции N#{collection.id}
+  .col-lg-8
+    h2.m-b-lg Редактирование таблицы N#{collection.id}
+  .col-lg-4
+    .pull-right= columns_button collection
+
+.row
+  .col-md-12
 
     = render 'form', collection: collection
 

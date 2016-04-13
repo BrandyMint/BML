@@ -1,6 +1,6 @@
 module LeaderBoard
   # Строит данные для отображения в LeaderBoard
-  # на основе коллекции
+  # на основе таблицы
   class Builder
     include Virtus.model
 
@@ -22,7 +22,7 @@ module LeaderBoard
 
     private
 
-    # TODO: Перенести в свойства коллекции
+    # TODO: Перенести в свойства таблицы
     #
     EVENT_COLUMN      = :event
     SCORE_COLUMN      = :score

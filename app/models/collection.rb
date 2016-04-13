@@ -11,10 +11,16 @@ class Collection < ActiveRecord::Base
   scope :active, -> { all }
 
   def to_s
-    title.presence || "Коллекция #{I18n.l created_at, format: :short}"
+    title.presence || default_title
   end
 
   def last_lead_at
     @_last_lead_at ||= leads.ordered.last.try(:created_at)
+  end
+
+  private
+
+  def default_title
+    "Таблица #{I18n.l created_at, format: :short}"
   end
 end

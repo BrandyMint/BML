@@ -48,6 +48,16 @@ class Landing::ColumnsController < Landing::BaseController
     redirect_to :back
   end
 
+  def hide
+    column.hide!
+    redirect_to :back
+  end
+
+  def unhide
+    column.unhide!
+    redirect_to :back
+  end
+
   private
 
   def success_redirect

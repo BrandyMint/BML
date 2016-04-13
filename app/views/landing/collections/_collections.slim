@@ -1,7 +1,7 @@
 table.table.table-condensed
   thead
     tr
-      th Коллекция
+      th Таблица
       th Последняя заявка
       th Заявки
   tbody
@@ -22,8 +22,7 @@ table.table.table-condensed
         td
           = link_to I18n.t(:leads_count, count: c.leads_count), landing_leads_url(current_landing, collection_id: c.id)
         td
-          = link_to landing_collection_columns_path(current_landing, c), title: 'Колонки', tooltip: true do
-            = fa_icon 'th-list'
+          = columns_icon(c)
         td
           = link_to edit_landing_collection_url(current_landing, c), title: 'Изменить', tooltip: true do
             = fa_icon :pencil

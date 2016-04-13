@@ -1,7 +1,7 @@
 ul.nav.nav-pills.nav-stacked.sidebar-left
   li.nav-item
     = active_link_to landing_collections_url(landing), class: 'nav-link', active: [['landing/collections'],[]] do
-      | Коллекции
+      | Таблицы
       span.text-muted== "&nbsp;(#{landing.collections.count})"
   li.nav-item
     = active_link_to landing_variants_url(landing), class: 'nav-link', active: [['landing/variants'],[]] do

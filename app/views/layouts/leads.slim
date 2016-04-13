@@ -12,9 +12,9 @@ html
 
     - if leads.empty? || columns.size < 6
       .container
-        = render 'filter', filter: filter
+        = render 'filter', filter: filter, collection: current_collection
         = yield
     - else
       .wide-container
-        = render 'filter', filter: filter
+        = render 'filter', filter: filter, collection: current_collection
         = yield

@@ -62,7 +62,12 @@ Rails.application.routes.draw do
         resources :viewers
         resources :views
         resources :collections do
-          resources :columns
+          resources :columns do
+            member do
+              patch :hide
+              patch :unhide
+            end
+          end
         end
         resources :variants do
           member do

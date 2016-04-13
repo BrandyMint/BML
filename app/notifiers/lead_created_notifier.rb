@@ -1,4 +1,4 @@
-# Уведомитель сотрудников аккаунта о получении нового лида (записи в коллекции)
+# Уведомитель сотрудников аккаунта о получении нового лида (записи в таблицы)
 class LeadCreatedNotifier
   include Virtus.model strict: true
   include LeadUrlHelper

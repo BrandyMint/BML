@@ -63,7 +63,7 @@ class Landing::LeadsController < Landing::BaseController
   private
 
   def columns
-    current_collection.columns.ordered.to_a + usable_tracking_columns
+    current_collection.columns.active.ordered.to_a + usable_tracking_columns
   end
 
   def usable_tracking_columns
