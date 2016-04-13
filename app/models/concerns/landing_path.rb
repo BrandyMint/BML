@@ -6,7 +6,7 @@ module LandingPath
     before_validation :clear_path
     before_save :clear_path
     validates :path,
-              uniqueness: true,
+              uniqueness: { scope: :account_id },
               uri_component: { component: :ABS_PATH },
               exclusion: Settings.exclusion_landing_paths
   end
