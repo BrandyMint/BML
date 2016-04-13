@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412100432) do
+ActiveRecord::Schema.define(version: 20160413050305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 20160412100432) do
     t.integer  "leads_count", default: 0,                    null: false
     t.string   "title"
     t.uuid     "uuid",        default: "uuid_generate_v4()", null: false
+    t.string   "type",        default: "LeadsCollection",    null: false
   end
 
   add_index "collections", ["landing_id"], name: "index_collections_on_landing_id", using: :btree

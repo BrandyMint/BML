@@ -220,6 +220,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    commander (4.3.5)
+      highline (~> 1.7.2)
     concurrent-ruby (1.0.1)
     connection_pool (2.2.0)
     crack (0.4.3)
@@ -312,6 +314,7 @@ GEM
     hashie (3.4.3)
     hashie-forbidden_attributes (0.1.1)
       hashie (>= 3.0)
+    highline (1.7.8)
     hiredis (0.5.2)
     hitimes (1.2.3)
     htmlentities (4.3.4)
@@ -404,6 +407,8 @@ GEM
     openbill-ruby (0.1.10)
     parser (2.3.0.6)
       ast (~> 2.2)
+    petrovich (1.0.0)
+      commander (= 4.3.5)
     pg (0.18.4)
     poltergeist (1.8.1)
       capybara (~> 2.1)
@@ -747,6 +752,7 @@ DEPENDENCIES
   omniauth-twitter
   omniauth-yandex
   openbill-ruby (= 0.1.10)
+  petrovich
   pg (~> 0.15)
   phone!
   poltergeist

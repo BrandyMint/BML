@@ -34,7 +34,7 @@ module LandingsHelper
   end
 
   def landing_leads_title(landing, current_collection = nil)
-    collection = current_collection || landing.default_collection
+    collection = current_collection || landing.default_leads_collection
     title = collection.to_s
     count = collection.leads.count
 

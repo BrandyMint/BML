@@ -17,6 +17,7 @@ table.table.table-condensed
       th Ключ
       th Название
       th Обязательный
+      th Тип
       th
   tbody
     - columns.each do |column|
@@ -24,6 +25,7 @@ table.table.table-condensed
         td= column.key
         td= column.title
         td= human_boolean column.is_required?
+        td= column.input_type
         td
           .pull-right
             ul.list-inline

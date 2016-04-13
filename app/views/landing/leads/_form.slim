@@ -1,14 +1,14 @@
 = simple_form_for lead_data, url: [current_landing, lead], as: :lead_data, method: :put do |f|
   = f.error_notification
-  - current_collection.columns.ordered.in_groups_of 2 do |group|
+  - collection.columns.ordered.in_groups_of 2 do |group|
     .row
       .col-md-6
         - c = group.first
-        = f.input c.key, value: lead.data[c.key], label: c.title, required: c.is_required?, hint: column_field_hint(c), as: :string
+        = f.input c.key, value: lead.data[c.key], label: c.title, required: c.is_required?, hint: column_field_hint(c), as: c.input_type
       .col-md-6
         - c = group.last
         - if c.present?
-          = f.input c.key, value: lead.data[c.key], label: c.title, required: c.is_required?, hint: column_field_hint(c), as: :string
+          = f.input c.key, value: lead.data[c.key], label: c.title, required: c.is_required?, hint: column_field_hint(c), as: c.input_type
 
   .row
     .col-md-12

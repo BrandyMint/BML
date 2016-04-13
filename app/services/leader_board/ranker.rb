@@ -7,7 +7,7 @@ module LeaderBoard
   # Принимает данные в виде
   # [
   #   {
-  #     ranks: [
+  #     records: [
   #       score: '123', # значение результата
   #       ...
   #     ]
@@ -17,7 +17,7 @@ module LeaderBoard
   # Отдает в виде
   # [
   #   {
-  #     ranks: [
+  #     records: [
   #       rank: 1, # Место в рейтинге
   #       score: '123', # значение результата
   #       ...
@@ -26,12 +26,14 @@ module LeaderBoard
   # ]
   #
   class Ranker
+    RANK_WITHOUT_SCORE = 0
+
     include Virtus.model
     attribute :results, Array
 
     def rank!
       results.each do |ranks_table|
-        ranks_table[:ranks] = do_rank ranks_table[:ranks]
+        ranks_table[:records] = do_rank ranks_table[:records]
       end
 
       results
@@ -39,7 +41,7 @@ module LeaderBoard
 
     private
 
-    def do_rank(ranks)
+    def do_rank(records)
       rank = 0
       prev_record = nil
 
@@ -57,11 +59,12 @@ module LeaderBoard
         if record[:score].present?
           record[:rank] = prev_record.present? && prev_record[:score] == record[:score] ? prev_record[:rank] : rank += 1
         else
-          record[:rank] = 0
+          record[:rank] = RANK_WITHOUT_SCORE
         end
+        prev_record = record
       end
 
-      ranks
+      records
         .sort(&comparator)
         .each(&ranker)
     end

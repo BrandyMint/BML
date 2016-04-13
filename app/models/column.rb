@@ -1,6 +1,8 @@
 # Альтернативное название Column
 #
 class Column < ActiveRecord::Base
+  SEX = %w(female male).freeze
+
   belongs_to :collection
 
   before_save :set_title
@@ -19,6 +21,14 @@ class Column < ActiveRecord::Base
 
   def to_s
     title
+  end
+
+  def input_type
+    if key.to_s.starts_with? 'is_'
+      :boolean
+    else
+      :string
+    end
   end
 
   private

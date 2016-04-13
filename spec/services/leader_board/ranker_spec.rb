@@ -4,7 +4,7 @@ RSpec.describe LeaderBoard::Ranker, type: :model do
   let(:input_results) do
     [
       {
-        ranks: [
+        records: [
           { score: nil, title: 'Вася' },
           { score: '12', title: 'Петя' },
           { score: nil, title: 'Николай' },
@@ -18,10 +18,10 @@ RSpec.describe LeaderBoard::Ranker, type: :model do
   let(:output_results) do
     [
       {
-        ranks: [
+        records: [
           { score: '12', title: 'Петя', rank: 1 },
-          { score: '12', title: 'Брат Пети', rank: 2 },
-          { score: '23', title: 'Серёжа', rank: 3 },
+          { score: '12', title: 'Брат Пети', rank: 1 },
+          { score: '23', title: 'Серёжа', rank: 2 },
           { score: nil,  title: 'Вася', rank: 0 },
           { score: nil, title: 'Николай', rank: 0 }
         ]

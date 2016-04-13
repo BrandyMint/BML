@@ -99,7 +99,7 @@ class CreateLead
   end
 
   def collection
-    find_collection || landing.default_collection
+    find_collection || landing.default_leads_collection
   end
 
   def find_collection
