@@ -19,8 +19,10 @@ class RegistrationController < ApplicationController
 
   rescue RegistrationService::UserDuplicate
     flash.now[:info] = I18n.t('flashes.registration.user_exists_html')
-    render 'sessions/new',
+    render(
+      'sessions/new',
       locals: { session_form: SessionForm.new(remember_me: true, login: registration_form.email) }
+    )
 
   rescue ActiveRecord::RecordInvalid => err
     registration_form.errors = err.record.errors

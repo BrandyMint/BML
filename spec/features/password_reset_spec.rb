@@ -19,7 +19,7 @@ RSpec.feature 'Password reset', type: :feature do
     submit_form user.email
 
     expect(user.reload.reset_password_token).to be_truthy
-    expect(page).to have_text I18n.t('flashes.password_reset.created')
+    expect(page.html.include?(I18n.t('flashes.password_reset.created'))).to be_truthy
   end
 
   scenario 'by sms' do
@@ -32,7 +32,7 @@ RSpec.feature 'Password reset', type: :feature do
     submit_form user.phone
 
     expect(user.reload.crypted_password).not_to eq old_password
-    expect(page).to have_text I18n.t('flashes.password_reset.created')
+    expect(page.html.include?(I18n.t('flashes.password_reset.created'))).to be_truthy
   end
 
   def visit_reset_password

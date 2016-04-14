@@ -15,7 +15,7 @@ describe RegistrationController, type: :controller do
   describe 'POST #create' do
     context 'with valid params' do
       it 'must redirect to root_url' do
-        post :create, registration_form: user_attrs.slice(:name, :email, :phone, :password), subdomain: ''
+        post :create, registration_form: user_attrs.slice(:name, :email, :phone, :password, :is_accept), subdomain: ''
         expect(response.status).to eq 302
       end
     end

@@ -6,12 +6,16 @@ class PasswordResetsController < ApplicationController
   end
 
   def create
-    PasswordResetService.new(login: params[:reset_password][:login]).call
+    login = params[:reset_password][:login]
+    PasswordResetService.new(login: login).call
     flash.now[:success] = I18n.t('flashes.password_reset.created')
-    render
+    render 'sessions/new',
+           locals: { session_form: SessionForm.new(remember_me: true, login: login) }
+
   rescue ActiveRecord::RecordNotFound
     flash.now[:success] = I18n.t('flashes.password_reset.created')
-    render
+    render 'sessions/new',
+           locals: { session_form: SessionForm.new(remember_me: true, login: login) }
   end
 
   def edit

@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   # Алерт с перекрытием экрана http://smoke-js.com
   #
   # Показываем флешки через toastr

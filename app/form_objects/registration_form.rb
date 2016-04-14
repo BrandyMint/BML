@@ -6,8 +6,10 @@ class RegistrationForm < FormBase
   attribute :email
   attribute :phone
   attribute :password
-  attribute :is_accept, Boolean
-  attribute :is_subscribe, Boolean
+  attribute :is_accept, Boolean, default: false
+  attribute :is_subscribe, Boolean, default: false
+
+  validates :is_accept, acceptance: true
 
   def errors
     @errors ||= User.new.errors
