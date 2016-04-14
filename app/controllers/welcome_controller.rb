@@ -7,11 +7,15 @@ class WelcomeController < ApplicationController
   layout 'welcome'
 
   def index
-    render locals: {
-      registration_form: RegistrationForm.new,
-      variant_uuid: current_variant.uuid,
-      tariffs: tariffs
-    }
+    respond_to do |format|
+      format.html do
+        render locals: {
+          registration_form: RegistrationForm.new,
+          variant_uuid: current_variant.uuid,
+          tariffs: tariffs
+        }
+      end
+    end
   end
 
   private

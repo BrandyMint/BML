@@ -19,9 +19,15 @@ module HandleErrors
     rescue_from NotAuthenticated,             with: :rescue_not_authenticated
     rescue_from NotAuthorized,                with: :rescue_not_authorized
     rescue_from Pundit::NotAuthorizedError,   with: :rescue_not_authorized
+    rescue_from ActionController::UnknownFormat,     with: :rescue_unknown_format
+    rescue_from ActionController::MissingFile,       with: :rescue_not_found
   end
 
   private
+
+  def rescue_unknown_format
+    render status: 406, text: "Unknown Format: #{request.headers['HTTP_ACCEPT']}"
+  end
 
   def rescue_not_found
     rescue_site_error(NOT_FOUND_ERROR)
