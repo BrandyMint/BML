@@ -8,16 +8,23 @@ html
     == csrf_meta_tags
     == include_gon
   body
-    header.auth-header
-      h1.auth-header-title.bml-logo
-        - if current_account.present?
-          = link_to AppSettings.title, account_root_url, class: 'auth-header-link'
-        - else
-          = link_to AppSettings.title, root_url, class: 'auth-header-link'
+    .auth-header
+      nav.navbar.navbar-top.navbar-fixed-top.navbar-light
+        .container
+          ul.nav.navbar-nav.navbar-bml
+            = link_to account_root_url,
+              title: AppSettings.title,
+              tooltip: true,
+              data: { placement: :bottom, html: true },
+              class: 'navbar-brand m-r-lg' do
+              = fa_icon :cube, class: 'm-r-sm', text: AppSettings.title
+            li.nav-item
+              .nav-link Эффеективный конструктор сайтов
     .vertical-center.auth-content
       .container.vertical-container
-        == render 'layouts/messages'
+        -# == render 'layouts/messages'
         - if content_for? :content
           = yield :content
         - else
           = yield
+    = toastr_flashes

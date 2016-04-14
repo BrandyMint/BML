@@ -2,34 +2,45 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500)
 @import 'welcome-shared'
 @import 'welcome-tariff'
 @import 'welcome-basic-tariff'
 @import 'welcome-nav'
 @import 'welcome-form'
 
-body.welcome
+.welcome-page
   min-height: 350px
   background-image: linear-gradient(180deg, $colorWelcome, $colorWelcome2)
   // background-color: #563d7c
   font-family: 'Open Sans', sans-serif
   // font-family: 'Whitney SSm A', 'Whitney SSm B', Helvetica, Arial
 
+
+.welcome
+  color: rgba(255, 255, 255, 0.8)
+
 .welcome-hero
   width: 100%
   margin: 1em auto
   position: relative
 
+.welcome-hero-header
+  margin-bottom: 1em
   //position: absolute
   //top: 50%
   //transform: translateY(-50%)
 
+.navbar-light.navbar-welcome
+  background-color: transparent
 
 .welcome-welcome
   text-align: center
 
 .welcome-page
   color: white
+  padding-top: 2em
+  padding-bottom: 4em
 
 .welcome-page-title
   margin-bottom: 0.5em
@@ -46,20 +57,26 @@ body.welcome
   margin-bottom: 0.25em
 
 .welcome-footer
+  margin-top: 4em
+  background-color: white
   text-align: center
-  color: white
-  font-size: 14px
+  color: black
+  font-size: 16px
   padding-bottom: 15px
-  opacity: 0.4
-  position: absolute
+  opacity: 0.9
   width: 100%
-  height: 55px
-  bottom: 0
   @media screen and (max-height: 1000px)
     position: relative
+
+  .welcome-partner-icon
+    max-width: 100px
 
 .welcome-subheader
   color: white
   opacity: 0.8
   margin-bottom: 2em
-
+  font-family: 'Roboto', sans-serif
+  h3
+    margin-bottom: 1em
+    text-align: center
+    font-size: 32px

@@ -10,8 +10,6 @@ html
   body
     = render 'layouts/account/header'
     .navbar-space
-    .messages-centered
-      == render 'layouts/messages'
     .container
       .row
         .col-md-3
@@ -19,3 +17,4 @@ html
         .col-md-9
           = yield
     .bottom-space
+    = toastr_flashes

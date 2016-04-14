@@ -10,5 +10,5 @@ html
   body
     .vertical-center
       .container
-        == render 'layouts/messages'
         == yield
+    = toastr_flashes

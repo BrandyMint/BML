@@ -1,0 +1,16 @@
+nav.navbar.navbar-top.navbar-fixed-top.navbar-dark.navbar-welcome
+  .container
+    ul.nav.navbar-nav.navbar-bml
+      = link_to '/',
+        title: 'aydamaster',
+        tooltip: true,
+        data: { placement: :bottom, html: true },
+        class: 'navbar-brand m-r-lg' do
+        = fa_icon :cube, class: 'm-r-sm', text: AppSettings.title
+      li.nav-item
+        .nav-link Эффеективный конструктор сайтов
+    .pull-xs-right
+      = link_to 'Вход для везунчиков', login_path, class: 'btn welcome-nav-loginButton'
+      - if current_user.present?
+        .welcome-nav-link-wrapper= link_to "Продолжить как #{current_user}", account_root_path, class: 'welcome-nav-link'
+      -# = render 'site_user_dropdown'

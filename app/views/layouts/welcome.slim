@@ -11,13 +11,32 @@ html
     == csrf_meta_tags
     == include_gon
   body.welcome
-    .welcome-nav-header
-      = link_to 'Вход для везунчиков', login_path, class: 'btn welcome-nav-loginButton'
-      - if current_user.present?
-        .welcome-nav-link-wrapper= link_to "Продолжить как #{current_user}", account_root_path, class: 'welcome-nav-link'
-    .container.welcome-hero
-      == render 'layouts/messages'
-      == yield
+    .welcome-page
+      .welcome-nav-header
+        = render 'layouts/welcome/topmenu'
 
-    .welcome-footer
-      == AppVersion
+
+      .container.welcome-hero
+        == yield
+
+    .welcome-footer.text-center
+      .m-b-lg.m-t-lg
+        img.welcome-partner-icon.m-r-md src="http://cloudpayments.ru/images/docs/logo-small.png" alt="CloudPayments" style="vertical-align: center"
+        img.welcome-partner-icon.m-r-md src="http://cloudpayments.ru/images/docs/vbv.png" alt="Verifyed By Visa" style="vertical-align: center"
+        img.welcome-partner-icon src="http://cloudpayments.ru/images/docs/mastercard-securecode.png" alt="MasterCard SecureCode" style="vertical-align: center"
+
+      .text-center.m-t-lg
+        p
+          | Мы соблюдаем
+          | &nbsp;
+          = link_to 'правила электронной коммерции', '/rules.pdf'
+      .m-t-lg
+        small.text-muted
+          | Верия проекта
+          | &nbsp;
+          = AppVersion
+      .m-t-md.m-b-md
+        = link_to 'http://brandymint.ru', target: '_blank' do
+            img src="http://brandymint.ru/images/logo_brandymint_black.svg" style="height: 24px"
+
+    = toastr_flashes

@@ -18,7 +18,9 @@ class RegistrationController < ApplicationController
     redirect_to account_root_url, flash: { success: I18n.t('flashes.registration.signed_up') }
 
   rescue RegistrationService::UserDuplicate
-    redirect_to :back, flash: { info: I18n.t('flashes.registration.user_exists_html', url: login_url) }
+    flash.now[:info] = I18n.t('flashes.registration.user_exists_html')
+    render 'sessions/new',
+      locals: { session_form: SessionForm.new(remember_me: true, login: registration_form.email) }
 
   rescue ActiveRecord::RecordInvalid => err
     registration_form.errors = err.record.errors
@@ -33,6 +35,6 @@ class RegistrationController < ApplicationController
   end
 
   def permitted_params
-    params.require(:registration_form).permit(:name, :email, :phone, :password)
+    params.require(:registration_form).permit(RegistrationForm.attributes.map(&:name))
   end
 end

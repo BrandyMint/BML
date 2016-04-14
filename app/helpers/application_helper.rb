@@ -1,4 +1,19 @@
 module ApplicationHelper
+
+  # Алерт с перекрытием экрана http://smoke-js.com
+  #
+  # Показываем флешки через toastr
+  def toastr_flashes
+    flash_messages = []
+    flash.each do |type, message|
+      type = 'success' if type == 'notice'
+      type = 'error'   if type == 'alert'
+      text = "<script>toastr.#{type}('#{message}');</script>"
+      flash_messages << text.html_safe if message
+    end
+    flash_messages.join("\n").html_safe
+  end
+
   def format_uuid(uuid)
     content_tag :div, class: 'text-muted text-nowrap' do
       content_tag :small do

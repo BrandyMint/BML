@@ -26,6 +26,7 @@
 #= require selectize/dist/js/standalone/selectize.min.js
 #= require leadsFilter.js
 #= require rehover.js
+#= require toastr/toastr
 #
 #
 # SimpleNavigation

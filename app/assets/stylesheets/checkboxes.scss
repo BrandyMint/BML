@@ -1,0 +1,26 @@
+input[type="checkbox"],input[type="radio"]{
+  vertical-align:middle;
+}
+input[type="checkbox"]+label,input[type="radio"]+label{
+  cursor:pointer;
+}
+input[type="checkbox"]+label:before,input[type="radio"]+label:before{
+  content:"";
+  display:inline-block;
+  height:19px;
+  margin:1px 4px 0 -22px;
+  vertical-align:middle;
+  width:19px;
+}
+input[type="checkbox"]+label:before{
+  background:url(http://d3pr5r64n04s3o.cloudfront.net/tuts/391_checkboxes/check_radio_sheet.png)left top no-repeat;
+}
+input[type="checkbox"]:checked+label:before{
+  background:url(http://d3pr5r64n04s3o.cloudfront.net/tuts/391_checkboxes/check_radio_sheet.png)-19px top no-repeat;
+}
+input[type="radio"]+label:before{
+  background:url(http://d3pr5r64n04s3o.cloudfront.net/tuts/391_checkboxes/check_radio_sheet.png)-38px top no-repeat;
+}
+input[type="radio"]:checked+label:before{
+  background:url(http://d3pr5r64n04s3o.cloudfront.net/tuts/391_checkboxes/check_radio_sheet.png)-57px top no-repeat;
+}

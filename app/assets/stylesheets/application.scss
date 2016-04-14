@@ -17,6 +17,7 @@
  *= require font-awesome
  *= require projects
  *= require better_form_overrides
+ *= require toastr/toastr
  *= require_self
  */
 
@@ -32,6 +33,7 @@
 @import 'alerts';
 @import 'lead';
 @import 'sidebar';
+// @import 'checkboxes';
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,800);
 

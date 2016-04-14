@@ -10,5 +10,5 @@ html
   body.welcome
     .vertical-center
       .container.welcome-hero
-        == render 'layouts/messages'
         == yield
+    = toastr_flashes

@@ -15,6 +15,8 @@ FactoryGirl.define do
     name  { generate :user_name }
     email { generate :user_email }
     phone { generate :user_phone }
+    is_accept false
+    is_subscribe false
     password 'password'
     email_confirm_token 'confirm_token'
 

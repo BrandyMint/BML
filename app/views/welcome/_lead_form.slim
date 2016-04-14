@@ -1,9 +1,19 @@
 .welcome-form
+  p.welcome-form-header Оставьте контактный емайл чтобы получить доступ.
   = simple_form_for registration_form, url: signup_url do |f|
     .form-inputs
-      = f.input :name, required: true, autofocus: true, label: false, placeholder: 'Ваше имя'
-      = f.input :email, required: true, label: false, placeholder: 'e-mail'
-      = f.input :phone, label: false, placeholder: 'Телефон'
-      = f.input :password, required: true, label: false, placeholder: 'Пароль'
+      = f.input :email, required: true, label: false, placeholder: 'Ваш e-mail'
+    .form-inputs
+      = f.input :is_accept,
+        required: true,
+        label: 'Я ознакомился с <a href="/offerta" class="welcome-form-label-link" target="_blank">Условиями оферты</a> и принимаю их.'.html_safe,
+        as: :boolean,
+        label_html: { class: 'welcome-form-label' }
+    .form-inputs
+      = f.input :is_subscribe,
+        label: 'Держать в курсе о развитии проекта <span class="text-muted">(не чаще раз в месяц)</span>.<br />PS Соглашаться не обязательно.'.html_safe,
+				as: :boolean,
+				label_html: { class: 'welcome-form-label' }
     .welcome-form-footer
-      = f.submit 'Зарегистрироваться', class: 'btn btn-primary welcome-form-submit'
+      .pull-right
+        = f.submit 'Запустить', class: 'btn btn-primary welcome-form-submit'

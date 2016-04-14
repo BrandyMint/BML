@@ -17,11 +17,10 @@ html
     .navbar-space
     .navbar-space
 
-    .messages-centered
-      == render 'layouts/messages'
     .narrow-container
       - if content_for? :content
         = yield :content
       - else
         = yield
     .bottom-space
+    = toastr_flashes

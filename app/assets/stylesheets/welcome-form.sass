@@ -4,13 +4,35 @@
   input
     box-shadow: 0px 0px 32px rgba(10,10,10, 0.1)
 
+  .registration_form_is_accept
+    margin-bottom: 0
+
+.welcome-form-label
+  color: rgba(255, 255, 255, 0.8)
+  font-size: 14px
+
+a.welcome-form-label-link
+  color: rgba(255, 255, 255, 1)
+  &:hover,
+  &:focus
+    text-decoration: underline
+
+.welcome-form-header
+  font-size: 18px
+  margin-bottom: 1.5em
 
 .welcome-form-footer
-  margin: 3em 0
+  margin: 2em 0
   text-align: right
 
 .welcome-form-submit
-  width: 100%
-  height: 52px
-  background-image: linear-gradient(#5db6e8, #168eda 85%, #168eda 90%, #1d93dd)
+  // width: 100%
+  //height: 52px
+  color: $colorWelcome2
+  background-image: linear-gradient(#fff, #f0f0f0 85%, #f0f0f0 90%, #d0d0d0)
+  // background-image: linear-gradient(#5db6e8, #168eda 85%, #168eda 90%, #1d93dd)
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.2)
+
+  &:hover,
+  &:focus,
+    color: $colorWelcome
