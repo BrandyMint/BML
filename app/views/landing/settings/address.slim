@@ -1,17 +1,26 @@
+.page-header.m-b-lg
+  h1 Адрес сайта
 = simple_form_for [landing], url: landing_settings_url(landing) do |f|
   = hidden_field_tag :subaction, :address
   .row
     .col-md-8
-      = f.input :path, wrapper: :vertical_input_group, label: 'Адрес сайта' do
+      = f.input :path, wrapper: :vertical_input_group, label: false do
         span.input-group-addon= current_account.url
         = f.input_field :path, class: "form-control"
+    .col-md-4
+      = link_to landing.url, target: '_blank', class: 'btn btn-small btn-secondary', title: landing.url, tooltip: true do
+        = fa_icon 'external-link-square', text: 'Ссылка для копирования', class: 'm-r-sm'
   .row
     .col-md-6
       .form-group
         = f.button :submit, 'Сохранить', class: 'btn-primary'
-    .col-md-6
-      .pull-right
-        = delete_site_button landing
 
 hr.m-t-lg
 = format_uuid current_landing.uuid
+
+.m-t-lg
+.row
+  .col-md-4
+    p.text-muted Если вам больше сайт не нужен можете его удалить насовсем.
+  .col-md-8
+    = delete_site_button landing
