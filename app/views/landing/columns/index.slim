@@ -27,6 +27,7 @@
         th Тип
         th Видимость
         th
+        th
     tbody
       - columns.each do |column|
         tr
@@ -42,3 +43,5 @@
                   = edit_button_circle edit_landing_collection_column_path(current_landing, collection, column)
                 li
                   = delete_button_circle landing_collection_column_path(current_landing, collection, column)
+          td.sort-column
+            = sort_handle [current_landing, collection, column]

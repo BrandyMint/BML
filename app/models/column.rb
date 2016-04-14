@@ -1,13 +1,17 @@
 # Альтернативное название Column
 #
 class Column < ActiveRecord::Base
+  include RankedModel
+
   SEX = %w(female male).freeze
+
+  ranks :position, with_same: :collection_id
 
   belongs_to :collection
 
   before_save :set_title
 
-  scope :ordered, -> { order :id }
+  scope :ordered, -> { rank :position }
   scope :active, -> { where is_hidden: false }
 
   before_update :rename_column_in_data

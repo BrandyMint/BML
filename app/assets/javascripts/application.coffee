@@ -25,6 +25,9 @@
 #= require enableWhenChanged
 #= require selectize/dist/js/standalone/selectize.min.js
 #= require leadsFilter.js
+#= require sortablejs/Sortable.js
+#= require sortable.js
+#= require table-sortable
 #= require rehover.js
 #= require toastr/toastr
 #

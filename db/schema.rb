@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 20160414152612) do
     t.uuid     "uuid",          default: "uuid_generate_v4()", null: false
     t.boolean  "is_required",   default: false,                null: false
     t.boolean  "is_hidden",     default: false,                null: false
+    t.integer  "position",      default: 0,                    null: false
   end
 
   add_index "columns", ["collection_id", "key"], name: "index_columns_on_collection_id_and_key", unique: true, using: :btree
