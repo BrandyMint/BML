@@ -120,7 +120,7 @@ gem 'addressable'
 # Глюячная фигня, но идея хорошая
 # gem 'execjs-xtrn'
 
-gem 'react-rails'
+gem 'react-rails', github: 'jakegavin/react-rails', branch: 'react-15-0-1'
 
 gem 'kaminari'
 gem 'bootstrap-kaminari-views', git: 'https://github.com/klacointe/bootstrap-kaminari-views', branch: 'bootstrap4'
