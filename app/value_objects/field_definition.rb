@@ -11,6 +11,10 @@ class FieldDefinition
     attribute :title, String
   end
 
+  def persisted?
+    false
+  end
+
   def to_s
     title
   end

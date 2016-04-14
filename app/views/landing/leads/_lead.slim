@@ -1,9 +1,9 @@
 tr
   td.text-muted.text-nowrap
     = link_to lead.number, landing_lead_url(current_landing, lead)
-  td.text-muted.text-nowrap
-    = link_to landing_lead_url(current_landing, lead) do
-      = I18n.l lead.created_at, format: :short
+    br
+    .m-t-sm
+    small.text-muted= I18n.l lead.created_at, format: :short
   - columns.each do |column|
     td= field_value lead.fields[column.key]
   td

@@ -52,10 +52,14 @@ class Landing::ColumnsController < Landing::BaseController
   def hide
     column.hide!
     redirect_to :back
+  rescue ActiveRecord::RecordNotFound
+    redirect_to :back
   end
 
   def unhide
     column.unhide!
+    redirect_to :back
+  rescue ActiveRecord::RecordNotFound
     redirect_to :back
   end
 

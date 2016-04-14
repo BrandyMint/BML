@@ -14,9 +14,15 @@
     thead.thead-default
       tr
         th N
-        th Когда
         - columns.each do |column|
-          th= column
+          th.hoverable
+            .row
+              .col-sm-6
+                = column
+              .col-sm-6
+                .pull-right
+                  .hoverable-hidden= column_hide_button column
+                .clearfix
         th Статус
         th
           .pull-right Действия
