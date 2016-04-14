@@ -1,13 +1,17 @@
 = simple_form_for [landing], url: landing_settings_url(landing) do |f|
   = hidden_field_tag :subaction, :address
   .row
-    .col-md-6
-      = f.input :path, label: 'Путь', hint: current_account.url
+    .col-md-8
+      = f.input :path, wrapper: :vertical_input_group, label: 'Адрес сайта' do
+        span.input-group-addon= current_account.url
+        = f.input_field :path, class: "form-control"
   .row
     .col-md-6
       .form-group
         = f.button :submit, 'Сохранить', class: 'btn-primary'
-hr
-pre= landing.uuid
-hr
-= render 'delete', landing: landing
+    .col-md-6
+      .pull-right
+        = delete_site_button landing
+
+hr.m-t-lg
+= format_uuid current_landing.uuid

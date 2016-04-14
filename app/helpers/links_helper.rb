@@ -1,4 +1,7 @@
 module LinksHelper
+  def delete_site_button(landing)
+    link_to 'Удалить сайт', landing_url(landing), class: 'btn btn-danger', method: :delete, data: { confirm: 'Удалить сайт на всегда?' }
+  end
   def columns_icon(collection)
     link_to landing_collection_columns_path(current_landing, collection), title: 'Колонки', tooltip: true do
       fa_icon :columns

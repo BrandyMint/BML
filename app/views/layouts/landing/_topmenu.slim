@@ -5,6 +5,11 @@ nav.navbar.navbar-top.navbar-fixed-top.navbar-light.bg-faded
       = render 'layouts/landing/topmenu/collections'
       /li.nav-item= active_link_to 'Мультилендинг', account_variants_path(current_landing), class: 'nav-link'
       li.nav-item
+        = active_link_to landing_analytics_path(current_landing),
+          active: %w(analytics viewers views).include?(controller_name),
+          class: 'nav-link' do
+          = fa_icon 'area-chart', text: 'Аналитика', class: 'menu-hor-icon'
+      li.nav-item
         = active_link_to landing_editor_path(current_landing.default_variant.uuid, backurl: request.url),
           title: "Перейти в конструктор сайта",
           tooltip: true,
@@ -12,11 +17,6 @@ nav.navbar.navbar-top.navbar-fixed-top.navbar-light.bg-faded
           class: 'nav-link' do
           = fa_icon 'object-ungroup', text: 'Конструктор', class: 'menu-hor-icon'
 
-      li.nav-item
-        = active_link_to landing_analytics_path(current_landing),
-          active: %w(analytics viewers views).include?(controller_name),
-          class: 'nav-link' do
-          = fa_icon 'area-chart', text: 'Аналитика', class: 'menu-hor-icon'
 
     .pull-xs-right
       = render 'site_user_dropdown'

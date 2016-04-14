@@ -13,27 +13,32 @@
 
 .m-t-lg
 
-table.table.table-condensed
-  thead
-    tr
-      th Название
-      th Ключ
-      th Обязательная
-      th Тип
-      th Видимость
-      th
-  tbody
-    - columns.each do |column|
+- if columns.empty?
+  .jumbotron
+    h1 Нет колонок.
+    p.lead В этой таблице еще нет данных и колонок.
+- else
+  table.table.table-condensed
+    thead
       tr
-        td= column.title
-        td= column.key
-        td= human_boolean column.is_required?
-        td= column.input_type
-        td= column_visibility_button column
-        td
-          .pull-right
-            ul.list-inline
-              li
-                = edit_button_circle edit_landing_collection_column_path(current_landing, collection, column)
-              li
-                = delete_button_circle landing_collection_column_path(current_landing, collection, column)
+        th Название
+        th Ключ
+        th Обязательная
+        th Тип
+        th Видимость
+        th
+    tbody
+      - columns.each do |column|
+        tr
+          td= column.title
+          td= column.key
+          td= human_boolean column.is_required?
+          td= column.input_type
+          td= column_visibility_button column
+          td
+            .pull-right
+              ul.list-inline
+                li
+                  = edit_button_circle edit_landing_collection_column_path(current_landing, collection, column)
+                li
+                  = delete_button_circle landing_collection_column_path(current_landing, collection, column)
