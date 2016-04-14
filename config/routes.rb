@@ -5,6 +5,14 @@ require 'sidekiq-status/web'
 require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
+  concern :sortable do
+    member do
+      post :sort
+      post :up
+      post :down
+    end
+  end
+
   concern :account do
     scope :account, as: :account, module: :account do
       root to: redirect('/account/landings')
@@ -68,6 +76,7 @@ Rails.application.routes.draw do
         resources :views
         resources :collections do
           resources :columns do
+            concerns :sortable
             member do
               patch :hide
               patch :unhide

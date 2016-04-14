@@ -1,4 +1,5 @@
 class Landing::ColumnsController < Landing::BaseController
+  include SortableActions
   layout 'landing_settings'
 
   def index
@@ -59,6 +60,10 @@ class Landing::ColumnsController < Landing::BaseController
   end
 
   private
+
+  def resource
+    column
+  end
 
   def success_redirect
     redirect_to landing_collection_columns_path(current_landing, collection),
