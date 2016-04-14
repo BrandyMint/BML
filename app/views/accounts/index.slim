@@ -6,8 +6,14 @@ table.table.table-hover.table-projects.table-striped
     tr
       td.projects-list-td
         = link_to select_account_path(id: account.id), class: 'projects-list-item'
-          .projects-list-item-title= account
+          .row
+            .col-md-2 style="text-align: center"
+              span.text-muted
+                = fa_icon :asterisk, class: 'fa-4x'
+            .col-md-10
+              .m-l-md
+                .projects-list-item-title style="font-size: 24px"= account.title
 
-          small
-            .text-muted
-              = I18n.t :sites_count, count: account.landings_count
+                small
+                  .text-muted
+                    = I18n.t :sites_count, count: account.landings_count

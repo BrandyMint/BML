@@ -21,6 +21,10 @@
  *= require_self
  */
 
+@import 'welcome-shared';
+
+$brand-primary: $colorWelcome2;
+
 @import 'bootstrap';
 @import 'buttons';
 @import 'spacing';
