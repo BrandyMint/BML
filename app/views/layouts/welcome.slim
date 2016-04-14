@@ -12,12 +12,11 @@ html
     == include_gon
   body.welcome
     .welcome-page
-      .welcome-nav-header
-        = render 'layouts/welcome/topmenu'
-
+      = render 'layouts/welcome/topmenu'
 
       .container.welcome-hero
-        == yield
+        .m-t-lg
+          == yield
 
     .welcome-footer.text-center
       .m-b-lg.m-t-lg
