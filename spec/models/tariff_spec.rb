@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Tariff, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { create :tariff }
+
+  it { expect(subject).to be_persisted }
 end

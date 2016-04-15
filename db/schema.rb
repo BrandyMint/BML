@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414152612) do
+ActiveRecord::Schema.define(version: 20160415095411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -351,6 +351,19 @@ ActiveRecord::Schema.define(version: 20160414152612) do
 
   add_index "short_urls", ["url"], name: "index_short_urls_on_url", unique: true, using: :btree
 
+  create_table "tariff_months", force: :cascade do |t|
+    t.integer  "account_id",         null: false
+    t.integer  "tariff_id",          null: false
+    t.date     "beginning_of_month", null: false
+    t.date     "end_of_month",       null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "tariff_months", ["account_id", "tariff_id", "beginning_of_month"], name: "tariff_months_unique", unique: true, using: :btree
+  add_index "tariff_months", ["account_id"], name: "index_tariff_months_on_account_id", using: :btree
+  add_index "tariff_months", ["tariff_id"], name: "index_tariff_months_on_tariff_id", using: :btree
+
   create_table "tariffs", force: :cascade do |t|
     t.string   "title",                                    null: false
     t.string   "description"
@@ -496,6 +509,8 @@ ActiveRecord::Schema.define(version: 20160414152612) do
   add_foreign_key "phone_confirmations", "users"
   add_foreign_key "sections", "asset_files", column: "background_image_id"
   add_foreign_key "segments", "landings"
+  add_foreign_key "tariff_months", "accounts"
+  add_foreign_key "tariff_months", "tariffs"
   add_foreign_key "utm_values", "accounts"
   add_foreign_key "utm_values", "landings"
   add_foreign_key "variants", "accounts"

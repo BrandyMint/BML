@@ -18,7 +18,8 @@ class Account < ActiveRecord::Base
   has_many :variants, through: :landings
 
   has_many :asset_files, dependent: :destroy
-  has_many :asset_images
+  has_many :asset_images, dependent: :delete_all
+  has_many :tariff_months, dependent: :delete_all
 
   has_many :authentications, dependent: :destroy
   has_many :memberships, dependent: :destroy

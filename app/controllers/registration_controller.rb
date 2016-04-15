@@ -37,6 +37,6 @@ class RegistrationController < ApplicationController
   end
 
   def permitted_params
-    params.require(:registration_form).permit(RegistrationForm.attributes.map(&:name))
+    params.require(:registration_form).permit(RegistrationForm.attribute_set.map(&:name))
   end
 end
