@@ -25,10 +25,11 @@ html
         img.welcome-partner-icon src="http://cloudpayments.ru/images/docs/mastercard-securecode.png" alt="MasterCard SecureCode" style="vertical-align: center"
 
       .text-center.m-t-lg
-        p
-          | Мы соблюдаем
-          | &nbsp;
-          = link_to 'правила электронной коммерции', '/rules.pdf'
+        ul.list-inline
+          li.list-inline-item
+            = link_to 'Правила электронной коммерции', '/rules.pdf'
+          li.list-inline-item
+            = link_to 'Договор-оферта', '/offer.pdf'
       .m-t-lg
         small.text-muted
           | Верия проекта

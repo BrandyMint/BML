@@ -4,6 +4,7 @@ maximal_money: 100_000_000
 maximal_per_page: 100
 exclusion_landing_paths:
   - /assets
+  - /public
   - /dist
   - /favicon.ico
   - /favicons
