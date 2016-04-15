@@ -1,3 +1,6 @@
-.filter-group
+ul.nav.nav-tabs
   - LeadsFilter::STATES_OPTIONS.each do |state|
-    button.btn.btn-sm[type='submit' name='state' value=state class=(filter.state == state ? 'btn-primary' : 'btn-secondary')]= I18n.t("leads_filter.state.#{state}", count: filter.states_counts[state])
+    li.nav-item
+      = active_link_to landing_leads_path(current_landing, filter.params(state: state)),
+        active: (filter.state == state), class: 'nav-link' do
+        = I18n.t("leads_filter.state.#{state}", count: filter.states_counts[state])
