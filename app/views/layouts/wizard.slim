@@ -1,0 +1,12 @@
+- content_for :content do
+  .row
+    .col-md-3
+      ul.nav.nav-pills.nav-stacked.sidebar-left
+        - questions.each do |question|
+          li.nav-item
+            = active_link_to wizard_question_title(question, answered_keys), landing_wizard_answer_path(current_landing, question.key), class: 'nav-link', active: /#{question.key}/
+
+    .col-md-9
+      = yield
+
+= render template: 'layouts/landing'

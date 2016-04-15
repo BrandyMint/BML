@@ -1,0 +1,4 @@
+- if answer.asset_images.any?
+  .m-t-lg
+    table.table.table-hover
+      = render partial: 'landing/wizard_answers/image', collection: answer.asset_images.ordered, locals: { answer: answer }

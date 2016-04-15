@@ -1,0 +1,14 @@
+.dropzone {
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.03);
+  height: 360px;
+  border-radius: 3px;
+  background: rgba(0,0,0,0.03);
+  padding: 23px;
+  .dz-message{
+    position: absolute;
+    left: 0;
+    top: 38%;
+    width: 100%;
+  }
+}

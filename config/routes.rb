@@ -71,6 +71,9 @@ Rails.application.routes.draw do
             delete :decline
           end
         end
+        resources :wizard_answers do
+          resources :images, controller: :wizard_answer_images
+        end
         resources :clients
         resources :viewers
         resources :views
