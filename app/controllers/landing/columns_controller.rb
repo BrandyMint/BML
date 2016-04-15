@@ -83,6 +83,6 @@ class Landing::ColumnsController < Landing::BaseController
   end
 
   def permitted_params
-    params.require(:column).permit(:title, :key)
+    params.require(:column).permit(:title, :key, :position)
   end
 end
