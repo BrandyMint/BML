@@ -8,12 +8,14 @@
         .collapse#collapseFilter[class="#{filter.present? ? 'in': ''}"]
           form method="get" action=""
             = hidden_field_tag :collection_id, filter.collection.id
+            = hidden_field_tag :state, filter.state
             - if current_landing.variants.many?
               = render 'filter_variants', filter: filter
-            = render 'filter_states', filter: filter
             = render 'filter_sources', filter: filter
             .filter-group
               button.btn.btn-sm.btn-primary type="submit" Применить
             .clearfix
       .col-md-1
         .pull-right= settings_collection_button collection
+
+  = render 'filter_states', filter: filter

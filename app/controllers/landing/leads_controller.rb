@@ -8,7 +8,7 @@ class Landing::LeadsController < Landing::BaseController
 
   def index
     leads_filter.popular_utm_options = popular_utm_options(current_landing.id)
-    leads_filter.states_counts = states_counts(current_collection)
+    leads_filter.states_counts = leads_states_counts(current_collection)
     render locals: {
       collections:        current_landing.collections,
       current_collection: current_collection,

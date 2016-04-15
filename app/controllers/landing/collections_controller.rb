@@ -20,7 +20,7 @@ class Landing::CollectionsController < Landing::BaseController
   def create
     current_landing.collections.create! permitted_params
     redirect_to landing_collections_path(current_landing),
-                flash: { success: I18n.t('flashes.collection.saved') }
+                flash: { success: I18n.t('flashes.collections.created') }
   rescue ActiveRecord::RecordInvalid => err
     render 'new', locals: { collection: err.record }, flash: { error: err.message }
   end
@@ -28,7 +28,7 @@ class Landing::CollectionsController < Landing::BaseController
   def update
     collection.update! permitted_params
     redirect_to landing_collections_path(current_landing),
-                flash: { success: I18n.t('flashes.collection.saved') }
+                flash: { success: I18n.t('flashes.collections.saved') }
   rescue ActiveRecord::RecordInvalid => err
     render 'edit', locals: { collection: err.record }, flash: { error: err.message }
   end
