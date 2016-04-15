@@ -7,6 +7,8 @@ ru:
       members_added: 'В команду включены сотрудники: %{users}'
       created: Приглашение отправлено
       deleted: Приглашение удалено
+    tariff:
+      changed: Тариф изменен на %{tariff} с %{beginning_of_month}
     columns:
       saved: Настройки колонки сохранены
     collections:

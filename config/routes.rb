@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resource :sms, controller: :sms, only: [:show, :update]
       resource :domains, controller: :domains, only: [:show, :update]
       resource :billing, controller: :billing, only: [:show, :update]
+      resource :tariff, controller: :tariff, only: [:update]
       resources :payments, only: [:new]
       resources :cloud_payments do
         collection do
