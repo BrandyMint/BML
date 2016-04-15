@@ -27,7 +27,6 @@
 #= require leadsFilter.js
 #= require sortablejs/Sortable.js
 #= require sortable.js
-#= require table-sortable
 #= require rehover.js
 #= require toastr/toastr
 #

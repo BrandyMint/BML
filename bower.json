@@ -5,7 +5,7 @@
     "funnel-chart": "^1.1.2",
     "toastr": "https://github.com/CodeSeven/toastr.git#^2.1.2",
     "owl.carousel": "OwlCarousel2#^2.0.0-beta.3",
-    "sortablejs": "BrandyMint/Sortable"
+    "sortablejs": "https://github.com/RubaXa/Sortable.git#acef394c9a11e0e164ae4a22754ac898b650bf64"
   },
   "ignore": [
     "**/.*",

@@ -1,9 +1,8 @@
 module ButtonsHelper
   def sort_handle(resource)
-    sort_url = polymorphic_path resource,
-                                action: :sort
+    sort_url = polymorphic_path resource, action: :sort
 
-    fa_icon_reorder '', 'data-sort-url' => sort_url, 'data-sort-success-action' => 'nothing'
+    fa_icon_reorder '', 'data-sort-url' => sort_url
   end
 
   def fa_icon_reorder(buffer = '', opts = {})
