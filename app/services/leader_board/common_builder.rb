@@ -47,7 +47,7 @@ module LeaderBoard
       data = persons_data[division] ||= {}
       data = data[sex] ||= {}
 
-      key = [title, note].compact.join ':'
+      key = [title.strip, note.try(:strip)].compact.join ':'
       person = data[key] ||= { title: title, note: note, score: 0 }
       person[:score] += points.to_f
     end

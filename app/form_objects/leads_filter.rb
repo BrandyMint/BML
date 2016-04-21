@@ -20,7 +20,7 @@ class LeadsFilter
 
   attribute :account, Account
   attribute :collection, Collection
-  attribute :variant, Variant
+  attribute :variant_id, Integer
   attribute :sort_field, Symbol, default: :id
   attribute :sort_order, Symbol, default: :asc
   attribute :limit, Integer
@@ -64,8 +64,9 @@ class LeadsFilter
     self.class.state_for_query state
   end
 
-  def variant_id
-    variant.try :id
+  def variant
+    return nil unless variant_id.present?
+    @variant ||= account.variants.find_by_id variant_id
   end
 
   def self.state_for_query(state)

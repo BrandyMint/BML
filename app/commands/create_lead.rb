@@ -48,6 +48,7 @@ class CreateLead
   def lead_attributes
     utm.attributes.merge!(
       data: lead_data,
+      primary_data: lead_data,
       variant: variant,
       viewer_uid: viewer_uid
     )
