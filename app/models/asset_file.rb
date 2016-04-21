@@ -6,6 +6,7 @@ class AssetFile < ActiveRecord::Base
   belongs_to :account
   belongs_to :landing
   belongs_to :variant
+  belongs_to :wizard_answer
 
   mount_uploader :file, ImageUploader
 

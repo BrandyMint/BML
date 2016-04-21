@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resource :sms, controller: :sms, only: [:show, :update]
       resource :domains, controller: :domains, only: [:show, :update]
       resource :billing, controller: :billing, only: [:show, :update]
+      resource :tariff, controller: :tariff, only: [:update]
       resources :payments, only: [:new]
       resources :cloud_payments do
         collection do
@@ -70,6 +71,9 @@ Rails.application.routes.draw do
             post :accept
             delete :decline
           end
+        end
+        resources :wizard_answers do
+          resources :images, controller: :wizard_answer_images
         end
         resources :clients
         resources :viewers

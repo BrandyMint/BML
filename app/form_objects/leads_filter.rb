@@ -4,10 +4,7 @@ class LeadsFilter
 
   STATE_ANY = 'any'.freeze
 
-  STATE_NOT_DECLINED = 'not_declined'.freeze
-
   STATES_OPTIONS = [
-    STATE_NOT_DECLINED,
     LeadStates::STATE_NEW,
     LeadStates::STATE_ACCEPTED,
     LeadStates::STATE_DECLINED,
@@ -26,13 +23,20 @@ class LeadsFilter
   attribute :sort_field, Symbol, default: :id
   attribute :sort_order, Symbol, default: :asc
   attribute :limit, Integer
-  attribute :state, String, default: STATE_NOT_DECLINED
+  attribute :state, String, default: LeadStates::STATE_NEW
 
   attr_accessor :popular_utm_options, :states_counts
 
   delegate :to_param, to: :params
 
-  def params
+  def params(args = {})
+    attributes
+      .except(:limit, :variant, :account)
+      .merge!(args)
+      .compact
+  end
+
+  def csv_params
     attributes
       .except(:limit, :variant, :collection, :account)
       .compact
@@ -50,8 +54,6 @@ class LeadsFilter
     case state
     when STATE_ANY
       nil
-    when STATE_NOT_DECLINED
-      [LeadStates::STATE_NEW, LeadStates::STATE_ACCEPTED]
     else
       state
     end

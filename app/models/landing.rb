@@ -21,8 +21,9 @@ class Landing < ActiveRecord::Base
   has_many :utm_values, dependent: :delete_all
   has_many :leads, dependent: :delete_all
   has_many :landing_views, dependent: :delete_all
-
   has_many :variants, dependent: :destroy
+
+  has_many :wizard_answers, dependent: :destroy
   validates :title, presence: true
 
   scope :ordered, -> { order 'id desc' }

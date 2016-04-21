@@ -1,0 +1,7 @@
+tr
+  td= image_tag thumbor_image_url(image.url, '200x200')
+
+  td.sort-column
+    /= sort_handle [current_landing, answer, image]
+  td
+    = delete_button_circle landing_wizard_answer_image_path(current_landing, answer, image)

@@ -1,0 +1,13 @@
+questions:
+  -
+    key: :what_does_it_do
+    text: Что делает этот сайт?
+    images_count: 2
+  -
+    key: :2
+    text: Que es eso?
+    images_count: 0
+  -
+    key: :3
+    text: Que es eso?
+    images_count: 1
