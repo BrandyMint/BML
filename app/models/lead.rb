@@ -29,7 +29,7 @@ class Lead < ActiveRecord::Base
     hash = self[:data]
     data_will_change!
     hash.delete key.to_s
-    self.data = hash
+    update_attribute :data, hash
   end
 
   def phone

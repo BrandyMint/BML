@@ -10,6 +10,6 @@ RSpec.describe Lead, type: :model do
       lead.delete_data_key! :a
     end
 
-    it { expect(lead.data.keys).to be_empty }
+    it { expect(lead.reload.data.keys).to be_empty }
   end
 end
