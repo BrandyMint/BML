@@ -24,7 +24,7 @@ module LeadsFilterSupport
       state: session_state,
       **params.slice(*LeadsFilter.attribute_set.map(&:name)).symbolize_keys,
       account: current_account,
-      collection: current_collection,
+      collection: current_collection
     }
       .compact
       .reject { |k, v| TrackingSupport::UTM_FIELDS.include?(k) && v == ANY_MASK }

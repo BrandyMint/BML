@@ -23,7 +23,7 @@ class ViewerController < ApplicationController
   # Пример: https://github.com/rails/actionpack-action_caching/blob/master/lib/action_controller/caching/actions.rb
   #
   def cache_action
-    self.response_body = cache [AppVersion.to_s, :viewer, current_variant] do
+    self.response_body = cache [AppVersion.to_s, :viewer, current_variant.viewer_cache_key] do
       yield
     end
   end
