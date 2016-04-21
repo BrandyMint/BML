@@ -3,12 +3,11 @@ module Landing::LeadsHelper
     UtmValuesQuery.new.popular_by_key(key, current_landing.id)
   end
 
-  def leads_state_count(collection, state)
-    if state == LeadsFilter::STATE_ANY
-      collection.leads.count
-    else
-      collection.leads.with_state(*LeadsFilter.state_for_query(state)).count
-    end
+  def leads_state_count(filter, state)
+    LeadsQuery
+      .new(filter: filter.merge(state: state))
+      .call
+      .count
   end
 
   def state_tab_class(state, is_active)

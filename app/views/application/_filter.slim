@@ -5,7 +5,7 @@
           = link_to '#collapseFilter', data: { toggle: 'collapse' }, class: 'btn btn-sm btn-primary-outline' do
             = fa_icon :filter, text: 'Фильтр'
       .col-md-10
-        .collapse#collapseFilter[class="#{filter.present? ? 'in': ''}"]
+        .collapse#collapseFilter[class="#{filter.open? ? 'in': ''}"]
           form method="get" action=""
             = hidden_field_tag :collection_id, filter.collection.id
             = hidden_field_tag :state, filter.state
@@ -15,6 +15,11 @@
             = render 'filter_search', filter: filter
             .filter-group
               button.btn.btn-sm.btn-primary type="submit" Применить
+            - if filter.open?
+              .filter-group
+                = link_to 'Сбросить',
+                  landing_leads_path(current_landing, filter.reset_params),
+                  class: 'btn btn-sm btn-secondary'
             .clearfix
       .col-md-1
         .pull-right= settings_collection_button collection

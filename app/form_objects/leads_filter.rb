@@ -11,7 +11,8 @@ class LeadsFilter
     STATE_ANY
   ].freeze
 
-  PRESENCE_FIELDS = TrackingSupport::UTM_FIELDS + [:state]
+  OPEN_FIELDS = TrackingSupport::UTM_FIELDS + [:search]
+  PRESENCE_FIELDS = OPEN_FIELDS + [:state]
 
   TrackingSupport::UTM_FIELDS.each do |f|
     attribute f, String
@@ -28,6 +29,15 @@ class LeadsFilter
 
   delegate :to_param, to: :params
 
+  # Отдаем только те параметры, которые достаточно для сброса фильтра
+  def reset_params
+    {}
+  end
+
+  def merge(args)
+    LeadsFilter.new to_h.merge(args)
+  end
+
   def params(args = {})
     attributes
       .except(:limit, :variant, :collection, :account)
@@ -40,6 +50,10 @@ class LeadsFilter
     attributes
       .except(:limit, :variant, :collection, :account)
       .compact
+  end
+
+  def open?
+    OPEN_FIELDS.any? { |f| send(f).present? }
   end
 
   def present?

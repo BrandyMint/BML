@@ -11,6 +11,7 @@ class Lead < ActiveRecord::Base
   belongs_to :client
 
   scope :ordered, -> { order 'id desc' }
+  scope :search_by_word, -> (word) { where '? ILIKE ANY(avals(data))', word }
 
   validates :collection, :variant, :data, presence: true
 
