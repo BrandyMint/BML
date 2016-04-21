@@ -29,25 +29,15 @@ module LeaderBoard
     RANK_WITHOUT_SCORE = 0
 
     include Virtus.model
-    attribute :results, Array
+    attribute :records, Array[Record]
 
-    def rank!
-      results.each do |ranks_table|
-        ranks_table[:records] = do_rank ranks_table[:records]
-      end
-
-      results
-    end
-
-    private
-
-    def do_rank(records)
+    def rank
       rank = 0
       prev_record = nil
 
       comparator = proc do |x, y|
         if x[:score].present? && y[:score].present?
-          y[:score] <=> x[:score]
+          y[:score].to_f <=> x[:score].to_f
         elsif x[:score].nil?
           y[:score].nil? ? 0 : 1
         else

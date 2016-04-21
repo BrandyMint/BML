@@ -13,11 +13,11 @@ module LeaderBoard
       @events    = []
       build_results
 
-      {
+      Results.new(
         divisions: @divisions.uniq.sort,
         events: @events.uniq.compact.sort,
-        tables: Ranker.new(results: @results.values).rank!
-      }
+        tables: @results.values.each { |table| table.records = Ranker.new(records: table.records).rank }
+      )
     end
 
     private
@@ -86,12 +86,12 @@ module LeaderBoard
     def create_ranks_table(division, event, sex)
       key = result_key division, event, sex
 
-      ranks_table = {
+      ranks_table = Table.new(
         division: division,
         event: event,
         sex: sex,
         records: []
-      }
+      )
       @results[key] = ranks_table
     end
 

@@ -14,7 +14,7 @@ RSpec.describe LeaderBoard::Builder, type: :model do
   let(:result2) { '456' }
 
   let(:results) do
-    {
+    LeaderBoard::Results.new(
       divisions: [division],
       events: [event],
       tables:
@@ -24,15 +24,16 @@ RSpec.describe LeaderBoard::Builder, type: :model do
             event: event,
             sex: 'male',
             records: [
-              { title: name2, note: nil, score: result2.to_i, rank: 1 },
-              { title: name1, note: nil, score: result1.to_i, rank: 2 }
+              { title: name2, note: nil, score: result2.to_f, rank: 1 },
+              { title: name1, note: nil, score: result1.to_f, rank: 2 }
             ]
           }
         ]
-    }
+    )
   end
 
   subject { described_class.new(collection: collection).build }
 
-  it { expect(subject).to match results }
+  it { expect(subject).to be_a LeaderBoard::Results }
+  it { expect(subject.as_json).to match results.as_json }
 end

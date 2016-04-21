@@ -1,10 +1,9 @@
 class Landing::LeadsController < Landing::BaseController
   include Landing::LeadsHelper
   include VariantInParameter
+  include SessionFilterState
 
   layout 'leads'
-
-  before_action :save_session_state
 
   def index
     leads_filter.popular_utm_options = popular_utm_options(current_landing.id)
@@ -20,12 +19,10 @@ class Landing::LeadsController < Landing::BaseController
 
   # TODO: move to collection/leads controller
   def edit
-    lead = available_leads.find params[:id]
     render locals: { lead: lead, lead_data: lead.data, collection: lead.collection }, layout: 'lead_show'
   end
 
   def update
-    lead = available_leads.find params[:id]
     lead.update! data: params[:lead_data]
     redirect_to backurl || landing_leads_path(current_landing, collection_id: lead.collection),
                 flash: { success: I18n.t('flashes.lead.saved') }
@@ -74,7 +71,7 @@ class Landing::LeadsController < Landing::BaseController
   end
 
   def lead
-    current_landing.leads.find params[:id]
+    @lead ||= available_leads.find params[:id]
   end
 
   def leads
@@ -101,20 +98,12 @@ class Landing::LeadsController < Landing::BaseController
     }.compact
   end
 
-  def session_state
-    session[session_state_key]
-  end
-
-  def session_state_key
-    "#{current_landing.id}:lead_state"
-  end
-
-  def save_session_state
-    session[session_state_key] = params[:state] if LeadsFilter::STATES_OPTIONS.include? params[:state]
-  end
-
   def current_collection
-    find_collection || current_landing.default_leads_collection
+    if %w(edit show update).include? action_name
+      lead.collection
+    else
+      find_collection || current_landing.default_leads_collection
+    end
   end
 
   def available_leads
