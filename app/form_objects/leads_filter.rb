@@ -31,7 +31,8 @@ class LeadsFilter
 
   def params(args = {})
     attributes
-      .except(:limit, :variant, :account)
+      .except(:limit, :variant, :collection, :account)
+      .merge!(collection_id: collection.id)
       .merge!(args)
       .compact
   end
