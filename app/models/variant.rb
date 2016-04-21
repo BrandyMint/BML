@@ -16,6 +16,17 @@ class Variant < ActiveRecord::Base
     "#{landing} / #{self}"
   end
 
+  # TODO: Хранить полем в таблице
+  def viewer_cache_key
+    return updated_at unless sections.dynamic.any?
+    ([updated_at] + source_collections.map(&:updated_at)).join('-')
+  end
+
+  # TODO: добывать из sections.dynamic
+  def source_collections
+    landing.collections
+  end
+
   def used?
     # TODO: Проверять что секии не дефолтные
     sections.any?

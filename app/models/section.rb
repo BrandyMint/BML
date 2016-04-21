@@ -10,6 +10,7 @@ class Section < ActiveRecord::Base
   belongs_to :background_image, class_name: 'AssetImage'
 
   scope :ordered, -> { order :row_order }
+  scope :dynamic, -> { where block_view: 'LeaderBoard' }
 
   def meta
     {}

@@ -5,7 +5,7 @@ class Lead < ActiveRecord::Base
   include TrackingSupport
   include NumberSupport
 
-  belongs_to :collection, counter_cache: :leads_count
+  belongs_to :collection, counter_cache: :leads_count, touch: true
   belongs_to :variant, counter_cache: :leads_count
   belongs_to :landing
   belongs_to :client
