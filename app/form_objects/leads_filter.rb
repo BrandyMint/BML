@@ -24,6 +24,7 @@ class LeadsFilter
   attribute :sort_order, Symbol, default: :asc
   attribute :limit, Integer
   attribute :state, String, default: LeadStates::STATE_NEW
+  attribute :search, String
 
   delegate :to_param, to: :params
 

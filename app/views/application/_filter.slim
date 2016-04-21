@@ -12,6 +12,7 @@
             - if current_landing.variants.many?
               = filter_variant(filter)
             = render 'filter_sources', filter: filter
+            = render 'filter_search', filter: filter
             .filter-group
               button.btn.btn-sm.btn-primary type="submit" Применить
             .clearfix

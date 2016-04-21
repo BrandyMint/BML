@@ -22,10 +22,7 @@ module LeadsFilterSupport
   def build_filter_params
     {
       state: session_state,
-      **params.slice(
-        *TrackingSupport::UTM_FIELDS,
-        :sort_order, :sort_field, :limit, :state
-      ).symbolize_keys,
+      **params.slice(*LeadsFilter.attribute_set.map(&:name)).symbolize_keys,
       account: current_account,
       collection: current_collection,
       variant: current_variant
