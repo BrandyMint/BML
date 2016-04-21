@@ -25,6 +25,13 @@ class Lead < ActiveRecord::Base
     Hashie::Mash.new super || {}
   end
 
+  def delete_data_key!(key)
+    hash = self[:data]
+    data_will_change!
+    hash.delete key.to_s
+    self.data = hash
+  end
+
   def phone
     data['phone']
   end
