@@ -6,7 +6,7 @@
       p= "Номер заявки #{lead.public_number}"
 
       hr.welcome-divider
-      p 
+      p
         b Данные заявки:
       - lead.data_fields.reject(&:empty?).each do |f|
         p= f

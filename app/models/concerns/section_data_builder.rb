@@ -1,6 +1,6 @@
 module SectionDataBuilder
   BUILDERS = {
-    LeaderBoard: LeaderBoard::Builder
+    LeaderBoard: LeaderBoard::CommonBuilder
   }.freeze
 
   def data
