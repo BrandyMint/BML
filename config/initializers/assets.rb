@@ -11,7 +11,8 @@ Rails.application.config.assets.paths << 'vendor/components'
 Rails.application.config.assets.paths << 'vendor/assets'
 
 # Для картинок, чтобы их можно было брать через assets/images/themes/t1/dog.pn
-Rails.application.config.assets.paths << 'vendor/dist/dist'
+Rails.application.config.assets.paths << 'vendor/dist/dist-viewer'
+Rails.application.config.assets.paths << 'vendor/dist/dist-editor'
 Rails.application.config.assets.paths << 'vendor/dist/dist-prerender'
 
 # Precompile additional assets.

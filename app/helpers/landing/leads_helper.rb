@@ -27,16 +27,27 @@ module Landing::LeadsHelper
     end
   end
 
-  def lead_state(state)
-    css = case state
-          when LeadStates::STATE_ACCEPTED
-            'label-success'
-          when LeadStates::STATE_DECLINED
-            'label-default'
-          else
-            'label-warning'
-          end
+  def state_tab_class(state, is_active)
+    return 'bottom-default' unless is_active
+    'bottom-' + state_color(state)
+  end
 
-    content_tag :span, state.text, class: 'label label-md ' + css
+  def lead_state(state)
+    content_tag :span, state.text, class: 'label label-md label-' + state_color(state)
+  end
+
+  private
+
+  def state_color(state)
+    case state
+    when LeadStates::STATE_ACCEPTED
+      'success'
+    when LeadStates::STATE_DECLINED
+      'danger'
+    when LeadStates::STATE_NEW
+      'warning'
+    else
+      'primary'
+    end
   end
 end

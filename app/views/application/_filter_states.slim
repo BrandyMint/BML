@@ -1,6 +1,6 @@
-ul.nav.nav-tabs
+ul.nav.nav-tabs.nav-bottom-bordered
   - LeadsFilter::STATES_OPTIONS.each do |state|
-    li.nav-item
+    li.nav-item class=state_tab_class(state, filter.state == state)
       = active_link_to landing_leads_path(current_landing, filter.params(state: state)),
         active: (filter.state == state), class: 'nav-link' do
         = I18n.t("leads_filter.state.#{state}", count: filter.states_counts[state])

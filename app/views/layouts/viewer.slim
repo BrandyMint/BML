@@ -6,8 +6,8 @@ html
     = bugsnag_script
     /== stylesheet_link_tag 'viewer', media: 'all'
     /== stylesheet_link_tag 'fonts', media: 'all'
-    == stylesheet_link_tag "/dist/viewer?#{AppVersion}", media: 'all'
-    == stylesheet_link_tag "/dist/fonts?#{AppVersion}", media: 'all'
+    == stylesheet_link_tag "/dist-viewer/viewer?#{AppVersion}", media: 'all'
+    == stylesheet_link_tag "/dist-viewer/fonts?#{AppVersion}", media: 'all'
     == csrf_meta_tags
   body
     == yield
