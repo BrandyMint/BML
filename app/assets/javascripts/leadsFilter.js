@@ -20,8 +20,10 @@ var initFilter = function(){
     },
     load: function(query, callback) {
       if (!query.length) return callback();
+      path = this.$input.data('api-path');
+      console.log("query path", path);
       $.ajax({
-        url: gon.api_url + "v1/utm_values/autocomplete.json",
+        url: gon.api_url + path,
         type: 'GET',
         dataType: 'json',
         data: {

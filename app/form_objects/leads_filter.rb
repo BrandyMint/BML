@@ -25,8 +25,6 @@ class LeadsFilter
   attribute :limit, Integer
   attribute :state, String, default: LeadStates::STATE_NEW
 
-  attr_accessor :popular_utm_options, :states_counts
-
   delegate :to_param, to: :params
 
   def params(args = {})
@@ -49,6 +47,10 @@ class LeadsFilter
 
   def state_for_query
     self.class.state_for_query state
+  end
+
+  def variant_id
+    variant.try :id
   end
 
   def self.state_for_query(state)

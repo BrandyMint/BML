@@ -3,4 +3,4 @@ ul.nav.nav-tabs.nav-bottom-bordered
     li.nav-item class=state_tab_class(state, filter.state == state)
       = active_link_to landing_leads_path(current_landing, filter.params(state: state)),
         active: (filter.state == state), class: 'nav-link' do
-        = I18n.t("leads_filter.state.#{state}", count: filter.states_counts[state])
+        = I18n.t("leads_filter.state.#{state}", count: leads_state_count( current_collection, state ))

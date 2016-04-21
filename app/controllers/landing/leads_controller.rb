@@ -2,12 +2,11 @@ class Landing::LeadsController < Landing::BaseController
   include Landing::LeadsHelper
   include VariantInParameter
   include SessionFilterState
+  include LeadsFilterSupport
 
   layout 'leads'
 
   def index
-    leads_filter.popular_utm_options = popular_utm_options(current_landing.id)
-    leads_filter.states_counts = leads_states_counts(current_collection)
     render locals: {
       collections:        current_landing.collections,
       current_collection: current_collection,
@@ -72,30 +71,6 @@ class Landing::LeadsController < Landing::BaseController
 
   def lead
     @lead ||= available_leads.find params[:id]
-  end
-
-  def leads
-    if current_account.features.leads_limit
-      TariffLimitedLeadsQuery.new(filter: leads_filter).call
-    else
-      paginate LeadsQuery.new(filter: leads_filter).call
-    end
-  end
-
-  def leads_filter
-    @_leads_filter ||= LeadsFilter.new filter_params
-  end
-
-  def filter_params
-    {
-      state: session_state,
-      **params.slice(
-        :sort_order, :sort_field, :limit, :state
-      ).symbolize_keys,
-      account: current_account,
-      collection: current_collection,
-      variant: current_variant
-    }.compact
   end
 
   def current_collection

@@ -1,0 +1,12 @@
+// field_name - Имя поля в форме (ключ)
+// title - Название поля
+// collection - массив данных для dropdown. Должны быть поля id и to_s
+// current_value - текущее значение этого элемента (filter.send(field_name))
+.filter-group
+  .dropdown
+    input type="hidden" name=field_name
+    button.btn.btn-sm.btn-secondary.dropdown-toggle type='button' data-toggle='dropdown'
+      = title
+    .dropdown-menu
+      - collection.each do |element|
+        button.btn-sm.dropdown-item filter-dropdown=true data-target=field_name class=(current_value == element.id ? 'active' : '') value=element.id type='button'= element

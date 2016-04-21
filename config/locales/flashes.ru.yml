@@ -3,6 +3,8 @@ ru:
     loaded: Загружено
     activeadmin:
       balance_charged: Баланс пополнен
+    lead:
+      saved: Запись сохранена
     invites:
       members_added: 'В команду включены сотрудники: %{users}'
       created: Приглашение отправлено

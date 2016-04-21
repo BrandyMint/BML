@@ -10,7 +10,7 @@
             = hidden_field_tag :collection_id, filter.collection.id
             = hidden_field_tag :state, filter.state
             - if current_landing.variants.many?
-              = render 'filter_variants', filter: filter
+              = filter_variant(filter)
             = render 'filter_sources', filter: filter
             .filter-group
               button.btn.btn-sm.btn-primary type="submit" Применить

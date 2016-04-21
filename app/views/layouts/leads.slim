@@ -9,9 +9,6 @@ html
     == include_gon
   body
     == render 'layouts/landing/topmenu'
-    .messages-centered
-      == render 'layouts/messages'
-
     - if leads.empty? || columns.size < 6
       .container
         = render 'filter', filter: filter, collection: current_collection
