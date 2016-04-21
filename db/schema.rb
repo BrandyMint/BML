@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415095411) do
+ActiveRecord::Schema.define(version: 20160421202652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -231,6 +231,7 @@ ActiveRecord::Schema.define(version: 20160415095411) do
     t.integer  "client_id"
     t.string   "state",              default: "new",                null: false
     t.uuid     "uuid",               default: "uuid_generate_v4()", null: false
+    t.hstore   "primary_data",       default: {},                   null: false
   end
 
   add_index "leads", ["client_id"], name: "index_leads_on_client_id", using: :btree
