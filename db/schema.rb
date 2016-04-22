@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421202652) do
+ActiveRecord::Schema.define(version: 20160422045631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -232,6 +232,7 @@ ActiveRecord::Schema.define(version: 20160421202652) do
     t.string   "state",              default: "new",                null: false
     t.uuid     "uuid",               default: "uuid_generate_v4()", null: false
     t.hstore   "primary_data",       default: {},                   null: false
+    t.text     "data_string"
   end
 
   add_index "leads", ["client_id"], name: "index_leads_on_client_id", using: :btree
@@ -303,6 +304,14 @@ ActiveRecord::Schema.define(version: 20160421202652) do
 
   add_index "payment_accounts", ["account_id"], name: "index_payment_accounts_on_account_id", using: :btree
   add_index "payment_accounts", ["token"], name: "index_payment_accounts_on_token", unique: true, using: :btree
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "phone_confirmations", force: :cascade do |t|
     t.string   "phone",                            null: false
