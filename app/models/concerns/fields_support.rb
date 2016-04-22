@@ -1,40 +1,19 @@
 module FieldsSupport
   extend ActiveSupport::Concern
 
-  INTERNAL_FIELDABLE_ATTRIBUTES =
-    TrackingSupport::UTM_FIELDS.map(&:to_s) +
-    TrackingSupport::UTM_FIELDS.map { |a| "last_#{a}" } +
-    TrackingSupport::UTM_FIELDS.map { |a| "first_#{a}" }
-
   included do
     after_create :create_collection_fields
     before_save :generate_data_string
-  end
-
-  def fields
-    @_fields ||= RowFields.new collection.columns, fields_data
   end
 
   def data_fields
     @_data_fields ||= RowFields.new collection.columns, data
   end
 
-  def tracking_fields
-    @_tracking_fields ||= RowFields.new collection.columns, tracking_attributes
-  end
-
   private
 
   def generate_data_string
     self.data_string = data.values.join(' ')
-  end
-
-  def fields_data
-    data.merge tracking_attributes
-  end
-
-  def tracking_attributes
-    attributes.slice(*INTERNAL_FIELDABLE_ATTRIBUTES)
   end
 
   def create_collection_fields

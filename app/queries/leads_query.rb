@@ -15,6 +15,7 @@ class LeadsQuery
     s = s.where(variant: filter.variant) if filter.variant.present?
     s = s.with_state(*filter.state_for_query) if filter.state_for_query.present?
     s = s.search_by_data filter.search if filter.search.present?
+    s = s.where(client_id: filter.client_id) if filter.client_id.present?
 
     s = s.order order
     s = limit s
@@ -24,7 +25,11 @@ class LeadsQuery
   private
 
   def basic_scope
-    filter.collection.leads
+    if filter.collection.present?
+      filter.collection.items
+    else
+      filter.account.collection_items
+    end
   end
 
   def order

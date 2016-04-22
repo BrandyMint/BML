@@ -1,10 +1,23 @@
-class Client < ActiveRecord::Base
-  belongs_to :landing, counter_cache: true
-  belongs_to :account, counter_cache: true
+class Client < CollectionItem
+  has_many :leads, foreign_key: :client_id
 
-  has_many :leads
+  before_save :clear
 
-  before_create do
-    self.account = landing.account
+  def fields
+    data_fields
+  end
+
+  def to_s
+    collection.get_client_name + ': ' + name
+  end
+
+  def title
+    to_s
+  end
+
+  private
+
+  def clear
+    self.client_id = nil
   end
 end

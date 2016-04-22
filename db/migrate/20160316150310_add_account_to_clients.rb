@@ -7,9 +7,5 @@ class AddAccountToClients < ActiveRecord::Migration
 
     add_index :clients, [:landing_id, :phone], unique: true
     add_index :clients, [:landing_id, :email], unique: true
-
-    Lead.find_each do |lead|
-      AttachClient.new(lead: lead).call
-    end
   end
 end

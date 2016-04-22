@@ -49,7 +49,7 @@ ru:
     organic: Прямые заходы
     mails: Рассылки
 
-  leads_count:
+  items_count:
     zero: 'Без заявок'
     one: '%{count} заявка'
     few: '%{count} заявки'
@@ -81,12 +81,6 @@ ru:
     few: '%{count} дней'
     many: '%{count} дней'
     other: '%{count} дней'
-
-  leads_count:
-    one: '%{count} заявка'
-    few: '%{count} заявки'
-    many: '%{count} заявок'
-    other: '%{count} заявок'
 
   buttons:
     restore: 'Восстановить'

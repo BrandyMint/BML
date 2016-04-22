@@ -15,12 +15,12 @@ table.table.table-condensed
             small
               = c.columns.join(', ')
         td
-          - if c.last_lead_at.present?
-            = I18n.l c.last_lead_at, format: :short
+          - if c.last_item_at.present?
+            = I18n.l c.last_item_at, format: :short
           - else
             = empty_value_html
         td
-          = link_to I18n.t(:leads_count, count: c.leads_count), landing_leads_url(current_landing, collection_id: c.id)
+          = link_to I18n.t(:items_count, count: c.items_count), landing_leads_url(current_landing, collection_id: c.id)
         td
           = columns_icon(c)
         td
