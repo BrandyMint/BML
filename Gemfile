@@ -33,6 +33,8 @@ gem 'rails', '4.2.5.1'
 
 gem 'openbill-ruby', '0.1.10'
 
+gem 'pg_search'
+
 # gem 'openbill-ruby', github: 'dapi/openbill-ruby'
 # gem 'openbill-ruby', path: '../openbill-ruby'
 

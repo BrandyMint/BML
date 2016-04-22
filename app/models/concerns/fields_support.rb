@@ -8,6 +8,7 @@ module FieldsSupport
 
   included do
     after_create :create_collection_fields
+    before_save :generate_data_string
   end
 
   def fields
@@ -23,6 +24,10 @@ module FieldsSupport
   end
 
   private
+
+  def generate_data_string
+    self.data_string = data.values.join(' ')
+  end
 
   def fields_data
     data.merge tracking_attributes
