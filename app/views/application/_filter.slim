@@ -15,7 +15,8 @@
             = render 'filter_search', filter: filter
             - if filter.client_id.present?
               = hidden_field_tag :client_id, filter.client_id
-              input value=filter.client
+              .btn.btn-sm.btn-secondary
+                = filter.client
             .filter-group
               button.btn.btn-sm.btn-primary type="submit" Применить
             - if filter.open?

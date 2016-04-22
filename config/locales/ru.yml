@@ -49,6 +49,13 @@ ru:
     organic: Прямые заходы
     mails: Рассылки
 
+  leads_count:
+    zero: 'Без заявок'
+    one: '%{count} заявка'
+    few: '%{count} заявки'
+    many: '%{count} заявок'
+    other: '%{count} заявок'
+
   items_count:
     zero: 'Без заявок'
     one: '%{count} заявка'
