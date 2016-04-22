@@ -13,13 +13,15 @@ class Landing < ActiveRecord::Base
 
   # TODO: перенести на belongs_to
   #
-  has_one :leads_collection, class_name: 'LeadsCollection'
-  has_one :records_collection, class_name: 'RecordsCollection'
+  has_one :leads_collection, class_name: 'LeadsCollection', dependent: :delete
+  has_one :records_collection, class_name: 'RecordsCollection', dependent: :delete
+  has_one :clients_collection, class_name: 'ClientsCollection', dependent: :delete
 
   has_many :segments, dependent: :delete_all
-  has_many :clients, dependent: :delete_all
+  has_many :clients, through: :clients_collection
   has_many :utm_values, dependent: :delete_all
   has_many :leads, dependent: :delete_all
+  has_many :collection_items, dependent: :delete_all
   has_many :landing_views, dependent: :delete_all
   has_many :variants, dependent: :destroy
 
@@ -53,17 +55,21 @@ class Landing < ActiveRecord::Base
   end
 
   def total_leads_count
-    collections
-      .sum(:leads_count)
+    collections.where(type: LeadsCollection.name).sum(:items_count)
   end
 
+  def default_clients_collection
+    clients_collection || create_clients_collection(title: 'Клиенты')
+  end
+
+  # Collections for LeaderBoard
   def default_leads_collection
-    leads_collection || create_leads_collection
+    leads_collection || create_leads_collection(title: 'Заявки')
   end
 
   # Collections for LeaderBoard
   def default_records_collection
-    records_collection || create_records_collection
+    records_collection || create_records_collection(title: 'Рекорды')
   end
 
   def default_variant

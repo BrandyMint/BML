@@ -8,7 +8,7 @@ table.table.table-condensed.table-stripped
       tr
         td
           = client.name
-        
+
         td
           - client.leads.each do |lead|
-            = render 'account/leads/lead_data', lead: lead
+            = render 'landing/leads/lead_data', lead: lead

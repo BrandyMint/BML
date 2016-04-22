@@ -13,6 +13,6 @@ module NumberSupport
   end
 
   def set_number
-    self.number ||= variant.leads.count + 1
+    self.number ||= collection.next_number
   end
 end

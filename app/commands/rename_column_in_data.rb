@@ -8,6 +8,6 @@ class RenameColumnInData
   attribute :column_new, String
 
   def perform
-    execute_query "update leads set data = change_hstore_key(data, '#{column_was}', '#{column_new}') where collection_id=#{collection_id}"
+    execute_query "update collection_items set data = change_hstore_key(data, '#{column_was}', '#{column_new}') where collection_id=#{collection_id}"
   end
 end

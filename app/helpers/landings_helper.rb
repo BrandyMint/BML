@@ -36,7 +36,7 @@ module LandingsHelper
   def landing_leads_title(landing, current_collection = nil)
     collection = current_collection || landing.default_leads_collection
     title = collection.to_s
-    count = collection.leads.count
+    count = collection.items.count
 
     return title if count == 0
 
@@ -44,7 +44,7 @@ module LandingsHelper
   end
 
   def collection_truncated_title(collection)
-    "#{truncate_middle(collection.to_s)} (#{collection.leads.count})"
+    "#{truncate_middle(collection.to_s)} (#{collection.items.count})"
   end
 
   private

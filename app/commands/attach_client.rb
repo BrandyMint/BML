@@ -6,6 +6,7 @@ class AttachClient
   attribute :lead, Lead
 
   def call
+    raise 'Must be a Lead' unless lead.is_a? Lead
     return unless lead.email.present? || lead.phone.present?
 
     lead.update_attribute :client, client
@@ -21,14 +22,14 @@ class AttachClient
   end
 
   def find_client
-    landing.clients.where('email = ? or phone = ?', lead.email, lead.phone).first
+    landing.default_clients_collection.clients.by_email_or_phone(lead.email, lead.phone).first
   end
 
   def create_client
-    landing.clients.create!(
-      email: lead.email,
-      phone: lead.phone,
-      name: lead.name || UNKNOWN_NAME,
-      landing: landing)
+    landing.default_clients_collection.clients.create! data: client_data, landing: landing
+  end
+
+  def client_data
+    lead.data.slice(*CollectionItem::CLIENT_FIELDS)
   end
 end

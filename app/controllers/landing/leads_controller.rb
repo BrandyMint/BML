@@ -65,7 +65,7 @@ class Landing::LeadsController < Landing::BaseController
 
   def usable_tracking_columns
     TrackingSupport::UTM_FIELD_DEFINITIONS.select do |fd|
-      current_collection.leads.where.not(fd.key => nil).any?
+      current_collection.items.where.not(fd.key => nil).any?
     end
   end
 
@@ -82,7 +82,7 @@ class Landing::LeadsController < Landing::BaseController
   end
 
   def available_leads
-    Lead.where(collection_id: current_landing.collections)
+    CollectionItem.where(collection_id: current_landing.collections)
   end
 
   def find_collection
