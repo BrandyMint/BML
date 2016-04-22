@@ -1,5 +1,12 @@
 class Lead < ActiveRecord::Base
   extend Enumerize
+
+  if PgSearch::Document.table_exists?
+    include PgSearch
+    pg_search_scope :search_by_data, against: :data_string
+    multisearchable against: [:data_string]
+  end
+
   include LeadStates
   include FieldsSupport
   include TrackingSupport

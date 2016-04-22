@@ -7,7 +7,7 @@ module Landing::LeadsHelper
     LeadsQuery
       .new(filter: filter.merge(state: state))
       .call
-      .count
+      .count(:all)
   end
 
   def state_tab_class(state, is_active)

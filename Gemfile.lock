@@ -423,6 +423,10 @@ GEM
     petrovich (1.0.0)
       commander (= 4.3.5)
     pg (0.18.4)
+    pg_search (0.7.8)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     poltergeist (1.8.1)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -760,6 +764,7 @@ DEPENDENCIES
   openbill-ruby (= 0.1.10)
   petrovich
   pg (~> 0.15)
+  pg_search
   phone!
   poltergeist
   pry-doc
