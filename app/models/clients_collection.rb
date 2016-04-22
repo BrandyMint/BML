@@ -5,7 +5,7 @@ class ClientsCollection < Collection
     superclass.model_name
   end
 
-  def get_client_name
+  def client_name
     title
   end
 end

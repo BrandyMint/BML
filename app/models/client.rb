@@ -8,7 +8,7 @@ class Client < CollectionItem
   end
 
   def to_s
-    collection.get_client_name + ': ' + name
+    collection.client_name + ': ' + name
   end
 
   def title

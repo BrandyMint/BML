@@ -27,7 +27,7 @@ class LeadsFilter
 
   delegate :to_param, to: :params
 
-  HIDDEN_FIELDS = %i(limit sort_order sort_field state account)
+  HIDDEN_FIELDS = %i(limit sort_order sort_field state account).freeze
   OPEN_FIELDS = LeadsFilter.attribute_set.map(&:name).reject { |f| HIDDEN_FIELDS.include? f }
   PRESENCE_FIELDS = OPEN_FIELDS + [:state]
 
