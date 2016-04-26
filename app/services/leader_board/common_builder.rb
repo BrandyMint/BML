@@ -46,8 +46,13 @@ module LeaderBoard
     def add_person_point(division, sex, title, note, points)
       data = persons_data[division] ||= {}
       data = data[sex] ||= {}
-
-      key = [title.strip, note.try(:strip)].compact.join ':'
+      key = [title.strip, note.try(:strip)]
+        .compact
+        .join(':')
+        .mb_chars
+        .upcase
+        .gsub(/\s+/,' ')
+        .to_s
       person = data[key] ||= { title: title, note: note, score: 0 }
       person[:score] += points.to_f
     end
