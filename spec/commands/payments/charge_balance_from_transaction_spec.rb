@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Payments::ChargeBalanceFromTransaction, openbill: true do
+describe Payments::ChargeBalanceFromTransaction do
   let(:account) { create :account, :with_billing }
   let(:gateway) { :cloudpayments }
   let(:token) { '123' }
@@ -29,10 +29,9 @@ describe Payments::ChargeBalanceFromTransaction, openbill: true do
 
   describe '#call' do
     context 'w/ card' do
-      before { subject.call }
       it 'must charge balance' do
-        expect(Openbill::Transaction.count).to eq 1
-        expect(account.billing_account.amount).to eq Money.new(5053, account.billing_account.amount_currency)
+        expect_any_instance_of(Billing::PaymentChargeBalance).to receive(:call)
+        subject.call
         expect(account.payment_accounts.count).to eq 1
         expect(account.payment_accounts.last.token).to eq token
       end
@@ -40,8 +39,9 @@ describe Payments::ChargeBalanceFromTransaction, openbill: true do
 
     context 'w/out card' do
       let(:card) { nil }
-      before { subject.call }
       it 'must not save card' do
+        expect_any_instance_of(Billing::PaymentChargeBalance).to receive(:call)
+        subject.call
         expect(account.payment_accounts.count).to eq 0
       end
     end

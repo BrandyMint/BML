@@ -11,8 +11,8 @@ module Billing
     attribute :user, User
 
     def call
-      Openbill.current.make_transaction(
-        from: SystemRegistry[:gift],
+      Openbill.service.make_transaction(
+        from: Billing.get_account_id(:gift),
         to: account.billing_account,
         key: [NS, account.ident, Time.current.beginning_of_hour.to_i].join(':'),
         amount: amount,

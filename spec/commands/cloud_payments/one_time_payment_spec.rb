@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CloudPayments::OneTimePayment, vcr: true, openbill: true do
+describe CloudPayments::OneTimePayment, vcr: true do
   let!(:account)            { create :account, :with_billing }
   let!(:amount_cents)       { '50,53' }
   let!(:amount_currency)    { account.billing_account.amount_currency }

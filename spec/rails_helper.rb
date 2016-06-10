@@ -53,6 +53,7 @@ RSpec.configure do |config|
 
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
+  config.include(OpenbillMock)
 
   # Отключение google_currency для конверсии валют, чтобы не стабать везде запросы
   # MoneyRails.configure do |c|
@@ -95,12 +96,7 @@ RSpec.configure do |config|
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
 
-  config.around :each, openbill: true do |example|
-    connection = Openbill.current.send(:database).instance_variable_get('@db')
-    connection.transaction do
-      example.run
-      # force rollback
-      raise Sequel::Error::Rollback
-    end
+  config.before :each do
+    stub_openbill
   end
 end

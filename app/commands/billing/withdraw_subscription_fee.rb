@@ -3,17 +3,15 @@ module Billing
   class WithdrawSubscriptionFee
     include Virtus.model(strict: true, nullify_blank: true)
 
-    NS = :subscription
-
     attribute :account, Account
     attribute :tariff, Tariff
     attribute :month, Date
 
     def call
-      Openbill.current.make_transaction(
+      Openbill.service.make_transaction(
         from: account.billing_account,
-        to: SystemRegistry[:subscriptions],
-        key: [NS, account.ident, month].join(':'),
+        to: Billing.get_account_id(:subscriptions),
+        key: [:subscription, account.ident, month].join(':'),
         amount: fee.total,
         details: fee.description,
         meta: {
