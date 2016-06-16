@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422052310) do
+ActiveRecord::Schema.define(version: 20160614081209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -239,30 +239,47 @@ ActiveRecord::Schema.define(version: 20160422052310) do
   add_index "memberships", ["user_id", "account_id"], name: "index_memberships_on_user_id_and_account_id", unique: true, using: :btree
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
 
-  create_table "openbill_accounts", id: :bigserial, force: :cascade do |t|
-    t.string   "category",            limit: 256, default: "common", null: false
-    t.string   "key",                 limit: 256,                    null: false
-    t.decimal  "amount_cents",                    default: 0.0,      null: false
-    t.string   "amount_currency",     limit: 3,   default: "USD",    null: false
+  create_table "openbill_accounts", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.uuid     "category_id",                                       null: false
+    t.string   "key",                 limit: 256,                   null: false
+    t.decimal  "amount_cents",                    default: 0.0,     null: false
+    t.string   "amount_currency",     limit: 3,   default: "USD",   null: false
     t.text     "details"
-    t.integer  "transactions_count",              default: 0,        null: false
-    t.integer  "last_transaction_id"
+    t.integer  "transactions_count",              default: 0,       null: false
+    t.uuid     "last_transaction_id"
     t.datetime "last_transaction_at"
-    t.hstore   "meta",                            default: {},       null: false
+    t.hstore   "meta",                            default: {},      null: false
     t.datetime "created_at",                      default: "now()"
     t.datetime "updated_at",                      default: "now()"
   end
 
-  add_index "openbill_accounts", ["category", "key"], name: "index_accounts_on_key", unique: true, using: :btree
   add_index "openbill_accounts", ["created_at"], name: "index_accounts_on_created_at", using: :btree
   add_index "openbill_accounts", ["id"], name: "index_accounts_on_id", unique: true, using: :btree
+  add_index "openbill_accounts", ["key"], name: "index_accounts_on_key", unique: true, using: :btree
   add_index "openbill_accounts", ["meta"], name: "index_accounts_on_meta", using: :gin
 
-  create_table "openbill_transactions", id: :bigserial, force: :cascade do |t|
+  create_table "openbill_categories", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string "name",      limit: 256, null: false
+    t.uuid   "parent_id"
+  end
+
+  add_index "openbill_categories", ["parent_id", "name"], name: "index_openbill_categories_name", unique: true, using: :btree
+
+  create_table "openbill_policies", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string "name",             limit: 256, null: false
+    t.uuid   "from_category_id"
+    t.uuid   "to_category_id"
+    t.uuid   "from_account_id"
+    t.uuid   "to_account_id"
+  end
+
+  add_index "openbill_policies", ["name"], name: "index_openbill_policies_name", unique: true, using: :btree
+
+  create_table "openbill_transactions", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "username",        limit: 255,                   null: false
     t.datetime "created_at",                  default: "now()"
-    t.integer  "from_account_id",                               null: false
-    t.integer  "to_account_id",                                 null: false
+    t.uuid     "from_account_id",                               null: false
+    t.uuid     "to_account_id",                                 null: false
     t.decimal  "amount_cents",                                  null: false
     t.string   "amount_currency", limit: 3,                     null: false
     t.string   "key",             limit: 256,                   null: false
@@ -494,7 +511,13 @@ ActiveRecord::Schema.define(version: 20160422052310) do
   add_foreign_key "landings", "accounts"
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
+  add_foreign_key "openbill_accounts", "openbill_categories", column: "category_id", name: "openbill_accounts_category_id_fkey", on_delete: :restrict
   add_foreign_key "openbill_accounts", "openbill_transactions", column: "last_transaction_id", name: "openbill_accounts_last_transaction_id_fkey", on_update: :restrict, on_delete: :restrict
+  add_foreign_key "openbill_categories", "openbill_categories", column: "parent_id", name: "openbill_categories_parent_id_fkey", on_delete: :restrict
+  add_foreign_key "openbill_policies", "openbill_accounts", column: "from_account_id", name: "openbill_policies_from_account_id_fkey"
+  add_foreign_key "openbill_policies", "openbill_accounts", column: "to_account_id", name: "openbill_policies_to_account_id_fkey"
+  add_foreign_key "openbill_policies", "openbill_categories", column: "from_category_id", name: "openbill_policies_from_category_id_fkey"
+  add_foreign_key "openbill_policies", "openbill_categories", column: "to_category_id", name: "openbill_policies_to_category_id_fkey"
   add_foreign_key "openbill_transactions", "openbill_accounts", column: "from_account_id", name: "openbill_transactions_from_account_id_fkey", on_update: :restrict, on_delete: :restrict
   add_foreign_key "openbill_transactions", "openbill_accounts", column: "to_account_id", name: "openbill_transactions_to_account_id_fkey"
   add_foreign_key "payment_accounts", "accounts"

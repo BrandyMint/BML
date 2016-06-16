@@ -1,5 +1,6 @@
 class Account::CloudPaymentsController < Account::BaseController
   layout 'account'
+  skip_before_action :verify_authenticity_token, only: [:post3ds]
 
   def new
     render :new, locals: { form: form }
@@ -34,7 +35,7 @@ class Account::CloudPaymentsController < Account::BaseController
   private
 
   def form
-    @_form ||= CloudPaymentsForm.new recurrent: true, **permitted_params
+    @_form ||= CloudPaymentsForm.new recurrent: true, **permitted_params.symbolize_keys
   end
 
   def one_time_payment

@@ -1,6 +1,6 @@
 module AccountBilling
   extend ActiveSupport::Concern
-  BILLING_CATEGORY = :accounts
+  OPENBILL_PREFIX = 'client-'.freeze
 
   included do
     after_commit :billing_account, on: :create
@@ -9,11 +9,14 @@ module AccountBilling
   delegate :amount, to: :billing_account
 
   def billing_account
-    Openbill.current.account billing_account_ident
+    Openbill.service.get_or_create_account_by_key billing_account_ident,
+                                                  category_id: Billing::CLIENTS_CATEGORY_ID,
+                                                  details: billing_details,
+                                                  meta: { url: url, account_id: id }
   end
 
   def billing_transactions
-    Openbill.current.account_transactions billing_account
+    Openbill.service.account_transactions billing_account
   end
 
   def needs_recurrent_charge?
@@ -27,7 +30,11 @@ module AccountBilling
 
   private
 
+  def billing_details
+    [name.presence, ident].join ' '
+  end
+
   def billing_account_ident
-    [BILLING_CATEGORY, id]
+    OPENBILL_PREFIX + id.to_s
   end
 end
