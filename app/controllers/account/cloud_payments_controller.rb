@@ -35,7 +35,7 @@ class Account::CloudPaymentsController < Account::BaseController
   private
 
   def form
-    @_form ||= CloudPaymentsForm.new recurrent: true, **permitted_params
+    @_form ||= CloudPaymentsForm.new recurrent: true, **permitted_params.symbolize_keys
   end
 
   def one_time_payment
