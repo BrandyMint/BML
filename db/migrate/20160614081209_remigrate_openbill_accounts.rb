@@ -1,3 +1,5 @@
+require 'ruby-progressbar'
+
 class RemigrateOpenbillAccounts < ActiveRecord::Migration
   def change
     Billing.recreate_system_accounts
