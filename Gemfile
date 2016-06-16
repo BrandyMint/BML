@@ -31,7 +31,7 @@ gem 'activeadmin', github: 'activeadmin/activeadmin'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 
-gem 'openbill-ruby', '0.1.10'
+gem 'openbill-ruby', github: 'dapi/openbill-ruby'
 
 gem 'pg_search'
 

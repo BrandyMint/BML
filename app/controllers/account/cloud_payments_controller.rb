@@ -1,5 +1,6 @@
 class Account::CloudPaymentsController < Account::BaseController
   layout 'account'
+  skip_before_action :verify_authenticity_token, only: [:post3ds]
 
   def new
     render :new, locals: { form: form }

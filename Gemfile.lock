@@ -42,6 +42,16 @@ GIT
       activesupport (>= 2.3.2)
 
 GIT
+  remote: git://github.com/dapi/openbill-ruby.git
+  revision: 5076c3e323eb1f20af6ce20db65f48a16d767843
+  specs:
+    openbill-ruby (0.1.17)
+      money
+      pg
+      sequel
+      virtus
+
+GIT
   remote: git://github.com/fnando/i18n-js.git
   revision: 0de86694911b9d4eaa55c25ef689350e4bce215c
   specs:
@@ -333,7 +343,7 @@ GEM
     htmlentities (4.3.4)
     http_logger (0.5.1)
     i18n (0.7.0)
-    ice_nine (0.11.1)
+    ice_nine (0.11.2)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
       has_scope (~> 0.6.0.rc)
@@ -378,7 +388,7 @@ GEM
     minitest (5.8.4)
     monetize (1.4.0)
       money (~> 6.7)
-    money (6.7.0)
+    money (6.7.1)
       i18n (>= 0.6.4, <= 0.7.0)
       sixarm_ruby_unaccent (>= 1.1.1, < 2)
     multi_json (1.11.2)
@@ -417,7 +427,6 @@ GEM
     omniauth-yandex (0.0.2)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
-    openbill-ruby (0.1.10)
     parser (2.3.0.6)
       ast (~> 2.2)
     petrovich (1.0.0)
@@ -587,7 +596,7 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     semver2 (3.4.0)
-    sequel (4.32.0)
+    sequel (4.35.0)
     settingslogic (2.0.9)
     shellany (0.0.1)
     sidekiq (3.5.4)
@@ -761,7 +770,7 @@ DEPENDENCIES
   omniauth
   omniauth-twitter
   omniauth-yandex
-  openbill-ruby (= 0.1.10)
+  openbill-ruby!
   petrovich
   pg (~> 0.15)
   pg_search
@@ -835,4 +844,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.11.2
+   1.12.5

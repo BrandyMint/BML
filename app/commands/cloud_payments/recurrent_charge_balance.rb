@@ -7,13 +7,20 @@ module CloudPayments
     attribute :account, Account
     attribute :amount, Money
 
+    MAX_SUBTRACT_SUM = Money.new(10_000_00, :rub)
+
     def call
+      raise LargeAmountError if amount > MAX_SUBTRACT_SUM
       resp = make_transaction
       charge_balance resp
 
     rescue CloudPayments::Client::ReasonedGatewayError => err
       key = err.class.name.demodulize.to_sym
       raise CloudPaymentsError, key
+
+    rescue LargeAmountError => err
+      Bugsnag.notify err, metaData: { account: account, amount: amount }
+      raise err
     end
 
     private
@@ -44,4 +51,5 @@ module CloudPayments
       Payments::CLOUDPAYMENTS_GATEWAY_KEY
     end
   end
+  LargeAmountError = Class.new StandardError
 end

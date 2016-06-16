@@ -3,20 +3,20 @@ module Billing
   class PaymentChargeBalance
     include Virtus.model(strict: true, nullify_blank: true)
 
-    NS = :payments
+    DETAILS = 'Пополнение баланса'.freeze
 
     attribute :account, Account
     attribute :amount, Money
-    attribute :gateway, String
+    attribute :gateway, Symbol
     attribute :transaction_id, String
 
     def call
-      Openbill.current.make_transaction(
-        from: SystemRegistry[:payments],
+      Openbill.service.make_transaction(
+        from: Billing.get_account_id(gateway),
         to: account.billing_account,
-        key: [NS, gateway, transaction_id].join(':'),
+        key: [:payments, gateway, transaction_id].join(':'),
         amount: amount,
-        details: 'Пополнение баланса',
+        details: "#{DETAILS} #{transaction_id} gateway: #{gateway}",
         meta: {
           gateway: gateway,
           transaction_id: transaction_id
