@@ -1,14 +1,7 @@
-require 'ruby-progressbar'
-
 class RemigrateOpenbillAccounts < ActiveRecord::Migration
   def change
     Billing.recreate_system_accounts
 
-    pb = ProgressBar.create total: Account.count
-
-    Account.find_each do |v|
-      pb.increment
-      v.billing_account
-    end
+    Account.find_each(&:billing_account)
   end
 end
