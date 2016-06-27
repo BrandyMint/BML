@@ -21,7 +21,6 @@ module Billing
   end
 
   def self.recreate_system_accounts
-    Openbill.service.create_category 'System', id: SYSTEM_CATEGORY_ID
     Openbill.service.create_category 'Клиенты', id: CLIENTS_CATEGORY_ID
 
     # Создаем системные аккаунты
