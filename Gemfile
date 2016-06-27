@@ -31,11 +31,9 @@ gem 'activeadmin', github: 'activeadmin/activeadmin'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 
-gem 'openbill-ruby', github: 'dapi/openbill-ruby'
-
 gem 'pg_search'
 
-# gem 'openbill-ruby', github: 'dapi/openbill-ruby'
+gem 'openbill-ruby', github: 'openbill-service/openbill-ruby'
 # gem 'openbill-ruby', path: '../openbill-ruby'
 
 # Use postgresql as the database for Active Record

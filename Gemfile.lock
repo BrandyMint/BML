@@ -42,16 +42,6 @@ GIT
       activesupport (>= 2.3.2)
 
 GIT
-  remote: git://github.com/dapi/openbill-ruby.git
-  revision: 5076c3e323eb1f20af6ce20db65f48a16d767843
-  specs:
-    openbill-ruby (0.1.17)
-      money
-      pg
-      sequel
-      virtus
-
-GIT
   remote: git://github.com/fnando/i18n-js.git
   revision: 0de86694911b9d4eaa55c25ef689350e4bce215c
   specs:
@@ -77,6 +67,16 @@ GIT
   specs:
     sidekiq-failures (0.4.5)
       sidekiq (>= 2.16.0)
+
+GIT
+  remote: git://github.com/openbill-service/openbill-ruby.git
+  revision: 81dc446be7775e37cc860bd8cc62feaf2fa4965e
+  specs:
+    openbill-ruby (0.1.18)
+      money
+      pg
+      sequel
+      virtus
 
 GIT
   remote: git://github.com/planetio/capistrano-db-tasks.git
